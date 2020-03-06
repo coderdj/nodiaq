@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var DataTable = require('mongoose-datatable').default;
 var runsModel;
-var dbURI = "mongodb://" + process.env.RUNS_MONGO_USER + ":" + process.env.RUNS_MONGO_PASSWORD + '@' +
- 			process.env.RUNS_MONGO_HOST + ":" + process.env.RUNS_MONGO_PORT + "/" + process.env.RUNS_MONGO_AUTH_DB;
+var dbURI = process.env.RUNS_URI;
 var runsdb = mongoose.connection;
+
 var runs;
 var runsTableSchema;
 var xenon1tRunsSchema;

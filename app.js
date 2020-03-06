@@ -26,14 +26,12 @@ var dax_cstr = process.env.DAQ_URI;
 //console.log(dax_cstr);
 var db = monk(dax_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
 
-var monitor_cstr = "mongodb://"+process.env.DAQ_MONGO_USER +":"+process.env.DAQ_MONGO_PASSWORD+"@"+process.env.DAQ_MONGO_HOST+":"+process.env.DAQ_MONGO_PORT+"/"+process.env.DAQ_MONGO_DB;
-var monitor_client = new mongo.MongoClient(monitor_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
-var monitor_db;
+
+var monitor_cstr = process.env.RUNS_URI;
+//console.log("MONITOR DB")
 //console.log(monitor_cstr);
-monitor_client.connect(function(err) {
-    console.log(err);
-    monitor_db = monitor_client.db('daq');
-});
+var monitor_db = monk(monitor_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
+
 
 
 // For Runs DB Datatable
@@ -85,12 +83,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Session caching
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
-var dax_cstr = process.env.DAQ_MONGO_USER + ":" + process.env.DAQ_MONGO_PASSWORD + "@" + 
-    process.env.DAQ_MONGO_HOST + ":" + process.env.DAQ_MONGO_PORT + "/" +
-    process.env.DAQ_MONGO_DB;
-			
+
+// dax_cstr has already been defined further up
 var store = new MongoDBStore({
-  uri: 'mongodb://' + dax_cstr,
+  uri: dax_cstr,
   collection: 'mySessions'
 });
  
