@@ -180,53 +180,34 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
 
     var t = limit;
     var id = objectIdWithTimestamp(t);
+    var bins = [];
+    for (var tt = limit; tt < (new Date()).getTime(); tt += resolution*1000)
+        bins.push(tt);
+    bins.push((new Date()).getTime());
 
     // Fancy-pants aggregation to take binning into account
-    var query = {"host": reader, "_id": {"$gt": id}};
+    var query = {"host": reader, "_id": {"$gte": id}};
     collection.aggregate([
 	{'$match': query},
-	{'$project': {
-	    'time_bin': {
-		"$trunc": {
-		    "$divide" : [
-			{ 
-			    "$convert": { 'input': {"$subtract": [ {"$toDate": "$_id"}, t ]},
-					 'to': 19
-					}
-			},
-			1000*resolution
-		    ]
-		}
-	    },
-	    'insertion_time': {"$toDate": "$_id"}, "_id": 1, "rate": 1, "buffer_length": 1, "strax_buffer" : 1,
-	    "host": 1
-	}},
-	{'$group': {
-	    '_id': '$time_bin',	   
-	    'rate': { '$avg': '$rate'},
-	    'buff': { '$avg': '$buffer_length'},
-            'straxbuf' : {'$avg' : '$strax_buffer'},
-	    'host': { '$first': '$host'}
-	}},
-	{'$project': {
-	    '_id': 1,
-	    'time': { "$convert": { 'input': {'$add': [{'$multiply': ['$_id', resolution, 1000]}, t]},
-				    'to': 18 // long int
-				  }},
-	    'rate': 1,
-	    'buff': 1,
-	    'host': 1,
-            'straxbuf': 1,
-	}},
-	{'$sort': {"time": 1}},
-	{'$group': {
-	    '_id': '$host',
-	    'rates': {'$push': '$rate'},
-	    'buffs': {'$push': '$buff'},
-	    'times': {'$push': '$time'},
-            'straxs' : {'$push' : '$straxbuf'},
-	}},
-    ], function(err, result){	
+        {'$bucket' : {
+            groupBy : {$convert : {input : {$toDate : '$_id'}, to : 'long'}},
+            boundaries : bins,
+            output : {
+              host : {$first : '$host'}
+              rate : {$avg : '$rate'},
+              buff : {$avg : '$buffer_length'},
+              strx : {$avg : '$strax_buffer'},
+            }
+        } },
+        {$sort : {_id : 1}},
+        {$group : {
+          _id : '$host',
+           times : {$push : {$add : ["$_id", resolution*500]}}, // bin center
+           rates : {$push : '$rate'},
+           buffs : {$push : '$buff'},
+           strxs : {$push : '$strx'},
+        }},
+    ], function(err, result){
 	var ret = {};
 	if(result.length > 0){
 	    retval = result[0];
@@ -237,7 +218,7 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
 		ret[retval['_id']]['buffs'].push([retval['times'][i],
 						  retval['buffs'][i]]);
                 ret[retval['_id']]['straxs'].push([retval['times'][i],
-                                                  retval['straxs'][i]]);
+                                                   retval['strxs'][i]]);
 	    };
 	}
 	else
