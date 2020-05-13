@@ -107,10 +107,32 @@ router.get('/runsfractions', ensureAuthenticated, function(req, res){
     var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
     var q = url.parse(req.url, true).query;
     var days = q.days;
-    if( typeof days === 'undefined')
-	days = 30;
-    
-    var querydays = new Date(new Date() - days*24*3600*1000);
+    try{
+      days = parseInt(q.days);
+    }catch(error){
+      days=30;
+    }
+    //if( typeof days === 'undefined')
+	//days = 30;
+    var total = days*86400*1000;
+    var querydays = new Date(new Date() - total);
+    collection.aggregate([
+      {$match : {detector : 'tpc', start : {$gt : querydays}}},
+      {$project : {start : 1, user : 1, mode : 1,
+        end : {$ifNull : ['$end', new Date()]}}},
+      {$group : {_id : '$mode',
+                 runtime : {
+                  $sum : {
+                    $divide : [
+                      {$subtract : ['$end', '$start']},
+                      total
+                    ] // divide
+                  } // sum
+                 } // runtime
+      }} // group
+    ], function(e, docs) {
+      return res.json(docs);
+    }); /*
     collection.find({"start": {"$gt": querydays}},
 		    function(e, docs){
 			ret = {};
@@ -125,7 +147,7 @@ router.get('/runsfractions', ensureAuthenticated, function(req, res){
 			return res.send(JSON.stringify(ret));
 		    });
     
-    
+    */
 });
 
 module.exports = router;

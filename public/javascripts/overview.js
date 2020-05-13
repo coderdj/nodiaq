@@ -36,11 +36,12 @@ function DrawPie(pie_div, ndays){
 	if(typeof(document.piechart) != 'undefined')
             document.piechart.destroy;
 	var series = [];
-	var tot=0;
-	for(var i in data)
-	    tot+=data[i];
-	for(var i in data)
-	    series.push({"name": i, "y": data[i]/tot});
+        var active=0;
+	for(var i in data) {
+	    series.push({"name": data[i]['_id'], "y": data[i]['runtime']});
+            active += data[i]['runtime'];
+        }
+        series.push({"name" : "idle", "y" : 1.0-active});
 	document.piechart = Highcharts.chart(pie_div, {
 	    chart: {
 		plotBackgroundColor: null,

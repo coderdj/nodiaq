@@ -27,7 +27,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
     res.render('index', { title: 'Express', user: req.user });
 });
 
-		   
 router.get('/detector_history', ensureAuthenticated, function(req, res){
     var db = req.db;
     var collection = db.get('aggregate_status');

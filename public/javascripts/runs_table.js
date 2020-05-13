@@ -77,7 +77,7 @@ function InitializeRunsTable(divname){
 	      }
 	    },
             { data : "user"},
-            { data : "start", format: 'DD. MMM.YYYY HH:mm', type: 'datetime'},
+            { data : "start", format: 'YYYY-MM-DD HH:mm', type: 'datetime'},
             { data : "end", defaultContent: "",
 		"render": function(data, type, row){
 		    
@@ -99,7 +99,7 @@ function InitializeRunsTable(divname){
 	    },
             { data : "tags.name", "defaultContent": "",
 	      searchable: true,
-	      "render": function(data, type, row){		  
+	      "render": function(data, type, row){
 		  ret = "";	  
 		  if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
 		      for(var i=0; i<row.tags.length; i+=1){
@@ -290,8 +290,8 @@ function ShowDetail(run, experiment){
 	// Set base data
 	document.getElementById("detail_Number").innerHTML = data['number'];
 	$("#detail_Detectors").html(data['detector']);
-	$("#detail_Start").html(moment(data['start']).format('DD.MM.YYYY HH:mm'));
-	$("#detail_End").html(moment(data['end']).format('DD.MM.YYYY HH:mm'));
+	$("#detail_Start").html(moment(data['start']).format('YYYY.MM.DD HH:mm'));
+	$("#detail_End").html(moment(data['end']).format('YYYY.MM.DD HH:mm'));
 	$("#detail_User").html(data['user']);
 	$("#detail_Mode").html(data['mode']);
 	$("#detail_Source").html(data['source']);
@@ -300,7 +300,7 @@ function ShowDetail(run, experiment){
 	for(var i in data['tags']){
 	    var row = data['tags'][i];
 	    tag_html += "<tr><td>" + row['name'] + "</td><td>" + row['user'] + "</td><td>";
-	    tag_html += moment(row['date']).format("DD.MM.YYYY HH:mm") + "</td>";
+	    tag_html += moment(row['date']).format("YYYY.MM.DD HH:mm") + "</td>";
 	    if(row['user'] === window['user']){
 		tag_html += ("<td><button onclick='RemoveTag("+data['number']+", "+
 			     '"'+row['user']+'"'+", "+'"'+row['name']+'"');
@@ -319,7 +319,7 @@ function ShowDetail(run, experiment){
 	    else
 		comment_html += row["text"];				    
 	    comment_html += "</td><td>";
-	    comment_html += moment(row['date']).format("DD.MM.YYYY HH:mm") + "</td></tr>";
+	    comment_html += moment(row['date']).format("YYYY.MM.DD HH:mm") + "</td></tr>";
 	}
 	$("#detail_Comments").html(comment_html);
 	

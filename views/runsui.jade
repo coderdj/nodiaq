@@ -44,7 +44,7 @@ block content
             input(value="xenonnt" type="radio" autocomplete="off" checked) 
             span(name='xenonnt') XENONnT
           label.btn.btn-secondary(name='xenon1t')
-            input(type="radio" autocomplete="off" value="xenon1t") 
+            input(type="radio" autocomplete="off" value="xenon1t" disabled onclick="No1T()") 
             span(name='xenon1t') XENON1T
   
     br
@@ -129,3 +129,6 @@ block content
       DrawActiveLink("#lruns");
       InitializeRunsTable("#runs_table");
       });
+    function No1T() {
+      alert("This doesn't work right now, please try again later");
+      }
