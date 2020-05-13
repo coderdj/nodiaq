@@ -1,7 +1,7 @@
 
 <svg id="svg2"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 475 250"
+    viewBox="0 0 500 250"
 >
     <style>
         text{
@@ -24,9 +24,7 @@
             font-weight:
                 bold;
             stroke-width:
-                4;
-            text-decoration:
-                underline;
+                2;
         }
         
        .border, .axis{
