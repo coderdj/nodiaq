@@ -11,6 +11,7 @@ var mongo = require('mongodb');
 var ObjectID = mongo.ObjectID;
 var monk = require('monk');
 var runs_cstr = process.env.RUNS_URI;
+var runs_1t = process.env.RUNS_URI_1T;
 
 console.log("");
 console.log("NOW: " + new Date());
@@ -18,6 +19,7 @@ console.log("");
 
 //console.log("Runs DB " + runs_cstr);
 var runs_db = monk(runs_cstr, {authSource : process.env.RUNS_MONGO_AUTH_DB});
+var runs_db_1t = monk(runs_1t, {authSource : process.env.RUNS_MONGO_AUTH_DB});
 
 // In case different
 var users_cstr = process.env.USERS_URI;
@@ -150,6 +152,7 @@ app.use(function(req,res,next){
     req.db = db;
     req.transporter = transporter;
     req.runs_db = runs_db;
+    req.runs_1t = runs_db_1t;
     req.users_db = users_db;
     req.monitor_db = db;
     req.ObjectID = ObjectID;
