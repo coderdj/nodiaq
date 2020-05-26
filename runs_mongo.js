@@ -6,7 +6,7 @@ var runsdb = mongoose.connection;
 var runs;
 var runsTableSchema;
 
-DataTable.configure({ verbose: true, debug : true });
+DataTable.configure({ verbose: false, debug : false });
 mongoose.plugin(DataTable.init);
 mongoose.connect(dbURI, {authSource : process.env.RUNS_MONGO_AUTH_DB});
 
@@ -14,7 +14,6 @@ mongoose.connect(dbURI, {authSource : process.env.RUNS_MONGO_AUTH_DB});
 runsdb.on('error', console.error.bind(console, 'connection error:'));
 runsdb.once('open', function callback ()
 	{
-	    //console.log('Connection has succesfully opened');
 	    var Schema = mongoose.Schema;
 	    runsTableSchema = new Schema(
 		{
@@ -38,6 +37,7 @@ runsdb.once('open', function callback ()
 
 exports.getDataForDataTable = function getData (request, response) {
 
+    console.log('Getting nt runs data');
     var conditions = {};
     if(typeof request.query['conditions'] !== 'undefined')
 	conditions = JSON.parse(request.query['conditions']);
@@ -59,11 +59,13 @@ exports.getDataForDataTable = function getData (request, response) {
     }
     runsModel.dataTable(request.query,  {"conditions": conditions}).then(
 			    function (data) {
+                              console.log('GOT SOMETHING??');
+                              console.log(data);
 				response.send(data);
 			    }).catch(
 				function(err){
+                                    console.log("Error getting nt runs");
 				    console.log(err);
 				});
-    }
     
 };

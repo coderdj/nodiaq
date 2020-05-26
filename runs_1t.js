@@ -16,6 +16,7 @@ mongoose.connect(dbURI, {authSource : process.env.RUNS_MONGO_AUTH_DB});
 runsdb.on('error', console.error.bind(console, 'connection error:'));
 runsdb.once('open', function callback ()
 	{
+	    var Schema = mongoose.Schema;
 	    xenon1tRunsSchema = new Schema(
 		{
 		    number: {type: Number, required: true},
@@ -62,6 +63,7 @@ exports.getDataForDataTable = function getData (request, response) {
 		i=j;
 	if(i != -1)
 	    query.columns.splice(i, 1);
+        console.log('Getting 1t data');
 	runsModel1T.dataTable(query,  {"conditions": conditions}).then(
                             function (data) {
                                 response.send(data);
