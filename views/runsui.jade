@@ -11,7 +11,7 @@ block extrahead
   link(rel="stylesheet" href="https://rawgithub.com/yesmeck/jquery-jsonview/master/dist/jquery.jsonview.css")
   script(type="text/javascript" src="https://rawgithub.com/yesmeck/jquery-jsonview/master/dist/jquery.jsonview.js")
 
-block content     
+block content
   div.main-container(style="height:100%")
     div.row.det_card_noheight#addtagrow(style="display:none;padding-left:20px;")
       div.col-md-12.col-lg-6
@@ -44,7 +44,7 @@ block content
             input(value="xenonnt" type="radio" autocomplete="off" checked) 
             span(name='xenonnt') XENONnT
           label.btn.btn-secondary(name='xenon1t')
-            input(type="radio" autocomplete="off" value="xenon1t" disabled onclick="No1T()") 
+            input(type="radio" autocomplete="off" value="xenon1t")
             span(name='xenon1t') XENON1T
   
     br
@@ -121,14 +121,11 @@ block content
               div.tab-pane.fade#tab_json(role="tabpanel" aria-labelledby="json-tab")
                 div.json_detail#detail_JSON(style="width:100%")
             br
-            button.btn.btn-error(type='button' data-dismiss='modal') Close         
+            button.btn.btn-error(type='button' data-dismiss='modal') Close
   script.
     // This allows the included javascript to see who the user is
     var user = '#{user.last_name}';
-    $(document).ready(function(){    	
+    $(document).ready(function(){
       DrawActiveLink("#lruns");
       InitializeRunsTable("#runs_table");
       });
-    function No1T() {
-      alert("This doesn't work right now, please try again later");
-      }

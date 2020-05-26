@@ -32,6 +32,7 @@ var db = monk(dax_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
 
 // For Runs DB Datatable
 var runs_mongo = require("./runs_mongo");
+var runs_1t = require("./runs_1t");
 
 // For email confirmations
 var nodemailer = require("nodemailer");
@@ -162,6 +163,7 @@ app.use(function(req,res,next){
 
 // This is the route for the automatic runs datatable api function
 app.get('/runtable/getDatatable', runs_mongo.getDataForDataTable);
+app.get('/runtable/getDatatable1t', runs_1t.getDataForDataTable);
 
 app.use('/', indexRouter);
 app.use('/options', optionsRouter);
