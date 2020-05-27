@@ -9,7 +9,7 @@ function DefineButtonRules(){
 	    var val = 'off';
 
 	    // First, fail in case "remote" mode enabled"
-	    if(!$("#remote_tpc").is(":checked")){		
+	    if(!$("#remote_tpc").is(":checked")){
 		alert("You cannot control the TPC when it is in remote mode!");
 		$("#tpc_active").bootstrapToggle('toggle');
 		document.page_ready = true;
@@ -30,7 +30,7 @@ function DefineButtonRules(){
 	    if(!$("#remote_muon_veto").is(":checked")){
 		alert("You cannot control the muon veto when it is in remote mode!");
 		$("#muon_veto_active").bootstrapToggle('toggle');
-		document.page_ready = true;		
+		document.page_ready = true;
 		return;
 	    }
 	    
@@ -49,7 +49,7 @@ function DefineButtonRules(){
 	    if(!$("#remote_neutron_veto").is(":checked")){
 		alert("You cannot control the neutron veto when it is in remote mode!");
 		$("#neutron_veto_active").bootstrapToggle('toggle');
-		document.page_ready = true;		
+		document.page_ready = true;
 		return;
 	    }
 	    
@@ -143,11 +143,7 @@ function PopulateRunsList(callback){
 			var sdiv = d + "_mode";
 			document.getElementById(sdiv).innerHTML = html;
 			fetched+=1;
-			console.log("DET");
-			console.log(detector);
-			console.log(fetched);
 			if(fetched === 3){
-				console.log("CALLING PULLS");
 				callback();
 			}
 
@@ -166,20 +162,15 @@ function PullServerData(callback){
 			var doc = data[i];
 			var detector = doc['detector'];
 			if(detector !== 'tpc' && detector !== 'muon_veto' && detector !== 'neutron_veto'){
-				console.log("Weird doc!")
-				console.log(doc);
 				continue;
 			}
 			found += 1;
-			console.log(found);
 		    var atts = ["stop_after", "mode", "user", "comment"];
 		    for(var j in atts){
 			var att = atts[j];
-			console.log(att);
 			var divname = "#" + detector + "_" + att;
 			if(att === 'mode'){
 			    $(divname + " option").filter(function() {
-				console.log(this);
     					return this.value === doc['mode']
   					}).prop('selected', true);
 			}
@@ -206,10 +197,6 @@ function PullServerData(callback){
 			$("#"+detector+"_active").bootstrapToggle('on');
 		    else
 			$("#"+detector+"_active").bootstrapToggle('off');
-			
-			
-			
-			console.log(doc);
 		}
 		if(found !== 3)
 			alert("Didn't find data for all detectors! Must be you have a clean slate.")
@@ -225,7 +212,7 @@ function PostServerData(){
     var failed = false;
     for(var i in dets){
 	    var detector = dets[i];
-	    var thisdet = {"detector": detector};
+	    var thisdet = {"detector": detector, "finish_run_on_stop" : "false"};
 	    thisdet['active'] = $("#"+detector+"_active").is(":checked");
 		
 	var atts = ["stop_after", "mode", "user", "comment"];
@@ -237,7 +224,7 @@ function PostServerData(){
 		    alert("You need to provide a value for "+att+" for the "+detector+", or disable that detector.");
 		    failed = true;
 		}
-	    }	    
+	    }
 	thisdet['active'] = $("#"+detector+"_active").is(":checked");
 	thisdet['remote'] = (!$("#remote_" + detector).is(":checked"));
 	if(detector === "tpc"){
@@ -251,7 +238,7 @@ function PostServerData(){
 		$.ajax({
 		    type: "POST",
 	   		url: "control/set_control_docs",
-	  		data: {"data": post},		   
+	  		data: {"data": post},
 	    	success: function(){
 		   		location.reload();
 		   	},

@@ -159,86 +159,37 @@ function UpdateStatusPage(){
     var brokers = []; //["fdaq00_broker_0"]; 
 
     UpdateCommandPanel();
-    UpdateCrateControllers(controllers);
+    UpdateCrateControllers();
     UpdateFromReaders();
     UpdateCeph();
+    UpdateBootstrax();
     setTimeout(UpdateStatusPage, 5000);
 }
 
-/*function MakeCephGauge(){
-
-    document.ceph_chart = Highcharts.chart('ceph_chartdiv', Highcharts.merge(
-	{
-	    chart: { type: 'solidgauge'},
-	    title: null,
-	    pane: {
-		center: ['50%', '90%'],
-		size: '140%',
-		startAngle: -90,
-		endAngle: 90,
-		background: {
-		    backgroundColor:
-		    Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-		    innerRadius: '60%',
-		    outerRadius: '100%',
-		    shape: 'arc'
-		}
-	    },	    
-	    tooltip: {
-		enabled: false
-	    },	    
-	    // the value axis
-	    yAxis: {
-		stops: [
-		    [0.1, '#55BF3B'], // green
-		    [0.5, '#DDDF0D'], // yellow
-		    [0.9, '#DF5353'] // red
-		],
-		lineWidth: 0,
-		minorTickInterval: null,
-		tickAmount: 2,
-		title: {y: -70},
-		labels: {y: 16}
-	    },
-	    plotOptions: {
-		solidgauge: {
-		    dataLabels: {
-			y: 5,
-			borderWidth: 0,
-			useHTML: true
-		    }
-		}
-	    }	    	    
-	}, {
-	yAxis: {
-	    min: 0,
-	    max: 100,
-	    title: {
-		text: 'Buffer Capacity'
-	    }
-	},
-	credits: {
-	    enabled: false
-	},
-
-	series: [{
-	    name: 'Storage Used',
-	    data: [0.],
-	    dataLabels: {
-	    format:
-	    '<div style="text-align:center">' +
-		'<span style="font-size:15px">{y:.2f}</span><br/>' +
-		'<span style="font-size:8px;opacity:0.4">%</span>' +
-		'</div>'
-	    },
-	    tooltip: {
-		valueSuffix: ' %'
-	    }
-	}]
-
-    }));
+function UpdateBootstrax() {
+    $.getJSON("status/get_bootstrax_status", function(data) {
+      if (data.length == 0)
+        return;
+      var html = "";
+      var timeout = 20*1000; // seconds since last update
+      for (var i in data) {
+        var doc = data[i];
+        html += "<div class=\"bootstrax_panel_entry\">"
+        if (doc['time'] > timeout) {
+          html += "<span style=\"color:red\">"+doc['_id'] + " is offline";
+        } else if (doc['state'] == 'idle'){
+          html += "<span style=\"color:blue\">"+doc['_id'] + " is idle";
+        } else if (doc['state'] == 'busy'){
+          html += "<span style=\"color:green\">"+doc['_id'] + " is processing run " + doc['run'] + " to " + doc['target'] + " on " + doc['cores'] + " cores";
+        } else {
+          html += "<span style=\"color:orange\">"+doc['_id'] + " is " + doc['state'];
+        }
+        html += " (" + doc['time'].toFixed(0) + " seconds ago)</span></div>";
+      }
+      $("#bootstrax_panel").html(html);
+    });
 }
-*/
+
 function UpdateCeph(){
     $.getJSON("hosts/get_host_status?host=ceph",
 	      function(data){
@@ -347,7 +298,7 @@ function UpdateFromReaders(){
     }
 }
 
-function UpdateCrateControllers(controllers){
+function UpdateCrateControllers(){
 
     for(i in controllers){
         var controller = controllers[i];
@@ -401,10 +352,10 @@ function UpdateCommandPanel(){
 		recent = document.local_command_queue[k]['_id'];
         }*/
     }
-    $.getJSON("status/get_command_queue?limit=20&id="+recent, function(data){
+    $.getJSON("status/get_command_queue?limit=10&id="+recent, function(data){
         var fillHTML="";
 
-        for(var i in data){	    
+        for(var i in data){
             doc = data[i];
             var timestamp = parseInt(doc['_id'].substr(0,8), 16)*1000
             var date = new Date(timestamp);
@@ -419,7 +370,7 @@ function UpdateCommandPanel(){
             fillHTML += '<div class="command_panel_entry panel panel-default" id="'+doc['_id']+'"><div class="panel-heading panel-hover" data-toggle="collapse" href="#collapse'+doc['_id'];
             fillHTML += '" style="padding:5px;border-bottom:0px solid #ccc"><div class="panel-title"><span data-toggle="collapse" style="color:black" ';
             fillHTML += 'href="#collapse'+doc['_id']+'">';
-            fillHTML += moment(date).utc().format('DD. MMM. HH:mm') + ' UTC: ';
+            fillHTML += moment(date).utc().format('YYYY-MM-DD HH:mm') + ' UTC: ';
             var tcol = "green";
             if(doc['command'] === 'stop')
                 tcol = 'red';
@@ -432,10 +383,12 @@ function UpdateCommandPanel(){
             var nhosts =  '-';
             var nack = '-';
             if('host' in doc && 'acknowledged' in doc){
-		if(doc['host'].length > doc['acknowledged'].length)
+                nhosts = doc['host'].length;
+                nack = Object.values(doc['acknowledged']).length;
+                if (nhosts > nack)
                     col = 'red';
-                nhosts = doc['host'].length.toString();
-                nack = doc['acknowledged'].length.toString();
+                nhosts = nhosts.toString();
+                nack = nack.toString();
             }
 	    else if('host' in doc && doc['host'].length>0 && doc['host'][0]!== null)
                 nhosts = doc['host'].length.toString();
@@ -485,13 +438,15 @@ function UpdateMultiChart(ts, val, host, update){
 	    document.RatePlot.series[i].addPoint([tss, val], true, update);
     }
 }
+
 function UpdateChart(host, ts, rate, buff){
     if(host in (document.charts) && document.charts[host] != null){
 	var tss = (new Date(ts)).getTime();
-	document.charts[host].series[0].addPoint([tss, rate], true, true);    
+	document.charts[host].series[0].addPoint([tss, rate], true, true);
 	document.charts[host].series[1].addPoint([tss, buff], true, true);
     }
 }
+
 function DrawInitialCharts(){
     document.charts = {};
     document.last_time_charts = {};

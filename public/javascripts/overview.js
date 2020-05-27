@@ -9,12 +9,11 @@ function PopulateShifters(shift_div){
     
     $.getJSON(prefix+"/shifts/get_current_shifters", function(data){
 	
-	console.log(data);
 	var html ="";
 	for(var i in data){
 	    blank_shifts = {"shifter_name": "Nobody",
                             "shifter_email": "d.trump@whitehouse.gov",
-                            "shifter_phone": "",
+                            "shifter_phone": "867-5309",
                             "shifter_skype": "",
                             "shifter_github": "mklinton",
                             "shift_type": "Expert shifter"
@@ -36,12 +35,12 @@ function DrawPie(pie_div, ndays){
 	if(typeof(document.piechart) != 'undefined')
             document.piechart.destroy;
 	var series = [];
-        var active=0;
+  var tot = 0;
 	for(var i in data) {
 	    series.push({"name": data[i]['_id'], "y": data[i]['runtime']});
-            active += data[i]['runtime'];
+            tot += data[i]['runtime'];
         }
-        series.push({"name" : "idle", "y" : 1.0-active});
+   series.push({"name" : "idle", "y" : 1.0-tot});
 	document.piechart = Highcharts.chart(pie_div, {
 	    chart: {
 		plotBackgroundColor: null,

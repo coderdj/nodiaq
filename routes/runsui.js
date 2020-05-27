@@ -112,42 +112,26 @@ router.get('/runsfractions', ensureAuthenticated, function(req, res){
     }catch(error){
       days=30;
     }
-    //if( typeof days === 'undefined')
-	//days = 30;
     var total = days*86400*1000;
     var querydays = new Date(new Date() - total);
     collection.aggregate([
       {$match : {detector : 'tpc', start : {$gt : querydays}}},
       {$project : {start : 1, user : 1, mode : 1,
         end : {$ifNull : ['$end', new Date()]}}},
-      {$group : {_id : '$mode',
-                 runtime : {
-                  $sum : {
-                    $divide : [
-                      {$subtract : ['$end', '$start']},
-                      total
-                    ] // divide
-                  } // sum
-                 } // runtime
-      }} // group
-    ], function(e, docs) {
-      return res.json(docs);
-    }); /*
-    collection.find({"start": {"$gt": querydays}},
-		    function(e, docs){
-			ret = {};
-			for(var i in docs){
-			    if(!(docs[i]['mode'] in ret))
-				ret[docs[i]['mode']] = 0;
-			    if(!('end' in docs[i]) || !('start' in docs[i]))
-				continue; // still running or crashed
-			    ret[docs[i]['mode']] += (docs[i]['end'].getTime()-
-						     docs[i]['start'].getTime())/1000;
-			}
-			return res.send(JSON.stringify(ret));
-		    });
-    
-    */
+      {$group : {
+        _id : '$mode',
+        runtime : {
+          $sum : {
+            $divide : [
+              {$subtract : ['$end', '$start']},
+              total
+            ] // divide
+          } // sum
+        } // runtime
+      }}],
+      function(e, docs) {
+        return res.json(docs);
+    });
 });
 
 module.exports = router;

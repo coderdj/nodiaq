@@ -247,7 +247,6 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
     });
 	
 });
-				
 
 router.get('/get_command_queue', ensureAuthenticated, function(req,res){
 	var db = req.db;
@@ -256,7 +255,7 @@ router.get('/get_command_queue', ensureAuthenticated, function(req,res){
 	var q = url.parse(req.url, true).query;
 	var limit = q.limit;
 	if(typeof limit === 'undefined')
-		limit = 20;
+		limit = 10;
 	var findstr = {};
 	var last_id = q.id;
 	if(typeof last_id !== 'undefined' && last_id != '0'){
@@ -266,8 +265,28 @@ router.get('/get_command_queue', ensureAuthenticated, function(req,res){
 
 	collection.find(findstr, {"sort": {"_id": -1},"limit": parseInt(limit, 10)}, 
 	function(e, docs){
-		return res.send(JSON.stringify(docs));
+		return res.json(docs);
 	});
+});
+
+router.get('/get_bootstrax_status', ensureAuthenticated, function(req, res) {
+  var q = url.parse(req.url, true).query;
+  var collection = req.db.get("eb_monitor");
+  var now = new Date();
+  collection.aggregate([
+    {$sort : {_id : -1}},
+    {$group : {
+      _id : {$substr : ['$host', 0, 3]},
+      state : {$first : '$state'},
+      time : {$first : {$divide : [{$subtract : [now, '$time']}, 1000]}},
+      target : {$first : '$target'},
+      cores : {$first : '$cores'},
+      run : {$first : {$ifNull : ['$run_id', 'none']}},
+    }},
+    {$sort : {_id : 1}}
+  ], function(e, docs) {
+    return res.json(docs);
+  });
 });
 
 module.exports = router;
