@@ -31,12 +31,12 @@ function UpdateUnique(mongo_doc, username, collection){
 			       "institute": mongo_doc['institute']},
 			      {"$set": {"daq_id": username}});
 	    resolve(username);
-	});	    
+	});
     });
 }
 
 function GenerateDAQID(mongo_doc){
-    // Just return the last name in lower case. In case not unique add the string 'xe' 
+    // Just return the last name in lower case. In case not unique add the string 'xe'
     // until it is and maybe auto-email parents to be more creative next time.
     // Remove diacritics from last name as well
 
@@ -65,8 +65,8 @@ async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback
     var ret_profile = {};
 
     // This step important. We need a unique identifier for each user. The user
-    // doesn't actually need to see this but it's important for some internal 
-    // things.     
+    // doesn't actually need to see this but it's important for some internal
+    // things.
     ret_profile['daq_id'] = await GenerateDAQID(mongo_doc);
     console.log(ret_profile);
     console.log("HERE");
@@ -92,10 +92,10 @@ async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback
     }
     if(!(isEmpty(ldap_profile)))
 	ret_profile['ldap_info'] = ldap_profile;
-    // display API key set or not                                              
+    // display API key set or not
     if(typeof mongo_doc['api_username'] !== 'undefined')
         ret_profile['api_key'] = "SET";
-    
+
     callback(ret_profile);
 }
 
@@ -107,7 +107,7 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
 
-      // asynchronous verification 
+      // asynchronous verification
       process.nextTick(function () {
 	  var collection = runs_db.get("users");
           collection.find({"github": profile._json.login},
@@ -124,7 +124,7 @@ passport.use(new GitHubStrategy({
                                                     {"$set": { "picture_url": profile._json.avatar_url,
                                                                "github_home": profile.html_url}
                                                     });
-			      
+
 				  return done(null, ret_profile);
 			      });
 			  });
@@ -139,7 +139,7 @@ var OPTS = {
     bindDn: process.env.LDAP_BIND_DN,
     bindCredentials: process.env.LDAP_BIND_CREDENTIALS,
     searchBase: 'ou=xenon,ou=accounts,dc=lngs,dc=infn,dc=it',
-      searchFilter: '(uid={{username}})' //'(uid=%(user)s)'                                              
+      searchFilter: '(uid={{username}})' //'(uid=%(user)s)'
   },
     usernameField: 'user',
     passwordField: 'password'
@@ -157,63 +157,38 @@ passport.use(new LdapStrategy(OPTS,
 				     }
 				     var doc = docs[0];
 				     var ret_profile = PopulateProfile(doc, {}, user, function(ret_profile){
-					 // Save a couple things from the github profile 
+					 // Save a couple things from the github profile
 					 collection.update({"lngs_ldap_uid": user.uid},
-							   {"$set": { 
+							   {"$set": {
 							       "lngs_ldap_email": user.mail,
 							       "lngs_ldap_cn": user.cn
 							   }
 							   });
 					 return done(null, ret_profile);
 				     });
-                                 }); // end mongo query                 
+                                 }); // end mongo query
              }));
 
 
 //For testing it's pretty useful to have local auth as well. We'll use email/pw and ensure the email is in our DB
-/*var auth = require('passport-local-authenticate');
+var auth = require('passport-local-authenticate');
 var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy({
-                usernameField: 'email',
-        },
-	function(username, password, done) {
-        var collection = runs_db.get("users");
-        collection.find({"email": username},
-        function(e, docs){ 
-                if(docs.length===0){
-                        console.log("Password auth failed, no user");
-                        console.log(username);
-                        return done(null, false, "Couldn't find user in DB");
-                }
-	// For now we're using a general password since this is just a workaround                
-                auth.hash(process.env.GENERAL_PASSWORD, function(err, hashed) {                          
-                        auth.verify(password, hashed, function(err, verified) {                          
-                                if(verified){                                                            
-                                        var doc = docs[0];                                               
-                                        var ret_profile = {};                                            
-                                        var extra_fields = [                                             
-                                            'skype', 'github_id', 'cell',                                
-                                            'favorite_color', 'email',                                   
-                                            'last_name', 'first_name', 'institute', 'position',          
-                                            'percent_xenon', 'start_date', 'LNGS', 'github',             
-                                            'picture_url', 'github_home', 'api_username'];               
-                                        for(var i in extra_fields){                                      
-                                                if(typeof doc[extra_fields[i]]==='undefined')            
-                                                ret_profile[extra_fields[i]] = "not set";                
-                                                else                                                     
-                                                    ret_profile[extra_fields[i]] = doc[extra_fields[i]];
-                                        }                                                                
-                                        ret_profile['github_info'] = {};                                 
-                                        if(typeof doc['api_username'] !== 'undefined')                   
-                                                ret_profile['api_key'] = "SET";                          
-                                console.log("Login success");                                            
-                                return done(null, ret_profile);                                          
-                                }                                                                        
-                                return done(null, false);                                                
-                        });                                                                              
-                });                                                                                      
-                                                                                                         
-    });                                                                                                  
-  }                                                                                                      
-));                                                                                                      
-*/
+passport.use(new LocalStrategy({usernameField: 'name'}, function(username, password, done) {
+  var collection = runs_db.get("users");
+  collection.find({"name": username}, function(e, docs){
+    if(docs.length===0){
+      console.log("Password auth failed, no user");
+      console.log(username);
+      return done(null, false, "Couldn't find user in DB");
+    }
+    // For now we're using a general password since this is just a workaround
+    auth.hash(process.env.GENERAL_PASSWORD, function(err, hashed) {
+      auth.verify(password, hashed, function(err, verified) {
+        if(verified){
+          PopulateProfile(docs[0], {}, {}, function(ret_profile){return done(null, ret_profile);});
+        }
+        return done(null, false);
+      });
+    });
+  });
+}));

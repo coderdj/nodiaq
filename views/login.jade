@@ -69,21 +69,21 @@ href="/auth/github")
                     input.form-control(type="text" name="lngs_id")
                   button.btn.btn-basic(type="submit") Request Activation Email
         br
-        //strong Option 3: Login with password
-        //br
-        //br
-        //div(style='width:100%;text-align:left')
-        //  form(method='post' action='/auth/password')
-        //    div.row
-        //      div.col-md-6.col-xs-12.form-group
-        //        label.form-label(for='email') XENON Email
-        //        input.form-control(type='email' name='email')
-        //      div.col-md-6.col-xs-12.form-group
-        //        label.form-label(for='password') Password
-        //        input.form-control(type='password' name='password')
-        //    button.btn.btn-info(type='submit') Submit
-        //br
-        //br
+        strong Option 3: Login with password
+        br
+        br
+        div(style='width:100%;text-align:left')
+          form(method='post' action='/auth/password')
+            div.row
+              div.col-md-6.col-xs-12.form-group
+                label.form-label(for='name') Name
+                input.form-control(type='name' name='name')
+              div.col-md-6.col-xs-12.form-group
+                label.form-label(for='password') Password
+                input.form-control(type='password' name='password')
+            button.btn.btn-info(type='submit') Submit
+        br
+        br
       div.col-sm-3.col-xs-1
     div.modal.fade#LNGSmodal(tabindex="-1" role="dialog")
       div.modal-dialog(role="document")
