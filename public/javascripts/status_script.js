@@ -1,5 +1,4 @@
 var CHECKIN_TIMEOUT=10;
-document.ceph_chart = null;
 document.last_time_charts = {};
 document.reader_data = {};
 
@@ -37,7 +36,7 @@ function FYouButton(buttonid){
     });
 }
 
-function RedrawRatePlot(){
+function DrawInitialPlot(){
     var history = $("#menu_history_s").val();
     var resolution = $("#menu_resolution_s").val();
     var variable = $("#menu_variable_s").val();
@@ -46,7 +45,6 @@ function RedrawRatePlot(){
     var colors = {"rate": "#1c0877", "buff": "#df3470", "strax": "#3dd89f"};
     DrawProgressRate(0);
     var limit = (new Date()).getTime() - parseInt(history)*1000;
-    console.log(document.reader_data);
     for(i in readers){
 	var reader = readers[i];
 	$.getJSON("status/get_reader_history?limit="+limit+"&res="+resolution+"&reader="+reader, 
@@ -193,9 +191,6 @@ function UpdateBootstrax() {
 function UpdateCeph(){
     $.getJSON("hosts/get_host_status?host=ceph",
 	      function(data){
-		  //if(document.ceph_chart == null){
-		   //   MakeCephGauge();
-		 // }
 		  document.getElementById("ceph_filltext").innerHTML = 
 		      ((data['ceph_size']-data['ceph_free'])/1e12).toFixed(2) + "/" +
 		      + (data['ceph_size']/1e12).toFixed(2) + "TB";
@@ -205,10 +200,7 @@ function UpdateCeph(){
 		  else
 		      $("#ceph_status").css("color", "red");
 		  
-		  //document.ceph_chart.series[0].addPoint(
-		  //[100*(data['ceph_size']-data['ceph_available'])/data['ceph_size']], true, true);
-
-		  var osds = data['osds'];		  
+		  var osds = data['osds'];
 		  osds = osds.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
 		  tot_html = "";
 		  if(document.getElementById('osd_div').innerHTML == ""){
@@ -289,9 +281,7 @@ function UpdateFromReaders(){
 		    val = data['buffer_length'];
 		}
 		// Trick to only update drawing once per seven readers (careful it doesn't bite you)
-		var update = false;
-		if(data['host'] == 'reader0_reader_0') 
-		    update=true;
+		var update = data['host'] == 'reader0_reader_0';
 		UpdateMultiChart(data['ts'], val, update_name, update);
 	    }
         });
@@ -312,7 +302,7 @@ function UpdateCrateControllers(){
 
 			  if(att!='status')
 			      document.getElementById(c+"_"+att).innerHTML = data[att];
-			  else{		
+			  else{
 			      document.getElementById(c+"_"+att).innerHTML = GetStatus(data[att], data['checkin']);
 			  }
 		      }
@@ -344,13 +334,6 @@ function UpdateCommandPanel(){
     if(document.local_command_queue.length !== 0){
         // Fetch all ID's newer than the first ID that hasn't been fully acknowledged   
         recent = document.local_command_queue[0]['_id'];
-        /*for(var k in document.local_command_queue){
-            if('acknowledged' in document.local_command_queue[k] && 'host' in 
-	       document.local_command_queue[k] &&
-               document.local_command_queue[k]['acknowledged'].length !== 
-	       document.local_command_queue[k]['host'].length)
-		recent = document.local_command_queue[k]['_id'];
-        }*/
     }
     $.getJSON("status/get_command_queue?limit=10&id="+recent, function(data){
         var fillHTML="";
@@ -399,21 +382,10 @@ function UpdateCommandPanel(){
             fillHTML += '</div><div class="panel-footer">';
             //                  fillHTML += 'Panel Footer';
             fillHTML += '</div></div></div></div>';
-	    
-            //try{
-	    //	$("#"+document.local_command_queue[document.local_command_queue.length-1]).remove();
-            //    document.local_command_queue.splice(document.local_command_queue.length-1, 1);
-            //}
-            //catch(E){
-                //
-            //}
 	}
 	
         $("#command_panel").prepend(fillHTML);
 	
-        //if(document.local_command_queue.length === 0)
-        //document.local_command_queue = data;
-        //else{
         for(var j=data.length-1; j>=0; j-=1)// in data)
             document.local_command_queue.unshift(data[j]);
 	//}
@@ -427,8 +399,6 @@ function UpdateCommandPanel(){
     
 }
 
-
-
 function UpdateMultiChart(ts, val, host, update){
     var tss = (new Date(ts)).getTime();
     if(typeof(document.RatePlot)=='undefined')
@@ -439,67 +409,3 @@ function UpdateMultiChart(ts, val, host, update){
     }
 }
 
-function UpdateChart(host, ts, rate, buff){
-    if(host in (document.charts) && document.charts[host] != null){
-	var tss = (new Date(ts)).getTime();
-	document.charts[host].series[0].addPoint([tss, rate], true, true);
-	document.charts[host].series[1].addPoint([tss, buff], true, true);
-    }
-}
-
-function DrawInitialCharts(){
-    document.charts = {};
-    document.last_time_charts = {};
-
-    var colors = {"rate": "#1c0877", "buff": "#df3470", "strax": "#3dd89f"}
-    for(i in readers){
-	var reader = readers[i];
-	$.getJSON("status/get_reader_history?limit=1000&reader="+reader, function(data){
-	    // Can't do anything if no data
-	    if(Object.keys(data).length==0)
-		return;
-	    var host = Object.keys(data)[0];
-	    document.last_time_charts[host] = data[host]['rates'][data[host]['rates'].length-1];
-	    var series = [
-		{"type": "area", "name": "transfer rate", "data": data[host]['rates'], 'color': colors['rate']},
-		{"type": "area", "name": "buffered data", "data": data[host]['buffs'], 'color': colors['buff']}
-	    ];
-
-	    var div = host+"_chartdiv";
-	    document.charts[host] = Highcharts.chart(
-		div, {
-		    chart: {
-			zoomType: 'x',
-			margin: [5, 5, 20, 80],
-		    },
-		    plotOptions: {
-            	series: {
-               	 	fillOpacity: 0.3,
-               	 	lineWidth: 1
-            	}	
-        	},
-		    credits: {
-			enabled: false,
-		    },
-		    title: {
-			text: '',
-		    },
-		    xAxis: {
-			type: 'datetime',
-		    },
-		    yAxis: {
-			title: {
-			    text: "MB/s",
-			},
-			min: 0,
-		    },
-		    legend: {
-			enabled: false,
-		    },
-		    series: series,
-		});
-	});
-    }
-
-
-}

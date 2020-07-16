@@ -103,32 +103,32 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
 });
 
 router.get('/runsfractions', ensureAuthenticated, function(req, res){
-    var db = req.runs_db;
-    var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
-    var q = url.parse(req.url, true).query;
-    var days = q.days;
-    if( typeof days === 'undefined')
-	days = 30;
-    var total = days*86400*1000;
-    var querydays = new Date(new Date() - total);
-    collection.aggregate([
-      {$match : {detector : 'tpc', start : {$gt : querydays}}},
-      {$project : {mode : 1, user : 1, start : 1, end : 1}},
-      {$group : {
-        _id : '$mode',
-        runtime : {
-          $sum : {
-            $divide : [
-              {$subtract : [
-                {$ifNull : ['$end', '$start']},
-                '$start'
-              ]}, // subtract
-              total] // divide
-          } // sum
-        } // runtime
-      }}], function(e, docs) {
-        return res.json(docs);
-      });
+  var db = req.runs_db;
+  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
+  var q = url.parse(req.url, true).query;
+  var days = q.days;
+  if( typeof days === 'undefined')
+    days = 30;
+  var total = days*86400*1000;
+  var querydays = new Date(new Date() - total);
+  collection.aggregate([
+    {$match : {detectors : 'tpc', start : {$gt : querydays}}},
+    {$project : {mode : 1, user : 1, start : 1, end : 1}},
+    {$group : {
+      _id : '$mode',
+      runtime : {
+        $sum : {
+          $divide : [
+            {$subtract : [
+              {$ifNull : ['$end', new Date()]},
+              '$start'
+            ]}, // subtract
+            total] // divide
+        } // sum
+      } // runtime
+    }}], function(e, docs) {
+      return res.json(docs);
+  });
 });
 
 module.exports = router;

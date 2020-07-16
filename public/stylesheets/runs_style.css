@@ -14,3 +14,28 @@ table.dataTable tbody tr td {
     padding: 2px 4px;
     /*border-bottom: 1px solid #111;*/
 }
+
+.statustip {
+    position: relative;
+    display: inline-block;
+}
+
+.statustip .statustext {
+    visibility: hidden;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+
+    position: absolute;
+    z-index: 1;
+
+    bottom: 100%;
+    left: 50%;
+    margin-left: 50px;
+}
+
+.statustip:hover .statustext {
+    visibility: visible;
+}

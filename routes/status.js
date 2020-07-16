@@ -18,21 +18,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
     //    res.render('index', { clients: clients });
 });
 
-router.get('/get_broker_status', ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get('dispatcher_status');
-
-    //var q = url.parse(req.url, true).query;
-    //var detector = q.detector;
-
-    collection.find({},
-		    function(e, sdoc){
-			if(sdoc.length === 0)
-			    return res.send(JSON.stringify({}));
-			return res.send(JSON.stringify(sdoc));
-		    });
-});
-
 router.get('/get_detector_status', ensureAuthenticated, function(req, res){
 	var db = req.db;
 	var collection = db.get('aggregate_status');
@@ -76,7 +61,7 @@ router.get('/get_controller_status', ensureAuthenticated, function(req, res){
 		return res.send(JSON.stringify(rdoc));
 	});
 });
-			
+
 router.get('/get_reader_status', ensureAuthenticated, function(req, res){
     var db=req.db;
     var collection = db.get('status');
@@ -138,27 +123,7 @@ router.get('/get_digitizer_history', ensureAuthenticated, function(req, res){
 			return res.send(JSON.stringify(ret));
                     });
 });
-router.get('/get_reader_history_dumb', ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get('status');
 
-    var q = url.parse(req.url, true).query;
-    var reader = q.reader;
-    var limit  = parseInt(q.limit);
-    var resolution = parseInt(q.res);
-
-    var query = {"host": reader};
-    collection.find(query, {'sort': {'_id': -1}, 'limit': limit},
-                    function(e, docs){
-                        ret = {"rates": []};
-                        for(i in docs){
-                            var oid = new req.ObjectID(docs[i]['_id']);
-                            var dt = Date.parse(oid.getTimestamp());
-                            ret['rates'].unshift([dt, docs[i]['rate']]);
-                        }
-                        return res.send(JSON.stringify(ret));
-                    });
-});
 router.get('/get_reader_history', ensureAuthenticated, function(req,res){
     var db = req.db;
     var collection = db.get('status');
@@ -246,6 +211,60 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
 	return res.send(JSON.stringify(ret));
     });
 	
+});
+
+router.get('/get_reader_history', ensureAuthenticated, function(req, res) {
+  var db = req.db;
+  var collection = db.get("status");
+  var q = url.parse(req.url, true).query;
+
+  var reader = q.reader;
+  var lookback, resolution;
+  try{
+    lookback = parseInt(q.limit)*1000;
+  }catch(e){
+    lookback = 100*1000; // default 100s
+  }
+  try{
+    resolution = parseInt(q.res);
+  }catch(e){
+    resolution = 60*1000; // default 60s
+  }
+  var bins = [];
+  var t_start = new Date(new Date().getTime()-lookback);
+  for (var t = t_start.getTime(); t < new Date().getTime(); t += resolution)
+    bins.push(t);
+  var stages = [];
+  stages.push({$match : {_id : {$gt : ObjectIdWithTimestamp(t_start)}}});
+  var facet = {$facet : {}};
+  for (var host = 0; host < 6; host++) {
+    var host = "reader" + host + "_reader_0";
+    facet["$facet"][host] = {[
+      {$match : {host : host}},
+      {$bucket : {
+        groupBy : '$time',
+        boundaries = bins,
+        output : {
+          time : {$avg : '$time'},
+          rate : {$avg : '$rate'},
+          buffer : {$avg : '$buffer_size'},
+          strax : {$avg : '$strax_buffer'},
+          host : {$first : '$host'},
+        }
+      }},
+      {$project : {
+        host : '$host',
+        rate : {$zip : {inputs : ['$time', '$rate']}},
+        buffer : {$zip : {inputs : ['$time', '$buffer']}},
+        strax : {$zip : {inputs : ['$time', '$strax']}},
+      }}
+    ]} // facet
+  } // for
+  stages.push(facet);
+
+  collection.aggregate(stages, function(e, docs) {
+    return res.json(docs);
+  });
 });
 
 router.get('/get_command_queue', ensureAuthenticated, function(req,res){

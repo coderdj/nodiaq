@@ -102,7 +102,7 @@ html
               a(href='/logui')
                 i.fa.fa-book-open
                 span Log
-                span.extralabel View log and acnknowledge errors
+                span.extralabel View log and acknowledge errors
             li.sectionlabel.CTAs(style='color:#0c1178')
               span Data and Monitoring
             li.colored#lruns
@@ -114,12 +114,12 @@ html
               a(href='/monitor')
                 i.fa.fa-binoculars
                 span Monitor
-                span.extralabel Online data monitoring
+                span.extralabel Data rate monitor
             li.colored.CTAs#lscope
               a(href='/scope')
                 i.fa.fa-heartbeat
-                span Pulse Viewer
-                span.extralabel View pulses from PMTs live
+                span Data viewer
+                span.extralabel View data live
             li.colored#lhelp
               a(href='/help')
                 i.fa.fa-question
@@ -128,20 +128,20 @@ html
             li.sectionlabel.CTAs(style='color:#0c1178')
               span Operations and Organization
             li.colored#lshifts
-              a(href='/shifts') 
+              a(href='/shifts')
                 i.fa.fa-id-badge
                 span Shifts
                 span.extralabel Sign up for shifts
             li.colored.CTAs#lusers
-              a(href='/users') 
+              a(href='/users')
                 i.fa.fa-kiwi-bird
                 span Users
                 span.extralabel Browse members
             li.colored.CTAs#laccount
-              a(href="/account") 
+              a(href="/account")
                 i.fa.fa-user-astronaut
                 span Profile
-                span.extralabel Keep your info up to date                        
+                span.extralabel Keep your info up to date
             li.colored.CTAs#lequipment
               a(href='/equipment')
                 i.fa.fa-server
@@ -149,8 +149,8 @@ html
                 span.extralabel All our stuff
             br
             br
-            li.colored.signout(style="background-color:#06d6a0")          
-              a(href="/logout") 
+            li.colored.signout(style="background-color:#06d6a0")
+              a(href="/logout")
                 i.far.fa-hand-peace
                 span Sign Out
       div#content(style="padding-left:5px;padding-right:5px;padding-top:0px;padding-bottom:0px")
@@ -168,7 +168,7 @@ html
     script.
       console.log('#{user.favorite_color}');
       //SetNavbar("#{user.favorite_color}");
-      $(document).ready(function(){      
+      $(document).ready(function(){
 
         CheckForErrors();
         $('.sidebarCollapse').on('click', function () {
