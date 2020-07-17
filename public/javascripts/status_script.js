@@ -1,4 +1,4 @@
-var CHECKIN_TIMEOUT=10;
+var CHECKIN_TIMEOUT=20;
 document.ceph_chart = null;
 document.last_time_charts = {};
 document.reader_data = {};
@@ -26,7 +26,7 @@ function GetStatus(i, checkin){
 	"<span style='color:red'><strong>Timeout</strong></span>",
 	"<span style='color:red'><strong>Undecided</strong></span>"
     ];
-    return STATUSES[i];    
+    return STATUSES[i];
 }
 function FYouButton(buttonid){
     $("#"+buttonid).mouseover(function(){
@@ -156,37 +156,72 @@ function DrawInitialRatePlot(){
 }
 
 function UpdateStatusPage(){
-    var brokers = []; //["fdaq00_broker_0"]; 
 
     UpdateCommandPanel();
     UpdateCrateControllers();
     UpdateFromReaders();
     UpdateCeph();
-    UpdateBootstrax();
+    UpdateStorage();
+    UpdateBootstrax()
     setTimeout(UpdateStatusPage, 5000);
+}
+
+function UpdateStorage() {
+  $.getJSON("status/get_eb_status", function(data) {
+    if (typeof data.error != 'undefined') {
+      console.log(data.error);
+      return;
+    }
+    if (data.length == 0) return;
+    var html = "";
+    for (var i in data) {
+      var eb = parseInt(data[i]['host'].substr(2,1));
+      var usage = data[i]['disk'][eb > 2 ? '/data' : '/data1']['percent'];
+      html += '<div class="progress" style="height:5px;" id="eb_' + i + '_cap">';
+      html += '<div id="eb_' + i + '_capacity" class="progress-bar storage-bar" role="progressbar" style="width:' + usage+'%"></div></div></div>';
+    }
+    $("#eb_storage_div").html(html);
+  });
 }
 
 function UpdateBootstrax() {
     $.getJSON("status/get_bootstrax_status", function(data) {
       if (data.length == 0)
         return;
-      var html = "";
-      var timeout = 20*1000; // seconds since last update
+      var timeout = 20; // seconds since last update
+      var ebs_seen = [];
       for (var i in data) {
         var doc = data[i];
-        html += "<div class=\"bootstrax_panel_entry\">"
+        var boot_status, color;
         if (doc['time'] > timeout) {
-          html += "<span style=\"color:red\">"+doc['_id'] + " is offline";
-        } else if (doc['state'] == 'idle'){
-          html += "<span style=\"color:blue\">"+doc['_id'] + " is idle";
-        } else if (doc['state'] == 'busy'){
-          html += "<span style=\"color:green\">"+doc['_id'] + " is processing run " + doc['run'] + " to " + doc['target'] + " on " + doc['cores'] + " cores";
+          boot_status = 'timing out';
+          color = 'red';
+        } else if (doc['status'] == 'idle') {
+          boot_status = 'idle';
+          color = 'blue';
+        } else if (doc['status'] == 'busy') {
+          boot_status = 'processing run ' + doc['run'] + ' to ' + doc['target'];
+          color = 'green';
+        } else if (doc['status'] == 'disk full') {
+          boot_status = 'out of storage';
+          color = 'orange';
+        } else if (doc['status'] == 'considering') {
+          boot_status == 'considering';
+          color = 'cyan'
         } else {
-          html += "<span style=\"color:orange\">"+doc['_id'] + " is " + doc['state'];
+          boot_status = doc['status'];
+          color = 'gray';
         }
-        html += " (" + doc['time'].toFixed(0) + " seconds ago)</span></div>";
+        $("eb" + i + "_status").html('<span style="color:'+color+'"><strong>'+boot_status+'</strong></span>');
+        $("eb" + i + "_checkin").html(doc['time']);
+        ebs_seen.push(i);
       }
-      $("#bootstrax_panel").html(html);
+      for (var i = 0; i < 6; i += 1) {
+        if (i in ebs_seen)
+          continue;
+        $("eb" + i + "_status").html('<span style="color:red"><strong>Offline</strong></span>');
+        $("eb" + i + "_checkin").html("?");
+      }
     });
 }
 
@@ -208,7 +243,7 @@ function UpdateCeph(){
 		  //document.ceph_chart.series[0].addPoint(
 		  //[100*(data['ceph_size']-data['ceph_available'])/data['ceph_size']], true, true);
 
-		  var osds = data['osds'];		  
+		  var osds = data['osds'];
 		  osds = osds.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
 		  tot_html = "";
 		  if(document.getElementById('osd_div').innerHTML == ""){
@@ -500,6 +535,5 @@ function DrawInitialCharts(){
 		});
 	});
     }
-
 
 }
