@@ -124,83 +124,54 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
     var reader = q.reader;
     var limit  = parseInt(q.limit);
     var resolution = parseInt(q.res);
-    var digitizer = parseInt(q.digitizer);
 
     if(typeof limit == 'undefined')
-	limit = (new Date()).getTime() - 100*1000; // 100 s into past
+	limit = 100; // 100 s into past
     if(typeof reader == 'undefined')
-	return res.send(JSON.stringify({}));
+	return res.json({});
     if(typeof res == 'undefined')
 	resolution = 60; //1m
 
-    var t = limit;
-    var id = objectIdWithTimestamp(t);
+    var id = objectIdWithTimestamp(new Date()-limit*1000);
 
     // Fancy-pants aggregation to take binning into account
     var query = {"host": reader, "_id": {"$gt": id}};
     collection.aggregate([
-	{'$match': query},
-	{'$project': {
-	    'time_bin': {
-		"$trunc": {
-		    "$divide" : [
-			{ 
-			    "$convert": { 'input': {"$subtract": [ {"$toDate": "$_id"}, t ]},
-					 'to': 19
-					}
-			},
-			1000*resolution
-		    ]
-		}
-	    },
-	    'insertion_time': {"$toDate": "$_id"}, "_id": 1, "rate": 1, "buffer_length": 1, "strax_buffer" : 1,
-	    "host": 1
+	{$match: query},
+        {$bucketAuto: {
+          groupBy: '$time',
+          buckets: NumberInt(limit/resolution),
+          output: {
+            rate: {$avg: '$rate'},
+            buff: {$avg: '$buffer_length'},
+            straxbuf : {$avg : '$strax_buffer'},
+            host : {$first : '$host'},
+        }},
+	{$sort: {_id: 1}},
+	{$group: {
+	    _id: null,
+	    rates: {$push: '$rate'},
+	    buffs: {$push: '$buff'},
+	    times: {$push: '$_id'},
+            straxs: {$push: '$straxbuf'},
+            host : {$first : '$host'},
 	}},
-	{'$group': {
-	    '_id': '$time_bin',	   
-	    'rate': { '$avg': '$rate'},
-	    'buff': { '$avg': '$buffer_length'},
-            'straxbuf' : {'$avg' : '$strax_buffer'},
-	    'host': { '$first': '$host'}
-	}},
-	{'$project': {
-	    '_id': 1,
-	    'time': { "$convert": { 'input': {'$add': [{'$multiply': ['$_id', resolution, 1000]}, t]},
-				    'to': 18 // long int
-				  }},
-	    'rate': 1,
-	    'buff': 1,
-	    'host': 1,
-            'straxbuf': 1,
-	}},
-	{'$sort': {"time": 1}},
-	{'$group': {
-	    '_id': '$host',
-	    'rates': {'$push': '$rate'},
-	    'buffs': {'$push': '$buff'},
-	    'times': {'$push': '$time'},
-            'straxs' : {'$push' : '$straxbuf'},
-	}},
-    ], function(err, result){	
+        {$project : {
+          rates: {$zip: {inputs : ['$times', '$rates']}},
+          buffs: {$zip: {inputs : ['$times', '$buff']}},
+          straxs: {$zip: {inputs : ['$times', '$straxs']}},
+          host : 1,
+        }}
+    ], function(err, result){
 	var ret = {};
 	if(result.length > 0){
 	    retval = result[0];
-	    ret[retval['_id']] =  {'rates': [], 'buffs': [], 'straxs' : []};
-	    for(var i in retval['rates']){
-		ret[retval['_id']]['rates'].push([retval['times'][i],
-						  retval['rates'][i]]);
-		ret[retval['_id']]['buffs'].push([retval['times'][i],
-						  retval['buffs'][i]]);
-                ret[retval['_id']]['straxs'].push([retval['times'][i],
-                                                  retval['straxs'][i]]);
-	    };
+            ret[retval['host']] = retval;
 	}
 	else
 	    ret = {'error': err};
-	
-	return res.send(JSON.stringify(ret));
+	return res.json(ret);
     });
-	
 });
 
 router.get('/get_command_queue', ensureAuthenticated, function(req,res){

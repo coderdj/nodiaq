@@ -45,7 +45,7 @@ function RedrawRatePlot(){
     document.reader_data = {};
     var colors = {"rate": "#1c0877", "buff": "#df3470", "strax": "#3dd89f"};
     DrawProgressRate(0);
-    var limit = (new Date()).getTime() - parseInt(history)*1000;
+    var limit = parseInt(history)*1000;
     console.log(document.reader_data);
     for(i in readers){
 	var reader = readers[i];
@@ -57,8 +57,8 @@ function RedrawRatePlot(){
 			  }
 		      for (var key in data) {
 			  // check if the property/key is defined in the object itself, not in parent
-			  if (!data.hasOwnProperty(key)) 
-			      continue;		
+			  if (!data.hasOwnProperty(key))
+			      continue;
 			  document.reader_data[key] = data[key];
 		      }
 		      if(Object.keys(document.reader_data).length == readers.length){
@@ -112,9 +112,6 @@ function DrawInitialRatePlot(){
 	series.push(rates);
 
     }
-    //{"type": "area", "name": "transfer rate", "data": data[host]['rates'], 'color': colors['rate']},
-    //{"type": "area", "name": "buffered data", "data": data[host]['buffs'], 'color': colors['buff']}
-    
 
     var chart_opts = {
         chart: {
@@ -142,7 +139,7 @@ function DrawInitialRatePlot(){
         yAxis: {
             title: {
                 text: yaxis_label,
-	    },	    
+	    },
             min: 0,
 	},
 	legend: {
