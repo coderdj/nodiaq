@@ -36,8 +36,11 @@ function DefineButtonRules(){
 	    
 	    var val = 'off';
 	    if($("#muon_veto_active").is(":checked")) val = 'on';
-	    if($("#link_mv").is(":checked")) {$("#tpc_active").bootstrapToggle(val);
-					      if($("#link_nv").is(":checked")) $("#neutron_veto_active").bootstrapToggle(val); }
+	    if($("#link_mv").is(":checked")) {
+                $("#tpc_active").bootstrapToggle(val);
+		if($("#link_nv").is(":checked"))
+                    $("#neutron_veto_active").bootstrapToggle(val);
+            }
 	    document.page_ready = true;
 	}
     });
@@ -211,42 +214,41 @@ function PostServerData(){
     post = [];
     var failed = false;
     for(var i in dets){
-	    var detector = dets[i];
-	    var thisdet = {"detector": detector, "finish_run_on_stop" : "false"};
-	    thisdet['active'] = $("#"+detector+"_active").is(":checked");
-		
-	var atts = ["stop_after", "mode", "user", "comment"];
-	    for(var j in atts){
-		var att = atts[j];
-		var divname = "#" + detector + "_" + att;
-		thisdet[att] = $(divname).val();
-		if(thisdet['active'] && thisdet[att] === null || typeof thisdet[att] === "undefined" && (att!=="comment" && att!=="stop_after")){
-		    alert("You need to provide a value for "+att+" for the "+detector+", or disable that detector.");
-		    failed = true;
-		}
-	    }
-	thisdet['active'] = $("#"+detector+"_active").is(":checked");
-	thisdet['remote'] = (!$("#remote_" + detector).is(":checked"));
-	if(detector === "tpc"){
-	    thisdet['link_mv'] = $("#link_mv").is(":checked");
-	    thisdet['link_nv'] = $("#link_nv").is(":checked");
-	}
-	post.push(thisdet);
+        var detector = dets[i];
+        var thisdet = {"detector": detector, "finish_run_on_stop" : "false"};
+        thisdet['active'] = $("#"+detector+"_active").is(":checked");
+
+        var atts = ["stop_after", "mode", "user", "comment"];
+        for(var j in atts){
+          var att = atts[j];
+          var divname = "#" + detector + "_" + att;
+          thisdet[att] = $(divname).val();
+          if(thisdet['active'] && thisdet[att] === null || typeof thisdet[att] === "undefined" && (att!=="comment" && att!=="stop_after")){
+	      alert("You need to provide a value for "+att+" for the "+detector+", or disable that detector.");
+              failed = true;
+          }
+        }
+        thisdet['active'] = $("#"+detector+"_active").is(":checked");
+        thisdet['remote'] = (!$("#remote_" + detector).is(":checked"));
+        if(detector === "tpc"){
+            thisdet['link_mv'] = $("#link_mv").is(":checked");
+            thisdet['link_nv'] = $("#link_nv").is(":checked");
+            thisdet['deadtime'] = $("#tpc_deadtime").is(":checked");
+        }
+        post.push(thisdet);
     }
 
     if(!failed){
-		$.ajax({
-		    type: "POST",
-	   		url: "control/set_control_docs",
-	  		data: {"data": post},
-	    	success: function(){
-		   		location.reload();
-		   	},
-		   	error:   function(jqXHR, textStatus, errorThrown) {
-			alert("Error, status = " + textStatus + ", " +
-			   	  "error thrown: " + errorThrown
-			 	);
-		    }
-		});
-	}
+        $.ajax({
+            type: "POST",
+            url: "control/set_control_docs",
+            data: {"data": post},
+            success: function(){
+              location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
+            }
+        });
+    }
 }

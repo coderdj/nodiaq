@@ -4,7 +4,6 @@ block extrahead
   script(src="javascripts/control.js", type="text/javascript")
   link(rel="stylesheet", href="stylesheets/bootstrap-toggle.css")
   link(rel="stylesheet", href="stylesheets/control.css")
-  //script(src="javascripts/control.js", type="text/javascript")
 
 block content
   div.main-container
@@ -16,7 +15,7 @@ block content
           div.col-12
             div.float-right
               button.btn.btn-warning.btn-xl#submit_changes(onclick="PostServerData()") Submit Changes
-          
+
     - var detectors = [["tpc", "TPC"], ["muon_veto", "Muon Veto"], ["neutron_veto", "Neutron Veto"], ["lz", "LZ TPC"]];
     each det in detectors
       //div.reader_detail
@@ -30,7 +29,7 @@ block content
                     label.form-check-label
                       span Control &nbsp;
                       input#remote_tpc(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="web" data-off="remote" data-size="small")
-                  div.form-check-inline 
+                  div.form-check-inline
                     label.form-check-label
                       span Run &nbsp;
                       input#tpc_active(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
@@ -42,6 +41,10 @@ block content
                     label.form-check-label
                       span Neutron Veto &nbsp;
                       input#link_nv(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"  data-on="Linked" data-off="Unlinked" data-size='small')
+                  div.form-check-inline
+                    label.form-check-inline
+                      span Deadtime &nbsp;
+                      input#tpc_deadtime(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size="small")
             else
               span(style='font-size:20px;font-weight:bold;') #{det[1]}
               div.float-right(style='display:inline-block')
@@ -67,8 +70,8 @@ block content
           div.col-xs-12.col-sm-6.col-md-12.col-xl-4.form-group
             label.form-label(for="comment") Comment
             textarea.form-control(id="#{det[0]}_comment" rows="2" name="comment" type='text')
-        
-         
+
+
   audio#ahahah(src="images/ahahah.mp3")
   script.
     $(document).ready(function(){

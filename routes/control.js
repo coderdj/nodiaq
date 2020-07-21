@@ -41,7 +41,7 @@ router.get("/get_control_docs", ensureAuthenticated, function(req, res){
 		    function(e, docs){
 			    return res.send(JSON.stringify(docs));
 	});
-		   
+
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
@@ -54,11 +54,10 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     	data[i]['user'] = req.user.last_name;
     	collection.update({"detector": data[i]['detector']}, data[i],  {upsert:true},
     	function(){
-    		j+=1;
-    		if(j===data.length)
-    			return res.sendStatus(200);
+    	  if(++j===data.length)
+    	    return res.sendStatus(200);
     	});
-	}
+    }
 });
 
 
