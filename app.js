@@ -40,7 +40,7 @@ var transporter = nodemailer.createTransport({
       type : 'OAuth2',
       user: process.env.DAQ_CONFIRMATION_ACCOUNT,
       serviceClient : google_auth.client_id,
-      private_key : google_auth.private_key
+      privateKey : google_auth.private_key
   }
 });
 

@@ -171,12 +171,11 @@ router.get("/verify", function(req, res){
                           if (new Date() - docs[0]['github_conf_time'] > timeout) {
                             collection.update({_id : docs[0]['_id']},
                               {$unset : {'github_temp' : 1, 'github_hash' : 1, 'github_conf_time' : 1}});
-                            return res.render("confirmationLander", {message : 'Sorry, that code has expired');
-                          }
-                        } else { // docs.length
+                            return res.render("confirmationLander", {message : 'Sorry, that code has expired'});
+                        } else { // timeout
 			    collection.update({'_id': docs[0]['_id']},
 					      {"$set": {"github": docs[0]['github_temp']},
-					       "$unset": {"github_temp": 1, "github_hash": 1, 'github_conf_time'}});
+					       "$unset": {"github_temp": 1, "github_hash": 1, 'github_conf_time':1}});
 			    return res.render("confirmationLander",
 					      {message: "Account linked, you can now login"});
 			}}
