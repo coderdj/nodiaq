@@ -163,16 +163,23 @@ router.get("/verify", function(req, res){
     var db = req.runs_db;
     var collection = db.get("users");
     var q = url.parse(req.url, true).query;
-    var code = q.code;    
+    var code = q.code;
+    var timeout = 10*60*1000;
     collection.find({"github_hash": code},
 		    function(e, docs){
 			if(docs.length == 1){
+                          if (new Date() - docs[0]['github_conf_time'] > timeout) {
+                            collection.update({_id : docs[0]['_id']},
+                              {$unset : {'github_temp' : 1, 'github_hash' : 1, 'github_conf_time' : 1}});
+                            return res.render("confirmationLander", {message : 'Sorry, that code has expired');
+                          }
+                        } else { // docs.length
 			    collection.update({'_id': docs[0]['_id']},
 					      {"$set": {"github": docs[0]['github_temp']},
-					       "$unset": {"github_temp": 1, "github_hash": 1}});
+					       "$unset": {"github_temp": 1, "github_hash": 1, 'github_conf_time'}});
 			    return res.render("confirmationLander",
 					      {message: "Account linked, you can now login"});
-			}
+			}}
 			else
 			    res.render("confirmationLander",
 				       {message: "Couldn't find an account to link"});
@@ -185,20 +192,27 @@ router.get("/verify_ldap", function(req, res){
     var collection = db.get("users");
     var q = url.parse(req.url, true).query;
     var code = q.code;
+    var timeout = 10*60*1000;
     collection.find({"ldap_hash": code},
                     function(e, docs){
                         if(docs.length == 1){
+                          if (new Date() - docs[0]['ldap_auth_time'] > timeout) {
+                            collection.update({_id : docs[0]['_id']},
+                              {$unset : {'ldap_temp' : 1, 'ldap_hash' : 1, 'ldap_conf_time' : 1}});
+                            return res.render("confirmationLander", {message : 'Sorry, that code has expired'});
+
+                          } else {
                             collection.update({'_id': docs[0]['_id']},
                                               {"$set": {"lngs_ldap_uid": docs[0]['ldap_temp']},
-                                               "$unset": {"ldap_temp": 1, "ldap_hash": 1}});
+                                               "$unset": {"ldap_temp": 1, "ldap_hash": 1, 'ldap_conf_time' : 1}});
                             return res.render("confirmationLander",
                                               {message: "Account linked, you can now login"});
+                          }
                         }
                         else
                             res.render("confirmationLander",
                                        {message: "Couldn't find an account to link"});
-                    });
-
+    });
 });
 
 function SendConfirmationMail(req, random_hash, link, callback){
@@ -208,11 +222,12 @@ function SendConfirmationMail(req, random_hash, link, callback){
         from: process.env.DAQ_CONFIRMATION_ACCOUNT,
         to: req.body.email,
         subject: 'XENONnT Account Confirmation',
-        html: '<p>Please click <a href="https://xenon1t-daq.lngs.infn.it/'+link+'?code='+random_hash+'">here</a> to verify your email.</p><p>If you did not request this email please delete.</p>'
+        html: '<p>Please click <a href="https://xenon1t-daq.lngs.infn.it/'+link+'?code='+random_hash+'">here</a> within 10 minutes to verify your email.</p><p>If you did not request this email please delete it.</p>'
     };
     
     transporter.sendMail(mailOptions, function(error, info){
 	if (error) {
+            console.log('MAIL ERROR');
             console.log(error);
 	    callback(false);
 	}
@@ -341,7 +356,8 @@ router.post("/linkLDAP", (req, res) => {
 				const random_hash = cryptoRandomString(128);
 				collection.update({"email": req.body.email},
 						  {"$set": {"ldap_temp": req.body.lngs_id,
-                                                            "ldap_hash": random_hash}});
+                                                            "ldap_hash": random_hash,
+                                                            'ldap_conf_time' : new Date()}});
 				// Send Mail
 				SendConfirmationMail(req, random_hash, 'verify_ldap', function(success){
 				    if(success)
@@ -378,7 +394,8 @@ router.post("/linkGithub", (req, res) => {
 				var random_hash = cryptoRandomString({length : 128, type : 'url-safe'});
 				collection.update({"email": req.body.email},
 						  {"$set": {"github_temp": req.body.github,
-							    "github_hash": random_hash}});
+							    "github_hash": random_hash,
+                                                            'github_conf_time' : new Date()}});
 				// Send Mail
                                 SendConfirmationMail(req, random_hash, 'verify', function(success){
                                     if(success)
