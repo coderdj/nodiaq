@@ -170,10 +170,10 @@ function UpdateDispatcher() {
   $.getJSON("status/get_detector_status?detector=tpc", (data) => {
     if (typeof data.checkin != 'undefined' && data.checkin < 10) {
       $("#dispatcher_status").html("online");
-      $("#dispatcher_status").css("color", "#00ee00");
+      $("#dispatcher_status").css("color", "green");
     } else {
       $("#dispatcher_status").html("offline");
-      $("#dispatcher_status").css("color", "#ee0000");
+      $("#dispatcher_status").css("color", "red");
     }
   });
 }
