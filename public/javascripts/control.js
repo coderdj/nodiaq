@@ -219,13 +219,13 @@ function PullServerData(callback){
 
 function PostServerData(){
     var dets = ['tpc', 'muon_veto', 'neutron_veto'];
-    post = [];
+    post = {};
     var failed = false;
     for(var i in dets){
 	    var detector = dets[i];
-	    var thisdet = {"detector": detector, "finish_run_on_stop" : "false"};
+	    var thisdet = {"detector": detector};
 	    thisdet['active'] = $("#"+detector+"_active").is(":checked");
-		
+
 	var atts = ["stop_after", "mode", "user", "comment"];
 	    for(var j in atts){
 		var att = atts[j];
@@ -243,7 +243,7 @@ function PostServerData(){
 	    thisdet['link_nv'] = $("#link_nv").is(":checked");
 	}
         thisdet["finish_run_on_stop"] = $("#"+detector+"_softstop").is(":checked");
-	post.push(thisdet);
+	post[detector] = thisdet;
     }
 
     if(!failed){

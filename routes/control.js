@@ -31,15 +31,39 @@ router.get('/modes', ensureAuthenticated, function(req, res){
 		    });
 });
 
+function GetControlDocs(collection) {
+  return collection.aggregate([
+    {$sort: {_id: -1}},
+    {$group: {
+      _id: {$concat: ['$detector', '.', '$field']},
+      value: {$first: '$value'},
+      user: {$first: '$user'},
+      time: {$first: '$time'},
+      detector: {$first: '$detector'},
+      key: {$first: '$field'}
+    }},
+    {$group: {
+      _id: '$detector',
+      keys: {$push: '$key'},
+      values: {$push: '$value'},
+      users: {$push: '$user'},
+      times: {$push: '$time'}
+    }},
+    {$project: {
+      detector: '$_id',
+      _id: 0,
+      state: {$arrayToObject: {$zip: {inputs: ['$keys','$values']}}},
+      user: {$arrayElemAt: ['$users', {$indexOfArray: ['$times', {$max: '$times'}]}]}
+    }}
+  ]);
+}
+
 router.get("/get_control_docs", ensureAuthenticated, function(req, res){
     var db = req.db;
     var collection = db.get("detector_control");
-    
-    // Fetch n entries that have not been processed
-    collection.find({},
-		    function(e, docs){
-			    return res.json(docs);
-	});
+    GetControlDocs(collection)
+    .then((docs) => {return res.json(docs);})
+    .catch((err) => {console.log(err.message); return res.json({});});
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
@@ -47,19 +71,26 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
 
     var data = req.body.data;
-    var j = 0;
-    for(var i=0; i<data.length; i+=1){
-    	data[i]['user'] = req.user.last_name;
-    	collection.update({"detector": data[i]['detector']}, {$set : data[i]},  {upsert:true},
-    	function(err, result){
-            if (err) console.log("CONTROL ERROR: " + err.message);
-    		j+=1;
-    		if(j===data.length)
-    			return res.sendStatus(200);
-    	});
-	}
+    console.log('INPUT');
+    console.log(data);
+    GetControlDocs(collection).then((docs) => {
+      console.log(docs);
+      var updates = [];
+      for (var i in docs) {
+        var olddoc = docs[i];
+        var newdoc = data[olddoc['detector']];
+        for (var key in olddoc.state)
+          if (newdoc[key] != olddoc.state[key])
+            updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user, time: new Date()});
+      }
+      if (updates.length > 0)
+        return collection.insert(updates);
+      return 0;
+    }).then( () => { return res.SendStatus(200);
+    }).catch((err) => {
+      console.log(err.message);
+      return res.sendStatus(418);
+    });
 });
-
-
 
 module.exports = router;
