@@ -208,7 +208,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
         var query = {detector: detector};
         var options = {};
         if (data.active == "false") {
-          ctrl_coll.updateOne({detector: detector},
+          ctrl_coll.update({detector: detector},
             {$set: {active: 'false', user: user}}, options,
             function(updateerr, result) {
               if (updateerr) return res.json({message: err.message});
@@ -228,7 +228,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
                 update.stop_after = parseInt(data.stop_after);
               } catch (error) {}
             }
-            ctrl_coll.updateOne({detector: detector}, {$set: update}, options,
+            ctrl_coll.update({detector: detector}, {$set: update}, options,
                 function(updateerr, result) {
                   if (updateerr) return res.json({message: err.message});
                   return res.json({message: 'Update successful'});
