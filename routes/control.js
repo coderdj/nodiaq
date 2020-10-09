@@ -71,22 +71,19 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
 
     var data = req.body.data;
-    console.log('INPUT');
-    console.log(data);
     GetControlDocs(collection).then((docs) => {
-      console.log(docs);
       var updates = [];
       for (var i in docs) {
         var olddoc = docs[i];
         var newdoc = data[olddoc['detector']];
         for (var key in olddoc.state)
           if (newdoc[key] != olddoc.state[key])
-            updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user, time: new Date()});
+            updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.last_name, time: new Date()});
       }
       if (updates.length > 0)
         return collection.insert(updates);
       return 0;
-    }).then( () => { return res.SendStatus(200);
+    }).then( () => { return res.sendStatus(200);
     }).catch((err) => {
       console.log(err.message);
       return res.sendStatus(418);

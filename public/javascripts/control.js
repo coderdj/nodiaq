@@ -162,7 +162,6 @@ function PopulateRunsList(callback){
 }
 
 function PullServerData(callback){
-
 	$.getJSON("control/get_control_docs", function(data){
 		var found = 0;
 		for(var i in data){
@@ -172,39 +171,40 @@ function PullServerData(callback){
 				continue;
 			}
 			found += 1;
-		    var atts = ["stop_after", "mode", "user", "comment"];
+		    var atts = ["stop_after", "mode", "comment"];
 		    for(var j in atts){
 			var att = atts[j];
 			var divname = "#" + detector + "_" + att;
 			if(att === 'mode'){
 			    $(divname + " option").filter(function() {
-    					return this.value === doc['mode']
+    					return this.value === doc.state['mode']
   					}).prop('selected', true);
 			}
 			else
-			    $(divname).val(doc[att]);
+			    $(divname).val(doc.state[att]);
 			}
-            if (doc['finish_run_on_stop'] == 'true')
+            $("#"+detector+"_user").val(doc.user);
+            if (doc.state['finish_run_on_stop'] == 'true')
                 $("#" + detector + "_softstop").prop('selected', true);
             else
                 $("#" + detector + "_softstop").prop('selected', false);
 
 		    if(detector === "tpc"){
-			if(doc['link_mv'] === 'true')
+			if(doc.state['link_mv'] === 'true')
 			    $("#link_mv").bootstrapToggle('on');
 			else
 			    $("#link_mv").bootstrapToggle('off');
-			if(doc['link_nv'] === 'true')
+			if(doc.state['link_nv'] === 'true')
 			    $("#link_nv").bootstrapToggle('on');
 			else
 			    $("#link_nv").bootstrapToggle('off');
 		    }
 
-		    if(doc['remote'] == 'true')
+		    if(doc.state['remote'] == 'true')
 			$("#remote_" + detector).bootstrapToggle('off');
 		    else
 			$("#remote_" + detector).bootstrapToggle('on');
-		    if(doc['active'] === "true")
+		    if(doc.state['active'] === "true")
 			$("#"+detector+"_active").bootstrapToggle('on');
 		    else
 			$("#"+detector+"_active").bootstrapToggle('off');

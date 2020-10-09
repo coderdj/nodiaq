@@ -117,7 +117,7 @@ function GetControlDoc(collection, detector) {
     {$group: {
       _id: null,
       keys: {$push: '$_id'},
-      values: {$push: '$values'},
+      values: {$push: '$value'},
       users: {$push: '$user'},
       times: {$push: '$time'}
     }},
@@ -174,9 +174,9 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
     promises.push(GetControlDoc(ctrl_coll, 'tpc'));
   }
   if (data.active == 'true') {
-    promises.push(options_coll.count({name: data.mode}, {});
+    promises.push(options_coll.count({name: data.mode}, {}));
   }
-  Promise.all([promises]).then( values => {
+  Promise.all(promises).then( values => {
     if (values[0].length == 0 || values[1].length == 0)
       throw {message: "Something went wrong"};
     var det = values[0][0].state;
@@ -207,7 +207,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
     // now we validate the incoming command
     if (data.active == "false") {
       ctrl_coll.insert({detector: detector, user: user, time: new Date(),
-        field: 'active', value: 'false'}).then( () => {throw {message: "Update successful"};});
+        field: 'active', value: 'false'}).then( () => res.json({message: 'Update successful'}));
     } else {
       if (values[values.length-1] == 0)
         throw {message: "No options document named \"" + data.mode + "\""};
@@ -225,7 +225,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
         changes.push(['finish_run_on_stop', data.finish_run_on_stop]);
       updates = changes.map((val) => { return {detector: detector, user: user,
         time: new Date(), field: val[0], value: val[1]};});
-      ctrl_coll.insert(updates).then(() => {throw {message: "Update successful"};});
+      ctrl_coll.insert(updates).then(() => res.json({message: "Update successful"}));
     }
 
   }).catch((err) => {
