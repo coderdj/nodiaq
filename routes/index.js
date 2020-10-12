@@ -138,8 +138,9 @@ router.get('/account/request_github_access', ensureAuthenticated, function(req, 
 
 router.get('/account/request_api_key', ensureAuthenticated, function(req, res){
     
-    var api_username = req.user.daq_id;
-    	
+    var api_username = req.user.lngs_ldap_uid;
+    if (typeof req.user.lngs_lap_uid == 'undefined')
+
     // Generate API key
     var apikey = require("apikeygen").apikey;
     var key = apikey();
@@ -152,13 +153,10 @@ router.get('/account/request_api_key', ensureAuthenticated, function(req, res){
     var db = req.runs_db;
     var collection = db.get("users");
     bcrypt.hash(key, saltRounds, function(err, hash) {
-    
-        collection.update({"first_name": req.user.first_name,
-		           "last_name": req.user.last_name},
-		          {"$set": {"api_username": api_username,
-				    "api_key": hash}});
+
+        collection.update({"lngs_ldap_uid": req.user.lngs_ldap_uid},
+		          {"$set": {"api_key": hash}});
         req.user.api_key = key;
-        req.user.api_username = api_username;
         return res.redirect(gp+"/account");
     });
 });

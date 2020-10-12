@@ -24,7 +24,7 @@ function checkKey(req, res, next) {
     return res.json({});
   }
   var collection = req.users_db.get("users");
-  var query = {api_username: user};
+  var query = {lngs_ldap_uid: user};
   var options = {api_key: 1};
   collection.findOne(query, options, function(e, docs) {
     if (e) {
@@ -213,15 +213,15 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
         throw {message: "No options document named \"" + data.mode + "\""};
       // now that we've sanitized the user input to ISO-5, let's actually do something
       changes = [['active', 'true']];
-      if (data.mode != det.mode)
+      if (typeof data.mode != 'undefined' && data.mode != "" && data.mode != det.mode)
         changes.push(['mode', data.mode]);
-      if (data.comment != det.comment)
+      if (typeof data.mode != 'undefined' && data.comment != det.comment)
         changes.push(['comment', data.comment]);
       try{
-        if (data.stop_after != det.stop_after)
+        if (typeof data.stop_after != 'undefiend' && data.stop_after != det.stop_after)
           changes.push(['stop_after', parseInt(data.stop_after)]);
       }catch(error) {}
-      if (data.finish_run_on_stop != det.finish_run_on_stop)
+      if (typeof data.finish_run_on_stop != 'undefined' && data.finish_run_on_stop != det.finish_run_on_stop)
         changes.push(['finish_run_on_stop', data.finish_run_on_stop]);
       updates = changes.map((val) => { return {detector: detector, user: user,
         time: new Date(), field: val[0], value: val[1]};});
