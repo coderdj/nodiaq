@@ -65,7 +65,7 @@ block content
         div.row(style="padding:5px")
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
             label.form-label(for="user") Controller
-            input.form-control.my_name_is.fontscale(id=`${det[0]}_user` type="text" value=`${user.last_name}` name="user" readonly required)
+            input.form-control.my_name_is.fontscale(id=`${det[0]}_user` type="text" value=`${user.lngs_ldap_uid}` name="user" readonly required)
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
             label.form-label(for="stopafter") Length (minutes)
             input.form-control(id=`${det[0]}_stop_after` type="number" name="stop_after" min=0 max=1440 value=60)
@@ -82,7 +82,7 @@ block content
     $(document).ready(function(){
       //FYouButton("submit_changes");
       document.page_ready = false;
-      document.current_user = "#{user.last_name}";
+      document.current_user = "#{user.lngs_ldap_uid}";
       DrawActiveLink("#lcontrol");
       PopulateRunsList(PullServerData);
       DefineButtonRules();

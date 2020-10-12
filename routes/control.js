@@ -16,7 +16,7 @@ router.get('/modes', ensureAuthenticated, function(req, res){
     var collection = db.get("options");
     var q = url.parse(req.url, true).query;
     var detector = q.detector;
-    collection.find({detector: detector, {sort: {name: 1}, fields: {name: 1, description: 1}}).then( (docs) => {
+    collection.find({detector: detector}, {sort: {name: 1}, fields: {name: 1, description: 1}}).then( (docs) => {
       var ret = [];
       for (var i in docs)
         ret.push([docs[i].name, docs[i].description ? docs[i].description : ""]);
@@ -82,7 +82,7 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     }).then( () => { return res.sendStatus(200);
     }).catch((err) => {
       console.log(err.message);
-      return res.sendStatus(418);
+      return res.sendStatus(451);
     });
 });
 
