@@ -231,7 +231,6 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
   }).catch((err) => {
     return res.json({message: err.message});
   });
-
 });
 
 module.exports = router;
