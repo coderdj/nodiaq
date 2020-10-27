@@ -182,7 +182,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
     var det = values[0][0].state;
     var status_doc = values[1][0];
     // first - is the detector in "remote" mode?
-    if (data.active == "true" && det.active != "false")
+    if (det.remote != 'true')
       throw {message: "Detector must be in remote mode to control via the API"};
     // is the detector startable?
     if (data.active == "true" && det.active != "false")
@@ -218,7 +218,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
       if (typeof data.mode != 'undefined' && data.comment != det.comment)
         changes.push(['comment', data.comment]);
       try{
-        if (typeof data.stop_after != 'undefiend' && data.stop_after != det.stop_after)
+        if (typeof data.stop_after != 'undefined' && data.stop_after != '' && data.stop_after != det.stop_after)
           changes.push(['stop_after', parseInt(data.stop_after)]);
       }catch(error) {}
       if (typeof data.finish_run_on_stop != 'undefined' && data.finish_run_on_stop != det.finish_run_on_stop)
