@@ -5,6 +5,7 @@ document.reader_data = {};
 
 var readers = ["reader0_reader_0", 'reader1_reader_0', 'reader2_reader_0', "reader3_reader_0", "reader5_reader_0"];
   var controllers = ['reader0_controller_0', "reader5_controller_0", "reader6_controller_0"];
+
 function GetStatus(i, checkin){
     var STATUSES = [
         "<span style='color:blue'><strong>Idle</strong></span>",
@@ -26,8 +27,9 @@ function GetStatus(i, checkin){
 	"<span style='color:red'><strong>Timeout</strong></span>",
 	"<span style='color:red'><strong>Undecided</strong></span>"
     ];
-    return STATUSES[i];    
+    return STATUSES[i];
 }
+
 function FYouButton(buttonid){
     $("#"+buttonid).mouseover(function(){
 	var t = $(window).height()*Math.random();
@@ -43,7 +45,7 @@ function RedrawRatePlot(){
     var variable = $("#menu_variable_s").val();
 
     document.reader_data = {};
-    var colors = {"rate": "#1c0877", "buff": "#df3470", "strax": "#3dd89f"};
+    var colors = {"rate": "#1c0877", "buff": "#df3470"};
     DrawProgressRate(0);
     var limit = parseInt(history);
     for(i in readers){
@@ -68,8 +70,9 @@ function RedrawRatePlot(){
 			  DrawProgressRate(readers.length);
 		  });
     }
-    
+
 }
+
 function DrawProgressRate(prog){
     var rate_chart = 'rate_chart';
     if(prog === 0){
@@ -102,18 +105,10 @@ function DrawInitialRatePlot(){
 		      "name": key+" buffer", 
 		      "data": document.reader_data[key]['buffs']};
             yaxis_label = "MB";
-        } else if($("#menu_variable_s").val() == "strax") {
-            rates = {"type" : "area",
-                      "name": key+" strax buffer",
-                      "data": document.reader_data[key]['straxs']};
-            yaxis_label = "MB";
         }
 	series.push(rates);
 
     }
-    //{"type": "area", "name": "transfer rate", "data": data[host]['rates'], 'color': colors['rate']},
-    //{"type": "area", "name": "buffered data", "data": data[host]['buffs'], 'color': colors['buff']}
-    
 
     var chart_opts = {
         chart: {
@@ -268,7 +263,6 @@ function UpdateOSDs(data){
 						     data['osds'][i]['avail']))+"%");
 	$("#osd_" + j + "_progress").prop('title', ToHumanBytes(data['osds'][i]['used']) + " used of " + ToHumanBytes(data['osds'][i]['used'] + data['osds'][i]['avail']));
     }
-
 }
 
 function UpdateFromReaders(){
@@ -301,10 +295,7 @@ function UpdateFromReaders(){
 		    val = data['buffer_length'];
 		}
 		// Trick to only update drawing once per seven readers (careful it doesn't bite you)
-		var update = false;
-		if(data['host'] == 'reader0_reader_0') 
-		    update=true;
-		UpdateMultiChart(data['ts'], val, update_name, update);
+		UpdateMultiChart(data['ts'], val, update_name, data['host'] == 'reader0_reader_0');
 	    }
         });
     }
@@ -352,17 +343,10 @@ function UpdateCommandPanel(){
     var recent = 0;
     var command_length = 20;
     if(typeof document.local_command_queue === "undefined")
-        document.local_command_queue = [];    
+        document.local_command_queue = [];
     if(document.local_command_queue.length !== 0){
         // Fetch all ID's newer than the first ID that hasn't been fully acknowledged   
         recent = document.local_command_queue[0]['_id'];
-        /*for(var k in document.local_command_queue){
-            if('acknowledged' in document.local_command_queue[k] && 'host' in 
-	       document.local_command_queue[k] &&
-               document.local_command_queue[k]['acknowledged'].length !== 
-	       document.local_command_queue[k]['host'].length)
-		recent = document.local_command_queue[k]['_id'];
-        }*/
     }
     $.getJSON("status/get_command_queue?limit=10&id="+recent, function(data){
         var fillHTML="";
@@ -389,7 +373,7 @@ function UpdateCommandPanel(){
 	    else if(doc['command'] === 'arm')
                 tcol = 'orange';
             fillHTML += '<strong style="color:'+tcol+'">' + doc['command'] + '</strong> for detector <strong>' + doc['detector'] + '</strong> from <strong>' + doc['user'] + '</strong>';
-	    
+
             // See which hosts responded
             var col = "green";
             var nhosts =  '-';
@@ -411,35 +395,21 @@ function UpdateCommandPanel(){
             fillHTML += '</div><div class="panel-footer">';
             //                  fillHTML += 'Panel Footer';
             fillHTML += '</div></div></div></div>';
-	    
-            //try{
-	    //	$("#"+document.local_command_queue[document.local_command_queue.length-1]).remove();
-            //    document.local_command_queue.splice(document.local_command_queue.length-1, 1);
-            //}
-            //catch(E){
-                //
-            //}
-	}
-	
+	} // for i in data
+
         $("#command_panel").prepend(fillHTML);
-	
-        //if(document.local_command_queue.length === 0)
-        //document.local_command_queue = data;
-        //else{
+
         for(var j=data.length-1; j>=0; j-=1)// in data)
             document.local_command_queue.unshift(data[j]);
-	//}
-	
+
         while(document.local_command_queue.length > command_length){
             $("#"+document.local_command_queue[document.local_command_queue.length-1]['_id']).remove();
             document.local_command_queue.splice(document.local_command_queue.length-1, 1);
         }
-	
+
     });
-    
+
 }
-
-
 
 function UpdateMultiChart(ts, val, host, update){
     var tss = (new Date(ts)).getTime();

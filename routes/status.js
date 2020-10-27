@@ -122,60 +122,53 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
     // Fancy-pants aggregation to take binning into account
     var query = {"host": reader, "_id": {"$gt": id}};
     collection.aggregate([
-	{'$match': query},
-	{'$project': {
-	    'time_bin': {
-		"$trunc": {
-		    "$divide" : [
-			{ 
-			    "$convert": { 'input': {"$subtract": [ {"$toDate": "$_id"}, t ]},
-					 'to': 19
+	{$match: query},
+	{$project: {
+	    time_bin: {
+		$trunc: {
+		    $divide : [
+			{$convert: {input: {$subtract: [{$toDate: "$_id"}, t]},
+					 to: 'decimal'
 					}
 			},
 			1000*resolution
 		    ]
 		}
 	    },
-	    'insertion_time': {"$toDate": "$_id"}, "_id": 1, "rate": 1, "buffer_length": 1, "strax_buffer" : 1,
-	    "host": 1
+	    insertion_time: {$toDate: "$_id"}, _id: 1, rate: 1, buffer_length: 1, host: 1
 	}},
-	{'$group': {
-	    '_id': '$time_bin',	   
-	    'rate': { '$avg': '$rate'},
-	    'buff': { '$avg': '$buffer_length'},
-            'straxbuf' : {'$avg' : '$strax_buffer'},
-	    'host': { '$first': '$host'}
+	{$group: {
+	    _id: '$time_bin',
+	    rate: {$avg: '$rate'},
+	    buff: {$avg: '$buffer_length'},
+	    host: {$first: '$host'}
 	}},
-	{'$project': {
-	    '_id': 1,
-	    'time': { "$convert": { 'input': {'$add': [{'$multiply': ['$_id', resolution, 1000]}, t]},
-				    'to': 18 // long int
+	{$project: {
+	    _id: 1,
+	    time: {$convert: {input: {$add: [{$multiply: ['$_id', resolution, 1000]}, t]},
+				    'to': 'long'
 				  }},
-	    'rate': 1,
-	    'buff': 1,
-	    'host': 1,
-            'straxbuf': 1,
+	    rate: 1,
+	    buff: 1,
+	    host: 1,
 	}},
-	{'$sort': {"time": 1}},
-	{'$group': {
-	    '_id': '$host',
-	    'rates': {'$push': '$rate'},
-	    'buffs': {'$push': '$buff'},
-	    'times': {'$push': '$time'},
-            'straxs' : {'$push' : '$straxbuf'},
+	{$sort: {time: 1}},
+	{$group: {
+	    _id: '$host',
+	    rates: {$push: '$rate'},
+	    buffs: {$push: '$buff'},
+	    times: {$push: '$time'},
 	}},
-    ], function(err, result){	
+    ], function(err, result){
 	var ret = {};
 	if(result.length > 0){
 	    retval = result[0];
-	    ret[retval['_id']] =  {'rates': [], 'buffs': [], 'straxs' : []};
+	    ret[retval['_id']] =  {'rates': [], 'buffs': []};
 	    for(var i in retval['rates']){
 		ret[retval['_id']]['rates'].push([retval['times'][i],
 						  retval['rates'][i]]);
 		ret[retval['_id']]['buffs'].push([retval['times'][i],
 						  retval['buffs'][i]]);
-                ret[retval['_id']]['straxs'].push([retval['times'][i],
-                                                  retval['straxs'][i]]);
 	    };
 	}
 	else
@@ -183,7 +176,6 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
 	
 	return res.json(ret);
     });
-	
 });
 
 router.get('/get_command_queue', ensureAuthenticated, function(req,res){

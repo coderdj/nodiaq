@@ -30,11 +30,11 @@ block content
             div.form-check-inline 
               label.form-check-label
                 span datarate scale: &nbsp;
-                input#legend_auto_set(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="auto" data-off="fixed" data-size='small')
+                input#legend_auto_set(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="auto" data-off="fixed" data-size='small' checked)
             div.form-check-inline 
               label.form-check-label
                 span color scale: &nbsp;
-                input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small')
+                input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
 
           div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
             button.btn.btn-info(onclick="stop_intervals()") stop auto update &nbsp;

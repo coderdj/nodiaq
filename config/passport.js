@@ -73,7 +73,7 @@ async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback
                         'favorite_color', 'email', 'lngs_ldap_uid',
                         'last_name', 'first_name', 'institute', 'position',
                         'percent_xenon', 'start_date', 'LNGS', 'github',
-                        'picture_url', 'github_home', 'api_username', 'groups'];
+                        'picture_url', 'github_home', 'groups'];
     for(var i in extra_fields){
         if(typeof mongo_doc[extra_fields[i]]==='undefined')
             ret_profile[extra_fields[i]] = "not set";
@@ -91,7 +91,7 @@ async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback
     if(!(isEmpty(ldap_profile)))
 	ret_profile['ldap_info'] = ldap_profile;
     // display API key set or not
-    if(typeof mongo_doc['api_username'] !== 'undefined')
+    if(typeof mongo_doc['api_key'] !== 'undefined')
         ret_profile['api_key'] = "SET";
 
     callback(ret_profile);
