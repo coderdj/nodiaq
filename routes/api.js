@@ -24,7 +24,7 @@ function checkKey(req, res, next) {
     return res.json({});
   }
   var collection = req.users_db.get("users");
-  var query = {api_username: user};
+  var query = {lngs_ldap_uid: user};
   var options = {api_key: 1};
   collection.findOne(query, options, function(e, docs) {
     if (e) {
@@ -97,61 +97,67 @@ router.get("/geterrors", checkKey, function(req, res) {
   }
   var query = {priority: {$gte: min_level, $lt: 5}};
   var options = {sort: {'_id': -1}, limit: 1};
-  collection.find(query, options, function(err, docs) {
-    if (err) {
-      return res.json({message: err.message});
-    }
+  collection.find(query, options).then( (docs) => {
     return res.json(docs);
+  }).catch( (err) => {
+    return res.json({message: err.message});
   });
 });
 
-function GetControlDoc(collection, detector, callback) {
-  var query = {detector: detector};
-  collection.find(query, function(err, docs) {
-    if (err) {
-      callback(err.msg, null);
-    }
-    if (docs.length == 0) {
-      callback("No control doc for detector " + detector, null);
-    }
-    callback(null, docs[0]);
-  });
+function GetControlDoc(collection, detector) {
+  return collection.aggregate([
+    {$match: {detector: detector}},
+    {$sort: {_id: -1}},
+    {$group: {
+      _id: '$field',
+      value: {$first: '$value'},
+      user: {$first: '$user'},
+      time: {$first: '$time'}
+    }},
+    {$group: {
+      _id: null,
+      keys: {$push: '$_id'},
+      values: {$push: '$value'},
+      users: {$push: '$user'},
+      times: {$push: '$time'}
+    }},
+    {$project: {
+      detector: detector,
+      _id: 0,
+      state: {$arrayToObject: {$zip: {inputs: ['$keys', '$values']}}},
+      user: {$arrayElemAt: ['$users', {$indexOfArray: ['$times', {$max: '$times'}]}]}
+    }}
+  ]);
 }
 
 function GetDetectorStatus(collection, detector, callback) {
   var timeout = 30;
   var query = {detector: detector, time: {$gte: new Date(new Date()-timeout*1000)}};
   var options = {sort: {'_id': -1}, limit: 1};
-  collection.find(query, options, function(err, docs) {
-    if (err) {
-      callback(err.message, null);
-    }
-    if (docs.length == 0) {
-      callback("No status update within the last 30 seconds", null);
-    }
-    callback(null, docs[0]);
-  });
+  return collection.find(query, options);
 }
 
 router.get("/getcommand/:detector", checkKey, function(req, res) {
   var detector = req.params.detector;
   var collection = req.db.get("detector_control");
-  GetControlDoc(collection, detector, function(err, doc) {
-    if (err) {
-      return res.json({message: err});
-    }
-    return res.json(doc);
+  GetControlDoc(collection, detector).then( docs => {
+    if (docs.length == 0)
+      return res.json({message: "No control doc for detector " + detector});
+    return res.json(docs[0]);
+  }).catch( err => {
+    return res.json({message: err.message});
   });
 });
 
 router.get("/detector_status/:detector", checkKey, function(req, res) {
   var detector = req.params.detector;
   var collection = req.db.get("aggregate_status");
-  GetDetectorStatus(collection, detector, function(err, doc) {
-    if (err) {
-      return res.json({message: err});
-    }
-    return res.json(doc);
+  GetDetectorStatus(collection, detector).then( docs => {
+    if (docs.length == 0)
+      return res.json({message: "No status update within the last 30 seconds"});
+    return res.json(docs[0]);
+  }).catch( err => {
+    return res.json({message: err.message});
   });
 });
 
@@ -163,81 +169,68 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
   var ctrl_coll = req.db.get("detector_control");
   var agg_coll = req.db.get("aggregate_status");
   var options_coll = req.db.get("options");
-  GetControlDoc(ctrl_coll, detector, function(err, doc) {
-    if (err) {
-      return res.json({message: err});
-    }
+  promises = [GetControlDoc(ctrl_coll, detector), GetDetectorStatus(agg_coll, detector)];
+  if (detector != 'tpc') {
+    promises.push(GetControlDoc(ctrl_coll, 'tpc'));
+  }
+  if (data.active == 'true') {
+    promises.push(options_coll.count({name: data.mode}, {}));
+  }
+  Promise.all(promises).then( values => {
+    if (values[0].length == 0 || values[1].length == 0)
+      throw {message: "Something went wrong"};
+    var det = values[0][0].state;
+    var status_doc = values[1][0];
     // first - is the detector in "remote" mode?
-    if (doc.remote == "false") {
-      return res.json({message: "Detector must be in remote mode to control via the API"});
-    }
+    if (det.remote != 'true')
+      throw {message: "Detector must be in remote mode to control via the API"};
     // is the detector startable?
-    if (data.active == "true" && doc.active != "false") {
-      return res.json({message: "Detector must be stopped first"});
-    }
+    if (data.active == "true" && det.active != "false")
+      throw {message: "Detector must be stopped first"};
     // is the detector stoppable?
-    if (data.active == "false" && doc.active != "true") {
-      return res.json({message: "Detector must be running to stop it"});
-    }
+    if (data.active == "false" && det.active != "true")
+      throw {message: "Detector must be running to stop it"};
+    // now we check the detector status
+    if (status_doc.status != 0 && data.active != "false")
+      throw {message: "Detector " + detector + " must be IDLE (0) but is " +
+        status_enum[status_doc.status] + " (" + status_doc.status + ")"};
     // check linking status
-    GetControlDoc(ctrl_coll, 'tpc', function(errtpc, tpc) {
-      if (errtpc) {
-        return res.json({message: errtpc});
-      }
-      if (detector == "tpc" && (tpc.link_nv != "false" || tpc.link_mv != "false")) {
-        return res.json({message: 'All detectors must be unlinked to start TPC via API'});
-      }
-      if (detector == "neutron_veto" && tpc.link_nv != "false") {
-        return res.json({message: 'NV must be unlinked to control via API'});
-      }
-      if (detector == "muon_veto" && tpc.link_mv != "false") {
-        return res.json({message: 'MV must be unlinked to control via API'});
-      }
-      // now we check the detector status
-      GetDetectorStatus(agg_coll, detector, function(errstat, status_doc) {
-        if (errstat) {
-          return res.json({message: errstat});
-        }
-        if (status_doc.status != 0 && data.active != "false") {
-          return res.json({message: "Detector " + detector + 
-            " must be IDLE (0) but is " + status_enum[status_doc.status] + 
-            " (" + status_doc.status + ")"});
-        }
-        // now we validate the incoming command
-        var update_doc = {};
-        var query = {detector: detector};
-        var options = {};
-        if (data.active == "false") {
-          ctrl_coll.update({detector: detector},
-            {$set: {active: 'false', user: user}}, options,
-            function(updateerr, result) {
-              if (updateerr) return res.json({message: err.message});
-              return res.json({message: 'Update successful'});
-            });
-        } else {
-          options_coll.count({name: data.mode}, options, function(counterr, count) {
-            if (counterr) return res.json({message: err.message});
-            if (count == 0) return res.json({message: 'No options document named ' + data.mode});
-            // FINALLY we can tell the system to do something
-            // now that the user input is sanitized to ISO-5
-            var update = {mode: data.mode, user: user,
-                          link_nv: "false", link_mv: "false"};
-            if (typeof data.comment != 'undefined') update.comment = data.comment;
-            if (typeof data.stop_after != 'undefined') {
-              try {
-                update.stop_after = parseInt(data.stop_after);
-              } catch (error) {}
-            }
-            ctrl_coll.update({detector: detector}, {$set: update}, options,
-                function(updateerr, result) {
-                  if (updateerr) return res.json({message: err.message});
-                  return res.json({message: 'Update successful'});
-            });
-          }); // count options docs
-        } // data.active
-      }); // get status
-    }); // get tpc
-  }); // get detector
+    if (detector == "tpc" && (det.link_nv != "false" || det.link_mv != "false"))
+      throw {message: 'All detectors must be unlinked to start TPC via API'};
+    if (detector != 'tpc') {
+      var tpc = values[2][0].state;
+      if (detector == "neutron_veto" && tpc.link_nv != "false")
+        throw {message: 'NV must be unlinked to control via API'};
+      if (detector == "muon_veto" && tpc.link_mv != "false")
+        throw {message: 'MV must be unlinked to control via API'};
+    }
+    // now we validate the incoming command
+    if (data.active == "false") {
+      ctrl_coll.insert({detector: detector, user: user, time: new Date(),
+        field: 'active', value: 'false'}).then( () => res.json({message: 'Update successful'}));
+    } else {
+      if (values[values.length-1] == 0)
+        throw {message: "No options document named \"" + data.mode + "\""};
+      // now that we've sanitized the user input to ISO-5, let's actually do something
+      changes = [['active', 'true']];
+      if (typeof data.mode != 'undefined' && data.mode != "" && data.mode != det.mode)
+        changes.push(['mode', data.mode]);
+      if (typeof data.mode != 'undefined' && data.comment != det.comment)
+        changes.push(['comment', data.comment]);
+      try{
+        if (typeof data.stop_after != 'undefined' && data.stop_after != '' && data.stop_after != det.stop_after)
+          changes.push(['stop_after', parseInt(data.stop_after)]);
+      }catch(error) {}
+      if (typeof data.finish_run_on_stop != 'undefined' && data.finish_run_on_stop != det.finish_run_on_stop)
+        changes.push(['finish_run_on_stop', data.finish_run_on_stop]);
+      updates = changes.map((val) => { return {detector: detector, user: user,
+        time: new Date(), field: val[0], value: val[1]};});
+      ctrl_coll.insert(updates).then(() => res.json({message: "Update successful"}));
+    }
+
+  }).catch((err) => {
+    return res.json({message: err.message});
+  });
 });
 
 module.exports = router;

@@ -162,7 +162,6 @@ function PopulateRunsList(callback){
 }
 
 function PullServerData(callback){
-
 	$.getJSON("control/get_control_docs", function(data){
 		var found = 0;
 		for(var i in data){
@@ -172,39 +171,40 @@ function PullServerData(callback){
 				continue;
 			}
 			found += 1;
-		    var atts = ["stop_after", "mode", "user", "comment"];
+		    var atts = ["stop_after", "mode", "comment"];
 		    for(var j in atts){
 			var att = atts[j];
 			var divname = "#" + detector + "_" + att;
 			if(att === 'mode'){
 			    $(divname + " option").filter(function() {
-    					return this.value === doc['mode']
+    					return this.value === doc.state['mode']
   					}).prop('selected', true);
 			}
 			else
-			    $(divname).val(doc[att]);
+			    $(divname).val(doc.state[att]);
 			}
-            if (doc['finish_run_on_stop'] == 'true')
+            $("#"+detector+"_user").val(doc.user);
+            if (doc.state['finish_run_on_stop'] == 'true')
                 $("#" + detector + "_softstop").prop('selected', true);
             else
                 $("#" + detector + "_softstop").prop('selected', false);
 
 		    if(detector === "tpc"){
-			if(doc['link_mv'] === 'true')
+			if(doc.state['link_mv'] === 'true')
 			    $("#link_mv").bootstrapToggle('on');
 			else
 			    $("#link_mv").bootstrapToggle('off');
-			if(doc['link_nv'] === 'true')
+			if(doc.state['link_nv'] === 'true')
 			    $("#link_nv").bootstrapToggle('on');
 			else
 			    $("#link_nv").bootstrapToggle('off');
 		    }
 
-		    if(doc['remote'] == 'true')
+		    if(doc.state['remote'] == 'true')
 			$("#remote_" + detector).bootstrapToggle('off');
 		    else
 			$("#remote_" + detector).bootstrapToggle('on');
-		    if(doc['active'] === "true")
+		    if(doc.state['active'] === "true")
 			$("#"+detector+"_active").bootstrapToggle('on');
 		    else
 			$("#"+detector+"_active").bootstrapToggle('off');
@@ -219,13 +219,13 @@ function PullServerData(callback){
 
 function PostServerData(){
     var dets = ['tpc', 'muon_veto', 'neutron_veto'];
-    post = [];
+    post = {};
     var failed = false;
     for(var i in dets){
 	    var detector = dets[i];
-	    var thisdet = {"detector": detector, "finish_run_on_stop" : "false"};
+	    var thisdet = {"detector": detector};
 	    thisdet['active'] = $("#"+detector+"_active").is(":checked");
-		
+
 	var atts = ["stop_after", "mode", "user", "comment"];
 	    for(var j in atts){
 		var att = atts[j];
@@ -243,7 +243,7 @@ function PostServerData(){
 	    thisdet['link_nv'] = $("#link_nv").is(":checked");
 	}
         thisdet["finish_run_on_stop"] = $("#"+detector+"_softstop").is(":checked");
-	post.push(thisdet);
+	post[detector] = thisdet;
     }
 
     if(!failed){
