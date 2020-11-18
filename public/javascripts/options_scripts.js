@@ -33,7 +33,7 @@ function SubmitMode(){
 	       try{JSON.parse(data);}
 	       catch(error){location.reload(true);}
 	       if(typeof(data) !== "undefined" && "res" in JSON.parse(data))
-		   alert(JSON.parse(data)['res']);	       
+		   alert(JSON.parse(data)['res']);
 	       else
 		   alert("Something strange has happened");
 	   });

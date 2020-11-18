@@ -56,7 +56,6 @@ router.get("/options_json", ensureAuthenticated, function(req, res){
 
 router.post("/set_run_mode", ensureAuthenticated, function(req, res){
     doc = JSON.parse(req.body.doc);
-    console.log(doc);
     delete doc._id;
     var db = req.db;
 
@@ -67,11 +66,9 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
     var collection = db.get('options');
 	if(typeof doc['name'] === 'undefined')
 		return res.render("options", {title: "Options", user:req.user});
-    collection.remove({name: doc['name']}, {}, function(err, result){
-	collection.insert(doc, {}, function(){
-	    return res.render("options", {title: "Options", user:req.user});
-	});
-    });
+    collection.remove({name: doc['name']}, {}).then( () => collection.insert(doc, {}))
+    .then( () => res.render("options", {title: "Options", user:req.user}))
+    .catch((err) => res.json({"res": err.message});
 });
 
 router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
