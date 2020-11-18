@@ -8,6 +8,8 @@ function FillAPIInfo(userdoc){
 }
 
 function ReqXenonGroup(group){
+    alert("This currently doesn't work, sorry :(");
+    return;
 
     $.getJSON("account/request_github_access?group=" + group, function(data){
     });

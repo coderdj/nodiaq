@@ -207,7 +207,8 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
     // now we validate the incoming command
     if (data.active == "false") {
       ctrl_coll.insert({detector: detector, user: user, time: new Date(),
-        field: 'active', value: 'false'}).then( () => res.json({message: 'Update successful'}));
+        field: 'active', value: 'false'}).then( () => res.json({message: 'Update successful'}))
+        .catch( (err) => {throw err});
     } else {
       if (values[values.length-1] == 0)
         throw {message: "No options document named \"" + data.mode + "\""};
@@ -225,7 +226,9 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
         changes.push(['finish_run_on_stop', data.finish_run_on_stop]);
       updates = changes.map((val) => { return {detector: detector, user: user,
         time: new Date(), field: val[0], value: val[1]};});
-      ctrl_coll.insert(updates).then(() => res.json({message: "Update successful"}));
+      ctrl_coll.insert(updates)
+        .then(() => res.json({message: "Update successful"}))
+        .catch( (err) => {throw err});
     }
 
   }).catch((err) => {

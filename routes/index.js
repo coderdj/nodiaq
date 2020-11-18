@@ -58,12 +58,12 @@ router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
 	    }
 	    var user_collection = db.get("users");
 	    user_collection.find(
-		{"daq_id": {"$in": qusers}},
+		{"lngs_ldap_uid": {"$in": qusers}},
 		function(err, cursor){
 		    for(var i in cursor){
 			for(var j in users){
 			    if(cursor[i]['daq_id'] === users[j]['shifter']){
-				users[j]['shifter_name'] = cursor[i]['first_name'] + cursor[i]['last_name'];
+				users[j]['shifter_name'] = cursor[i]['first_name'] + ' ' + cursor[i]['last_name'];
 				
 				fields = [ ['shifter_email', 'email'], ['shifter_phone', 'cell'],
 					   ['shifter_skype', 'skype'], ['shifter_github', 'github']];
@@ -211,17 +211,14 @@ router.get("/verify", function(req, res){
                 console.log('GITHUB verification at ' + new Date() + ' | ' + docs[0]["auth_time"]);
                 if (new Date() - docs[0]["auth_time"] > timeout) {
                     collection.update({"_id": docs[0]["_id"]},
-                        {"$unset": {
-                            "github_temp": 1,
-                            "github_hash": 1,
-                            "auth_time": 1
+                        {$unset: {github_temp: 1, github_hash: 1, auth_time: 1
                         }});
                     return res.render("confirmationLander",
                         {message: "That code has expired"});
                 }
 			    collection.update({'_id': docs[0]['_id']},
-					      {"$set": {"github": docs[0]['github_temp']},
-					       "$unset": {"github_temp": 1, "github_hash": 1}});
+					      {$set: {github: docs[0]['github_temp']},
+					       $unset: {github_temp: 1, github_hash: 1, auth_time: 1}});
 			    return res.render("confirmationLander",
 					      {message: "Account linked, you can now login"});
 			}
@@ -254,8 +251,8 @@ router.get("/verify_ldap", function(req, res){
                                     {message: "That code has expired"})
                             }
                             collection.update({'_id': docs[0]['_id']},
-                                              {"$set": {"lngs_ldap_uid": docs[0]['ldap_temp']},
-                                               "$unset": {"ldap_temp": 1, "ldap_hash": 1}});
+                                              {$set: {lngs_ldap_uid: docs[0]['ldap_temp']},
+                                               $unset: {ldap_temp: 1, ldap_hash: 1, auth_time: 1}});
                             return res.render("confirmationLander",
                                               {message: "Account linked, you can now login"});
                         }
