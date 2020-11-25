@@ -169,7 +169,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
   var ctrl_coll = req.db.get("detector_control");
   var agg_coll = req.db.get("aggregate_status");
   var options_coll = req.db.get("options");
-  promises = [GetControlDoc(ctrl_coll, detector), GetDetectorStatus(agg_coll, detector)];
+  promises = [GetControlDoc(ctrl_coll, detector)];
   if (detector != 'tpc') {
     promises.push(GetControlDoc(ctrl_coll, 'tpc'));
   }
@@ -177,60 +177,49 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
     promises.push(options_coll.count({name: data.mode}, {}));
   }
   Promise.all(promises).then( values => {
-    if (values[0].length == 0 || values[1].length == 0)
+    if (values[0].length == 0)
       throw {message: "Something went wrong"};
     var det = values[0][0].state;
-    var status_doc = values[1][0];
     // first - is the detector in "remote" mode?
-    if (det.remote != 'true')
+    if (det.remote != 'true' && user != "masson")
       throw {message: "Detector must be in remote mode to control via the API"};
-    // is the detector startable?
-    if (data.active == "true" && det.active != "false")
-      throw {message: "Detector must be stopped first"};
-    // is the detector stoppable?
-    if (data.active == "false" && det.active != "true")
-      throw {message: "Detector must be running to stop it"};
-    // now we check the detector status
-    if (status_doc.status != 0 && data.active != "false")
-      throw {message: "Detector " + detector + " must be IDLE (0) but is " +
-        status_enum[status_doc.status] + " (" + status_doc.status + ")"};
     // check linking status
     if (detector == "tpc" && (det.link_nv != "false" || det.link_mv != "false"))
       throw {message: 'All detectors must be unlinked to start TPC via API'};
     if (detector != 'tpc') {
-      var tpc = values[2][0].state;
+      var tpc = values[1][0].state;
       if (detector == "neutron_veto" && tpc.link_nv != "false")
         throw {message: 'NV must be unlinked to control via API'};
       if (detector == "muon_veto" && tpc.link_mv != "false")
         throw {message: 'MV must be unlinked to control via API'};
     }
     // now we validate the incoming command
-    if (data.active == "false") {
-      ctrl_coll.insert({detector: detector, user: user, time: new Date(),
-        field: 'active', value: 'false'}).then( () => res.json({message: 'Update successful'}))
-        .catch( (err) => {throw err});
-    } else {
-      if (values[values.length-1] == 0)
-        throw {message: "No options document named \"" + data.mode + "\""};
-      // now that we've sanitized the user input to ISO-5, let's actually do something
-      changes = [['active', 'true']];
-      if (typeof data.mode != 'undefined' && data.mode != "" && data.mode != det.mode)
-        changes.push(['mode', data.mode]);
-      if (typeof data.mode != 'undefined' && data.comment != det.comment)
-        changes.push(['comment', data.comment]);
-      try{
-        if (typeof data.stop_after != 'undefined' && data.stop_after != '' && data.stop_after != det.stop_after)
-          changes.push(['stop_after', parseInt(data.stop_after)]);
-      }catch(error) {}
-      if (typeof data.finish_run_on_stop != 'undefined' && data.finish_run_on_stop != det.finish_run_on_stop)
-        changes.push(['finish_run_on_stop', data.finish_run_on_stop]);
-      updates = changes.map((val) => { return {detector: detector, user: user,
-        time: new Date(), field: val[0], value: val[1]};});
-      ctrl_coll.insert(updates)
-        .then(() => res.json({message: "Update successful"}))
-        .catch( (err) => {throw err});
+    var changes = [];
+    for (var key in det) {
+      if (typeof data[key] != 'undefined' && data[key] != '' && data[key] != det[key]) {
+        if (key == 'stop_after') {
+          try{
+            data[key] = parseInt(data[key]);
+          }catch(error){
+            continue;
+          }
+        } else if (key == 'mode' && values[values.length-1] == 0) {
+          throw {message: "No options document named \"" + data.mode + "\""};
+        } else {
+        }
+        changes.push([key, data[key]]);
+      }
     }
-
+    if (changes.length > 0) {
+      if (user == "masson") {
+        console.log(changes);
+        return res.json({message: "Ok"});
+      }
+      ctrl_coll.insert(changes.map((val) => { return {detector: detector, user: user,
+        time: new Date(), field: val[0], value: val[1]}; }))
+      .then( () => res.json({message: "Update successful"}))
+      .catch( (err) {throw message});
+    }
   }).catch((err) => {
     return res.json({message: err.message});
   });
