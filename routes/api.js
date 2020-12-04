@@ -211,10 +211,6 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
       }
     }
     if (changes.length > 0) {
-      if (user == "masson") {
-        console.log(changes);
-        return res.json({message: "Ok"});
-      }
       ctrl_coll.insert(changes.map((val) => ({detector: detector, user: user,
         time: new Date(), field: val[0], value: val[1]})))
       .then( () => res.json({message: "Update successful"}))
