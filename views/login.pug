@@ -29,22 +29,22 @@ href="/auth/github")
             i.fab.fa-github
             span Login with GitHub
         br
-        div.accordion#accordion
-          div.card
-            div.card-header#heading(style="padding:5px")
-              //h5.mb-0
-              button.btn.btn-link(type="button" data-toggle="collapse" data-target="#linkCollapse" aria-expanded="true" aria-controls="linkCollapse") To link your GitHub, click here
-            div.collapse.hide#linkCollapse(data-parent="#accordion")
-              div.card-body
-                p Please add your github account login and the email associated with your XENON account. You will receive a mail with an activation link, which you must click to link the accounts.
-                form(method="post" action="/linkGithub")
-                  div.form-group
-                    label.form-label(for="email") Email associated with your XENON membership
-                    input.form-control(type="email" name="email")
-                  div.form-group
-                    label.form-label(for="github") GitHub ID
-                    input.form-control(type="text" name="github")
-                  button.btn.btn-basic(type="submit") Request Activation Email
+        //div.accordion#accordion
+        //  div.card
+        //    div.card-header#heading(style="padding:5px")
+        //      //h5.mb-0
+        //      button.btn.btn-link(type="button" data-toggle="collapse" data-target="#linkCollapse" aria-expanded="true" aria-controls="linkCollapse") To link your GitHub, click here
+        //    div.collapse.hide#linkCollapse(data-parent="#accordion")
+        //      div.card-body
+        //        p Please add your github account login and the email associated with your XENON account. You will receive a mail with an activation link, which you must click to link the accounts.
+        //        form(method="post" action="/linkGithub")
+        //          div.form-group
+        //            label.form-label(for="email") Email associated with your XENON membership
+        //            input.form-control(type="email" name="email")
+        //          div.form-group
+        //            label.form-label(for="github") GitHub ID
+        //            input.form-control(type="text" name="github")
+        //          button.btn.btn-basic(type="submit") Request Activation Email
         hr
         strong Option 2: Login with LNGS Credentials.
         br
@@ -53,21 +53,21 @@ href="/auth/github")
             i.fa.fa-hand-spock
             span Login via LNGS
         br
-        div.accordion#accordion
-          div.card
-            div.card-header#heading(style="padding:5px")
-              button.btn.btn-link(type="button" data-toggle="collapse" data-target="#llinkCollapse" aria-expanded="true" aria-controls="llinkCollapse") To link your LNGS ID, click here
-            div.collapse.hide#llinkCollapse(data-parent="#accordion")
-              div.card-body
-                p Please add your LNGS account login and the email associated with your XENON account. You will receive a mail with an activation link, which you must click to link the accounts. 
-                form(method="post" action="/linkLDAP")
-                  div.form-group
-                    label.form-label(for="email") Email associated with your XENON membership
-                    input.form-control(type="email" name="email")
-                  div.form-group
-                    label.form-label(for="lngs_id") LNGS ID
-                    input.form-control(type="text" name="lngs_id")
-                  button.btn.btn-basic(type="submit") Request Activation Email
+        //div.accordion#accordion
+        //  div.card
+        //    div.card-header#heading(style="padding:5px")
+        //      button.btn.btn-link(type="button" data-toggle="collapse" data-target="#llinkCollapse" aria-expanded="true" aria-controls="llinkCollapse") To link your LNGS ID, click here
+        //    div.collapse.hide#llinkCollapse(data-parent="#accordion")
+        //      div.card-body
+        //        p Please add your LNGS account login and the email associated with your XENON account. You will receive a mail with an activation link, which you must click to link the accounts. 
+        //        form(method="post" action="/linkLDAP")
+        //          div.form-group
+        //            label.form-label(for="email") Email associated with your XENON membership
+        //            input.form-control(type="email" name="email")
+        //          div.form-group
+        //            label.form-label(for="lngs_id") LNGS ID
+        //            input.form-control(type="text" name="lngs_id")
+        //          button.btn.btn-basic(type="submit") Request Activation Email
         br
         //strong Option 3: Login with password
         //br

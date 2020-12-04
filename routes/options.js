@@ -68,7 +68,7 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
 		return res.render("options", {title: "Options", user:req.user});
     collection.remove({name: doc['name']}, {}).then( () => collection.insert(doc, {}))
     .then( () => res.render("options", {title: "Options", user:req.user}))
-    .catch((err) => res.json({"res": err.message});
+    .catch((err) => res.json({"res": err.message}));
 });
 
 router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
