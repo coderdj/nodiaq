@@ -215,10 +215,10 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
         console.log(changes);
         return res.json({message: "Ok"});
       }
-      ctrl_coll.insert(changes.map((val) => { return {detector: detector, user: user,
-        time: new Date(), field: val[0], value: val[1]}; }))
+      ctrl_coll.insert(changes.map((val) => ({detector: detector, user: user,
+        time: new Date(), field: val[0], value: val[1]})))
       .then( () => res.json({message: "Update successful"}))
-      .catch( (err) {throw message});
+      .catch( (err) => {throw err});
     }
   }).catch((err) => {
     return res.json({message: err.message});
