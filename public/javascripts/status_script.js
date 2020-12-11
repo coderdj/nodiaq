@@ -3,8 +3,9 @@ document.ceph_chart = null;
 document.last_time_charts = {};
 document.reader_data = {};
 
-var readers = ["reader0_reader_0", 'reader1_reader_0', 'reader2_reader_0', "reader3_reader_0", "reader5_reader_0"];
-  var controllers = ['reader0_controller_0', "reader5_controller_0", "reader6_controller_0"];
+var readers = ["reader0_reader_0", 'reader1_reader_0', 'reader2_reader_0', "reader3_reader_0", "reader5_reader_0", "reader6_reader_0", "reader6_reader_1"];
+var controllers = ['reader0_controller_0', "reader5_controller_0", "reader6_controller_0"];
+var eventbuilders = ["eb0.xenon.local", "eb1.xenon.local", "eb2.xenon.local", "eb3.xenon.local", "eb4.xenon.local", "eb5.xenon.local"];
 
 function GetStatus(i, checkin){
     var STATUSES = [
@@ -40,36 +41,36 @@ function FYouButton(buttonid){
 }
 
 function RedrawRatePlot(){
-    var history = $("#menu_history_s").val();
-    var resolution = $("#menu_resolution_s").val();
-    var variable = $("#menu_variable_s").val();
+  var history = $("#menu_history_s").val();
+  var resolution = $("#menu_resolution_s").val();
+  var variable = $("#menu_variable_s").val();
 
-    document.reader_data = {};
-    var colors = {"rate": "#1c0877", "buff": "#df3470"};
-    DrawProgressRate(0);
-    var limit = parseInt(history);
-    for(i in readers){
-	var reader = readers[i];
-	$.getJSON("status/get_reader_history?limit="+limit+"&res="+resolution+"&reader="+reader, 
-		  function(data){
-			  if (typeof data.error != 'undefined') {
-				  console.log("Error: " + data.error);
-				  return;
-			  }
-		      for (var key in data) {
-			  // check if the property/key is defined in the object itself, not in parent
-			  if (!data.hasOwnProperty(key)) 
-			      continue;
-			  document.reader_data[key] = data[key];
-		      }
-		      if(Object.keys(document.reader_data).length == readers.length){
-			  DrawProgressRate(100);
-			  DrawInitialRatePlot();
-		      }
-		      else
-			  DrawProgressRate(readers.length);
-		  });
-    }
+  document.reader_data = {};
+  var colors = {"rate": "#1c0877", "buff": "#df3470"};
+  DrawProgressRate(0);
+  var limit = parseInt(history);
+  for(i in readers){
+    var reader = readers[i];
+    $.getJSON("status/get_reader_history?limit="+limit+"&res="+resolution+"&reader="+reader, 
+      function(data){
+        if (typeof data.error != 'undefined') {
+          console.log("Error: " + data.error);
+          return;
+        }
+        for (var key in data) {
+          // check if the property/key is defined in the object itself, not in parent
+          if (!data.hasOwnProperty(key)) 
+            continue;
+          document.reader_data[key] = data[key];
+        }
+        if(Object.keys(document.reader_data).length == readers.length){
+          DrawProgressRate(100);
+          DrawInitialRatePlot();
+        }
+        else
+          DrawProgressRate(readers.length);
+      });
+  }
 
 }
 
@@ -87,71 +88,69 @@ function DrawProgressRate(prog){
 }
 
 function DrawInitialRatePlot(){
-    
-    // Convert data dict to highcharts format
-    var series = [];
-    var yaxis_label = "";
-    for(var key in document.reader_data){
-	if(!document.reader_data.hasOwnProperty(key))
-	    continue;
-	var rates = {};
-	if($("#menu_variable_s").val() == "rate") {
-	    rates = {"type": "line", 
-		     "name": key+" rate", 
-		     "data": document.reader_data[key]['rates']};
-            yaxis_label = "MB/s";
-        } else if($("#menu_variable_s").val() == "buff") {
-	    rates = {"type": "area", 
-		      "name": key+" buffer", 
-		      "data": document.reader_data[key]['buffs']};
-            yaxis_label = "MB";
-        }
-	series.push(rates);
 
+  // Convert data dict to highcharts format
+  var series = [];
+  var yaxis_label = "";
+  for(var key in document.reader_data){
+    if(!document.reader_data.hasOwnProperty(key))
+      continue;
+    var rates = {};
+    if($("#menu_variable_s").val() == "rate") {
+      rates = {"type": "line", 
+        "name": key+" rate", 
+        "data": document.reader_data[key]['rates']};
+      yaxis_label = "MB/s";
+    } else if($("#menu_variable_s").val() == "buff") {
+      rates = {"type": "area", 
+        "name": key+" buffer", 
+        "data": document.reader_data[key]['buffs']};
+      yaxis_label = "MB";
     }
+    series.push(rates);
 
-    var chart_opts = {
-        chart: {
-            zoomType: 'xy',
-//            margin: [5, 5, 20, 80],
-        },
-        plotOptions: {
-            series: {
-                fillOpacity: 0.3,
-		lineWidth: 1
-	    },
-	    //line: {
-	//	marker: false
-	 //   },
-        },
-        credits: {
-	    enabled: false,
-        },
-        title: {
-            text: '',
-        },
-        xAxis: {
-            type: 'datetime',
-        },
-        yAxis: {
-            title: {
-                text: yaxis_label,
-	    },	    
-            min: 0,
-	},
-	legend: {
-            enabled: true,
-	},
-	series: series,
-    };
-    var div = 'rate_chart';
-    document.RatePlot = Highcharts.chart(div, chart_opts);
+  }
+
+  var chart_opts = {
+    chart: {
+      zoomType: 'xy',
+      //            margin: [5, 5, 20, 80],
+    },
+    plotOptions: {
+      series: {
+        fillOpacity: 0.3,
+        lineWidth: 1
+      },
+      //line: {
+      //	marker: false
+      //   },
+    },
+    credits: {
+      enabled: false,
+    },
+    title: {
+      text: '',
+    },
+    xAxis: {
+      type: 'datetime',
+    },
+    yAxis: {
+      title: {
+        text: yaxis_label,
+      },
+      min: 0,
+    },
+    legend: {
+      enabled: true,
+    },
+    series: series,
+  };
+  var div = 'rate_chart';
+  document.RatePlot = Highcharts.chart(div, chart_opts);
 
 }
 
 function UpdateStatusPage(){
-    var brokers = []; //["fdaq00_broker_0"]; 
-
     UpdateCommandPanel();
     UpdateCrateControllers();
     UpdateFromReaders();
@@ -163,7 +162,7 @@ function UpdateStatusPage(){
 
 function UpdateDispatcher() {
   $.getJSON("status/get_detector_status?detector=tpc", (data) => {
-    if (typeof data.checkin != 'undefined' && data.checkin < 10) {
+    if (typeof data.checkin != 'undefined' && data.checkin < 30) {
       $("#dispatcher_status").html("online");
       $("#dispatcher_status").css("color", "green");
     } else {
@@ -174,69 +173,72 @@ function UpdateDispatcher() {
 }
 
 function UpdateBootstrax() {
-    $.getJSON("status/get_bootstrax_status", function(data) {
-      if (data.length == 0)
+  var timeout = 20*1000; // seconds since last update
+  for (var i in eventbuilders) {
+    $.getJSON("status/get_bootstrax_status?host="+eventbuilders[i], (data) => {
+      var h = "#"+eventbuilders[i]+"_";
+      if (typeof data.host == 'undefined') {
+        $(h+"status").html("offline");
+        $(h+"status").css("color", "gray");
+        $(h+"target").html("");
+        $(h+"check-in").html("?");
         return;
-      var html = "";
-      var timeout = 20; // seconds since last update
-      for (var i in data) {
-        var doc = data[i];
-        html += "<div class=\"bootstrax_panel_entry\">"
-        if (doc['time'] > timeout) {
-          html += "<span style=\"color:red\">"+doc['_id'] + " is offline";
-        } else if (doc['state'] == 'idle'){
-          html += "<span style=\"color:blue\">"+doc['_id'] + " is idle";
-        } else if (doc['state'] == 'busy'){
-          html += "<span style=\"color:green\">"+doc['_id'] + " is processing run " + doc['run'] + " to " + doc['target'] + " on " + doc['cores'] + " cores";
-        } else {
-          html += "<span style=\"color:orange\">"+doc['_id'] + " is " + doc['state'];
-        }
-        html += " (" + doc['time'].toFixed(0) + " seconds ago)</span></div>";
       }
-      $("#bootstrax_panel").html(html);
+      var status_div = $(h+"status");
+      status_div.html(data.state);
+      if (data.state == 'idle') {
+        status_div.css("color", "blue");
+        $(h+"target").html("");
+      } else if (data.state == 'busy') {
+        status_div.css("color", "green");
+        $(h+"target").html("Run: " + data.run_id + "; Target: " + data.target);
+      } else {
+        status_div.css("color", "yellow");
+        $(h+"target").html("");
+      }
+      $(h+"check-in").html(data.checkin.toFixed(0));
     });
+  }
 }
 
 function UpdateCeph(){
-    $.getJSON("hosts/get_host_status?host=ceph",
-	      function(data){
-		  //if(document.ceph_chart == null){
-		   //   MakeCephGauge();
-		 // }
-		  document.getElementById("ceph_filltext").innerHTML = 
-		      ((data['ceph_size']-data['ceph_free'])/1e12).toFixed(2) + "/" +
-		      + (data['ceph_size']/1e12).toFixed(2) + "TB";
-		  document.getElementById('ceph_status').innerHTML = data['health'];
-		  if(data['health'] == 'HEALTH_OK')
-		      $("#ceph_status").css("color", "green");
-		  else
-		      $("#ceph_status").css("color", "red");
-		  
-		  //document.ceph_chart.series[0].addPoint(
-		  //[100*(data['ceph_size']-data['ceph_available'])/data['ceph_size']], true, true);
+  var timeout = 60*1000;
+  $.getJSON("hosts/get_host_status?host=ceph", function(data){
+    document.getElementById("ceph_filltext").innerHTML = 
+      ((data['ceph_size']-data['ceph_free'])/1e12).toFixed(2) + "/" +
+      + (data['ceph_size']/1e12).toFixed(2) + "TB";
+    $('#ceph_status').html(data['health']);
+    if(data['health'] == 'HEALTH_OK')
+      $("#ceph_status").css("color", "green");
+    else
+      $("#ceph_status").css("color", "red");
+    if(new Date() - data['time'] > timeout) {
+      $("#ceph_status").html("HEALTH_TIMEOUT");
+      $("#ceph_status").css("color", "yellow");
+    }
 
-		  var osds = data['osds'];		  
-		  osds = osds.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
-		  tot_html = "";
-		  if(document.getElementById('osd_div').innerHTML == ""){
-		      for(var i in osds){
-			  var html = "<div class='col-xs-12 col-sm-6' style='height:30px'>"; 
-			  html += "<strong style='float:left'>OSD " +
-			      osds[i]['id'] + "&nbsp; </strong>";
-			  html += "<span style='font-size:10px'>Rd: ";
-			  html += "<span id='osd_"+i+"_rd'></span> (";
-			  html += "<span id='osd_"+i+"_rd_bytes'></span>)";
-			  html += "&nbsp;Wrt: <span id='osd_"+i+"_wr'></span> (";
-			  html += "<span id='osd_"+i+"_wr_bytes'></span>/s)</span>";
-			  
-			  html += '<div class="progress" style="height:5px;" id="osd_' + i + '_progress">';
-			  html += '<div id="osd_' + i + '_capacity" class="progress-bar" role="progressbar" style="width:0%"></div></div></div>';
-			  tot_html += html;
-		      }
-		      document.getElementById('osd_div').innerHTML = tot_html;
-		  }
-		  UpdateOSDs(data);
-	      });
+    var osds = data['osds'];
+    osds = osds.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+    tot_html = "";
+    if(document.getElementById('osd_div').innerHTML == ""){
+      for(var i in osds){
+        var html = "<div class='col-xs-12 col-sm-6' style='height:30px'>"; 
+        html += "<strong style='float:left'>OSD " +
+          osds[i]['id'] + "&nbsp; </strong>";
+        html += "<span style='font-size:10px'>Rd: ";
+        html += "<span id='osd_"+i+"_rd'></span> (";
+        html += "<span id='osd_"+i+"_rd_bytes'></span>)";
+        html += "&nbsp;Wrt: <span id='osd_"+i+"_wr'></span> (";
+        html += "<span id='osd_"+i+"_wr_bytes'></span>/s)</span>";
+
+        html += '<div class="progress" style="height:5px;" id="osd_' + i + '_progress">';
+        html += '<div id="osd_' + i + '_capacity" class="progress-bar" role="progressbar" style="width:0%"></div></div></div>';
+        tot_html += html;
+      }
+      $('#osd_div').html(tot_html);
+    }
+    UpdateOSDs(data);
+  });
 }
 
 function ToHumanBytes(number){
@@ -267,75 +269,73 @@ function UpdateOSDs(data){
 
 function UpdateFromReaders(){
 
-    for(i in readers){
-        var reader = readers[i];
-        $.getJSON("status/get_reader_status?reader="+reader, function(data){
-	    if (typeof data['host'] == 'undefined')
-	        return;
-            var rd = data['host'];
-	    var color = data['checkin'] > CHECKIN_TIMEOUT ? 'red' : 'black';
-	    $("#"+rd+"_statdiv").css("color", color);
-        document.getElementById(rd+"_status").innerHTML = GetStatus(data['status'], data['checkin']);
-            document.getElementById(rd+"_rate").innerHTML   = data['rate'].toFixed(2);// + " MB/s";
-            document.getElementById(rd+"_check-in").innerHTML   = data['checkin'];
+  for(i in readers){
+    var reader = readers[i];
+    $.getJSON("status/get_reader_status?reader="+reader, function(data){
+      if (typeof data['host'] == 'undefined')
+        return;
+      var rd = data['host'];
+      var color = data['checkin'] > CHECKIN_TIMEOUT ? 'red' : 'black';
+      $("#"+rd+"_statdiv").css("color", color);
+      document.getElementById(rd+"_status").innerHTML = GetStatus(data['status'], data['checkin']);
+      document.getElementById(rd+"_rate").innerHTML   = data['rate'].toFixed(2);// + " MB/s";
+      document.getElementById(rd+"_check-in").innerHTML   = data['checkin'];
 
-            if(document.last_time_charts[rd] == undefined ||
-	       document.last_time_charts[rd] != data['ts']){
-                document.last_time_charts[rd] = data['ts'];
-		
-		// Chart auto update
-		var update_name = "";
-		var val = null;
-		if($("#menu_variable_s").val() == "rate"){
-		    update_name = data['host'] + " rate";
-		    val = data['rate'];
-		}
-		else if($("#menu_variable_s").val() == "buff"){
-		    update_name = data['host'] + " buff";
-		    val = data['buffer_length'];
-		}
-		// Trick to only update drawing once per seven readers (careful it doesn't bite you)
-		UpdateMultiChart(data['ts'], val, update_name, data['host'] == 'reader0_reader_0');
-	    }
-        });
-    }
+      if(document.last_time_charts[rd] == undefined ||
+        document.last_time_charts[rd] != data['ts']){
+        document.last_time_charts[rd] = data['ts'];
+
+        // Chart auto update
+        var update_name = "";
+        var val = null;
+        if($("#menu_variable_s").val() == "rate"){
+          update_name = data['host'] + " rate";
+          val = data['rate'];
+        }
+        else if($("#menu_variable_s").val() == "buff"){
+          update_name = data['host'] + " buff";
+          val = data['buffer_size'];
+        }
+        // Trick to only update drawing once per seven readers (careful it doesn't bite you)
+        UpdateMultiChart(data['ts'], val, update_name, data['host'] == 'reader0_reader_0');
+      }
+    });
+  }
 }
 
 function UpdateCrateControllers(){
 
-    for(i in controllers){
-        var controller = controllers[i];
-        $.getJSON("status/get_controller_status?controller="+controller, 
-		  (function(c){ return function(data) {
-		      atts = ['checkin', 'status'];
-		      //list_atts = ['type', 'run_number', 'pulser_freq'];
-	              bool_atts = ['s_in', 'muon_veto', 'neutron_veto', 'led_trigger'];
-		      for (var i in atts){
-			  att = atts[i];
+  for(i in controllers){
+    var controller = controllers[i];
+    $.getJSON("status/get_controller_status?controller="+controller, (data) => {
+        atts = ['checkin', 'status'];
+        bool_atts = ['s_in', 'muon_veto', 'neutron_veto', 'led_trigger'];
+        for (var i in atts){
+          att = atts[i];
 
-			  if(att!='status')
-			      document.getElementById(c+"_"+att).innerHTML = data[att];
-			  else{		
-			      document.getElementById(c+"_"+att).innerHTML = GetStatus(data[att], data['checkin']);
-			  }
-		      }
-		      var html = "";
-		      for(var i in data['active']){
-			  html += "<strong>"+data['active'][i]['type']+': </strong> ';
-			  for(var j in bool_atts){
-			      if(data['active'][i][bool_atts[j]]==0)
-				  html += '<i data-toggle="tooltip" title="'+bool_atts[j]+' inactive" style="color:red" class="fas fa-times-circle"></i> ';
-			      else if(data['active'][i][bool_atts[j]] == 1)
-				  html += '<i data-toggle="tooltip" title="'+bool_atts[j]+' active" style="color:green" class="fas fa-check-circle"></i> ';
-			      else
-				  html += " ? ";
-			  }
-			  html += "<strong>(" + data['active'][i]['pulser_freq'] + "Hz)</strong>";
-		      }
-		      if(html=="") html="no devices active";
-		      document.getElementById(c+"_devices").innerHTML=html;
-		  };}(controller)));
-    }
+          if(att!='status')
+            document.getElementById(c+"_"+att).innerHTML = data[att];
+          else{
+            document.getElementById(c+"_"+att).innerHTML = GetStatus(data[att], data['checkin']);
+          }
+        }
+        var html = "";
+        for(var i in data['active']){
+          html += "<strong>"+data['active'][i]['type']+': </strong> ';
+          for(var j in bool_atts){
+            if(data['active'][i][bool_atts[j]]==0)
+              html += '<i data-toggle="tooltip" title="'+bool_atts[j]+' inactive" style="color:red" class="fas fa-times-circle"></i> ';
+            else if(data['active'][i][bool_atts[j]] == 1)
+              html += '<i data-toggle="tooltip" title="'+bool_atts[j]+' active" style="color:green" class="fas fa-check-circle"></i> ';
+            else
+              html += " ? ";
+          }
+          html += "<strong>(" + data['active'][i]['pulser_freq'] + "Hz)</strong>";
+        }
+        if(html=="") html="no devices active";
+        document.getElementById(c+"_devices").innerHTML=html;
+    });
+  }
 }
 
 function UpdateCommandPanel(){
@@ -380,7 +380,7 @@ function UpdateCommandPanel(){
             var nack = '-';
             if('host' in doc && 'acknowledged' in doc){
                 nhosts = doc['host'].length;
-                nack = Object.values(doc['acknowledged']).length;
+                nack = Object.values(doc['acknowledged']).filter(x => x > 0).length;
                 if (nhosts > nack)
                     col = 'red';
                 nhosts = nhosts.toString();

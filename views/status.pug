@@ -75,6 +75,17 @@ block content
       div.det_card
         strong Dispatcher is &nbsp;
         span(id="dispatcher_status")
+    each eb in eventbuilders
+      div.col-xs-6.col-sm-6.col-md-3(style='padding-left:0;padding-right:0')
+        div.det_card
+          strong #{eb} is &nbsp;
+          span(id=`${eb}_status`)
+          p
+            div(id=`${eb}_target`)
+          p
+            span Checked in &nbsp;
+            span(id=`${eb}_check-in}`)
+            span &nbsp; seconds ago
     div.col-sm-12.col-md-12.col-lg-6(style="padding:0px;padding-top:5px;padding-bottom:5px;border:0px solid #ccc;")
       div.det_card_noheight
         a(href="https://ceph.io")
@@ -89,10 +100,6 @@ block content
       div(style="width:100%;border-bottom:1px solid #ccc;background-color:#151675;color:white;padding-left:5px;")
         h5 Recent Dispatcher Commands
       div.panel-group#command_panel(style="font-size:14px")
-
-      div(style="width:100%;border-bottom:1px solid #ccc;background-color:#151675;color:white;padding-left:5px;")
-        h5 Live Processing Nodes
-      div.panel-group#bootstrax_panel(style="font-size:14px")
 
   script.
     $(document).ready(function () {
