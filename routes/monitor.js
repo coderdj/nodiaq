@@ -3,6 +3,8 @@ var url = require("url");
 var router = express.Router();
 var gp = '';
 
+var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0';
+
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     return res.redirect(gp+'/login');
@@ -22,8 +24,8 @@ router.get('/get_limits', ensureAuthenticated, function(req, res){
     // only take reader 0 to 2 and non empty channel entries
     mongo_pipeline.push({
         "$match":{
-            "host": {$regex:"reader[0-3]_reader_0", $options:"$i" },
-            "channels":{$exists: true, $ne: {}},
+            "host": {'$in': tpc_readers},
+            "channels":{$ne: {}},
         }
     });
     
@@ -80,7 +82,7 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
     
     // start mongo pipeline with empty array
     var mongo_pipeline = []
-    mongo_pipeline.push({"$match":{"host":{$regex:"reader[0-3]_reader_0", $options:"$i" }}});
+    mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
     mongo_pipeline.push({"$sort": {"_id":-1}});
     mongo_pipeline.push({"$limit": 15});
     mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
@@ -195,7 +197,7 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
     mongo_pipeline.push(
     {"$match":{
         "_id":{"$gt": oid_time_start,"$lt": oid_time_end},
-        "host":{$regex:"reader[0-3]_reader_0", $options:"$i" }}
+        "host":{$in: tpc_readers}}
     });
     
     // create time in seconds and kick out unnecesarry pmts
