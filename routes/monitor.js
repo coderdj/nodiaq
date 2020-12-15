@@ -3,7 +3,7 @@ var url = require("url");
 var router = express.Router();
 var gp = '';
 
-var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0';
+var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0'];
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
