@@ -89,7 +89,7 @@ function InitializeRunsTable(divname){
 		"render": function(data, type, row){
 		    
 		  if(typeof(row) === "undefined" || typeof(row.end) === "undefined" ||
-		     typeof(row.start) === "undefined")
+		     typeof(row.start) === "undefined" || row.end == null)
 		      return "not set"
 		  tdiff = (new Date(row.end)).getTime() - (new Date(row.start)).getTime();
 		    var hours = Math.floor(tdiff/(1000*3600));
