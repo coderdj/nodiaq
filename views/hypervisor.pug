@@ -1,0 +1,17 @@
+extends layout
+block extrahead
+  script(src="javascripts/hypervisor.js", type="text/javascript")
+
+block content
+  div.main-container
+  img(src="images/ugview.png" usemap="#controlmap")
+
+  map(name="controlmap")
+    area(shape="rect" coords="16,13,167,47" alt="reader0")
+    area(shape="rect" coords="16,54,167,86" alt="reader1")
+    area(shape="rect" coords="16,94,167,126" alt="reader2")
+    area(shape="rect" coords="16,135,167,167" alt="reader3")
+    area(shape="rect" coords="16,175,167,208" alt="reader4")
+    area(shape="rect" coords="16,215,167,233" alt="reader5")
+    area(shape="rect" coords="16,289,167,320" alt="eb0")
+    area(shape="rect" coords="16,
