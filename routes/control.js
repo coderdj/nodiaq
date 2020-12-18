@@ -29,7 +29,7 @@ function GetControlDocs(collection) {
   return collection.aggregate([
     {$sort: {_id: -1}},
     {$group: {
-      _id: {$concat: ['$detector', '.', '$field']},
+      _id: '$key',
       value: {$first: '$value'},
       user: {$first: '$user'},
       time: {$first: '$time'},
@@ -74,7 +74,7 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
         var newdoc = data[olddoc['detector']];
         for (var key in olddoc.state)
           if (newdoc[key] != olddoc.state[key])
-            updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date()});
+            updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: olddoc['detector']+'.'+key});
       }
       if (updates.length > 0)
         return collection.insert(updates);
