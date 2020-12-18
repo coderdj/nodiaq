@@ -73,6 +73,24 @@ function FillDetectorInfo(det, callback){
 	      });
 }
 
+function GetFillLevel(){
+  $.getJSON('status/get_fill', (data) => {
+    console.log(data);
+    if (typeof data.message != 'undefined' || data.length == 0)
+      return;
+    var x = "linear-gradient(";
+    for (var i = 10; i > 0; i--) {
+      if (data[0].value > i)
+        x += "blue";
+      else
+        x += "white";
+      if (i != 9) x += ',';
+    }
+    x += ");"
+    $("#content").css("background-image", x);
+  });
+}
+
 function CheckForErrors(){
 	$.getJSON("logui/areThereErrors", 
 		  function(data){
