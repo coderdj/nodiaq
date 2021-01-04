@@ -26,13 +26,13 @@ function checkKey(req, res, next) {
   var collection = req.users_db.get("users");
   var query = {lngs_ldap_uid: user};
   var options = {api_key: 1};
-  collection.findOne(query, options, function(e, docs) {
+  collection.find(query, options, function(e, docs) {
     if (e) {
       return res.json({message: e.message});
     }
-    if (docs.length == 0 || typeof(docs.api_key) == 'undefined')
+    if (docs.length == 0 || typeof(docs[0].api_key) == 'undefined')
       return res.json({message: 'Access denied'});
-    bcrypt.compare(key, docs.api_key, function(err, ret) {
+    bcrypt.compare(key, docs[0].api_key, function(err, ret) {
       if (err) return res.json({message: err});
       if (ret == true) {
         return next();

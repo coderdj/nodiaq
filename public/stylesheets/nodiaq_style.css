@@ -162,7 +162,7 @@
     left: 50px;
     position: absolute;
     overflow-y: auto;
-    background-color: #eee;
+    /*background-color: #eee;*/
 }
 #content.active{
     left: 250px;
