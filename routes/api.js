@@ -25,16 +25,17 @@ function checkKey(req, res, next) {
   }
   var collection = req.users_db.get("users");
   var query = {lngs_ldap_uid: user};
-  var options = {api_key: 1};
-  collection.findOne(query, options, function(e, docs) {
+  var options = {api_key: 1, groups: 1};
+  collection.findOne(query, options, function(e, doc) {
     if (e) {
       return res.json({message: e.message});
     }
-    if (docs.length == 0 || typeof(docs.api_key) == 'undefined')
+    if (typeof doc == 'undefined' || typeof(doc.api_key) == 'undefined')
       return res.json({message: 'Access denied'});
-    bcrypt.compare(key, docs.api_key, function(err, ret) {
+    bcrypt.compare(key, doc.api_key, function(err, ret) {
       if (err) return res.json({message: err});
       if (ret == true) {
+        req.user.is_daq = typeof doc.groups != 'undefined' && doc.groups.includes('daq');
         return next();
 /*        if (typeof(last_api_call[user]) == 'undefined') {
           last_api_call[user] = [];
@@ -181,7 +182,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
       throw {message: "Something went wrong"};
     var det = values[0][0].state;
     // first - is the detector in "remote" mode?
-    if (det.remote != 'true' && user != "masson")
+    if (det.remote != 'true' && !req.user.is_daq)
       throw {message: "Detector must be in remote mode to control via the API"};
     // check linking status
     if (detector == "tpc" && (det.link_nv != "false" || det.link_mv != "false"))
