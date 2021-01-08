@@ -14,7 +14,7 @@
    viewBox="0 0 1920 1080"
    version="1.1"
    id="SVGRoot"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="hypervisor.svg">
   <defs
      id="defs2013" />
@@ -25,16 +25,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="1330.0483"
-     inkscape:cy="715.60678"
+     inkscape:zoom="2.8"
+     inkscape:cx="891.83621"
+     inkscape:cy="565.67349"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1038"
-     inkscape:window-x="0"
-     inkscape:window-y="42"
+     inkscape:window-height="1035"
+     inkscape:window-x="1920"
+     inkscape:window-y="22"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata2016">
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -131,7 +131,8 @@
              height="78.928574"
              width="279.64285"
              id="rect6589" /></flowRegion><flowPara
-           id="flowPara6591">reader0</flowPara></flowRoot>    </g>
+           id="flowPara6591"
+           style="letter-spacing:0px">reader0</flowPara></flowRoot>    </g>
     <g
        transform="matrix(1,0,0,0.89099511,-1.000484,92.181455)"
        id="reader1">
@@ -215,7 +216,7 @@
            height="35.315502"
            width="302.56241"
            id="rect6583-8-0-2-1"
-           style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <flowRoot
          transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
@@ -266,7 +267,7 @@
            height="35.315502"
            width="302.56241"
            id="rect6583-8-0-2-1-8"
-           style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <flowRoot
          transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
@@ -413,7 +414,7 @@
            height="35.315502"
            width="302.56241"
            id="rect6583-8-0-2-1-8-9"
-           style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <flowRoot
          transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
@@ -430,33 +431,6 @@
              id="rect6589-3-1-0-0-0-5" /></flowRegion><flowPara
            id="flowPara6591-4-9-7-5-7-3">reader6</flowPara></flowRoot>    </g>
     <g
-       id="oldmaster"
-       transform="matrix(1,0,0,0.89099511,1.1071553,986.71769)">
-      <g
-         id="g6790-2-8">
-        <rect
-           y="34.968781"
-           x="25.325926"
-           height="35.315502"
-           width="302.56241"
-           id="rect6583-8-0-2-1-8-3"
-           style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
-      <flowRoot
-         transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2-2-1-1-9-79"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5-0-2-9-6-3"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1-0-0-0-7" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-5-7-8">old-master</flowPara></flowRoot>    </g>
-    <g
        id="nim0">
       <rect
          y="58.571426"
@@ -464,7 +438,7 @@
          height="207.14287"
          width="294.28571"
          id="rect7046"
-         style="fill:#1919e6;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <flowRoot
          transform="matrix(2.3994731,0,0,2.3994731,-949.6963,-106.46797)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -488,7 +462,7 @@
          height="207.14287"
          width="294.28571"
          id="rect7046-4"
-         style="fill:#1919e6;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <flowRoot
          transform="matrix(2.3994731,0,0,2.3994731,-949.6963,-106.46797)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -512,7 +486,7 @@
          height="207.14287"
          width="294.28571"
          id="rect7046-40"
-         style="fill:#1919e6;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <flowRoot
          transform="matrix(2.3994731,0,0,2.3994731,-949.6963,-106.46797)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -536,7 +510,7 @@
          height="207.14287"
          width="294.28571"
          id="rect7046-9"
-         style="fill:#1919e6;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <flowRoot
          transform="matrix(2.3994731,0,0,2.3994731,-949.6963,-106.46797)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -552,42 +526,47 @@
              id="rect7054-8" /></flowRegion><flowPara
            id="flowPara7056-0">NIM3</flowPara></flowRoot>    </g>
     <g
-       id="vme0">
-      <rect
-         y="404.28571"
-         x="654.28571"
-         height="204.28572"
-         width="294.28571"
-         id="rect7127"
-         style="fill:#e61919;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       id="vme0"
+       transform="translate(0,0.35714286)">
+      <g
+         id="vme0_bkg"
+         inkscape:label="#bme0_bkg">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="vme0_rect"
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7129"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"><flowRegion
+             id="flowRegion7131"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"><rect
+               id="rect7133"
+               width="97.382751"
+               height="45.497093"
+               x="672.85712"
+               y="444.28571"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace" /></flowRegion><flowPara
+             id="flowPara7135">VME0</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7137"
+           style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="translate(-22,-26)"><flowRegion
+             id="flowRegion7139"
+             style="font-size:26.66666603px"><rect
+               id="rect7141"
+               width="141.42857"
+               height="31.428589"
+               x="678.57141"
+               y="548.57141"
+               style="font-size:26.66666603px" /></flowRegion><flowPara
+             id="flowPara7143">5V current</flowPara></flowRoot>      </g>
       <flowRoot
-         transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7129"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowRegion7131"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-             y="444.28571"
-             x="672.85712"
-             height="45.497093"
-             width="97.382751"
-             id="rect7133" /></flowRegion><flowPara
-           id="flowPara7135">VME0</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22)"
-         style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7137"
-         xml:space="preserve"><flowRegion
-           style="font-size:26.66666603px"
-           id="flowRegion7139"><rect
-             style="font-size:26.66666603px"
-             y="548.57141"
-             x="678.57141"
-             height="31.428589"
-             width="141.42857"
-             id="rect7141" /></flowRegion><flowPara
-           id="flowPara7143">5V current</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22,6)"
+         transform="translate(-22,-20)"
          style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
          id="vme0_current"
          xml:space="preserve"><flowRegion
@@ -599,208 +578,58 @@
              height="48.571411"
              width="119.99998"
              id="rect7149" /></flowRegion><flowPara
-           id="flowPara7151">0/110</flowPara></flowRoot>    </g>
-    <g
-       transform="translate(313.14287,-0.71428015)"
-       id="vme1"
-       inkscape:label="#vm1">
-      <rect
-         y="404.28571"
-         x="654.28571"
-         height="204.28572"
-         width="294.28571"
-         id="rect7127-5"
-         style="fill:#e61919;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7129-3"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowRegion7131-9"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-             y="444.28571"
-             x="672.85712"
-             height="45.497093"
-             width="97.382751"
-             id="rect7133-4" /></flowRegion><flowPara
-           id="flowPara7135-1">VME1</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22)"
-         style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7137-5"
-         xml:space="preserve"><flowRegion
-           style="font-size:26.66666603px"
-           id="flowRegion7139-4"><rect
-             style="font-size:26.66666603px"
-             y="548.57141"
-             x="678.57141"
-             height="31.428589"
-             width="141.42857"
-             id="rect7141-1" /></flowRegion><flowPara
-           id="flowPara7143-5">5V current</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22,6)"
-         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-         id="vme1_current"
-         xml:space="preserve"><flowRegion
-           style="font-size:32px;text-align:end;text-anchor:end"
-           id="flowRegion7147-4"><rect
-             style="font-size:32px;text-align:end;text-anchor:end"
-             y="540"
-             x="850"
-             height="48.571411"
-             width="119.99998"
-             id="rect7149-9" /></flowRegion><flowPara
-           id="flowPara7151-8">0/110</flowPara></flowRoot>    </g>
-    <g
-       transform="translate(625.08594,-0.20920388)"
-       id="vme2">
-      <rect
-         y="404.28571"
-         x="654.28571"
-         height="204.28572"
-         width="294.28571"
-         id="rect7127-8"
-         style="fill:#e61919;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7129-5"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowRegion7131-2"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-             y="444.28571"
-             x="672.85712"
-             height="45.497093"
-             width="97.382751"
-             id="rect7133-2" /></flowRegion><flowPara
-           id="flowPara7135-2">VME2</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22)"
-         style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7137-7"
-         xml:space="preserve"><flowRegion
-           style="font-size:26.66666603px"
-           id="flowRegion7139-0"><rect
-             style="font-size:26.66666603px"
-             y="548.57141"
-             x="678.57141"
-             height="31.428589"
-             width="141.42857"
-             id="rect7141-3" /></flowRegion><flowPara
-           id="flowPara7143-4">5V current</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22,6)"
-         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-         id="vme2_current"
-         xml:space="preserve"><flowRegion
-           style="font-size:32px;text-align:end;text-anchor:end"
-           id="flowRegion7147-3"><rect
-             style="font-size:32px;text-align:end;text-anchor:end"
-             y="540"
-             x="850"
-             height="48.571411"
-             width="119.99998"
-             id="rect7149-6" /></flowRegion><flowPara
-           id="flowPara7151-3">0/110</flowPara></flowRoot>    </g>
-    <g
-       transform="translate(939.37165,-0.20920388)"
-       id="vme4">
-      <rect
-         y="404.28571"
-         x="654.28571"
-         height="204.28572"
-         width="294.28571"
-         id="rect7127-4"
-         style="fill:#e61919;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7129-39"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowRegion7131-7"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-             y="444.28571"
-             x="672.85712"
-             height="45.497093"
-             width="97.382751"
-             id="rect7133-25" /></flowRegion><flowPara
-           id="flowPara7135-8">VME4</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22)"
-         style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7137-9"
-         xml:space="preserve"><flowRegion
-           style="font-size:26.66666603px"
-           id="flowRegion7139-02"><rect
-             style="font-size:26.66666603px"
-             y="548.57141"
-             x="678.57141"
-             height="31.428589"
-             width="141.42857"
-             id="rect7141-4" /></flowRegion><flowPara
-           id="flowPara7143-7">5V current</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22,6)"
-         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-         id="vme4_current"
-         xml:space="preserve"><flowRegion
-           style="font-size:32px;text-align:end;text-anchor:end"
-           id="flowRegion7147-7"><rect
-             style="font-size:32px;text-align:end;text-anchor:end"
-             y="540"
-             x="850"
-             height="48.571411"
-             width="119.99998"
-             id="rect7149-1" /></flowRegion><flowPara
-           id="flowPara7151-33">0/110</flowPara></flowRoot>    </g>
-    <g
-       transform="translate(624.92714,224.07896)"
-       id="vme3">
-      <rect
-         y="404.28571"
-         x="654.28571"
-         height="204.28572"
-         width="294.28571"
-         id="rect7127-51"
-         style="fill:#e61919;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7129-0"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowRegion7131-8"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
-             y="444.28571"
-             x="672.85712"
-             height="45.497093"
-             width="97.382751"
-             id="rect7133-7" /></flowRegion><flowPara
-           id="flowPara7135-6">VME3</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22)"
-         style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-         id="flowRoot7137-3"
-         xml:space="preserve"><flowRegion
-           style="font-size:26.66666603px"
-           id="flowRegion7139-5"><rect
-             style="font-size:26.66666603px"
-             y="548.57141"
-             x="678.57141"
-             height="31.428589"
-             width="141.42857"
-             id="rect7141-0" /></flowRegion><flowPara
-           id="flowPara7143-8">5V current</flowPara></flowRoot>      <flowRoot
-         transform="translate(-22,6)"
-         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-         id="vme3_current"
-         xml:space="preserve"><flowRegion
-           style="font-size:32px;text-align:end;text-anchor:end"
-           id="flowRegion7147-41"><rect
-             style="font-size:32px;text-align:end;text-anchor:end"
-             y="540"
-             x="850"
-             height="48.571411"
-             width="119.99998"
-             id="rect7149-13" /></flowRegion><flowPara
-           id="flowPara7151-5">0/110</flowPara></flowRoot>    </g>
+           id="flowPara7151">0/110</flowPara></flowRoot>      <g
+         id="vme0_on_btn"
+         onclick="VMEControl(0, &quot;on&quot;)"
+         inkscape:label="#vme0_on">
+        <text
+           onclick=""
+           id="vme0_on_label"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360"
+             sodipodi:role="line">ON</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.75116"
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="translate(140.90991,-2.6072176)"
+         id="vme0_off_btn"
+         onclick="VMEControl(0, &quot;off&quot;)"
+         inkscape:label="#vme0_off">
+        <text
+           onclick=""
+           id="vme0_on_label-0"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8"
+             sodipodi:role="line">OFF</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.8056"
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+    </g>
     <g
        transform="translate(312.64143,566.93608)"
        id="nim4">
@@ -810,7 +639,7 @@
          height="207.14287"
          width="294.28571"
          id="rect7046-0"
-         style="fill:#1919e6;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <flowRoot
          transform="matrix(2.3994731,0,0,2.3994731,-949.6963,-106.46797)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -834,7 +663,7 @@
          height="207.14287"
          width="294.28571"
          id="rect7046-07"
-         style="fill:#1919e6;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <flowRoot
          transform="matrix(2.3994731,0,0,2.3994731,-949.6963,-106.46797)"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -849,5 +678,1059 @@
              width="252.85715"
              id="rect7054-15" /></flowRegion><flowPara
            id="flowPara7056-06">NIM5</flowPara></flowRoot>    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4320"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion4322"><rect
+           id="rect4324"
+           width="262.14288"
+           height="107.85716"
+           x="681.42859"
+           y="657.14288" /></flowRegion><flowPara
+         id="flowPara4326"
+         style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:96px">ALL ON</flowPara></flowRoot>    <g
+       transform="translate(312.98285,0.429148)"
+       id="vme1">
+      <g
+         id="vme1_bkg"
+         inkscape:label="#vme1_bkg">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="vme0_rect-1"
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7129-3"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"><flowRegion
+             id="flowRegion7131-5"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"><rect
+               id="rect7133-9"
+               width="97.382751"
+               height="45.497093"
+               x="672.85712"
+               y="444.28571"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace" /></flowRegion><flowPara
+             id="flowPara7135-3">VME1</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7137-4"
+           style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="translate(-22,-26)"><flowRegion
+             id="flowRegion7139-1"
+             style="font-size:26.66666603px"><rect
+               id="rect7141-5"
+               width="141.42857"
+               height="31.428589"
+               x="678.57141"
+               y="548.57141"
+               style="font-size:26.66666603px" /></flowRegion><flowPara
+             id="flowPara7143-0">5V current</flowPara></flowRoot>      </g>
+      <flowRoot
+         transform="translate(-22,-20)"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         id="vme1_current"
+         xml:space="preserve"><flowRegion
+           style="font-size:32px;text-align:end;text-anchor:end"
+           id="flowRegion7147-35"><rect
+             style="font-size:32px;text-align:end;text-anchor:end"
+             y="540"
+             x="850"
+             height="48.571411"
+             width="119.99998"
+             id="rect7149-65" /></flowRegion><flowPara
+           id="flowPara7151-9">0/110</flowPara></flowRoot>      <g
+         id="vme1_on_btn"
+         onclick="VMEControl(1, &quot;on&quot;)"
+         inkscape:label="#vme1_on">
+        <text
+           onclick=""
+           id="vme0_on_label-07"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-6"
+             sodipodi:role="line">ON</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.75116"
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-3"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="translate(140.90991,-2.6072176)"
+         id="vme1_off_btn"
+         onclick="VMEControl(1, &quot;off&quot;)"
+         inkscape:label="#vme1_off">
+        <text
+           onclick=""
+           id="vme0_on_label-0-6"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8-1"
+             sodipodi:role="line">OFF</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.8056"
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-5"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+    </g>
+    <g
+       transform="translate(624.88397,0.20290564)"
+       id="vme2">
+      <g
+         id="vme2_bkg"
+         inkscape:label="#vme2_bkg">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="vme0_rect-5"
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7129-08"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"><flowRegion
+             id="flowRegion7131-1"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"><rect
+               id="rect7133-2"
+               width="97.382751"
+               height="45.497093"
+               x="672.85712"
+               y="444.28571"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace" /></flowRegion><flowPara
+             id="flowPara7135-2">VME2</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7137-6"
+           style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="translate(-22,-26)"><flowRegion
+             id="flowRegion7139-9"
+             style="font-size:26.66666603px"><rect
+               id="rect7141-1"
+               width="141.42857"
+               height="31.428589"
+               x="678.57141"
+               y="548.57141"
+               style="font-size:26.66666603px" /></flowRegion><flowPara
+             id="flowPara7143-04">5V current</flowPara></flowRoot>      </g>
+      <flowRoot
+         transform="translate(-22,-20)"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         id="vme2_current"
+         xml:space="preserve"><flowRegion
+           style="font-size:32px;text-align:end;text-anchor:end"
+           id="flowRegion7147-74"><rect
+             style="font-size:32px;text-align:end;text-anchor:end"
+             y="540"
+             x="850"
+             height="48.571411"
+             width="119.99998"
+             id="rect7149-0" /></flowRegion><flowPara
+           id="flowPara7151-3">0/110</flowPara></flowRoot>      <g
+         id="vme2_on_btn"
+         onclick="VMEControl(2, &quot;on&quot;)"
+         inkscape:label="#vme2_on">
+        <text
+           onclick=""
+           id="vme0_on_label-2"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-80"
+             sodipodi:role="line">ON</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.75116"
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-37"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="translate(140.90991,-2.6072176)"
+         id="vme2_off_btn"
+         onclick="VMEControl(2, &quot;off&quot;)"
+         inkscape:label="#vme2_off">
+        <text
+           onclick=""
+           id="vme0_on_label-0-0"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8-3"
+             sodipodi:role="line">OFF</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.8056"
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-4"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+    </g>
+    <g
+       transform="translate(624.97029,220.80484)"
+       id="vme3">
+      <g
+         id="vme3_bkg"
+         inkscape:label="#vme3_bkg">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="vme0_rect-5-9"
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7129-08-2"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"><flowRegion
+             id="flowRegion7131-1-7"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"><rect
+               id="rect7133-2-4"
+               width="97.382751"
+               height="45.497093"
+               x="672.85712"
+               y="444.28571"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace" /></flowRegion><flowPara
+             id="flowPara7135-2-2">VME3</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7137-6-5"
+           style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="translate(-22,-26)"><flowRegion
+             id="flowRegion7139-9-2"
+             style="font-size:26.66666603px"><rect
+               id="rect7141-1-4"
+               width="141.42857"
+               height="31.428589"
+               x="678.57141"
+               y="548.57141"
+               style="font-size:26.66666603px" /></flowRegion><flowPara
+             id="flowPara7143-04-4">5V current</flowPara></flowRoot>      </g>
+      <flowRoot
+         transform="translate(-22,-20)"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         id="vme3_current"
+         xml:space="preserve"><flowRegion
+           style="font-size:32px;text-align:end;text-anchor:end"
+           id="flowRegion7147-74-3"><rect
+             style="font-size:32px;text-align:end;text-anchor:end"
+             y="540"
+             x="850"
+             height="48.571411"
+             width="119.99998"
+             id="rect7149-0-8" /></flowRegion><flowPara
+           id="flowPara7151-3-6">0/110</flowPara></flowRoot>      <g
+         id="vme3_on_btn"
+         onclick="VMEControl(3, &quot;on&quot;)"
+         inkscape:label="#vme3_on">
+        <text
+           onclick=""
+           id="vme0_on_label-2-0"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-80-8"
+             sodipodi:role="line">ON</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.75116"
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-37-9"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="translate(140.90991,-2.6072176)"
+         id="vme3_off_btn"
+         onclick="VMEControl(3, &quot;off&quot;)"
+         inkscape:label="#vme3_off">
+        <text
+           onclick=""
+           id="vme0_on_label-0-0-2"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8-3-2"
+             sodipodi:role="line">OFF</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.8056"
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-4-3"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+    </g>
+    <g
+       transform="translate(938.71429,0.14286604)"
+       id="vme4">
+      <g
+         id="vme4_bkg"
+         inkscape:label="#vme4_bkg">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="vme0_rect-5-1"
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7129-08-8"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="matrix(2.6041453,0,0,2.6041453,-1077.147,-751.8466)"><flowRegion
+             id="flowRegion7131-1-3"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"><rect
+               id="rect7133-2-42"
+               width="97.382751"
+               height="45.497093"
+               x="672.85712"
+               y="444.28571"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace" /></flowRegion><flowPara
+             id="flowPara7135-2-24">VME4</flowPara></flowRoot>        <flowRoot
+           xml:space="preserve"
+           id="flowRoot7137-6-51"
+           style="font-style:normal;font-weight:normal;font-size:26.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           transform="translate(-22,-26)"><flowRegion
+             id="flowRegion7139-9-7"
+             style="font-size:26.66666603px"><rect
+               id="rect7141-1-5"
+               width="141.42857"
+               height="31.428589"
+               x="678.57141"
+               y="548.57141"
+               style="font-size:26.66666603px" /></flowRegion><flowPara
+             id="flowPara7143-04-7">5V current</flowPara></flowRoot>      </g>
+      <flowRoot
+         transform="translate(-22,-20)"
+         style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         id="vme4_current"
+         xml:space="preserve"><flowRegion
+           style="font-size:32px;text-align:end;text-anchor:end"
+           id="flowRegion7147-74-1"><rect
+             style="font-size:32px;text-align:end;text-anchor:end"
+             y="540"
+             x="850"
+             height="48.571411"
+             width="119.99998"
+             id="rect7149-0-6" /></flowRegion><flowPara
+           id="flowPara7151-3-9">0/110</flowPara></flowRoot>      <g
+         id="vme4_on_btn"
+         onclick="VMEControl(4, &quot;on&quot;)"
+         inkscape:label="#vme4_on">
+        <text
+           onclick=""
+           id="vme0_on_label-2-8"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-80-1"
+             sodipodi:role="line">ON</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.75116"
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-37-3"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="translate(140.90991,-2.6072176)"
+         id="vme4_off_btn"
+         onclick="VMEControl(4, &quot;off&quot;)"
+         inkscape:label="#vme4_off">
+        <text
+           onclick=""
+           id="vme0_on_label-0-0-3"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8-3-3"
+             sodipodi:role="line">OFF</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="557.8056"
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-4-7"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+    </g>
+    <g
+       transform="translate(0.1428658,221.57144)"
+       id="vme_all">
+      <g
+         id="vme_all_bkg"
+         inkscape:label="#vme_all_bkg">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="vme0_rect-5-98"
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
+      </g>
+      <g
+         id="vme_on_btn"
+         onclick="VMEControl(&quot;all&quot;, &quot;on&quot;)"
+         inkscape:label="#vme_on"
+         transform="matrix(1.5050176,0,0,1.4786122,-366.73682,-398.65496)">
+        <text
+           onclick=""
+           id="vme0_on_label-2-9"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-80-9"
+             sodipodi:role="line">ALL ON</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="558.02277"
+           x="698.28699"
+           height="41.883156"
+           width="153.32043"
+           id="vme0_on-37-6"
+           style="fill:none;stroke:#000000;stroke-width:1.74325204;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="matrix(1.3704625,0,0,1.3704625,-271.45636,-239.1728)"
+         id="vme_off_btn"
+         onclick="VMEControl(&quot;all&quot;, &quot;off&quot;)"
+         inkscape:label="#vme_off">
+        <text
+           onclick=""
+           id="vme0_on_label-0-0-0"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8-3-6"
+             sodipodi:role="line">ALL OFF</tspan></text>
+        <rect
+           inkscape:label="#vme0_on"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="558.06427"
+           x="698.32849"
+           height="41.800194"
+           width="168.59462"
+           id="vme0_on-0-4-4"
+           style="fill:none;stroke:#000000;stroke-width:1.82621324;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+    </g>
+    <g
+       id="reader6-9"
+       transform="matrix(1,0,0,0.89099511,0.67858572,987.39573)">
+      <g
+         id="g6790-2-5-9">
+        <rect
+           y="34.968781"
+           x="25.325926"
+           height="35.315502"
+           width="302.56241"
+           id="rect6583-8-0-2-1-8-9-0"
+           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <flowRoot
+         transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none"
+         id="flowRoot6585-2-2-1-1-9-7-8"
+         xml:space="preserve"><flowRegion
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1"
+           id="flowRegion6587-5-0-2-9-6-8-9"><rect
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1"
+             y="51.071426"
+             x="47.857143"
+             height="78.928574"
+             width="279.64285"
+             id="rect6589-3-1-0-0-0-5-3" /></flowRegion><flowPara
+           id="flowPara6591-4-9-7-5-7-3-1">oldmaster</flowPara></flowRoot>    </g>
+    <g
+       id="reader1_btn"
+       transform="translate(-3.1020747,100.44398)"
+       onclick="RedaxCycle(1)">
+      <rect
+         y="36.382011"
+         x="341.45343"
+         height="55.490879"
+         width="241.16457"
+         id="rect5616-8"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.10686612;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-9"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-6"
+           sodipodi:role="line">CYCLE R</tspan></text>
+    </g>
+    <g
+       id="reader2_btn"
+       transform="translate(-2.892865,188.01541)"
+       onclick="RedaxCycle(2)">
+      <rect
+         y="36.383629"
+         x="341.45505"
+         height="55.487648"
+         width="242.5899"
+         id="rect5616-7"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.11009991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7"
+           sodipodi:role="line">CYCLE R</tspan></text>
+    </g>
+    <g
+       id="reader3_btn"
+       transform="translate(-4.0357222,276.58684)"
+       onclick="RedaxCycle(3)">
+      <rect
+         y="36.383827"
+         x="341.45526"
+         height="55.487251"
+         width="242.76537"
+         id="rect5616-7-2"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.11049736;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-2"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-1"
+           sodipodi:role="line">CYCLE R</tspan></text>
+    </g>
+    <g
+       id="eb0_start_btn"
+       transform="matrix(0.84994384,0,0,1.00137,48.294138,435.0704)"
+       onclick="StartEB(0)">
+      <rect
+         y="36.320175"
+         x="341.3916"
+         height="55.614555"
+         width="189.85966"
+         id="rect5616-7-0"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-9"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-0"
+           sodipodi:role="line">START</tspan></text>
+    </g>
+    <g
+       id="eb0_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.5782,434.82399)"
+       onclick="StopEB(0)">
+      <g
+         id="g5726"
+         transform="translate(14.523628)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0"
+           width="189.85966"
+           height="55.614555"
+           x="341.3916"
+           y="36.320175" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="312.0726"
+           y="93.473801"
+           id="text5620-3-9-1"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3"
+             x="312.0726"
+             y="93.473801"
+             style="stroke-width:1.56708062">STOP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="reader_btn"
+       transform="translate(-2)"
+       onclick="RedaxCycle(&quot;all&quot;)">
+      <g
+         onclick="RedaxCycle(3)"
+         transform="translate(-1.892865,354.87255)"
+         id="reader3_btn-7">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.24099302;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-2-4"
+           width="303.88757"
+           height="55.356754"
+           x="341.52051"
+           y="36.449078" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+           x="342.76691"
+           y="84.80777"
+           id="text5620-3-2-1"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-1-1"
+             x="342.76691"
+             y="84.80777"
+             style="stroke-width:1.42179525">CYCLE ALL</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb1_start_btn"
+       transform="matrix(0.84994384,0,0,1.00137,47.923726,521.59326)"
+       onclick="StartEB(1)">
+      <rect
+         y="36.320175"
+         x="341.3916"
+         height="55.614555"
+         width="189.85966"
+         id="rect5616-7-0-03"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-9-2"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-0-1"
+           sodipodi:role="line">START</tspan></text>
+    </g>
+    <g
+       id="eb1_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.20779,521.34685)"
+       onclick="StopEB(1)">
+      <g
+         id="g5726-5"
+         transform="translate(14.523628)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0-6"
+           width="189.85966"
+           height="55.614555"
+           x="341.3916"
+           y="36.320175" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="312.0726"
+           y="93.473801"
+           id="text5620-3-9-1-5"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3-4"
+             x="312.0726"
+             y="93.473801"
+             style="stroke-width:1.56708062">STOP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb2_start_btn"
+       transform="matrix(0.84994384,0,0,1.00137,47.780869,611.02183)"
+       onclick="StartEB(2)">
+      <rect
+         y="36.320175"
+         x="341.3916"
+         height="55.614555"
+         width="189.85966"
+         id="rect5616-7-0-2"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-9-17"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-0-2"
+           sodipodi:role="line">START</tspan></text>
+    </g>
+    <g
+       id="eb2_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.06493,610.77542)"
+       onclick="StopEB(2)">
+      <g
+         id="g5726-1"
+         transform="translate(14.523628)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0-65"
+           width="189.85966"
+           height="55.614555"
+           x="341.3916"
+           y="36.320175" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="312.0726"
+           y="93.473801"
+           id="text5620-3-9-1-7"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3-8"
+             x="312.0726"
+             y="93.473801"
+             style="stroke-width:1.56708062">STOP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb3_start_btn"
+       transform="matrix(0.84994384,0,0,1.00137,48.066583,696.87897)"
+       onclick="StartEB(3)">
+      <rect
+         y="36.320175"
+         x="341.3916"
+         height="55.614555"
+         width="189.85966"
+         id="rect5616-7-0-9"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-9-27"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-0-36"
+           sodipodi:role="line">START</tspan></text>
+    </g>
+    <g
+       id="eb3_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.35065,696.63256)"
+       onclick="StopEB(3)">
+      <g
+         id="g5726-9"
+         transform="translate(14.523628)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0-7"
+           width="189.85966"
+           height="55.614555"
+           x="341.3916"
+           y="36.320175" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="312.0726"
+           y="93.473801"
+           id="text5620-3-9-1-2"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3-2"
+             x="312.0726"
+             y="93.473801"
+             style="stroke-width:1.56708062">STOP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb4_start_btn"
+       transform="matrix(0.84994384,0,0,1.00137,48.20944,786.87897)"
+       onclick="StartEB(4)">
+      <rect
+         y="36.320175"
+         x="341.3916"
+         height="55.614555"
+         width="189.85966"
+         id="rect5616-7-0-6"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-9-3"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-0-0"
+           sodipodi:role="line">START</tspan></text>
+    </g>
+    <g
+       id="eb4_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.4935,786.63256)"
+       onclick="StopEB(4)">
+      <g
+         id="g5726-15"
+         transform="translate(14.523628)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0-650"
+           width="189.85966"
+           height="55.614555"
+           x="341.3916"
+           y="36.320175" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="312.0726"
+           y="93.473801"
+           id="text5620-3-9-1-0"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3-3"
+             x="312.0726"
+             y="93.473801"
+             style="stroke-width:1.56708062">STOP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb5_start_btn"
+       transform="matrix(0.84994384,0,0,1.00137,48.495155,873.30754)"
+       onclick="StartEB(5)">
+      <rect
+         y="36.320175"
+         x="341.3916"
+         height="55.614555"
+         width="189.85966"
+         id="rect5616-7-0-66"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      <text
+         id="text5620-3-9-0"
+         y="84.80777"
+         x="344.76691"
+         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.42179525"
+           y="84.80777"
+           x="344.76691"
+           id="tspan5618-7-0-25"
+           sodipodi:role="line">START</tspan></text>
+    </g>
+    <g
+       id="eb5_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.77922,873.06113)"
+       onclick="StopEB(5)">
+      <g
+         id="g5726-95"
+         transform="translate(14.523628)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0-0"
+           width="189.85966"
+           height="55.614555"
+           x="341.3916"
+           y="36.320175" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="312.0726"
+           y="93.473801"
+           id="text5620-3-9-1-6"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3-0"
+             x="312.0726"
+             y="93.473801"
+             style="stroke-width:1.56708062">STOP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb_start_btn"
+       transform="matrix(0.67543804,0,0,0.8364746,121.93513,864.23534)"
+       onclick="StartEB(&quot;all&quot;)">
+      <g
+         id="g5910"
+         onclick="StartEB(&quot;all&quot;)"
+         inkscape:label="#eb_start_btn"
+         transform="matrix(1.0013884,0,0,0.46644129,-0.68982018,73.584787)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.5551852;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-3"
+           width="148.27821"
+           height="178.16884"
+           x="341.54749"
+           y="133.78148" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:58.41523361px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.46038079"
+           x="553.6192"
+           y="151.0377"
+           id="text5620-3-9-7"
+           transform="scale(0.74542155,1.3415228)"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-8"
+             x="553.6192"
+             y="151.0377"
+             style="text-align:center;text-anchor:middle;stroke-width:1.46038079">START</tspan><tspan
+             sodipodi:role="line"
+             x="553.6192"
+             y="224.05675"
+             style="text-align:center;text-anchor:middle;stroke-width:1.46038079"
+             id="tspan5912">ALL</tspan></text>
+      </g>
+    </g>
+    <g
+       id="eb_stop_btn"
+       transform="matrix(0.68853321,0,0,1.0029849,260.77922,953.63256)"
+       onclick="StopEB(&quot;all&quot;)">
+      <g
+         id="g5726-0"
+         transform="matrix(0.57209536,0,0,0.57209536,201.07693,-0.57625738)">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.51110983;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-0-0-5"
+           width="192.37679"
+           height="129.65352"
+           x="341.68918"
+           y="36.689091" />
+        <text
+           transform="scale(1.1021844,0.90728919)"
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
+           x="393.38022"
+           y="93.473801"
+           id="text5620-3-9-1-8"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-0-3-5"
+             x="393.38022"
+             y="93.473801"
+             style="text-align:center;text-anchor:middle;stroke-width:1.56708062">STOP</tspan><tspan
+             sodipodi:role="line"
+             x="393.38022"
+             y="171.82784"
+             style="text-align:center;text-anchor:middle;stroke-width:1.56708062"
+             id="tspan5914">ALL</tspan></text>
+      </g>
+    </g>
+    <g
+       id="reader0_btn_r"
+       transform="matrix(0.89501584,0,0,0.76176732,34.552975,-219.04037)"
+       onclick="RedaxCycle(0)"
+       inkscape:label="#reader0_btn_r">
+      <g
+         onclick="RedaxCycle(3)"
+         transform="translate(-1.892865,354.87255)"
+         id="reader3_btn-7-0">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.11653852;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-2-4-7"
+           width="245.44058"
+           height="55.481209"
+           x="341.45828"
+           y="36.386852" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+           x="342.76691"
+           y="84.80777"
+           id="text5620-3-2-1-3"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-1-1-8"
+             x="342.76691"
+             y="84.80777"
+             style="stroke-width:1.42179525">CYCLE R</tspan></text>
+      </g>
+    </g>
+    <g
+       id="reader0_btn_c"
+       transform="matrix(0.76797694,0,0,0.76797694,77.458418,-266.07348)"
+       onclick="RedaxCycle(0, &quot;controller&quot;)"
+       inkscape:label="#reader0_btn_c">
+      <g
+         onclick="RedaxCycle(3)"
+         transform="translate(-1.892865,354.87255)"
+         id="reader3_btn-7-3">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.20593691;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="rect5616-7-2-4-0"
+           width="286.77979"
+           height="55.391811"
+           x="341.50299"
+           y="36.431549" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+           x="342.76691"
+           y="84.80777"
+           id="text5620-3-2-1-7"><tspan
+             sodipodi:role="line"
+             id="tspan5618-7-1-1-7"
+             x="342.76691"
+             y="84.80777"
+             style="stroke-width:1.42179525">CYCLE CC</tspan></text>
+      </g>
+    </g>
   </g>
 </svg>
