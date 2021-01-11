@@ -15,7 +15,7 @@ function VMEControl(crate, onoff) {
 function RedaxCycle(reader, proc="reader") {
   var targets = [];
   if (reader == 'all') {
-    targets = ["reader0_reader_0","reader1_reader_0","reader2_reader_0","reader3_reader_0"];
+    targets = ["reader0_reader_0", "reader1_reader_0", "reader2_reader_0", "reader3_reader_0"];
   } else {
     targets = ["reader" + reader + "_" + proc + "_0"];
   }

@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="891.83621"
-     inkscape:cy="565.67349"
+     inkscape:zoom="1.4875"
+     inkscape:cx="334.09107"
+     inkscape:cy="873.61194"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -54,13 +54,13 @@
      id="layer1">
     <rect
        id="rect2026"
-       width="312.61508"
-       height="1026.3149"
-       x="20.203051"
-       y="29.441353"
+       width="317.84265"
+       height="1077.8427"
+       x="1.0786753"
+       y="1.0786594"
        rx="0"
        ry="0"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735054;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        id="rect2026-3"
        width="312.61508"
@@ -108,328 +108,6 @@
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
        id="g6594" />
-    <g
-       id="reader0"
-       transform="matrix(1,0,0,0.89099511,0,3.854101)">
-      <rect
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect6583"
-         width="301.78571"
-         height="94.64286"
-         x="25.714285"
-         y="35.35714" />
-      <flowRoot
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589" /></flowRegion><flowPara
-           id="flowPara6591"
-           style="letter-spacing:0px">reader0</flowPara></flowRoot>    </g>
-    <g
-       transform="matrix(1,0,0,0.89099511,-1.000484,92.181455)"
-       id="reader1">
-      <rect
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect6583-8"
-         width="301.78571"
-         height="94.64286"
-         x="25.714285"
-         y="35.35714" />
-      <flowRoot
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3" /></flowRegion><flowPara
-           id="flowPara6591-4">reader1</flowPara></flowRoot>    </g>
-    <g
-       transform="matrix(1,0,0,0.89099511,-1.546171,179.95354)"
-       id="reader2">
-      <rect
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect6583-8-0"
-         width="301.78571"
-         height="94.64286"
-         x="25.714285"
-         y="35.35714" />
-      <flowRoot
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2-2"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5-0"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1" /></flowRegion><flowPara
-           id="flowPara6591-4-9">reader2</flowPara></flowRoot>    </g>
-    <g
-       transform="matrix(1,0,0,0.89099511,-1.56137,267.2937)"
-       id="reader3">
-      <rect
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect6583-8-0-2"
-         width="301.78571"
-         height="94.64286"
-         x="25.714285"
-         y="35.35714" />
-      <flowRoot
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2-2-1"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5-0-2"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1-0" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7">reader3</flowPara></flowRoot>    </g>
-    <g
-       id="reader4"
-       transform="matrix(1,0,0,0.89099511,-1.14507,355.71255)">
-      <g
-         id="g6790">
-        <rect
-           y="34.968781"
-           x="25.325926"
-           height="35.315502"
-           width="302.56241"
-           id="rect6583-8-0-2-1"
-           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
-      <flowRoot
-         transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2-2-1-1"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5-0-2-9"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1-0-0" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-5">reader4</flowPara></flowRoot>    </g>
-    <g
-       id="eb0"
-       transform="matrix(1,0,0,0.89099511,-1.886256,425.18307)">
-      <rect
-         y="35.35714"
-         x="25.714285"
-         height="94.64286"
-         width="301.78571"
-         id="rect6583-8-0-2-5"
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot6585-2-2-1-8"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"><flowRegion
-           id="flowRegion6587-5-0-2-2"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"><rect
-             id="rect6589-3-1-0-6"
-             width="279.64285"
-             height="78.928574"
-             x="47.857143"
-             y="51.071426"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-0">eb0</flowPara></flowRoot>    </g>
-    <g
-       id="g6816-6"
-       transform="matrix(1,0,0,0.89099511,-1.749987,390.68781)">
-      <g
-         id="g6790-2">
-        <rect
-           y="34.968781"
-           x="25.325926"
-           height="35.315502"
-           width="302.56241"
-           id="rect6583-8-0-2-1-8"
-           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
-      <flowRoot
-         transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2-2-1-1-9"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5-0-2-9-6"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1-0-0-0" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-5-7">reader5</flowPara></flowRoot>    </g>
-    <g
-       id="eb1"
-       transform="matrix(1,0,0,0.89099511,-1.2619,513.27399)">
-      <rect
-         y="35.35714"
-         x="25.714285"
-         height="94.64286"
-         width="301.78571"
-         id="rect6583-8-0-2-5-1"
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot6585-2-2-1-8-0"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"><flowRegion
-           id="flowRegion6587-5-0-2-2-1"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"><rect
-             id="rect6589-3-1-0-6-3"
-             width="279.64285"
-             height="78.928574"
-             x="47.857143"
-             y="51.071426"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-0-7">eb1</flowPara></flowRoot>    </g>
-    <g
-       id="eb2"
-       transform="matrix(1,0,0,0.89099511,-0.312662,600.51015)">
-      <rect
-         y="35.35714"
-         x="25.714285"
-         height="94.64286"
-         width="301.78571"
-         id="rect6583-8-0-2-5-2"
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot6585-2-2-1-8-6"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"><flowRegion
-           id="flowRegion6587-5-0-2-2-4"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"><rect
-             id="rect6589-3-1-0-6-5"
-             width="279.64285"
-             height="78.928574"
-             x="47.857143"
-             y="51.071426"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-0-2">eb2</flowPara></flowRoot>    </g>
-    <g
-       id="eb3"
-       transform="matrix(1,0,0,0.89099511,-0.312662,687.82766)">
-      <rect
-         y="35.35714"
-         x="25.714285"
-         height="94.64286"
-         width="301.78571"
-         id="rect6583-8-0-2-5-9"
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot6585-2-2-1-8-09"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"><flowRegion
-           id="flowRegion6587-5-0-2-2-9"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"><rect
-             id="rect6589-3-1-0-6-4"
-             width="279.64285"
-             height="78.928574"
-             x="47.857143"
-             y="51.071426"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-0-5">eb3</flowPara></flowRoot>    </g>
-    <g
-       id="eb4"
-       transform="matrix(1,0,0,0.89099511,0.23558,776.24878)">
-      <rect
-         y="35.35714"
-         x="25.714285"
-         height="94.64286"
-         width="301.78571"
-         id="rect6583-8-0-2-5-0"
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot6585-2-2-1-8-3"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"><flowRegion
-           id="flowRegion6587-5-0-2-2-7"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"><rect
-             id="rect6589-3-1-0-6-8"
-             width="279.64285"
-             height="78.928574"
-             x="47.857143"
-             y="51.071426"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-0-8">eb4</flowPara></flowRoot>    </g>
-    <g
-       id="eb5"
-       transform="matrix(1,0,0,0.89099511,0.53572,863.95077)">
-      <rect
-         y="35.35714"
-         x="25.714285"
-         height="94.64286"
-         width="301.78571"
-         id="rect6583-8-0-2-5-04"
-         style="fill:#191919;fill-opacity:1;stroke:#00e600;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot6585-2-2-1-8-67"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         transform="matrix(1.7332491,0,0,1.7332491,-152.57862,-41.680105)"><flowRegion
-           id="flowRegion6587-5-0-2-2-6"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"><rect
-             id="rect6589-3-1-0-6-0"
-             width="279.64285"
-             height="78.928574"
-             x="47.857143"
-             y="51.071426"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-0-9">eb5</flowPara></flowRoot>    </g>
-    <g
-       id="reader6"
-       transform="matrix(1,0,0,0.89099511,0.92407907,952.70357)">
-      <g
-         id="g6790-2-5">
-        <rect
-           y="34.968781"
-           x="25.325926"
-           height="35.315502"
-           width="302.56241"
-           id="rect6583-8-0-2-1-8-9"
-           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
-      <flowRoot
-         transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none;"
-         id="flowRoot6585-2-2-1-1-9-7"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-           id="flowRegion6587-5-0-2-9-6-8"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1;"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1-0-0-0-5" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-5-7-3">reader6</flowPara></flowRoot>    </g>
     <g
        id="nim0">
       <rect
@@ -1177,559 +855,1496 @@
       </g>
     </g>
     <g
-       id="reader6-9"
-       transform="matrix(1,0,0,0.89099511,0.67858572,987.39573)">
+       id="reader0"
+       inkscape:label="#g1642"
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,50.413492)">
+      <rect
+         inkscape:label="#rect766"
+         y="-52.141743"
+         x="25.714285"
+         height="73.214287"
+         width="302.5"
+         id="reader0_bkg" />
+      <rect
+         style="fill:#00ff00;fill-opacity:1;stroke-width:1.20684779"
+         inkscape:label="#rect768"
+         y="-47.260796"
+         x="30.755951"
+         height="63.452385"
+         width="292.41666"
+         id="reader0_status" />
+      <rect
+         y="-42.379841"
+         x="35.797619"
+         height="53.690479"
+         width="282.33334"
+         id="reader0_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.96638513"
+         inkscape:label="#rect1575" />
+      <text
+         id="reader0_label"
+         y="12.258759"
+         x="20.735403"
+         style="font-style:normal;font-weight:normal;font-size:78.02732849px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.95068312"
+         xml:space="preserve"
+         inkscape:label="#text1579"
+         transform="scale(1.0075865,0.99247062)"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.95068312"
+           y="12.258759"
+           x="20.735403"
+           id="tspan1577"
+           sodipodi:role="line">r0</tspan></text>
       <g
-         id="g6790-2-5-9">
+         transform="matrix(1.1028646,0,0,0.88744593,-42.584552,-0.04867386)"
+         id="reader0_r_btn"
+         onclick="RedaxCycle(0)"
+         inkscape:label="#g1590">
         <rect
-           y="34.968781"
-           x="25.325926"
-           height="35.315502"
-           width="302.56241"
-           id="rect6583-8-0-2-1-8-9-0"
-           style="fill:#777777;fill-opacity:1;stroke:#00e600;stroke-width:1.22328293;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
-      <flowRoot
-         transform="matrix(0.81550801,0,0,0.81550801,22.07248,-7.914369)"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#00e600;fill-opacity:1;stroke:none"
-         id="flowRoot6585-2-2-1-1-9-7-8"
-         xml:space="preserve"><flowRegion
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1"
-           id="flowRegion6587-5-0-2-9-6-8-9"><rect
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#00e600;fill-opacity:1"
-             y="51.071426"
-             x="47.857143"
-             height="78.928574"
-             width="279.64285"
-             id="rect6589-3-1-0-0-0-5-3" /></flowRegion><flowPara
-           id="flowPara6591-4-9-7-5-7-3-1">oldmaster</flowPara></flowRoot>    </g>
-    <g
-       id="reader1_btn"
-       transform="translate(-3.1020747,100.44398)"
-       onclick="RedaxCycle(1)">
-      <rect
-         y="36.382011"
-         x="341.45343"
-         height="55.490879"
-         width="241.16457"
-         id="rect5616-8"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.10686612;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-9"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-6"
-           sodipodi:role="line">CYCLE R</tspan></text>
-    </g>
-    <g
-       id="reader2_btn"
-       transform="translate(-2.892865,188.01541)"
-       onclick="RedaxCycle(2)">
-      <rect
-         y="36.383629"
-         x="341.45505"
-         height="55.487648"
-         width="242.5899"
-         id="rect5616-7"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.11009991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-3"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7"
-           sodipodi:role="line">CYCLE R</tspan></text>
-    </g>
-    <g
-       id="reader3_btn"
-       transform="translate(-4.0357222,276.58684)"
-       onclick="RedaxCycle(3)">
-      <rect
-         y="36.383827"
-         x="341.45526"
-         height="55.487251"
-         width="242.76537"
-         id="rect5616-7-2"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.11049736;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-3-2"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-1"
-           sodipodi:role="line">CYCLE R</tspan></text>
-    </g>
-    <g
-       id="eb0_start_btn"
-       transform="matrix(0.84994384,0,0,1.00137,48.294138,435.0704)"
-       onclick="StartEB(0)">
-      <rect
-         y="36.320175"
-         x="341.3916"
-         height="55.614555"
-         width="189.85966"
-         id="rect5616-7-0"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-3-9"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-0"
-           sodipodi:role="line">START</tspan></text>
-    </g>
-    <g
-       id="eb0_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.5782,434.82399)"
-       onclick="StopEB(0)">
-      <g
-         id="g5726"
-         transform="translate(14.523628)">
-        <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0"
-           width="189.85966"
-           height="55.614555"
-           x="341.3916"
-           y="36.320175" />
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69619077"
+           id="rect1581"
+           width="137.14285"
+           height="27.5"
+           x="185.35715"
+           y="-45.499996" />
         <text
-           transform="scale(1.1021844,0.90728919)"
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="312.0726"
-           y="93.473801"
-           id="text5620-3-9-1"><tspan
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="185.57143"
+           y="-19.92857"
+           id="reader0_btn_r_label"
+           inkscape:label="#text1585"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-0-3"
-             x="312.0726"
-             y="93.473801"
-             style="stroke-width:1.56708062">STOP</tspan></text>
+             id="tspan1583"
+             x="185.57143"
+             y="-19.92857"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1">CYCLE R</tspan></text>
+      </g>
+      <g
+         id="reader0_cc_btn"
+         transform="matrix(1.0884345,0,0,0.88744593,-37.930849,25.33228)"
+         onclick="RedaxCycle(0, &quot;controller&quot;)"
+         inkscape:label="#g1590-2">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke-width:0.73499525"
+           id="rect1581-8"
+           width="152.85715"
+           height="27.5"
+           x="169.64285"
+           y="-45.499996" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="169.21428"
+           y="-20.285713"
+           id="reader0_cc_btn_label"
+           inkscape:label="#text1585-9"><tspan
+             sodipodi:role="line"
+             id="tspan1583-6"
+             x="169.21428"
+             y="-20.285713"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1">CYCLE CC</tspan></text>
       </g>
     </g>
     <g
-       id="reader_btn"
-       transform="translate(-2)"
-       onclick="RedaxCycle(&quot;all&quot;)">
+       id="reader1"
+       inkscape:label="#g1642"
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,131.97967)">
+      <rect
+         inkscape:label="#rect766"
+         y="-48.789677"
+         x="25.714285"
+         height="73.214287"
+         width="302.5"
+         id="reader1_bkg" />
+      <rect
+         style="fill:#00ff00;fill-opacity:1;stroke-width:1.20684779"
+         inkscape:label="#rect768"
+         y="-43.90873"
+         x="30.755951"
+         height="63.452385"
+         width="292.41666"
+         id="reader1_status" />
+      <rect
+         y="-39.027775"
+         x="35.797619"
+         height="53.690479"
+         width="282.33334"
+         id="reader1_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.96638513"
+         inkscape:label="#rect1575" />
+      <text
+         id="reader1_label"
+         y="16.460821"
+         x="21.045658"
+         style="font-style:normal;font-weight:normal;font-size:79.59850311px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.98996246"
+         xml:space="preserve"
+         inkscape:label="#text1579"
+         transform="scale(0.99071544,1.0093716)"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.98996246"
+           y="16.460821"
+           x="21.045658"
+           id="tspan1577-7"
+           sodipodi:role="line">r1</tspan></text>
       <g
+         transform="matrix(1.1028646,0,0,0.88744593,-42.584554,3.3033926)"
+         id="reader1_r_btn"
+         onclick="RedaxCycle(1)"
+         inkscape:label="#g1590">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69619077"
+           id="rect1581-6"
+           width="137.14285"
+           height="27.5"
+           x="185.35715"
+           y="-45.499996" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="185.57143"
+           y="-19.92857"
+           id="reader1_btn_r_label"
+           inkscape:label="#text1585-4"><tspan
+             sodipodi:role="line"
+             id="tspan1583-5"
+             x="185.57143"
+             y="-19.92857"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1">CYCLE R</tspan></text>
+      </g>
+    </g>
+    <g
+       id="reader2"
+       inkscape:label="#g1642"
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,218.48126)">
+      <rect
+         inkscape:label="#rect766"
+         y="-50.255516"
+         x="25.714285"
+         height="73.214287"
+         width="302.5"
+         id="reader2_bkg" />
+      <rect
+         style="fill:#00ff00;fill-opacity:1;stroke-width:1.20684779"
+         inkscape:label="#rect768"
+         y="-45.374565"
+         x="30.755951"
+         height="63.452385"
+         width="292.41666"
+         id="reader2_status" />
+      <rect
+         y="-40.493614"
+         x="35.797619"
+         height="53.690479"
+         width="282.33334"
+         id="reader2_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.96638513"
+         inkscape:label="#rect1575" />
+      <text
+         id="reader2_label"
+         y="15.280462"
+         x="20.420475"
+         style="font-style:normal;font-weight:normal;font-size:79.60083771px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.99002087"
+         xml:space="preserve"
+         inkscape:label="#text1579"
+         transform="scale(1.0086615,0.99141285)"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.99002087"
+           y="15.280462"
+           x="20.420475"
+           id="tspan1577-7-1"
+           sodipodi:role="line">r2</tspan></text>
+      <g
+         transform="matrix(1.1028646,0,0,0.88744593,-42.584555,1.8375554)"
+         id="reader2_r_btn"
+         onclick="RedaxCycle(2)"
+         inkscape:label="#g1590">
+        <rect
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69619077"
+           id="rect1581-6-3"
+           width="137.14285"
+           height="27.5"
+           x="185.35715"
+           y="-45.499996" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="185.57143"
+           y="-19.92857"
+           id="reader2_btn_r_label"
+           inkscape:label="#text1585-4"><tspan
+             sodipodi:role="line"
+             id="tspan1583-5-8"
+             x="185.57143"
+             y="-19.92857"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1">CYCLE R</tspan></text>
+      </g>
+    </g>
+    <g
+       id="reader3"
+       inkscape:label="#g1642"
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,305.065)">
+      <rect
+         inkscape:label="#rect766"
+         y="-51.801548"
+         x="25.714285"
+         height="73.214287"
+         width="302.5"
+         id="reader3_bkg" />
+      <rect
+         style="fill:#00ff00;fill-opacity:1;stroke-width:1.20684779"
+         inkscape:label="#rect768"
+         y="-46.920597"
+         x="30.755951"
+         height="63.452385"
+         width="292.41666"
+         id="reader3_status" />
+      <rect
+         y="-42.039646"
+         x="35.797619"
+         height="53.690479"
+         width="282.33334"
+         id="reader3_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.96638513"
+         inkscape:label="#rect1575" />
+      <text
+         id="reader3_label"
+         y="12.239654"
+         x="22.152325"
+         style="font-style:normal;font-weight:normal;font-size:75.78658295px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.89466441"
+         xml:space="preserve"
+         inkscape:label="#text1579"
+         transform="scale(0.97865125,1.0218145)"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.89466441"
+           y="12.239654"
+           x="22.152325"
+           id="tspan1577-7-1-6"
+           sodipodi:role="line">r3</tspan></text>
+      <g
+         transform="matrix(1.1028646,0,0,0.88744593,-42.584555,0.29152263)"
+         id="reader3_r_btn"
          onclick="RedaxCycle(3)"
-         transform="translate(-1.892865,354.87255)"
-         id="reader3_btn-7">
+         inkscape:label="#g1590">
         <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.24099302;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-2-4"
-           width="303.88757"
-           height="55.356754"
-           x="341.52051"
-           y="36.449078" />
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69619077"
+           id="rect1581-6-3-9"
+           width="137.14285"
+           height="27.5"
+           x="185.35715"
+           y="-45.499996" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-           x="342.76691"
-           y="84.80777"
-           id="text5620-3-2-1"><tspan
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="185.57143"
+           y="-19.92857"
+           id="reader3_btn_r_label"
+           inkscape:label="#text1585-4"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-1-1"
-             x="342.76691"
-             y="84.80777"
-             style="stroke-width:1.42179525">CYCLE ALL</tspan></text>
+             id="tspan1583-5-8-5"
+             x="185.57143"
+             y="-19.92857"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1">CYCLE R</tspan></text>
       </g>
     </g>
     <g
-       id="eb1_start_btn"
-       transform="matrix(0.84994384,0,0,1.00137,47.923726,521.59326)"
-       onclick="StartEB(1)">
+       id="reader4"
+       inkscape:label="#g1817"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540903,-12.636363)">
       <rect
-         y="36.320175"
-         x="341.3916"
-         height="55.614555"
-         width="189.85966"
-         id="rect5616-7-0-03"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-3-9-2"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-0-1"
-           sodipodi:role="line">START</tspan></text>
-    </g>
-    <g
-       id="eb1_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.20779,521.34685)"
-       onclick="StopEB(1)">
-      <g
-         id="g5726-5"
-         transform="translate(14.523628)">
-        <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0-6"
-           width="189.85966"
-           height="55.614555"
-           x="341.3916"
-           y="36.320175" />
-        <text
-           transform="scale(1.1021844,0.90728919)"
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="312.0726"
-           y="93.473801"
-           id="text5620-3-9-1-5"><tspan
-             sodipodi:role="line"
-             id="tspan5618-7-0-3-4"
-             x="312.0726"
-             y="93.473801"
-             style="stroke-width:1.56708062">STOP</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb2_start_btn"
-       transform="matrix(0.84994384,0,0,1.00137,47.780869,611.02183)"
-       onclick="StartEB(2)">
+         inkscape:label="#rect1797"
+         y="30.725214"
+         x="25.473137"
+         height="49.244938"
+         width="302.54068"
+         id="reader4_bkg"
+         style="fill:#000000;fill-opacity:1"
+         transform="translate(-0.72439862,313.6312)" />
       <rect
-         y="36.320175"
-         x="341.3916"
-         height="55.614555"
-         width="189.85966"
-         id="rect5616-7-0-2"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-3-9-17"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-0-2"
-           sodipodi:role="line">START</tspan></text>
-    </g>
-    <g
-       id="eb2_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.06493,610.77542)"
-       onclick="StopEB(2)">
-      <g
-         id="g5726-1"
-         transform="translate(14.523628)">
-        <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0-65"
-           width="189.85966"
-           height="55.614555"
-           x="341.3916"
-           y="36.320175" />
-        <text
-           transform="scale(1.1021844,0.90728919)"
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="312.0726"
-           y="93.473801"
-           id="text5620-3-9-1-7"><tspan
-             sodipodi:role="line"
-             id="tspan5618-7-0-3-8"
-             x="312.0726"
-             y="93.473801"
-             style="stroke-width:1.56708062">STOP</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb3_start_btn"
-       transform="matrix(0.84994384,0,0,1.00137,48.066583,696.87897)"
-       onclick="StartEB(3)">
+         inkscape:label="#rect1799"
+         y="346.32623"
+         x="26.765676"
+         height="45.305344"
+         width="298.50681"
+         id="reader4_status"
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
       <rect
-         y="36.320175"
-         x="341.3916"
-         height="55.614555"
-         width="189.85966"
-         id="rect5616-7-0-9"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+         inkscape:label="#rect1801"
+         y="348.29599"
+         x="28.782614"
+         height="41.365746"
+         width="294.47293"
+         id="reader4_fg"
+         style="fill:#777777;fill-opacity:1;stroke-width:1.0758276" />
       <text
-         id="text5620-3-9-27"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-0-36"
-           sodipodi:role="line">START</tspan></text>
+         inkscape:label="#text1805"
+         id="reader4_label"
+         y="383.92889"
+         x="26.484091"
+         style="font-style:normal;font-weight:normal;font-size:50.84044266px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00fd00;fill-opacity:1;stroke:none;stroke-width:1.27101111"
+         xml:space="preserve"
+         transform="scale(0.99029361,1.0098015)"><tspan
+           style="stroke-width:1.27101111"
+           y="383.92889"
+           x="26.484091"
+           id="tspan1803"
+           sodipodi:role="line">r4</tspan></text>
     </g>
     <g
-       id="eb3_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.35065,696.63256)"
-       onclick="StopEB(3)">
-      <g
-         id="g5726-9"
-         transform="translate(14.523628)">
-        <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0-7"
-           width="189.85966"
-           height="55.614555"
-           x="341.3916"
-           y="36.320175" />
-        <text
-           transform="scale(1.1021844,0.90728919)"
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="312.0726"
-           y="93.473801"
-           id="text5620-3-9-1-2"><tspan
-             sodipodi:role="line"
-             id="tspan5618-7-0-3-2"
-             x="312.0726"
-             y="93.473801"
-             style="stroke-width:1.56708062">STOP</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb4_start_btn"
-       transform="matrix(0.84994384,0,0,1.00137,48.20944,786.87897)"
-       onclick="StartEB(4)">
+       id="reader5"
+       inkscape:label="#g1817"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,49.3235)">
       <rect
-         y="36.320175"
-         x="341.3916"
-         height="55.614555"
-         width="189.85966"
-         id="rect5616-7-0-6"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <text
-         id="text5620-3-9-3"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-         xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-0-0"
-           sodipodi:role="line">START</tspan></text>
-    </g>
-    <g
-       id="eb4_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.4935,786.63256)"
-       onclick="StopEB(4)">
-      <g
-         id="g5726-15"
-         transform="translate(14.523628)">
-        <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0-650"
-           width="189.85966"
-           height="55.614555"
-           x="341.3916"
-           y="36.320175" />
-        <text
-           transform="scale(1.1021844,0.90728919)"
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="312.0726"
-           y="93.473801"
-           id="text5620-3-9-1-0"><tspan
-             sodipodi:role="line"
-             id="tspan5618-7-0-3-3"
-             x="312.0726"
-             y="93.473801"
-             style="stroke-width:1.56708062">STOP</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb5_start_btn"
-       transform="matrix(0.84994384,0,0,1.00137,48.495155,873.30754)"
-       onclick="StartEB(5)">
+         inkscape:label="#rect1797"
+         y="342.42615"
+         x="24.748737"
+         height="49.244938"
+         width="302.54068"
+         id="reader5_bkg"
+         style="fill:#000000;fill-opacity:1" />
       <rect
-         y="36.320175"
-         x="341.3916"
-         height="55.614555"
-         width="189.85966"
-         id="rect5616-7-0-66"
-         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+         inkscape:label="#rect1799"
+         y="344.39597"
+         x="26.765676"
+         height="45.305344"
+         width="298.50681"
+         id="reader5_status"
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
+      <rect
+         inkscape:label="#rect1801"
+         y="346.36575"
+         x="28.782614"
+         height="41.365746"
+         width="294.47293"
+         id="reader5_fg"
+         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748" />
       <text
-         id="text5620-3-9-0"
-         y="84.80777"
-         x="344.76691"
-         style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
+         inkscape:label="#text1805"
+         id="reader5_label"
+         y="391.84918"
+         x="25.610481"
+         style="font-style:normal;font-weight:normal;font-size:51.25000381px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00fd00;fill-opacity:1;stroke:none;stroke-width:1.28125"
+         xml:space="preserve"
+         transform="scale(1.0176617,0.98264484)"><tspan
+           style="stroke-width:1.28125"
+           y="391.84918"
+           x="25.610481"
+           id="tspan1803-3"
+           sodipodi:role="line">r5</tspan></text>
+    </g>
+    <g
+       id="oldmaster"
+       inkscape:label="#g1817"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,673.3235)">
+      <rect
+         inkscape:label="#rect1797"
+         y="342.42615"
+         x="24.748737"
+         height="49.244938"
+         width="302.54068"
+         id="om_bkg"
+         style="fill:#000000;fill-opacity:1" />
+      <rect
+         inkscape:label="#rect1799"
+         y="344.39597"
+         x="26.765676"
+         height="45.305344"
+         width="298.50681"
+         id="om_status"
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
+      <rect
+         inkscape:label="#rect1801"
+         y="346.36575"
+         x="28.782614"
+         height="41.365746"
+         width="294.47293"
+         id="om_fg"
+         style="fill:#333333;fill-opacity:1;stroke-width:1.07582748" />
+      <text
+         inkscape:label="#text1805"
+         id="om_label"
+         y="401.13538"
+         x="26.78706"
+         style="font-style:normal;font-weight:normal;font-size:50.37549973px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00fd00;fill-opacity:1;stroke:none;stroke-width:1.25938737"
+         xml:space="preserve"
+         transform="scale(1.041702,0.95996747)"><tspan
+           style="stroke-width:1.25938737"
+           y="401.13538"
+           x="26.78706"
+           id="tspan1803-3-7"
+           sodipodi:role="line">oldmaster</tspan></text>
+    </g>
+    <g
+       id="reader6"
+       inkscape:label="#g1817"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,614.3235)">
+      <rect
+         inkscape:label="#rect1797"
+         y="342.42615"
+         x="24.748737"
+         height="49.244938"
+         width="302.54068"
+         id="reader6_bkg"
+         style="fill:#000000;fill-opacity:1" />
+      <rect
+         inkscape:label="#rect1799"
+         y="344.39597"
+         x="26.765676"
+         height="45.305344"
+         width="298.50681"
+         id="reader6_status"
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
+      <rect
+         inkscape:label="#rect1801"
+         y="346.36575"
+         x="28.782614"
+         height="41.365746"
+         width="294.47293"
+         id="reader6_fg"
+         style="fill:#333333;fill-opacity:1;stroke-width:1.07582748" />
+      <text
+         inkscape:label="#text1805"
+         id="reader6_label"
+         y="391.84918"
+         x="25.610481"
+         style="font-style:normal;font-weight:normal;font-size:51.25000381px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00fd00;fill-opacity:1;stroke:none;stroke-width:1.28125"
+         xml:space="preserve"
+         transform="scale(1.0176617,0.98264484)"><tspan
+           style="stroke-width:1.28125"
+           y="391.84918"
+           x="25.610481"
+           id="tspan1803-3-8"
+           sodipodi:role="line">r6</tspan></text>
+    </g>
+    <g
+       id="eb5"
+       inkscape:label="#g2048"
+       transform="translate(0,3.0000049)">
+      <rect
+         inkscape:label="#rect1895"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb5_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1897"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb5_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1899"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb5_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         inkscape:label="#text1903"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb5_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.86239338"
          xml:space="preserve"><tspan
-           style="stroke-width:1.42179525"
-           y="84.80777"
-           x="344.76691"
-           id="tspan5618-7-0-25"
-           sodipodi:role="line">START</tspan></text>
-    </g>
-    <g
-       id="eb5_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.77922,873.06113)"
-       onclick="StopEB(5)">
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.86239338"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901"
+           sodipodi:role="line">eb5</tspan></text>
       <g
-         id="g5726-95"
-         transform="translate(14.523628)">
+         inkscape:label="#g1928"
+         onclick="EBSync(5)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb5_sync">
         <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:0.98319155;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0-0"
-           width="189.85966"
-           height="55.614555"
-           x="341.3916"
-           y="36.320175" />
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
         <text
-           transform="scale(1.1021844,0.90728919)"
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="312.0726"
-           y="93.473801"
-           id="text5620-3-9-1-6"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-0-3-0"
-             x="312.0726"
-             y="93.473801"
-             style="stroke-width:1.56708062">STOP</tspan></text>
+             id="tspan1911"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937"
+         onclick="BootstraxStart(5)"
+         transform="matrix(0.38347516,0,0,0.39904941,147.86526,589.56191)"
+         id="eb5_bs_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932"><tspan
+             sodipodi:role="line"
+             id="tspan1930"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-3"
+         onclick="AjaxStop(5)"
+         id="eb5_aj_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,182.7931,534.23004)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <text
+         id="text1965"
+         y="898.56543"
+         x="253.01677"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051"
+           y="898.56543"
+           x="253.01677"
+           id="tspan1963"
+           sodipodi:role="line">AJAX</tspan></text>
+      <text
+         id="text1969"
+         y="900.91791"
+         x="211.07858"
+         style="font-style:normal;font-weight:normal;font-size:19.77806091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.49445146"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.49445146"
+           y="900.91791"
+           x="211.07858"
+           id="tspan1967"
+           sodipodi:role="line">BS</tspan></text>
+      <g
+         inkscape:label="#g1937-3-0"
+         onclick="BootstraxStop(5)"
+         id="eb5_bs_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,133.7931,534.23005)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-7"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-6"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-3"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-7"
+         onclick="AjaxStart(5)"
+         transform="matrix(0.38347516,0,0,0.39904941,196.86526,589.56191)"
+         id="eb5_aj_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-6"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-1"><tspan
+             sodipodi:role="line"
+             id="tspan1930-5"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
       </g>
     </g>
     <g
-       id="eb_start_btn"
-       transform="matrix(0.67543804,0,0,0.8364746,121.93513,864.23534)"
-       onclick="StartEB(&quot;all&quot;)">
+       transform="translate(-1.4132412e-7,-80.999995)"
+       id="eb4"
+       inkscape:label="#g2048">
+      <rect
+         inkscape:label="#rect1895"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb4_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1897"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb4_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1899"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb4_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         inkscape:label="#text1903"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb4_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.86239338"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.86239338"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-1"
+           sodipodi:role="line">eb4</tspan></text>
       <g
-         id="g5910"
-         onclick="StartEB(&quot;all&quot;)"
-         inkscape:label="#eb_start_btn"
-         transform="matrix(1.0013884,0,0,0.46644129,-0.68982018,73.584787)">
+         inkscape:label="#g1928"
+         onclick="EBSync(4)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb4_sync">
         <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.5551852;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-3"
-           width="148.27821"
-           height="178.16884"
-           x="341.54749"
-           y="133.78148" />
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-2"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:58.41523361px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.46038079"
-           x="553.6192"
-           y="151.0377"
-           id="text5620-3-9-7"
-           transform="scale(0.74542155,1.3415228)"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-6"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-0-8"
-             x="553.6192"
-             y="151.0377"
-             style="text-align:center;text-anchor:middle;stroke-width:1.46038079">START</tspan><tspan
+             id="tspan1911-9"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937"
+         onclick="BootstraxStart(4)"
+         transform="matrix(0.38347516,0,0,0.39904941,147.86526,589.56191)"
+         id="eb4_bs_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-0"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-4"><tspan
              sodipodi:role="line"
-             x="553.6192"
-             y="224.05675"
-             style="text-align:center;text-anchor:middle;stroke-width:1.46038079"
-             id="tspan5912">ALL</tspan></text>
+             id="tspan1930-2"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-3"
+         onclick="AjaxStop(4)"
+         id="eb4_aj_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,182.7931,534.23004)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-4"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-0"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-32"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <text
+         id="text1965-8"
+         y="898.56543"
+         x="253.01677"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051"
+           y="898.56543"
+           x="253.01677"
+           id="tspan1963-0"
+           sodipodi:role="line">AJAX</tspan></text>
+      <text
+         id="text1969-3"
+         y="900.91791"
+         x="211.07858"
+         style="font-style:normal;font-weight:normal;font-size:19.77806091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.49445146"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.49445146"
+           y="900.91791"
+           x="211.07858"
+           id="tspan1967-7"
+           sodipodi:role="line">BS</tspan></text>
+      <g
+         inkscape:label="#g1937-3-0"
+         onclick="BootstraxStop(4)"
+         id="eb4_bs_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,133.7931,534.23005)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-7-0"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-6-3"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-3-4"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-7"
+         onclick="AjaxStart(4)"
+         transform="matrix(0.38347516,0,0,0.39904941,196.86526,589.56191)"
+         id="eb4_aj_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-6-2"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-1-7"><tspan
+             sodipodi:role="line"
+             id="tspan1930-5-4"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
       </g>
     </g>
     <g
-       id="eb_stop_btn"
-       transform="matrix(0.68853321,0,0,1.0029849,260.77922,953.63256)"
-       onclick="StopEB(&quot;all&quot;)">
+       transform="translate(-1.4132412e-7,-165)"
+       id="eb3"
+       inkscape:label="#g2048">
+      <rect
+         inkscape:label="#rect1895"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb3_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1897"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb3_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1899"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb3_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         inkscape:label="#text1903"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb3_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.86239338"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.86239338"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-3"
+           sodipodi:role="line">eb3</tspan></text>
       <g
-         id="g5726-0"
-         transform="matrix(0.57209536,0,0,0.57209536,201.07693,-0.57625738)">
+         inkscape:label="#g1928"
+         onclick="EBSync(3)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb3_sync">
         <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.51110983;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-0-0-5"
-           width="192.37679"
-           height="129.65352"
-           x="341.68918"
-           y="36.689091" />
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-6"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
         <text
-           transform="scale(1.1021844,0.90728919)"
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:62.68322372px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.56708062"
-           x="393.38022"
-           y="93.473801"
-           id="text5620-3-9-1-8"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-0"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-0-3-5"
-             x="393.38022"
-             y="93.473801"
-             style="text-align:center;text-anchor:middle;stroke-width:1.56708062">STOP</tspan><tspan
+             id="tspan1911-8"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937"
+         onclick="BootstraxStart(3)"
+         transform="matrix(0.38347516,0,0,0.39904941,147.86526,589.56191)"
+         id="eb3_bs_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-2"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-2"><tspan
              sodipodi:role="line"
-             x="393.38022"
-             y="171.82784"
-             style="text-align:center;text-anchor:middle;stroke-width:1.56708062"
-             id="tspan5914">ALL</tspan></text>
+             id="tspan1930-31"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-3"
+         onclick="AjaxStop(3)"
+         id="eb3_aj_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,182.7931,534.23004)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-3"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-4"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-2"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <text
+         id="text1965-2"
+         y="898.56543"
+         x="253.01677"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051"
+           y="898.56543"
+           x="253.01677"
+           id="tspan1963-4"
+           sodipodi:role="line">AJAX</tspan></text>
+      <text
+         id="text1969-5"
+         y="900.91791"
+         x="211.07858"
+         style="font-style:normal;font-weight:normal;font-size:19.77806091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.49445146"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.49445146"
+           y="900.91791"
+           x="211.07858"
+           id="tspan1967-1"
+           sodipodi:role="line">BS</tspan></text>
+      <g
+         inkscape:label="#g1937-3-0"
+         onclick="BootstraxStop(3)"
+         id="eb3_bs_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,133.7931,534.23005)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-7-5"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-6-7"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-3-1"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-7"
+         onclick="AjaxStart(3)"
+         transform="matrix(0.38347516,0,0,0.39904941,196.86526,589.56191)"
+         id="eb3_aj_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-6-9"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-1-8"><tspan
+             sodipodi:role="line"
+             id="tspan1930-5-1"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
       </g>
     </g>
     <g
-       id="reader0_btn_r"
-       transform="matrix(0.89501584,0,0,0.76176732,34.552975,-219.04037)"
-       onclick="RedaxCycle(0)"
-       inkscape:label="#reader0_btn_r">
+       transform="translate(-1.4132412e-7,-248)"
+       id="eb2"
+       inkscape:label="#g2048">
+      <rect
+         inkscape:label="#rect1895"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb2_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1897"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb2_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1899"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb2_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         inkscape:label="#text1903"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb2_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.86239338"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.86239338"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-8"
+           sodipodi:role="line">eb2</tspan></text>
       <g
-         onclick="RedaxCycle(3)"
-         transform="translate(-1.892865,354.87255)"
-         id="reader3_btn-7-0">
+         inkscape:label="#g1928"
+         onclick="EBSync(2)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb2_sync">
         <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.11653852;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-2-4-7"
-           width="245.44058"
-           height="55.481209"
-           x="341.45828"
-           y="36.386852" />
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-7"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-           x="342.76691"
-           y="84.80777"
-           id="text5620-3-2-1-3"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-04"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-1-1-8"
-             x="342.76691"
-             y="84.80777"
-             style="stroke-width:1.42179525">CYCLE R</tspan></text>
+             id="tspan1911-84"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-3"
+         onclick="Microstrax('stop')"
+         id="eb2_us_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,180.7931,534.23004)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-2"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-1"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-9"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <text
+         id="text1965-9"
+         y="898.56543"
+         x="243.01677"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051"
+           y="898.56543"
+           x="243.01677"
+           id="tspan1963-6"
+           sodipodi:role="line">ustrax</tspan></text>
+      <g
+         inkscape:label="#g1937-7"
+         onclick="Microstrax('start')"
+         transform="matrix(0.38347516,0,0,0.39904941,194.86526,589.56191)"
+         id="eb2_us_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-6-93"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-1-1"><tspan
+             sodipodi:role="line"
+             id="tspan1930-5-48"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
       </g>
     </g>
     <g
-       id="reader0_btn_c"
-       transform="matrix(0.76797694,0,0,0.76797694,77.458418,-266.07348)"
-       onclick="RedaxCycle(0, &quot;controller&quot;)"
-       inkscape:label="#reader0_btn_c">
+       transform="translate(-1.4132412e-7,-333)"
+       id="eb1"
+       inkscape:label="#g2048">
+      <rect
+         inkscape:label="#rect1895"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb1_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1897"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb1_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1899"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb1_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         inkscape:label="#text1903"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb1_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.86239338"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.86239338"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-12"
+           sodipodi:role="line">eb1</tspan></text>
       <g
-         onclick="RedaxCycle(3)"
-         transform="translate(-1.892865,354.87255)"
-         id="reader3_btn-7-3">
+         inkscape:label="#g1928"
+         onclick="EBSync(1)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb1_sync">
         <rect
-           style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1.20593691;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="rect5616-7-2-4-0"
-           width="286.77979"
-           height="55.391811"
-           x="341.50299"
-           y="36.431549" />
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-5"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:56.87181091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.42179525"
-           x="342.76691"
-           y="84.80777"
-           id="text5620-3-2-1-7"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-09"><tspan
              sodipodi:role="line"
-             id="tspan5618-7-1-1-7"
-             x="342.76691"
-             y="84.80777"
-             style="stroke-width:1.42179525">CYCLE CC</tspan></text>
+             id="tspan1911-0"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937"
+         onclick="BootstraxStart(1)"
+         transform="matrix(0.38347516,0,0,0.39904941,147.86526,589.56191)"
+         id="eb1_bs_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-01"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-3"><tspan
+             sodipodi:role="line"
+             id="tspan1930-7"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-3"
+         onclick="AjaxStop(1)"
+         id="eb1_aj_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,182.7931,534.23004)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-1"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-13"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-0"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <text
+         id="text1965-3"
+         y="898.56543"
+         x="253.01677"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051"
+           y="898.56543"
+           x="253.01677"
+           id="tspan1963-2"
+           sodipodi:role="line">AJAX</tspan></text>
+      <text
+         id="text1969-1"
+         y="900.91791"
+         x="211.07858"
+         style="font-style:normal;font-weight:normal;font-size:19.77806091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.49445146"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.49445146"
+           y="900.91791"
+           x="211.07858"
+           id="tspan1967-75"
+           sodipodi:role="line">BS</tspan></text>
+      <g
+         inkscape:label="#g1937-3-0"
+         onclick="BootstraxStop(1)"
+         id="eb1_bs_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,133.7931,534.23005)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-7-54"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-6-2"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-3-2"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-7"
+         onclick="AjaxStart(1)"
+         transform="matrix(0.38347516,0,0,0.39904941,196.86526,589.56191)"
+         id="eb1_aj_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-6-7"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-1-2"><tspan
+             sodipodi:role="line"
+             id="tspan1930-5-41"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-418)"
+       id="eb0"
+       inkscape:label="#g2048">
+      <rect
+         inkscape:label="#rect1895"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb0_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1897"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb0_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         inkscape:label="#rect1899"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb0_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         inkscape:label="#text1903"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb0_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.86239338"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1.86239338"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-7"
+           sodipodi:role="line">eb0</tspan></text>
+      <g
+         inkscape:label="#g1928"
+         onclick="EBSync(0)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb0_sync">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-64"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-7"><tspan
+             sodipodi:role="line"
+             id="tspan1911-97"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937"
+         onclick="BootstraxStart(0)"
+         transform="matrix(0.38347516,0,0,0.39904941,147.86526,589.56191)"
+         id="eb0_bs_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-21"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-63"><tspan
+             sodipodi:role="line"
+             id="tspan1930-0"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-3"
+         onclick="AjaxStop(0)"
+         id="eb0_aj_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,182.7931,534.23004)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-15"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-65"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-00"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <text
+         id="text1965-34"
+         y="898.56543"
+         x="253.01677"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051"
+           y="898.56543"
+           x="253.01677"
+           id="tspan1963-66"
+           sodipodi:role="line">AJAX</tspan></text>
+      <text
+         id="text1969-02"
+         y="900.91791"
+         x="211.07858"
+         style="font-style:normal;font-weight:normal;font-size:19.77806091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.49445146"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.49445146"
+           y="900.91791"
+           x="211.07858"
+           id="tspan1967-5"
+           sodipodi:role="line">BS</tspan></text>
+      <g
+         inkscape:label="#g1937-3-0"
+         onclick="BootstraxStop(0)"
+         id="eb0_bs_stop"
+         transform="matrix(0.48315837,0,0,0.49113774,133.7931,534.23005)">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.06544256"
+           id="rect1907-5-7-95"
+           width="95.206879"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-9-6-0"><tspan
+             sodipodi:role="line"
+             id="tspan1930-3-3-6"
+             x="140.34396"
+             y="816.60272">STOP</tspan></text>
+      </g>
+      <g
+         inkscape:label="#g1937-7"
+         onclick="AjaxStart(0)"
+         transform="matrix(0.38347516,0,0,0.39904941,196.86526,589.56191)"
+         id="eb0_aj_start">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:2.31840467"
+           id="rect1907-6-8"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none"
+           x="140.34396"
+           y="816.60272"
+           id="text1932-1-3"><tspan
+             sodipodi:role="line"
+             id="tspan1930-5-7"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
       </g>
     </g>
   </g>
