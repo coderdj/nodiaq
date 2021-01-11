@@ -14,7 +14,7 @@
    viewBox="0 0 1920 1080"
    version="1.1"
    id="SVGRoot"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="hypervisor.svg">
   <defs
      id="defs2013" />
@@ -25,17 +25,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4875"
-     inkscape:cx="334.09107"
-     inkscape:cy="873.61194"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="852.81762"
+     inkscape:cy="530.63623"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="vme0"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1035"
-     inkscape:window-x="1920"
-     inkscape:window-y="22"
-     inkscape:window-maximized="0" />
+     inkscape:window-height="1038"
+     inkscape:window-x="0"
+     inkscape:window-y="42"
+     inkscape:window-maximized="0"
+     inkscape:snap-text-baseline="false" />
   <metadata
      id="metadata2016">
     <rdf:RDF>
@@ -63,53 +64,54 @@
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735054;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        id="rect2026-3"
-       width="312.61508"
-       height="1026.3149"
-       x="332.81815"
-       y="29.441353"
+       width="317.84265"
+       height="1077.8427"
+       x="321.07867"
+       y="1.0786732"
        rx="0"
        ry="0"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        id="rect2026-6"
-       width="312.61508"
-       height="1026.3149"
-       x="645.43323"
-       y="29.441353"
+       width="317.84265"
+       height="1077.8427"
+       x="641.07867"
+       y="1.0786361"
        rx="0"
        ry="0"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        id="rect2026-7"
-       width="312.61508"
-       height="1026.3149"
-       x="958.04828"
-       y="29.441353"
+       width="317.84265"
+       height="1077.8427"
+       x="961.07867"
+       y="1.0786361"
        rx="0"
        ry="0"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        id="rect2026-5"
-       width="312.61508"
-       height="1026.3149"
-       x="1270.6635"
-       y="29.441353"
+       width="317.84265"
+       height="1077.8427"
+       x="1281.0786"
+       y="1.0786361"
        rx="0"
        ry="0"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
        id="rect2026-35"
-       width="312.61508"
-       height="1026.3149"
-       x="1583.2784"
-       y="29.441353"
+       width="317.84265"
+       height="1077.8427"
+       x="1601.0786"
+       y="1.0786361"
        rx="0"
        ry="0"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.08776832;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
        id="g6594" />
     <g
-       id="nim0">
+       id="nim0"
+       transform="matrix(1.0125647,0,0,1.0041184,-11.498244,12.183076)">
       <rect
          y="58.571426"
          x="654.28571"
@@ -132,7 +134,7 @@
              id="rect7054" /></flowRegion><flowPara
            id="flowPara7056">NIM0</flowPara></flowRoot>    </g>
     <g
-       transform="translate(312.51583,0.80617)"
+       transform="matrix(1.0125647,0,0,1.0041184,308.50175,12.183076)"
        id="nim1">
       <rect
          y="58.571426"
@@ -156,7 +158,7 @@
              id="rect7054-1" /></flowRegion><flowPara
            id="flowPara7056-1">NIM1</flowPara></flowRoot>    </g>
     <g
-       transform="translate(624.96775,1.6487812)"
+       transform="matrix(1.0125647,0,0,1.0041184,628.5011,12.183077)"
        id="nim2">
       <rect
          y="58.571426"
@@ -180,7 +182,7 @@
              id="rect7054-16" /></flowRegion><flowPara
            id="flowPara7056-6">NIM2</flowPara></flowRoot>    </g>
     <g
-       transform="translate(938.09474,1.6284727)"
+       transform="matrix(1.0125647,0,0,1.0041184,948.50175,12.183076)"
        id="nim3">
       <rect
          y="58.571426"
@@ -205,10 +207,11 @@
            id="flowPara7056-0">NIM3</flowPara></flowRoot>    </g>
     <g
        id="vme0"
-       transform="translate(0,0.35714286)">
+       transform="matrix(1.0125074,0,0,1.0195198,-11.446039,-11.459576)">
       <g
          id="vme0_bkg"
-         inkscape:label="#bme0_bkg">
+         inkscape:label="#bme0_bkg"
+         transform="matrix(1.0000047,0,0,0.99860816,-0.00377889,0.84772838)">
         <rect
            style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="vme0_rect"
@@ -307,9 +310,21 @@
            id="vme0_on-0"
            style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:39.36978531px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.98424464"
+         x="761.51715"
+         y="304.52478"
+         id="text1333"
+         transform="scale(1.0034569,0.996555)"><tspan
+           sodipodi:role="line"
+           id="tspan1331"
+           x="761.51715"
+           y="339.35782"
+           style="stroke-width:0.98424464"></tspan></text>
     </g>
     <g
-       transform="translate(312.64143,566.93608)"
+       transform="matrix(1.0124693,0,0,1.004191,308.5782,562.17768)"
        id="nim4">
       <rect
          y="58.571426"
@@ -333,7 +348,7 @@
              id="rect7054-5" /></flowRegion><flowPara
            id="flowPara7056-9">NIM4</flowPara></flowRoot>    </g>
     <g
-       transform="translate(937.21285,566.93608)"
+       transform="matrix(1.0125647,0,0,1.0041184,948.50175,562.18308)"
        id="nim5">
       <rect
          y="58.571426"
@@ -368,7 +383,7 @@
            y="657.14288" /></flowRegion><flowPara
          id="flowPara4326"
          style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:96px">ALL ON</flowPara></flowRoot>    <g
-       transform="translate(312.98285,0.429148)"
+       transform="matrix(1.012517,0,0,1.0181008,308.54699,-10.601707)"
        id="vme1">
       <g
          id="vme1_bkg"
@@ -473,7 +488,7 @@
       </g>
     </g>
     <g
-       transform="translate(624.88397,0.20290564)"
+       transform="matrix(1.012517,0,0,1.0181008,628.54,-10.602282)"
        id="vme2">
       <g
          id="vme2_bkg"
@@ -578,7 +593,7 @@
       </g>
     </g>
     <g
-       transform="translate(624.97029,220.80484)"
+       transform="matrix(1.012517,0,0,1.0180942,628.53995,209.4017)"
        id="vme3">
       <g
          id="vme3_bkg"
@@ -683,7 +698,7 @@
       </g>
     </g>
     <g
-       transform="translate(938.71429,0.14286604)"
+       transform="matrix(1.012517,0,0,1.0180942,948.53995,-10.598292)"
        id="vme4">
       <g
          id="vme4_bkg"
@@ -788,7 +803,7 @@
       </g>
     </g>
     <g
-       transform="translate(0.1428658,221.57144)"
+       transform="matrix(1.012474,0,0,1.0181008,-11.434791,209.39484)"
        id="vme_all">
       <g
          id="vme_all_bkg"
@@ -857,7 +872,7 @@
     <g
        id="reader0"
        inkscape:label="#g1642"
-       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,50.413492)">
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,63.013492)">
       <rect
          inkscape:label="#rect766"
          y="-52.141743"
@@ -948,7 +963,7 @@
     <g
        id="reader1"
        inkscape:label="#g1642"
-       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,131.97967)">
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,143.17967)">
       <rect
          inkscape:label="#rect766"
          y="-48.789677"
@@ -1014,7 +1029,7 @@
     <g
        id="reader2"
        inkscape:label="#g1642"
-       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,218.48126)">
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,228.28126)">
       <rect
          inkscape:label="#rect766"
          y="-50.255516"
@@ -1080,7 +1095,7 @@
     <g
        id="reader3"
        inkscape:label="#g1642"
-       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,305.065)">
+       transform="matrix(0.99173554,0,0,1.0243902,-15.50177,313.465)">
       <rect
          inkscape:label="#rect766"
          y="-51.801548"
@@ -1146,7 +1161,7 @@
     <g
        id="reader4"
        inkscape:label="#g1817"
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540903,-12.636363)">
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540903,-5.6363627)">
       <rect
          inkscape:label="#rect1797"
          y="30.725214"
@@ -1189,7 +1204,7 @@
     <g
        id="reader5"
        inkscape:label="#g1817"
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,49.3235)">
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,54.9235)">
       <rect
          inkscape:label="#rect1797"
          y="342.42615"
@@ -1231,7 +1246,7 @@
     <g
        id="oldmaster"
        inkscape:label="#g1817"
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,673.3235)">
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,673.7235)">
       <rect
          inkscape:label="#rect1797"
          y="342.42615"
@@ -1255,7 +1270,7 @@
          height="41.365746"
          width="294.47293"
          id="om_fg"
-         style="fill:#333333;fill-opacity:1;stroke-width:1.07582748" />
+         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748" />
       <text
          inkscape:label="#text1805"
          id="om_label"
@@ -1273,7 +1288,7 @@
     <g
        id="reader6"
        inkscape:label="#g1817"
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,614.3235)">
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,615.1235)">
       <rect
          inkscape:label="#rect1797"
          y="342.42615"
@@ -1297,7 +1312,7 @@
          height="41.365746"
          width="294.47293"
          id="reader6_fg"
-         style="fill:#333333;fill-opacity:1;stroke-width:1.07582748" />
+         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748" />
       <text
          inkscape:label="#text1805"
          id="reader6_label"
@@ -1315,7 +1330,7 @@
     <g
        id="eb5"
        inkscape:label="#g2048"
-       transform="translate(0,3.0000049)">
+       transform="translate(0,4.2000049)">
       <rect
          inkscape:label="#rect1895"
          y="258.70975"
@@ -1495,7 +1510,7 @@
       </g>
     </g>
     <g
-       transform="translate(-1.4132412e-7,-80.999995)"
+       transform="translate(-1.4132412e-7,-79.399995)"
        id="eb4"
        inkscape:label="#g2048">
       <rect
@@ -1677,7 +1692,7 @@
       </g>
     </g>
     <g
-       transform="translate(-1.4132412e-7,-165)"
+       transform="translate(-1.4132412e-7,-163)"
        id="eb3"
        inkscape:label="#g2048">
       <rect
@@ -1859,7 +1874,7 @@
       </g>
     </g>
     <g
-       transform="translate(-1.4132412e-7,-248)"
+       transform="translate(-1.4132412e-7,-246.6)"
        id="eb2"
        inkscape:label="#g2048">
       <rect
@@ -1984,7 +1999,7 @@
       </g>
     </g>
     <g
-       transform="translate(-1.4132412e-7,-333)"
+       transform="translate(-1.4132412e-7,-330.2)"
        id="eb1"
        inkscape:label="#g2048">
       <rect
@@ -2166,7 +2181,7 @@
       </g>
     </g>
     <g
-       transform="translate(-1.4132412e-7,-418)"
+       transform="translate(-1.4132412e-7,-413.8)"
        id="eb0"
        inkscape:label="#g2048">
       <rect
@@ -2346,6 +2361,167 @@
              x="140.34396"
              y="816.60272">START</tspan></text>
       </g>
+    </g>
+    <g
+       id="redax_ctl_btn"
+       inkscape:label="#g1245"
+       onclick="RedaxCycle('all')">
+      <rect
+         inkscape:label="#rect1236"
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240"
+         y="76.157593"
+         x="350.73672"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214"
+           y="76.157593"
+           x="350.73672"
+           id="tspan1238"
+           sodipodi:role="line">CYCLE ALL</tspan></text>
+    </g>
+    <g
+       transform="translate(2.8014183e-6,425)"
+       id="sync_btn"
+       inkscape:label="#g1245"
+       onclick="EBSync('all')">
+      <rect
+         inkscape:label="#rect1236"
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7"
+         y="76.157593"
+         x="358.86368"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214"
+           y="76.157593"
+           x="358.86368"
+           id="tspan1238-5"
+           sodipodi:role="line">SYNC ALL</tspan></text>
+    </g>
+    <g
+       transform="translate(2.8014184e-6,485)"
+       id="bs_start_btn"
+       inkscape:label="#g1245"
+       onclick="StartBootstrax('all')">
+      <rect
+         inkscape:label="#rect1236"
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-5"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-6"
+         y="76.157593"
+         x="360.89542"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214"
+           y="76.157593"
+           x="360.89542"
+           id="tspan1238-5-2"
+           sodipodi:role="line">START BS</tspan></text>
+    </g>
+    <g
+       transform="translate(2.8014184e-6,545)"
+       id="bs_stop_btn"
+       inkscape:label="#g1245"
+       onclick="StopBootstrax('all')">
+      <rect
+         inkscape:label="#rect1236"
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-1"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-2"
+         y="76.157593"
+         x="373.08585"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214"
+           y="76.157593"
+           x="373.08585"
+           id="tspan1238-5-7"
+           sodipodi:role="line">STOP BS</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.99999825,0,0,0.9504954,8.4356557e-4,606.73248)"
+       id="ajax_start_btn"
+       inkscape:label="#g1245"
+       onclick="StartAjax('all')">
+      <rect
+         inkscape:label="#rect1236"
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-9"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-3"
+         y="76.157593"
+         x="342.60977"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214"
+           y="76.157593"
+           x="342.60977"
+           id="tspan1238-5-6"
+           sodipodi:role="line">START AJAX</tspan></text>
+    </g>
+    <g
+       transform="matrix(1.0001487,0,0,0.95049541,-0.04886877,666.73248)"
+       id="ajax_stop_btn"
+       inkscape:label="#g1245"
+       onclick="StopAjax('all')">
+      <rect
+         inkscape:label="#rect1236"
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-2"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-61"
+         y="76.157593"
+         x="354.8002"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214"
+           y="76.157593"
+           x="354.8002"
+           id="tspan1238-5-8"
+           sodipodi:role="line">STOP AJAX</tspan></text>
     </g>
   </g>
 </svg>
