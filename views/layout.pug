@@ -103,6 +103,12 @@ html
                 i.fa.fa-book-open
                 span Log
                 span.extralabel View log and acnknowledge errors
+            if typeof user.groups != 'undefined' && user.groups.includes('daq')
+              li.colored.CTAs#lhypervisor
+                a(href='/hypervisor')
+                  i.fa.fa-hat-wizard
+                  span HPC
+                  span.extralabel Hypervisor Process Controller
             li.sectionlabel.CTAs(style='color:#0c1178')
               span Data and Monitoring
             li.colored#lruns
@@ -132,11 +138,11 @@ html
                 i.fa.fa-id-badge
                 span Shifts
                 span.extralabel Access the shift calendar
-            //li.colored.CTAs#lusers
-            //  a(href='/users')
-            //    i.fa.fa-kiwi-bird
-            //    span Users
-            //    span.extralabel Browse members
+            li.colored.CTAs#lusers
+              a(href='/users')
+                i.fa.fa-kiwi-bird
+                span Users
+                span.extralabel Browse members
             li.colored.CTAs#laccount
               a(href="/account") 
                 i.fa.fa-user-astronaut
