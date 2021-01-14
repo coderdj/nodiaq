@@ -54,7 +54,7 @@ function EBSync(eb) {
     targets = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
   else
     targets = ['eb'+eb];
-  ControlBase('eb_sync', targets);
+  ControlBase('ebctl_sync', targets);
 }
 
 function Microstrax(cmd) {
