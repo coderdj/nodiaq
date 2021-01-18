@@ -41,11 +41,14 @@ router.get('/eb_status', ensureAuthenticated, function(req, res) {
       return res.json({});
     docs[0]['checkin'] = new Date()-docs[0]['time'];
     return res.json(docs[0]);
-  }).catch( (err) => res.json({err: err.message});
+  }).catch( (err) => res.json({err: err.message}));
 });
 
 router.post('/control', ensureAuthenticated, function(req, res) {
   var data = req.body.data;
+  console.log('CONTROL GOT DATA');
+  console.log(data);
+  return res.sendStatus(200);
   var commands = data.commands.map((cmd) => [data.task, cmd]);
   req.db.get('hypervisor').updateOne(
     {ack: 0},
@@ -58,3 +61,4 @@ router.post('/control', ensureAuthenticated, function(req, res) {
   .catch( (err) => res.status(200).json({message: err.message}));
 });
 
+module.exports = router;
