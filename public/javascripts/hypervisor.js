@@ -61,6 +61,7 @@ function Microstrax(cmd) {
 
 function UpdateHosts() {
   var timeout = 5000;
+  var svgobj = document.getElementById("svg_frame").contentDocument;
   for (var i in all_hosts) {
     $.getJSON('hosts/get_host_status?host='+all_hosts[i], (data) => {
       if (Object.entries(data).length == 0) return;
@@ -68,13 +69,18 @@ function UpdateHosts() {
         console.log(data);
         return;
       }
-      var p = /xenon\.local/; // ebx.xenon.local
-      if (p.test(data['host']))
-        data['host'] = data['host'].substr(0,3);
-      if (data['checkin'] > timeout) {
-        $('#'+data['host']+"_status").style.fill="red";
-      } else {
-        $('#'+data['host']+"_status").style.fill="lime";
+      try{
+          var p = /xenon\.local/; // ebx.xenon.local
+          if (p.test(data['host']))
+            data['host'] = data['host'].substr(0,3);
+          if (data['checkin'] > timeout) {
+            svgobj.getElementById(data['host']+"_status").style.fill='red';
+          } else {
+            svgobj.getElementById(data['host']+"_status").style.fill='lime';
+          }
+      }catch(error){
+          console.log(error);
+          console.log(data);
       }
     });
   }
@@ -82,6 +88,7 @@ function UpdateHosts() {
 
 function UpdateVME() {
   var timeout = 10000;
+  var svgobj = document.getElementById("svg_frame").contentDocument;
   $.getJSON('hosts/get_host_status?host=vme', (data) => {
     if (Object.entries(data).length == 0) return;
     if (typeof data.err != 'undefined') {
@@ -89,14 +96,15 @@ function UpdateVME() {
       return;
     }
     for (var i = 0; i < 5; i++) {
-      $("#vme"+i+"_current").textContent(data[i]['IMON_0'] + '/' + data[i]['ISET_0']);
-      $("#vme"+i+"_bkg").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";
+      svgobj.getElementById("vme"+i+"_current").textContent(data[i]['IMON_0'] + '/' + data[i]['ISET_0']);
+      svgobj.getElementById("vme"+i+"_current").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";
     }
   });
 }
 
 function UpdateReadout() {
   var timeout = 5000;
+  var svgobj = document.getElementById("svg_frame").contentDocument;
   for (var i in all_readout) {
     $.getJSON('hypervisor/readout_status?host='+all_readout[i], (data) => {
       if (Object.entries(data).length == 0) return;
@@ -106,13 +114,13 @@ function UpdateReadout() {
       }
       var host_i = data.host[6];
       if (data.checkin > timeout) {
-        $("#"+data.host+"_status").style.fill='red');
-        $("#"+data.host+"_label").textContent="START";
-        $("#"+data.host+"_btn").setAttribute("onclick", "StartRedax("+host_i+")")
+        svgobj.getElementById(data.host+"_status").style.fill='red';
+        svgobj.getElementById(data.host+"_label").textContent="START";
+        svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StartRedax("+host_i+")");
       } else {
-        $("#"+data.host+"_status").style.fill='lime';
-        $("#"+data.host+"_label").textContent="STOP";
-        $("#"+data.host+"_btn").setAttribute("onclick", "StopRedax("+host_i+")")
+        svgobj.getElementById(data.host+"_status").style.fill='lime';
+        svgobj.getElementById(data.host+"_label").textContent="STOP";
+        svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StopRedax("+host_i+")");
       }
     });
   }
@@ -120,6 +128,7 @@ function UpdateReadout() {
 
 function UpdateBootstrax() {
   var timeout = 20000;
+  var svgobj = document.getElementById("svg_frame").contentDocument;
   for (var i in all_bootstrax) {
     $.getJSON('hypervisor/eb_status?proc=bootstrax&host='+all_bootstrax[i], (data) => {
       if (Object.entries(data).length == 0) return;
@@ -129,13 +138,15 @@ function UpdateBootstrax() {
       }
       var host = data['host'].substr(5,8);
       if (data.checkin > timeout) {
-        $("#"+host+"_bootstrax_btn").setAttribute("onclick", `StartBootstrax(${host[2]})`);
-        $("#"+host+"_bootstrax_label").textContent="START";
-        $("#"+host+"_bootstrax_status").style.fill="red";
+        svgobj.getElementById(data.host+"_bootstrax_status").style.fill='red';
+        svgobj.getElementById(data.host+"_bootstrax_label").textContent="START";
+        svgobj.getElementById(data.host+"_bootstrax_btn").setAttribute("onclick",
+            "StartBootstrax("+host[2]+")");
       } else {
-        $("#"+host+"_bootstrax_btn").setAttribute("onclick", `StopBootstrax(${host[2]})`);
-        $("#"+host+"_bootstrax_label").textContent="STOP";
-        $("#"+host+"_bootstrax_status").style.fill="lime";
+        svgobj.getElementById(data.host+"_bootstrax_status").style.fill='lime';
+        svgobj.getElementById(data.host+"_bootstrax_label").textContent="STOP";
+        svgobj.getElementById(data.host+"_bootstrax_btn").setAttribute("onclick",
+            "StopBootstrax("+host[2]+")");
       }
     });
   }
