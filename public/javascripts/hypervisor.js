@@ -70,17 +70,17 @@ function UpdateHosts() {
         return;
       }
       try{
-          var p = /xenon\.local/; // ebx.xenon.local
-          if (p.test(data['host']))
-            data['host'] = data['host'].substr(0,3);
-          if (data['checkin'] > timeout) {
-            svgobj.getElementById(data['host']+"_status").style.fill='red';
-          } else {
-            svgobj.getElementById(data['host']+"_status").style.fill='lime';
-          }
+        var p = /xenon\.local/; // ebx.xenon.local
+        if (p.test(data['host']))
+          data['host'] = data['host'].substr(0,3);
+        if (data['checkin'] > timeout) {
+          svgobj.getElementById(data['host']+"_status").style.fill='red';
+        } else {
+          svgobj.getElementById(data['host']+"_status").style.fill='lime';
+        }
       }catch(error){
-          console.log(error);
-          console.log(data);
+        console.log(error);
+        console.log(data);
       }
     });
   }
@@ -153,7 +153,8 @@ function UpdateBootstrax() {
 }
 
 function UpdateAjax() {
-  var timeout = 20000;
+  var timeout = 3600*1000*1.5;
+  var svgobj = document.getElementById("svg_frame").contentDocument;
   for (var i in all_ajax) {
     $.getJSON('hypervisor/eb_status?proc=ajax&host='+all_ajax[i], (data) => {
       if (Object.entries(data).length == 0) return;
@@ -187,6 +188,7 @@ function UpdateLoop() {
       console.log(err);
       return;
     }
+    var svgobj = document.getElementById("svg_frame").contentDocument;
     var timeout = 30000;
     if (data.checkin > timeout) {
       $("#eb2_microstrax_label").textContent="START";
