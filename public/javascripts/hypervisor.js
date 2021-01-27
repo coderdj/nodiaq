@@ -95,6 +95,7 @@ function UpdateVME() {
       console.log(data);
       return;
     }
+    console.log(data);
     for (var i = 0; i < 5; i++) {
       svgobj.getElementById("vme"+i+"_current").textContent(data[i]['IMON_0'] + '/' + data[i]['ISET_0']);
       svgobj.getElementById("vme"+i+"_current").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";
@@ -112,15 +113,20 @@ function UpdateReadout() {
         console.log(data);
         return;
       }
-      var host_i = data.host[6];
-      if (data.checkin > timeout) {
-        svgobj.getElementById(data.host+"_status").style.fill='red';
-        svgobj.getElementById(data.host+"_label").textContent="START";
-        svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StartRedax("+host_i+")");
-      } else {
-        svgobj.getElementById(data.host+"_status").style.fill='lime';
-        svgobj.getElementById(data.host+"_label").textContent="STOP";
-        svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StopRedax("+host_i+")");
+      try{
+        var host_i = data.host[6];
+        if (data.checkin > timeout) {
+          svgobj.getElementById(data.host+"_status").style.fill='red';
+          svgobj.getElementById(data.host+"_label").textContent="START";
+          svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StartRedax("+host_i+")");
+        } else {
+          svgobj.getElementById(data.host+"_status").style.fill='lime';
+          svgobj.getElementById(data.host+"_label").textContent="STOP";
+          svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StopRedax("+host_i+")");
+        }
+      }catch(error){
+        console.log(error);
+        console.log(data);
       }
     });
   }

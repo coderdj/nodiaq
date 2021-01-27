@@ -5,11 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   id="SVGRoot"
-   version="1.1"
-   viewBox="0 0 1920 1080"
+   width="1920px"
    height="1080px"
-   width="1920px">
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="SVGRoot">
   <defs
      id="defs2013" />
   <metadata
@@ -27,2100 +27,2100 @@
   <g
      id="layer1">
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735054;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       ry="0"
-       rx="0"
-       y="1.0786594"
+       id="rect2026"
+       width="317.84265"
+       height="1077.8427"
        x="1.0786753"
-       height="1077.8427"
-       width="317.84265"
-       id="rect2026" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       ry="0"
+       y="1.0786594"
        rx="0"
-       y="1.0786732"
+       ry="0"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735054;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       id="rect2026-3"
+       width="317.84265"
+       height="1077.8427"
        x="321.07867"
-       height="1077.8427"
-       width="317.84265"
-       id="rect2026-3" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       ry="0"
+       y="1.0786732"
        rx="0"
-       y="1.0786361"
+       ry="0"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       id="rect2026-6"
+       width="317.84265"
+       height="1077.8427"
        x="641.07867"
-       height="1077.8427"
-       width="317.84265"
-       id="rect2026-6" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       ry="0"
-       rx="0"
        y="1.0786361"
+       rx="0"
+       ry="0"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       id="rect2026-7"
+       width="317.84265"
+       height="1077.8427"
        x="961.07867"
-       height="1077.8427"
-       width="317.84265"
-       id="rect2026-7" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       ry="0"
-       rx="0"
        y="1.0786361"
+       rx="0"
+       ry="0"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       id="rect2026-5"
+       width="317.84265"
+       height="1077.8427"
        x="1281.0786"
-       height="1077.8427"
-       width="317.84265"
-       id="rect2026-5" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       ry="0"
-       rx="0"
        y="1.0786361"
-       x="1601.0786"
-       height="1077.8427"
+       rx="0"
+       ry="0"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       id="rect2026-35"
        width="317.84265"
-       id="rect2026-35" />
+       height="1077.8427"
+       x="1601.0786"
+       y="1.0786361"
+       rx="0"
+       ry="0"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.15735078;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
        id="g6594" />
     <g
-       id="nim1"
-       transform="matrix(1.0125647,0,0,1.0041184,308.50175,12.183076)">
+       transform="matrix(1.0125647,0,0,1.0041184,308.50175,12.183076)"
+       id="nim1">
       <rect
-         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="58.571426"
+         x="654.28571"
+         height="207.14287"
+         width="294.28571"
          id="rect7046-4"
-         width="294.28571"
-         height="207.14287"
-         x="654.28571"
-         y="58.571426" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         id="text5632"
-         y="196.63893"
-         x="678.51959"
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:102.37752533px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.39947319"
-         xml:space="preserve"><tspan
-           style="stroke-width:2.39947319"
+         x="678.51959"
+         y="196.63893"
+         id="text5632"><tspan
+           x="678.51959"
+           y="196.63893"
            id="tspan5630"
-           y="196.63893"
-           x="678.51959"><tspan
-             style="stroke-width:2.39947319"
+           style="stroke-width:2.39947319"><tspan
+             x="678.51959"
+             y="196.63893"
              id="tspan5628"
-             y="196.63893"
-             x="678.51959">NIM1</tspan></tspan></text>
+             style="stroke-width:2.39947319">NIM1</tspan></tspan></text>
     </g>
     <g
-       id="nim2"
-       transform="matrix(1.0125647,0,0,1.0041184,628.5011,12.183077)">
+       transform="matrix(1.0125647,0,0,1.0041184,628.5011,12.183077)"
+       id="nim2">
       <rect
-         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="58.571426"
+         x="654.28571"
+         height="207.14287"
+         width="294.28571"
          id="rect7046-40"
-         width="294.28571"
-         height="207.14287"
-         x="654.28571"
-         y="58.571426" />
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         id="text5638"
-         y="196.63893"
-         x="678.51959"
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:102.37752533px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.39947319"
-         xml:space="preserve"><tspan
-           style="stroke-width:2.39947319"
+         x="678.51959"
+         y="196.63893"
+         id="text5638"><tspan
+           x="678.51959"
+           y="196.63893"
            id="tspan5636"
-           y="196.63893"
-           x="678.51959"><tspan
-             style="stroke-width:2.39947319"
+           style="stroke-width:2.39947319"><tspan
+             x="678.51959"
+             y="196.63893"
              id="tspan5634"
-             y="196.63893"
-             x="678.51959">NIM2</tspan></tspan></text>
+             style="stroke-width:2.39947319">NIM2</tspan></tspan></text>
     </g>
     <g
-       id="nim3"
-       transform="matrix(1.0125647,0,0,1.0041184,948.50175,12.183076)">
+       transform="matrix(1.0125647,0,0,1.0041184,948.50175,12.183076)"
+       id="nim3">
       <rect
-         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect7046-9"
-         width="294.28571"
-         height="207.14287"
+         y="58.571426"
          x="654.28571"
-         y="58.571426" />
+         height="207.14287"
+         width="294.28571"
+         id="rect7046-9"
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         id="text5644"
-         y="196.63893"
-         x="678.51959"
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:102.37752533px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.39947319"
-         xml:space="preserve"><tspan
-           style="stroke-width:2.39947319"
-           id="tspan5642"
+         x="678.51959"
+         y="196.63893"
+         id="text5644"><tspan
+           x="678.51959"
            y="196.63893"
-           x="678.51959"><tspan
-             style="stroke-width:2.39947319"
-             id="tspan5640"
+           id="tspan5642"
+           style="stroke-width:2.39947319"><tspan
+             x="678.51959"
              y="196.63893"
-             x="678.51959">NIM3</tspan></tspan></text>
+             id="tspan5640"
+             style="stroke-width:2.39947319">NIM3</tspan></tspan></text>
     </g>
     <g
-       transform="matrix(1.0125074,0,0,1.0195198,-11.446039,-11.459576)"
-       id="vme0">
+       id="vme0"
+       transform="matrix(1.0125074,0,0,1.0195198,-11.446039,-11.459576)">
       <rect
-         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.9986124;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="vme0_rect"
-         width="294.28708"
-         height="204.00139"
+         y="404.57074"
          x="654.28497"
-         y="404.57074" />
+         height="204.00139"
+         width="294.28708"
+         id="vme0_rect"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.9986124;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
-         onclick="VMEControl(0, &quot;on&quot;)"
-         id="vme0_on_btn">
+         id="vme0_on_btn"
+         onclick="VMEControl(0, &quot;on&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label"
-           onclick=""><tspan
-             id="tspan4360"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">ON</tspan></text>
+             id="tspan4360">ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
-         onclick="VMEControl(0, &quot;off&quot;)"
+         transform="translate(140.90991,-2.6072176)"
          id="vme0_off_btn"
-         transform="translate(140.90991,-2.6072176)">
+         onclick="VMEControl(0, &quot;off&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_off_label"
-           onclick=""><tspan
-             id="tspan4360-8"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             id="tspan4360-8">OFF</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_off_bkg"
-           width="85.540565"
-           height="42.317566"
-           x="698.06982"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.8056"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_off_bkg"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <text
-         transform="scale(1.0034569,0.996555)"
-         id="text1333"
-         y="304.52478"
-         x="761.51715"
+         xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:39.36978531px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.98424464;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         xml:space="preserve"><tspan
-           style="stroke-width:0.98424464;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
-           y="339.35782"
+         x="761.51715"
+         y="304.52478"
+         id="text1333"
+         transform="scale(1.0034569,0.996555)"><tspan
+           id="tspan1331"
            x="761.51715"
-           id="tspan1331" /></text>
+           y="339.35782"
+           style="stroke-width:0.98424464;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></text>
       <g
-         style=""
-         id="vme0_display">
+         id="vme0_display"
+         style="">
         <text
-           transform="scale(1.000699,0.99930149)"
-           id="text5054"
-           y="497.80215"
-           x="674.59943"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:104.09354401px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.60233855"
-           xml:space="preserve"><tspan
-             style="stroke-width:2.60233855"
-             id="tspan5052"
+           x="674.59943"
+           y="497.80215"
+           id="text5054"
+           transform="scale(1.000699,0.99930149)"><tspan
+             x="674.59943"
              y="497.80215"
-             x="674.59943"><tspan
-               style="stroke-width:2.60233855"
-               id="tspan5050"
+             id="tspan5052"
+             style="stroke-width:2.60233855"><tspan
+               x="674.59943"
                y="497.80215"
-               x="674.59943">VME0</tspan></tspan></text>
+               id="tspan5050"
+               style="stroke-width:2.60233855">VME0</tspan></tspan></text>
         <text
-           transform="scale(1.000699,0.99930149)"
-           id="text5060"
-           y="546.63538"
-           x="656.11298"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.64809559px;line-height:1.25;font-family:monospace;-inkscape-font-specification:'monospace, Normal';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.9993062;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
-           xml:space="preserve"><tspan
+           x="656.11298"
+           y="546.63538"
+           id="text5060"
+           transform="scale(1.000699,0.99930149)"><tspan
              id="tspan5590">5V amps </tspan></text>
         <text
-           id="text5072"
-           y="548.3125"
-           x="946.48535"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
-             id="tspan5070"
+           x="946.48535"
+           y="548.3125"
+           id="vme0_current"><tspan
+             x="946.48535"
              y="548.3125"
-             x="946.48535"><tspan
-               id="tspan5068"
+             id="tspan5070"><tspan
+               x="946.48535"
                y="548.3125"
-               x="946.48535">0/110</tspan></tspan></text>
+               id="tspan5068">0/110</tspan></tspan></text>
       </g>
     </g>
     <g
-       id="nim4"
-       transform="matrix(1.0124693,0,0,1.004191,308.5782,562.17768)">
+       transform="matrix(1.0124693,0,0,1.004191,308.5782,562.17768)"
+       id="nim4">
       <rect
-         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect7046-0"
-         width="294.28571"
-         height="207.14287"
+         y="58.571426"
          x="654.28571"
-         y="58.571426" />
+         height="207.14287"
+         width="294.28571"
+         id="rect7046-0"
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         id="text5650"
-         y="196.63893"
-         x="678.51959"
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:102.37752533px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.39947319"
-         xml:space="preserve"><tspan
-           style="stroke-width:2.39947319"
-           id="tspan5648"
+         x="678.51959"
+         y="196.63893"
+         id="text5650"><tspan
+           x="678.51959"
            y="196.63893"
-           x="678.51959"><tspan
-             style="stroke-width:2.39947319"
-             id="tspan5646"
+           id="tspan5648"
+           style="stroke-width:2.39947319"><tspan
+             x="678.51959"
              y="196.63893"
-             x="678.51959">NIM4</tspan></tspan></text>
+             id="tspan5646"
+             style="stroke-width:2.39947319">NIM4</tspan></tspan></text>
     </g>
     <g
-       id="nim5"
-       transform="matrix(1.0125647,0,0,1.0041184,948.50175,562.18308)">
+       transform="matrix(1.0125647,0,0,1.0041184,948.50175,562.18308)"
+       id="nim5">
       <rect
-         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect7046-07"
-         width="294.28571"
-         height="207.14287"
+         y="58.571426"
          x="654.28571"
-         y="58.571426" />
+         height="207.14287"
+         width="294.28571"
+         id="rect7046-07"
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         id="text5656"
-         y="196.63893"
-         x="678.51959"
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:102.37752533px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.39947319"
-         xml:space="preserve"><tspan
-           style="stroke-width:2.39947319"
-           id="tspan5654"
+         x="678.51959"
+         y="196.63893"
+         id="text5656"><tspan
+           x="678.51959"
            y="196.63893"
-           x="678.51959"><tspan
-             style="stroke-width:2.39947319"
-             id="tspan5652"
+           id="tspan5654"
+           style="stroke-width:2.39947319"><tspan
+             x="678.51959"
              y="196.63893"
-             x="678.51959">NIM5</tspan></tspan></text>
+             id="tspan5652"
+             style="stroke-width:2.39947319">NIM5</tspan></tspan></text>
     </g>
     <flowRoot
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+       xml:space="preserve"
        id="flowRoot4320"
-       xml:space="preserve"><flowRegion
-         style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
-         id="flowRegion4322"><rect
-           style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
-           y="657.14288"
-           x="681.42859"
-           height="107.85716"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"><flowRegion
+         id="flowRegion4322"
+         style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"><rect
+           id="rect4324"
            width="262.14288"
-           id="rect4324" /></flowRegion><flowPara
-         style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:96px;"
-         id="flowPara4326">ALL ON</flowPara></flowRoot>    <g
-       id="vme1"
-       transform="matrix(1.012517,0,0,1.0181008,308.54699,-10.601707)">
+           height="107.85716"
+           x="681.42859"
+           y="657.14288"
+           style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></flowRegion><flowPara
+         id="flowPara4326"
+         style="-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:96px;">ALL ON</flowPara></flowRoot>    <g
+       transform="matrix(1.012517,0,0,1.0181008,308.54699,-10.601707)"
+       id="vme1">
       <g
          id="vme1_bkg">
         <rect
-           y="404.28571"
-           x="654.28571"
-           height="204.28572"
-           width="294.28571"
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="vme0_rect-1"
-           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
       </g>
       <g
-         onclick="VMEControl(1, &quot;on&quot;)"
-         id="vme1_on_btn">
+         id="vme1_on_btn"
+         onclick="VMEControl(1, &quot;on&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-07"
-           onclick=""><tspan
-             id="tspan4360-6"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">ON</tspan></text>
+             id="tspan4360-6">ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-3"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-3"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
-         onclick="VMEControl(1, &quot;off&quot;)"
+         transform="translate(140.90991,-2.6072176)"
          id="vme1_off_btn"
-         transform="translate(140.90991,-2.6072176)">
+         onclick="VMEControl(1, &quot;off&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-0-6"
-           onclick=""><tspan
-             id="tspan4360-8-1"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             id="tspan4360-8-1">OFF</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-0-5"
-           width="85.540565"
-           height="42.317566"
-           x="698.06982"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.8056"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-5"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
          id="vme1_display">
         <text
-           id="text5510"
-           y="497.29883"
-           x="675.07147"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:104.16580963px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.60414529"
-           xml:space="preserve"><tspan
-             style="stroke-width:2.60414529"
-             id="tspan5508"
+           x="675.07147"
+           y="497.29883"
+           id="text5510"><tspan
+             x="675.07147"
              y="497.29883"
-             x="675.07147"><tspan
-               style="stroke-width:2.60414529"
-               id="tspan5506"
+             id="tspan5508"
+             style="stroke-width:2.60414529"><tspan
+               x="675.07147"
                y="497.29883"
-               x="675.07147">VME1</tspan></tspan></text>
+               id="tspan5506"
+               style="stroke-width:2.60414529">VME1</tspan></tspan></text>
         <text
-           id="text5516"
-           y="546.16602"
-           x="656.57227"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66653341px;line-height:1.25;font-family:monospace;-inkscape-font-specification:'monospace, Normal';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
-           xml:space="preserve"><tspan
+           x="656.57227"
+           y="546.16602"
+           id="text5516"><tspan
              id="tspan5588">5V amps </tspan></text>
         <text
-           id="vme1_current"
-           y="548.3125"
-           x="946.48535"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
-             id="tspan5520"
+           x="946.48535"
+           y="548.3125"
+           id="vme1_current"><tspan
+             x="946.48535"
              y="548.3125"
-             x="946.48535"><tspan
-               id="tspan5518"
+             id="tspan5520"><tspan
+               x="946.48535"
                y="548.3125"
-               x="946.48535">0/110</tspan></tspan></text>
+               id="tspan5518">0/110</tspan></tspan></text>
       </g>
     </g>
     <g
-       id="vme2"
-       transform="matrix(1.012517,0,0,1.0181008,628.54,-10.602282)">
+       transform="matrix(1.012517,0,0,1.0181008,628.54,-10.602282)"
+       id="vme2">
       <rect
-         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="vme2_bkg"
-         width="294.28571"
-         height="204.28572"
+         y="404.28571"
          x="654.28571"
-         y="404.28571" />
+         height="204.28572"
+         width="294.28571"
+         id="vme2_bkg"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
-         onclick="VMEControl(2, &quot;on&quot;)"
-         id="vme2_on_btn">
+         id="vme2_on_btn"
+         onclick="VMEControl(2, &quot;on&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-2"
-           onclick=""><tspan
-             id="tspan4360-80"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">ON</tspan></text>
+             id="tspan4360-80">ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-37"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
-         onclick="VMEControl(2, &quot;off&quot;)"
+         transform="translate(140.90991,-2.6072176)"
          id="vme2_off_btn"
-         transform="translate(140.90991,-2.6072176)">
+         onclick="VMEControl(2, &quot;off&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-0-0"
-           onclick=""><tspan
-             id="tspan4360-8-3"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             id="tspan4360-8-3">OFF</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-0-4"
-           width="85.540565"
-           height="42.317566"
-           x="698.06982"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.8056"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-4"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
          id="vme2_display">
         <text
-           id="text5542"
-           y="497.29883"
-           x="675.07147"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:104.16580963px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.60414529"
-           xml:space="preserve"><tspan
-             style="stroke-width:2.60414529"
-             id="tspan5540"
+           x="675.07147"
+           y="497.29883"
+           id="text5542"><tspan
+             x="675.07147"
              y="497.29883"
-             x="675.07147"><tspan
-               style="stroke-width:2.60414529"
-               id="tspan5538"
+             id="tspan5540"
+             style="stroke-width:2.60414529"><tspan
+               x="675.07147"
                y="497.29883"
-               x="675.07147">VME2</tspan></tspan></text>
+               id="tspan5538"
+               style="stroke-width:2.60414529">VME2</tspan></tspan></text>
         <text
-           id="text5528"
-           y="546.16602"
-           x="656.57227"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66653341px;line-height:1.25;font-family:monospace;-inkscape-font-specification:'monospace, Normal';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
-           xml:space="preserve"><tspan
+           x="656.57227"
+           y="546.16602"
+           id="text5528"><tspan
              id="tspan5586">5V amps</tspan></text>
         <text
-           id="text5536"
-           y="548.3125"
-           x="946.48535"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
-             id="tspan5534"
+           x="946.48535"
+           y="548.3125"
+           id="vme2_current"><tspan
+             x="946.48535"
              y="548.3125"
-             x="946.48535"><tspan
-               id="tspan5532"
+             id="tspan5534"><tspan
+               x="946.48535"
                y="548.3125"
-               x="946.48535">0/110</tspan></tspan></text>
+               id="tspan5532">0/110</tspan></tspan></text>
       </g>
     </g>
     <g
-       id="vme3"
-       transform="matrix(1.012517,0,0,1.0180942,628.53995,209.4017)">
+       transform="matrix(1.012517,0,0,1.0180942,628.53995,209.4017)"
+       id="vme3">
       <g
          id="vme3_bkg">
         <rect
-           y="404.28571"
-           x="654.28571"
-           height="204.28572"
-           width="294.28571"
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="vme0_rect-5-9"
-           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
       </g>
       <g
-         transform="translate(0,-2.6027611)"
+         id="vme3_on_btn"
          onclick="VMEControl(3, &quot;on&quot;)"
-         id="vme3_on_btn">
+         transform="translate(0,-2.6027611)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-2-0"
-           onclick=""><tspan
-             id="tspan4360-80-8"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">ON</tspan></text>
+             id="tspan4360-80-8">ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37-9"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-37-9"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
-         onclick="VMEControl(3, &quot;off&quot;)"
+         transform="translate(140.90991,-2.6072176)"
          id="vme3_off_btn"
-         transform="translate(140.90991,-2.6072176)">
+         onclick="VMEControl(3, &quot;off&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-0-0-2"
-           onclick=""><tspan
-             id="tspan4360-8-3-2"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             id="tspan4360-8-3-2">OFF</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-0-4-3"
-           width="85.540565"
-           height="42.317566"
-           x="698.06982"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.8056"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-4-3"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
          id="vme3_display">
         <text
-           id="text5548"
-           y="497.29883"
-           x="675.07147"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:104.16580963px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.60414529"
-           xml:space="preserve"><tspan
-             style="stroke-width:2.60414529"
-             id="tspan5546"
+           x="675.07147"
+           y="497.29883"
+           id="text5548"><tspan
+             x="675.07147"
              y="497.29883"
-             x="675.07147"><tspan
-               style="stroke-width:2.60414529"
-               id="tspan5544"
+             id="tspan5546"
+             style="stroke-width:2.60414529"><tspan
+               x="675.07147"
                y="497.29883"
-               x="675.07147">VME3</tspan></tspan></text>
+               id="tspan5544"
+               style="stroke-width:2.60414529">VME3</tspan></tspan></text>
         <text
-           id="text5554"
-           y="546.16602"
-           x="656.57227"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66661984px;line-height:1.25;font-family:monospace;-inkscape-font-specification:'monospace, Normal';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
-           xml:space="preserve"><tspan
+           x="656.57227"
+           y="546.16602"
+           id="text5554"><tspan
              id="tspan5584">5V amps</tspan></text>
         <text
-           id="vme3_current"
-           y="548.3125"
-           x="946.48535"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
-             id="tspan5560"
+           x="946.48535"
+           y="548.3125"
+           id="vme3_current"><tspan
+             x="946.48535"
              y="548.3125"
-             x="946.48535"><tspan
-               id="tspan5558"
+             id="tspan5560"><tspan
+               x="946.48535"
                y="548.3125"
-               x="946.48535">0/110</tspan></tspan></text>
+               id="tspan5558">0/110</tspan></tspan></text>
       </g>
     </g>
     <g
-       id="vme4"
-       transform="matrix(1.012517,0,0,1.0180942,948.53995,-10.598292)">
+       transform="matrix(1.012517,0,0,1.0180942,948.53995,-10.598292)"
+       id="vme4">
       <rect
-         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="vme4_bkg"
-         width="294.28571"
-         height="204.28572"
+         y="404.28571"
          x="654.28571"
-         y="404.28571" />
+         height="204.28572"
+         width="294.28571"
+         id="vme4_bkg"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
-         onclick="VMEControl(4, &quot;on&quot;)"
-         id="vme4_on_btn">
+         id="vme4_on_btn"
+         onclick="VMEControl(4, &quot;on&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-2-8"
-           onclick=""><tspan
-             id="tspan4360-80-1"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">ON</tspan></text>
+             id="tspan4360-80-1">ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37-3"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.01538"
+           height="42.426407"
+           width="71.720833"
+           id="vme0_on-37-3"
+           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
-         onclick="VMEControl(4, &quot;off&quot;)"
+         transform="translate(140.90991,-2.6072176)"
          id="vme4_off_btn"
-         transform="translate(140.90991,-2.6072176)">
+         onclick="VMEControl(4, &quot;off&quot;)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-0-0-3"
-           onclick=""><tspan
-             id="tspan4360-8-3-3"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             id="tspan4360-8-3-3">OFF</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-0-4-7"
-           width="85.540565"
-           height="42.317566"
-           x="698.06982"
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="557.8056"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.06982"
+           height="42.317566"
+           width="85.540565"
+           id="vme0_on-0-4-7"
+           style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <g
          id="vme4_display">
         <text
-           id="text5568"
-           y="497.29883"
-           x="675.07147"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:104.16580963px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.60414529"
-           xml:space="preserve"><tspan
-             style="stroke-width:2.60414529"
-             id="tspan5566"
+           x="675.07147"
+           y="497.29883"
+           id="text5568"><tspan
+             x="675.07147"
              y="497.29883"
-             x="675.07147"><tspan
-               style="stroke-width:2.60414529"
-               id="tspan5564"
+             id="tspan5566"
+             style="stroke-width:2.60414529"><tspan
+               x="675.07147"
                y="497.29883"
-               x="675.07147">VME4</tspan></tspan></text>
+               id="tspan5564"
+               style="stroke-width:2.60414529">VME4</tspan></tspan></text>
         <text
-           id="text5574"
-           y="546.16602"
-           x="656.57227"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66661984px;line-height:1.25;font-family:monospace;-inkscape-font-specification:'monospace, Normal';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
-           xml:space="preserve"><tspan
+           x="656.57227"
+           y="546.16602"
+           id="text5574"><tspan
              id="tspan5576">5V amps</tspan></text>
         <text
-           id="vme4_current"
-           y="548.3125"
-           x="946.48535"
+           xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
-             id="tspan5580"
+           x="946.48535"
+           y="548.3125"
+           id="vme4_current"><tspan
+             x="946.48535"
              y="548.3125"
-             x="946.48535"><tspan
-               id="tspan5578"
+             id="tspan5580"><tspan
+               x="946.48535"
                y="548.3125"
-               x="946.48535">0/110</tspan></tspan></text>
+               id="tspan5578">0/110</tspan></tspan></text>
       </g>
     </g>
     <g
-       id="vme_all"
-       transform="matrix(1.012474,0,0,1.0181008,-11.434791,209.39484)">
+       transform="matrix(1.012474,0,0,1.0181008,-11.434791,209.39484)"
+       id="vme_all">
       <g
          id="vme_all_bkg">
         <rect
-           y="404.28571"
-           x="654.28571"
-           height="204.28572"
-           width="294.28571"
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="vme0_rect-5-98"
-           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           width="294.28571"
+           height="204.28572"
+           x="654.28571"
+           y="404.28571" />
       </g>
       <g
-         transform="matrix(1.5050176,0,0,1.4786122,-366.73682,-398.65496)"
+         id="vme_on_btn"
          onclick="VMEControl(&quot;all&quot;, &quot;on&quot;)"
-         id="vme_on_btn">
+         transform="matrix(1.5050176,0,0,1.4786122,-366.73682,-398.65496)">
         <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
+           onclick=""
            id="vme0_on_label-2-9"
-           onclick=""><tspan
-             id="tspan4360-80-9"
-             x="702.85712"
-             y="592.71429">ALL ON</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.74325204;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37-6"
-           width="153.32043"
-           height="41.883156"
-           x="698.28699"
-           y="558.02277"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(&quot;all&quot;, &quot;off&quot;)"
-         id="vme_off_btn"
-         transform="matrix(1.3704625,0,0,1.3704625,-271.45636,-239.1728)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
            y="592.71429"
-           id="vme0_on_label-0-0-0"
-           onclick=""><tspan
-             id="tspan4360-8-3-6"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
              x="702.85712"
-             y="592.71429">ALL OFF</tspan></text>
+             id="tspan4360-80-9">ALL ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.82621324;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-0-4-4"
-           width="168.59462"
-           height="41.800194"
-           x="698.32849"
+           onclick="VMEControl(0, &quot;on&quot;)"
+           y="558.02277"
+           x="698.28699"
+           height="41.883156"
+           width="153.32043"
+           id="vme0_on-37-6"
+           style="fill:none;stroke:#000000;stroke-width:1.74325204;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         transform="matrix(1.3704625,0,0,1.3704625,-271.45636,-239.1728)"
+         id="vme_off_btn"
+         onclick="VMEControl(&quot;all&quot;, &quot;off&quot;)">
+        <text
+           onclick=""
+           id="vme0_on_label-0-0-0"
+           y="592.71429"
+           x="702.85712"
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"><tspan
+             y="592.71429"
+             x="702.85712"
+             id="tspan4360-8-3-6">ALL OFF</tspan></text>
+        <rect
+           onclick="VMEControl(0, &quot;on&quot;)"
            y="558.06427"
-           onclick="VMEControl(0, &quot;on&quot;)" />
+           x="698.32849"
+           height="41.800194"
+           width="168.59462"
+           id="vme0_on-0-4-4"
+           style="fill:none;stroke:#000000;stroke-width:1.82621324;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
     </g>
     <g
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540903,-5.6363627)"
-       id="reader4">
+       id="reader4"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540903,-5.6363627)">
       <rect
-         transform="translate(-0.72439862,313.6312)"
-         style="fill:#000000;fill-opacity:1"
-         id="reader4_bkg"
-         width="302.54068"
-         height="49.244938"
+         y="30.725214"
          x="25.473137"
-         y="30.725214" />
+         height="49.244938"
+         width="302.54068"
+         id="reader4_bkg"
+         style="fill:#000000;fill-opacity:1"
+         transform="translate(-0.72439862,313.6312)" />
       <rect
-         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014"
+         y="346.32623"
+         x="26.765676"
+         height="45.305344"
+         width="298.50681"
          id="reader4_status"
-         width="298.50681"
-         height="45.305344"
-         x="26.765676"
-         y="346.32623" />
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
       <rect
-         style="fill:#777777;fill-opacity:1;stroke-width:1.0758276"
+         y="348.29599"
+         x="28.782614"
+         height="41.365746"
+         width="294.47293"
          id="reader4_fg"
-         width="294.47293"
-         height="41.365746"
-         x="28.782614"
-         y="348.29599" />
+         style="fill:#777777;fill-opacity:1;stroke-width:1.0758276" />
       <text
-         transform="scale(0.99029361,1.0098015)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.84044266px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.27101111;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="26.484091"
+         id="reader4_label"
          y="383.92889"
-         id="reader4_label"><tspan
-           id="tspan1803"
-           x="26.484091"
+         x="26.484091"
+         style="font-style:normal;font-weight:normal;font-size:50.84044266px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.27101111;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(0.99029361,1.0098015)"><tspan
+           style="stroke-width:1.27101111;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
            y="383.92889"
-           style="stroke-width:1.27101111;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">r4</tspan></text>
+           x="26.484091"
+           id="tspan1803">r4</tspan></text>
     </g>
     <g
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,54.9235)"
-       id="reader5">
+       id="reader5"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,54.9235)">
       <rect
-         style="fill:#000000;fill-opacity:1"
+         y="342.42615"
+         x="24.748737"
+         height="49.244938"
+         width="302.54068"
          id="reader5_bkg"
-         width="302.54068"
-         height="49.244938"
-         x="24.748737"
-         y="342.42615" />
+         style="fill:#000000;fill-opacity:1" />
       <rect
-         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014"
+         y="344.39597"
+         x="26.765676"
+         height="45.305344"
+         width="298.50681"
          id="reader5_status"
-         width="298.50681"
-         height="45.305344"
-         x="26.765676"
-         y="344.39597" />
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
       <rect
-         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748"
+         y="346.36575"
+         x="28.782614"
+         height="41.365746"
+         width="294.47293"
          id="reader5_fg"
-         width="294.47293"
-         height="41.365746"
-         x="28.782614"
-         y="346.36575" />
+         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748" />
       <text
-         transform="scale(1.0176617,0.98264484)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:51.25000381px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.28125;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="25.610481"
+         id="reader5_label"
          y="391.84918"
-         id="reader5_label"><tspan
-           id="tspan1803-3"
-           x="25.610481"
+         x="25.610481"
+         style="font-style:normal;font-weight:normal;font-size:51.25000381px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.28125;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0176617,0.98264484)"><tspan
+           style="stroke-width:1.28125;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
            y="391.84918"
-           style="stroke-width:1.28125;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">r5</tspan></text>
+           x="25.610481"
+           id="tspan1803-3">r5</tspan></text>
     </g>
     <g
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,673.7235)"
-       id="oldmaster">
+       id="oldmaster"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,673.7235)">
       <rect
-         style="fill:#000000;fill-opacity:1"
-         id="om_bkg"
-         width="302.54068"
-         height="49.244938"
+         y="342.42615"
          x="24.748737"
-         y="342.42615" />
+         height="49.244938"
+         width="302.54068"
+         id="oldmaster_bkg"
+         style="fill:#000000;fill-opacity:1" />
       <rect
-         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014"
-         id="om_status"
-         width="298.50681"
-         height="45.305344"
+         y="344.39597"
          x="26.765676"
-         y="344.39597" />
+         height="45.305344"
+         width="298.50681"
+         id="oldmaster_status"
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
       <rect
-         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748"
-         id="om_fg"
-         width="294.47293"
-         height="41.365746"
+         y="346.36575"
          x="28.782614"
-         y="346.36575" />
+         height="41.365746"
+         width="294.47293"
+         id="oldmaster_fg"
+         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748" />
       <text
-         transform="scale(1.041702,0.95996747)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.37549973px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.25938737;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="26.78706"
+         id="om_label"
          y="401.13538"
-         id="om_label"><tspan
-           id="tspan1803-3-7"
-           x="26.78706"
+         x="26.78706"
+         style="font-style:normal;font-weight:normal;font-size:50.37549973px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.25938737;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.041702,0.95996747)"><tspan
+           style="stroke-width:1.25938737;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
            y="401.13538"
-           style="stroke-width:1.25938737;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">oldmaster</tspan></text>
+           x="26.78706"
+           id="tspan1803-3-7">oldmaster</tspan></text>
     </g>
     <g
-       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,615.1235)"
-       id="reader6">
+       id="reader6"
+       transform="matrix(0.99160219,0,0,1.0153328,-14.540902,615.1235)">
       <rect
-         style="fill:#000000;fill-opacity:1"
-         id="reader6_bkg"
-         width="302.54068"
+         y="342.42615"
+         x="24.748737"
          height="49.244938"
-         x="24.748737"
-         y="342.42615" />
+         width="302.54068"
+         id="reader6_bkg"
+         style="fill:#000000;fill-opacity:1" />
       <rect
-         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014"
-         id="reader6_status"
-         width="298.50681"
-         height="45.305344"
+         y="344.39597"
          x="26.765676"
-         y="344.39597" />
+         height="45.305344"
+         width="298.50681"
+         id="reader6_status"
+         style="fill:#00fd00;fill-opacity:1;stroke-width:1.08718014" />
       <rect
-         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748"
-         id="reader6_fg"
-         width="294.47293"
-         height="41.365746"
+         y="346.36575"
          x="28.782614"
-         y="346.36575" />
+         height="41.365746"
+         width="294.47293"
+         id="reader6_fg"
+         style="fill:#777777;fill-opacity:1;stroke-width:1.07582748" />
       <text
-         transform="scale(1.0176617,0.98264484)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:51.25000381px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.28125;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="25.610481"
+         id="reader6_label"
          y="391.84918"
-         id="reader6_label"><tspan
-           id="tspan1803-3-8"
-           x="25.610481"
+         x="25.610481"
+         style="font-style:normal;font-weight:normal;font-size:51.25000381px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.28125;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0176617,0.98264484)"><tspan
+           style="stroke-width:1.28125;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
            y="391.84918"
-           style="stroke-width:1.28125;fill:#000000;fill-opacity:1;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">r6</tspan></text>
+           x="25.610481"
+           id="tspan1803-3-8">r6</tspan></text>
     </g>
     <g
-       id="eb2"
-       transform="translate(-1.4132412e-7,-246.6)">
+       transform="translate(-1.4132412e-7,-246.6)"
+       id="eb2">
       <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
          id="eb2_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
       <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
          id="eb2_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
       <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
          id="eb2_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
       <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
-         x="30.195532"
-         y="315.73224"
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
          id="eb2_label"
-         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"><tspan
-           id="tspan1901-8"
-           x="30.195532"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;"
            y="315.73224"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;">eb2</tspan></text>
+           x="30.195532"
+           id="tspan1901-8">eb2</tspan></text>
       <g
-         id="eb2_sync"
+         onclick="EBSync(2)"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(2)">
+         id="eb2_sync">
         <rect
-           y="840.07098"
-           x="150.93658"
-           height="34.345184"
-           width="95.459412"
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
            id="rect1905-7"
-           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061" />
-        <text
-           id="text1913-04"
-           y="871.70801"
-           x="150.51273"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1"
-             y="871.70801"
-             x="150.51273"
-             id="tspan1911-84">SYNC</tspan></text>
-      </g>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="143.37634"
-         y="906.34686"
-         id="text1965-9"><tspan
-           id="tspan1963-6"
-           x="143.37634"
-           y="906.34686"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">microstrax</tspan></text>
-      <g
-         id="eb2_microstrax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,580.16191)"
-         onclick="Microstrax('start')">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb2_microstrax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb2_microstrax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-48">START</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb0"
-       transform="translate(-1.4132412e-7,-413.8)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="eb0_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="eb0_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="eb0_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
-         x="30.195532"
-         y="315.73224"
-         id="eb0_label"
-         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"><tspan
-           id="tspan1901-7"
-           x="30.195532"
-           y="315.73224"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;">eb0</tspan></text>
-      <g
-         id="eb0_sync"
-         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(0)">
-        <rect
-           y="840.07098"
-           x="150.93658"
-           height="34.345184"
            width="95.459412"
-           id="rect1905-64"
-           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061" />
-        <text
-           id="text1913-7"
-           y="871.70801"
-           x="150.51273"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1"
-             y="871.70801"
-             x="150.51273"
-             id="tspan1911-97">SYNC</tspan></text>
-      </g>
-      <g
-         id="eb0_bootstrax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(0)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb0_bootstrax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb0_bootstrax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.0068485,0.99319811)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="198.50418"
-         y="936.72424"
-         id="text1965-34"><tspan
-           id="tspan1963-66"
-           x="198.50418"
-           y="936.72424"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">AJAX</tspan></text>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="139.7955"
-         y="926.63007"
-         id="text1969-02"><tspan
-           id="tspan1967-5"
-           x="139.7955"
-           y="926.63007"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BOOTSTRAX</tspan></text>
-      <g
-         id="eb0_ajax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(0)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb0_ajax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb0_ajax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-7">START</tspan></text>
-      </g>
-    </g>
-    <g
-       transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,-4.7970957)"
-       onclick="StartRedax('all')"
-       id="redax_start_btn">
-      <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.57646179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_start_all"
-         width="298.23486"
-         height="38.474098"
-         x="330.88257"
-         y="45.64333"
-         onclick="StartRedax('all')" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="350.59528"
-         y="75.331429"
-         id="text1240"
-         transform="scale(0.94735023,1.0555758)"><tspan
-           id="tspan1238"
-           x="350.59528"
-           y="75.331429"
-           style="stroke-width:0.95662147;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">START READERS</tspan></text>
-    </g>
-    <g
-       onclick="EBSync('all')"
-       id="sync_btn"
-       transform="translate(2.8014183e-6,425)">
-      <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_ctl_all-6"
-         width="298.23486"
-         height="48.234859"
-         x="330.88257"
-         y="35.882568"
-         onclick="RedaxCycle('all')" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="358.86368"
-         y="76.157593"
-         id="text1240-7"
-         transform="scale(0.98438325,1.0158645)"><tspan
-           id="tspan1238-5"
-           x="358.86368"
-           y="76.157593"
-           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">SYNC ALL</tspan></text>
-    </g>
-    <g
-       onclick="StartBootstrax('all')"
-       id="bs_start_btn"
-       transform="translate(2.8014184e-6,485)">
-      <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_ctl_all-6-5"
-         width="298.23486"
-         height="48.234859"
-         x="330.88257"
-         y="35.882568"
-         onclick="RedaxCycle('all')" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="360.89542"
-         y="76.157593"
-         id="text1240-7-6"
-         transform="scale(0.98438325,1.0158645)"><tspan
-           id="tspan1238-5-2"
-           x="360.89542"
-           y="76.157593"
-           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">START BS</tspan></text>
-    </g>
-    <g
-       onclick="StopBootstrax('all')"
-       id="bs_stop_btn"
-       transform="translate(2.8014184e-6,545)">
-      <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_ctl_all-6-1"
-         width="298.23486"
-         height="48.234859"
-         x="330.88257"
-         y="35.882568"
-         onclick="RedaxCycle('all')" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="373.08585"
-         y="76.157593"
-         id="text1240-7-2"
-         transform="scale(0.98438325,1.0158645)"><tspan
-           id="tspan1238-5-7"
-           x="373.08585"
-           y="76.157593"
-           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">STOP BS</tspan></text>
-    </g>
-    <g
-       onclick="StartAjax('all')"
-       id="ajax_start_btn"
-       transform="matrix(0.99999825,0,0,0.9504954,8.4356557e-4,606.73248)">
-      <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_ctl_all-6-9"
-         width="298.23486"
-         height="48.234859"
-         x="330.88257"
-         y="35.882568"
-         onclick="RedaxCycle('all')" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="342.60977"
-         y="76.157593"
-         id="text1240-7-3"
-         transform="scale(0.98438325,1.0158645)"><tspan
-           id="tspan1238-5-6"
-           x="342.60977"
-           y="76.157593"
-           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">START AJAX</tspan></text>
-    </g>
-    <g
-       onclick="StopAjax('all')"
-       id="ajax_stop_btn"
-       transform="matrix(1.0001487,0,0,0.95049541,-0.04886877,666.73248)">
-      <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_ctl_all-6-2"
-         width="298.23486"
-         height="48.234859"
-         x="330.88257"
-         y="35.882568"
-         onclick="RedaxCycle('all')" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="354.8002"
-         y="76.157593"
-         id="text1240-7-61"
-         transform="scale(0.98438325,1.0158645)"><tspan
-           id="tspan1238-5-8"
-           x="354.8002"
-           y="76.157593"
-           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">STOP AJAX</tspan></text>
-    </g>
-    <g
-       id="eb1"
-       transform="translate(-1.4132412e-7,-330.2)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="eb1_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="eb1_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="eb0_fg-5"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
-         x="30.195532"
-         y="315.73224"
-         id="eb1_label"
-         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"><tspan
-           id="tspan1901-7-2"
-           x="30.195532"
-           y="315.73224"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;">eb1</tspan></text>
-      <g
-         id="eb1_sync"
-         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(1)">
-        <rect
-           y="840.07098"
-           x="150.93658"
            height="34.345184"
-           width="95.459412"
-           id="rect1905-64-8"
-           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061" />
-        <text
-           id="text1913-7-9"
-           y="871.70801"
-           x="150.51273"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1"
-             y="871.70801"
-             x="150.51273"
-             id="tspan1911-97-7">SYNC</tspan></text>
-      </g>
-      <g
-         id="eb1_bootstrax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(1)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb1_bootstrax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb1_bootstrax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-2">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.0068485,0.99319811)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="198.50418"
-         y="936.72424"
-         id="text1965-34-9"><tspan
-           id="tspan1963-66-3"
-           x="198.50418"
-           y="936.72424"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">AJAX</tspan></text>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="139.7955"
-         y="926.63007"
-         id="text1969-02-1"><tspan
-           id="tspan1967-5-9"
-           x="139.7955"
-           y="926.63007"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BOOTSTRAX</tspan></text>
-      <g
-         id="eb1_ajax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(1)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb1_ajax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb1_ajax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-7-4">START</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb3"
-       transform="translate(-1.4132412e-7,-163)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="eb3_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="eb3_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="eb3_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
-         x="30.195532"
-         y="315.73224"
-         id="eb3_label"
-         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"><tspan
-           id="tspan1901-7-0"
-           x="30.195532"
-           y="315.73224"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;">eb3</tspan></text>
-      <g
-         id="eb3_sync"
-         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(3)">
-        <rect
-           y="840.07098"
            x="150.93658"
-           height="34.345184"
-           width="95.459412"
-           id="rect1905-64-3"
-           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061" />
-        <text
-           id="text1913-7-2"
-           y="871.70801"
-           x="150.51273"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1"
-             y="871.70801"
-             x="150.51273"
-             id="tspan1911-97-0">SYNC</tspan></text>
-      </g>
-      <g
-         id="eb3_bootstrax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(3)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb3_bootstrax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb3_bootstrax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-5">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.0068485,0.99319811)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="198.50418"
-         y="936.72424"
-         id="text1965-34-4"><tspan
-           id="tspan1963-66-7"
-           x="198.50418"
-           y="936.72424"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">AJAX</tspan></text>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="139.7955"
-         y="926.63007"
-         id="text1969-02-6"><tspan
-           id="tspan1967-5-5"
-           x="139.7955"
-           y="926.63007"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BOOTSTRAX</tspan></text>
-      <g
-         id="eb3_ajax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(3)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb3_ajax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb3_ajax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-7-7">START</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb4"
-       transform="translate(-1.4132412e-7,-79.399995)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="eb4_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="eb4_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="eb4_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
-         x="30.195532"
-         y="315.73224"
-         id="eb4_label"
-         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"><tspan
-           id="tspan1901-7-5"
-           x="30.195532"
-           y="315.73224"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;">eb4</tspan></text>
-      <g
-         id="eb4_sync"
-         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(4)">
-        <rect
-           y="840.07098"
-           x="150.93658"
-           height="34.345184"
-           width="95.459412"
-           id="rect1905-64-4"
-           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061" />
-        <text
-           id="text1913-7-8"
-           y="871.70801"
-           x="150.51273"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1"
-             y="871.70801"
-             x="150.51273"
-             id="tspan1911-97-71">SYNC</tspan></text>
-      </g>
-      <g
-         id="eb4_bootstrax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(4)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb4_bootstrax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb4_bootstrax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-22">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.0068485,0.99319811)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="198.50418"
-         y="936.72424"
-         id="text1965-34-6"><tspan
-           id="tspan1963-66-1"
-           x="198.50418"
-           y="936.72424"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">AJAX</tspan></text>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="139.7955"
-         y="926.63007"
-         id="text1969-02-0"><tspan
-           id="tspan1967-5-6"
-           x="139.7955"
-           y="926.63007"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BOOTSTRAX</tspan></text>
-      <g
-         id="eb4_ajax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(4)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb4_ajax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb4_ajax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-7-49">START</tspan></text>
-      </g>
-    </g>
-    <g
-       id="eb5"
-       transform="translate(-1.4132412e-7,4.2000049)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="eb5_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="eb5_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="eb5_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
-         x="30.195532"
-         y="315.73224"
-         id="eb5_label"
-         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"><tspan
-           id="tspan1901-7-1"
-           x="30.195532"
-           y="315.73224"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;">eb5</tspan></text>
-      <g
-         id="eb5_sync"
-         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(5)">
-        <rect
-           y="840.07098"
-           x="150.93658"
-           height="34.345184"
-           width="95.459412"
-           id="rect1905-64-5"
-           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061" />
-        <text
-           id="text1913-7-97"
-           y="871.70801"
-           x="150.51273"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1"
-             y="871.70801"
-             x="150.51273"
-             id="tspan1911-97-76">SYNC</tspan></text>
-      </g>
-      <g
-         id="eb5_bootstrax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(5)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb5_bootstrax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb5_bootstrax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-56">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.0068485,0.99319811)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="198.50418"
-         y="936.72424"
-         id="text1965-34-3"><tspan
-           id="tspan1963-66-9"
-           x="198.50418"
-           y="936.72424"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">AJAX</tspan></text>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="139.7955"
-         y="926.63007"
-         id="text1969-02-4"><tspan
-           id="tspan1967-5-8"
-           x="139.7955"
-           y="926.63007"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BOOTSTRAX</tspan></text>
-      <g
-         id="eb5_ajax_btn"
-         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(5)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="eb5_ajax_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="eb5_ajax_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-7-3">START</tspan></text>
-      </g>
-    </g>
-    <g
-       id="reader0"
-       transform="translate(-1.4132412e-7,-865.4)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="reader0_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="reader0_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="reader0_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
-         x="4.2074423"
-         y="963.12903"
-         id="reader0_label"
-         transform="scale(1.0236506,0.97689578)"><tspan
-           id="tspan1901-7-3"
-           x="4.2074423"
-           y="963.12903"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;">r0</tspan></text>
-      <g
-         id="reader0_reader_0_btn"
-         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(0)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="reader0_reader_0_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="reader0_reader_0_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-59">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.0068485,0.99319809)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:25.37976265px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.63449401;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="101.49457"
-         y="943.46039"
-         id="text1965-34-62"><tspan
-           id="tspan1963-66-17"
-           x="101.49457"
-           y="943.46039"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.63449401;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">controller</tspan></text>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="116.0003"
-         y="930.62726"
-         id="text1969-02-8"><tspan
-           id="tspan1967-5-57"
-           x="116.0003"
-           y="930.62726"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
-      <g
-         id="reader0_controller_0_btn"
-         transform="matrix(0.57800147,0,0,0.6014761,146.83746,445.36893)"
-         onclick="StartRedax(0, &quot;controller&quot;)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="reader0_controller_0_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="reader0_controller_0_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-5-7-9">START</tspan></text>
-      </g>
-    </g>
-    <g
-       id="reader1"
-       transform="translate(-1.4132412e-7,-781.8)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="reader1_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="reader1_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="reader1_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
-         x="4.2074423"
-         y="963.12903"
-         id="reader1_label"
-         transform="scale(1.0236506,0.97689578)"><tspan
-           id="tspan1901-7-3-2"
-           x="4.2074423"
-           y="963.12903"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;">r1</tspan></text>
-      <g
-         id="reader1_reader_0_btn"
-         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(1)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="reader1_reader_0_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-        <text
-           id="reader1_reader_0_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-59-6">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="116.0003"
-         y="930.62726"
-         id="text1969-02-8-2"><tspan
-           id="tspan1967-5-57-1"
-           x="116.0003"
-           y="930.62726"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
-    </g>
-    <g
-       id="reader2"
-       transform="translate(-1.4132412e-7,-698.2)">
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-         id="reader2_bkg"
-         width="302.54068"
-         height="73.867409"
-         x="24.748737"
-         y="258.70975" />
-      <rect
-         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-         id="reader2_status"
-         width="292.45599"
-         height="64.018417"
-         x="29.791082"
-         y="263.63425" />
-      <rect
-         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-         id="reader2_fg"
-         width="280"
-         height="55"
-         x="20.252539"
-         y="885" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
-         x="4.2074423"
-         y="963.12903"
-         id="reader2_label"
-         transform="scale(1.0236506,0.97689578)"><tspan
-           id="tspan1901-7-3-2-0"
-           x="4.2074423"
-           y="963.12903"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;">r2</tspan></text>
-      <g
-         id="reader2_r_btn"
-         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(2)">
-        <rect
-           y="785.46185"
-           x="141.16882"
-           height="32.577419"
-           width="119.95562"
-           id="reader2_reader_0_status"
-           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467;" />
-        <text
-           id="reader2_reader_0_label"
-           y="816.60272"
-           x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-           xml:space="preserve"><tspan
-             y="816.60272"
-             x="140.34396"
-             id="tspan1930-0-59-6-4">START</tspan></text>
-      </g>
-      <text
-         transform="scale(1.025515,0.97511981)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="116.0003"
-         y="930.62726"
-         id="text1969-02-8-2-0"><tspan
-           id="tspan1967-5-57-1-0"
-           x="116.0003"
-           y="930.62726"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
-      <g
-         id="reader3"
-         transform="translate(0,83.600005)">
-        <rect
-           transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-           style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-           id="reader3_bkg"
-           width="302.54068"
-           height="73.867409"
-           x="24.748737"
-           y="258.70975" />
-        <rect
-           transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)"
-           style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-           id="reader3_status"
-           width="292.45599"
-           height="64.018417"
-           x="29.791082"
-           y="263.63425" />
-        <rect
-           style="fill:#000000;fill-opacity:1;stroke-width:5.23237514"
-           id="reader3_fg"
-           width="280"
-           height="55"
-           x="20.252539"
-           y="885" />
+           y="840.07098" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
-           x="4.2074423"
-           y="963.12903"
-           id="reader3_label"
-           transform="scale(1.0236506,0.97689578)"><tspan
-             id="tspan1901-7-3-2-5"
-             x="4.2074423"
-             y="963.12903"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;">r3</tspan></text>
-        <g
-           id="reader3_reader_0_btn"
-           transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-           onclick="StartRedax(3)">
-          <rect
-             y="785.46185"
-             x="141.16882"
-             height="32.577419"
-             width="119.95562"
-             id="reader3_reader_0_status"
-             style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467" />
-          <text
-             id="reader3_reader_0_label"
-             y="816.60272"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-04"><tspan
+             id="tspan1911-84"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <text
+         id="text1965-9"
+         y="906.34686"
+         x="143.37634"
+         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="906.34686"
+           x="143.37634"
+           id="tspan1963-6">microstrax</tspan></text>
+      <g
+         onclick="Microstrax('start')"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,580.16191)"
+         id="eb2_microstrax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb2_microstrax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb2_microstrax_label"><tspan
+             id="tspan1930-5-48"
              x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-413.8)"
+       id="eb0">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb0_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb0_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb0_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb0_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-7">eb0</tspan></text>
+      <g
+         onclick="EBSync(0)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb0_sync">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-64"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-7"><tspan
+             id="tspan1911-97"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         onclick="BootstraxStart(0)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
+         id="eb0_bootstrax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb0_bootstrax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb0_bootstrax_label"><tspan
+             id="tspan1930-0"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1965-34"
+         y="936.72424"
+         x="198.50418"
+         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0068485,0.99319811)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="936.72424"
+           x="198.50418"
+           id="tspan1963-66">AJAX</tspan></text>
+      <text
+         id="text1969-02"
+         y="926.63007"
+         x="139.7955"
+         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="926.63007"
+           x="139.7955"
+           id="tspan1967-5">BOOTSTRAX</tspan></text>
+      <g
+         onclick="AjaxStart(0)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
+         id="eb0_ajax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb0_ajax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb0_ajax_label"><tspan
+             id="tspan1930-5-7"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       id="redax_start_btn"
+       onclick="StartRedax('all')"
+       transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,-4.7970957)">
+      <rect
+         onclick="StartRedax('all')"
+         y="45.64333"
+         x="330.88257"
+         height="38.474098"
+         width="298.23486"
+         id="redax_start_all"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.57646179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.94735023,1.0555758)"
+         id="text1240"
+         y="75.331429"
+         x="350.59528"
+         style="font-style:normal;font-weight:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.95662147;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="75.331429"
+           x="350.59528"
+           id="tspan1238">START READERS</tspan></text>
+    </g>
+    <g
+       transform="translate(2.8014183e-6,425)"
+       id="sync_btn"
+       onclick="EBSync('all')">
+      <rect
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7"
+         y="76.157593"
+         x="358.86368"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="76.157593"
+           x="358.86368"
+           id="tspan1238-5">SYNC ALL</tspan></text>
+    </g>
+    <g
+       transform="translate(2.8014184e-6,485)"
+       id="bs_start_btn"
+       onclick="StartBootstrax('all')">
+      <rect
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-5"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-6"
+         y="76.157593"
+         x="360.89542"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="76.157593"
+           x="360.89542"
+           id="tspan1238-5-2">START BS</tspan></text>
+    </g>
+    <g
+       transform="translate(2.8014184e-6,545)"
+       id="bs_stop_btn"
+       onclick="StopBootstrax('all')">
+      <rect
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-1"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-2"
+         y="76.157593"
+         x="373.08585"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="76.157593"
+           x="373.08585"
+           id="tspan1238-5-7">STOP BS</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.99999825,0,0,0.9504954,8.4356557e-4,606.73248)"
+       id="ajax_start_btn"
+       onclick="StartAjax('all')">
+      <rect
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-9"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-3"
+         y="76.157593"
+         x="342.60977"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="76.157593"
+           x="342.60977"
+           id="tspan1238-5-6">START AJAX</tspan></text>
+    </g>
+    <g
+       transform="matrix(1.0001487,0,0,0.95049541,-0.04886877,666.73248)"
+       id="ajax_stop_btn"
+       onclick="StopAjax('all')">
+      <rect
+         onclick="RedaxCycle('all')"
+         y="35.882568"
+         x="330.88257"
+         height="48.234859"
+         width="298.23486"
+         id="redax_ctl_all-6-2"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(0.98438325,1.0158645)"
+         id="text1240-7-61"
+         y="76.157593"
+         x="354.8002"
+         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="76.157593"
+           x="354.8002"
+           id="tspan1238-5-8">STOP AJAX</tspan></text>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-330.2)"
+       id="eb1">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb1_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb1_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb0_fg-5"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb1_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-7-2">eb1</tspan></text>
+      <g
+         onclick="EBSync(1)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb1_sync">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-64-8"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-7-9"><tspan
+             id="tspan1911-97-7"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         onclick="BootstraxStart(1)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
+         id="eb1_bootstrax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb1_bootstrax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb1_bootstrax_label"><tspan
+             id="tspan1930-0-2"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1965-34-9"
+         y="936.72424"
+         x="198.50418"
+         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0068485,0.99319811)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="936.72424"
+           x="198.50418"
+           id="tspan1963-66-3">AJAX</tspan></text>
+      <text
+         id="text1969-02-1"
+         y="926.63007"
+         x="139.7955"
+         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="926.63007"
+           x="139.7955"
+           id="tspan1967-5-9">BOOTSTRAX</tspan></text>
+      <g
+         onclick="AjaxStart(1)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
+         id="eb1_ajax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb1_ajax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb1_ajax_label"><tspan
+             id="tspan1930-5-7-4"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-163)"
+       id="eb3">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb3_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb3_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb3_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb3_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-7-0">eb3</tspan></text>
+      <g
+         onclick="EBSync(3)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb3_sync">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-64-3"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-7-2"><tspan
+             id="tspan1911-97-0"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         onclick="BootstraxStart(3)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
+         id="eb3_bootstrax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb3_bootstrax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb3_bootstrax_label"><tspan
+             id="tspan1930-0-5"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1965-34-4"
+         y="936.72424"
+         x="198.50418"
+         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0068485,0.99319811)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="936.72424"
+           x="198.50418"
+           id="tspan1963-66-7">AJAX</tspan></text>
+      <text
+         id="text1969-02-6"
+         y="926.63007"
+         x="139.7955"
+         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="926.63007"
+           x="139.7955"
+           id="tspan1967-5-5">BOOTSTRAX</tspan></text>
+      <g
+         onclick="AjaxStart(3)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
+         id="eb3_ajax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb3_ajax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb3_ajax_label"><tspan
+             id="tspan1930-5-7-7"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-79.399995)"
+       id="eb4">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb4_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb4_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb4_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb4_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-7-5">eb4</tspan></text>
+      <g
+         onclick="EBSync(4)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb4_sync">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-64-4"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-7-8"><tspan
+             id="tspan1911-97-71"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         onclick="BootstraxStart(4)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
+         id="eb4_bootstrax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb4_bootstrax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb4_bootstrax_label"><tspan
+             id="tspan1930-0-22"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1965-34-6"
+         y="936.72424"
+         x="198.50418"
+         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0068485,0.99319811)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="936.72424"
+           x="198.50418"
+           id="tspan1963-66-1">AJAX</tspan></text>
+      <text
+         id="text1969-02-0"
+         y="926.63007"
+         x="139.7955"
+         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="926.63007"
+           x="139.7955"
+           id="tspan1967-5-6">BOOTSTRAX</tspan></text>
+      <g
+         onclick="AjaxStart(4)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
+         id="eb4_ajax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb4_ajax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb4_ajax_label"><tspan
+             id="tspan1930-5-7-49"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,4.2000049)"
+       id="eb5">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="eb5_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="eb5_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="eb5_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="matrix(0.96744298,0,0,1.0406879,-14.540902,612.3235)"
+         id="eb5_label"
+         y="315.73224"
+         x="30.195532"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.4957428px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:1.86239338;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:1.86239338;"
+           y="315.73224"
+           x="30.195532"
+           id="tspan1901-7-1">eb5</tspan></text>
+      <g
+         onclick="EBSync(5)"
+         transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
+         id="eb5_sync">
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke-width:1.68646061"
+           id="rect1905-64-5"
+           width="95.459412"
+           height="34.345184"
+           x="150.93658"
+           y="840.07098" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1"
+           x="150.51273"
+           y="871.70801"
+           id="text1913-7-97"><tspan
+             id="tspan1911-97-76"
+             x="150.51273"
+             y="871.70801"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#00ff00;fill-opacity:1;stroke-width:1">SYNC</tspan></text>
+      </g>
+      <g
+         onclick="BootstraxStart(5)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
+         id="eb5_bootstrax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb5_bootstrax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb5_bootstrax_label"><tspan
+             id="tspan1930-0-56"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1965-34-3"
+         y="936.72424"
+         x="198.50418"
+         style="font-style:normal;font-weight:normal;font-size:17.3370533px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0068485,0.99319811)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.43342632;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="936.72424"
+           x="198.50418"
+           id="tspan1963-66-9">AJAX</tspan></text>
+      <text
+         id="text1969-02-4"
+         y="926.63007"
+         x="139.7955"
+         style="font-style:normal;font-weight:normal;font-size:16.27053452px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.40676332;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="926.63007"
+           x="139.7955"
+           id="tspan1967-5-8">BOOTSTRAX</tspan></text>
+      <g
+         onclick="AjaxStart(5)"
+         transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
+         id="eb5_ajax_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="eb5_ajax_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="eb5_ajax_label"><tspan
+             id="tspan1930-5-7-3"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-865.4)"
+       id="reader0">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="reader0_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="reader0_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="reader0_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="scale(1.0236506,0.97689578)"
+         id="reader0_label"
+         y="963.12903"
+         x="4.2074423"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;"
+           y="963.12903"
+           x="4.2074423"
+           id="tspan1901-7-3">r0</tspan></text>
+      <g
+         onclick="StartRedax(0)"
+         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
+         id="reader0_reader_0_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="reader0_reader_0_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="reader0_reader_0_label"><tspan
+             id="tspan1930-0-59"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1965-34-62"
+         y="943.46039"
+         x="101.49457"
+         style="font-style:normal;font-weight:normal;font-size:25.37976265px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.63449401;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.0068485,0.99319809)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.63449401;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="943.46039"
+           x="101.49457"
+           id="tspan1963-66-17">controller</tspan></text>
+      <text
+         id="text1969-02-8"
+         y="930.62726"
+         x="116.0003"
+         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="930.62726"
+           x="116.0003"
+           id="tspan1967-5-57">reader</tspan></text>
+      <g
+         onclick="StartRedax(0, &quot;controller&quot;)"
+         transform="matrix(0.57800147,0,0,0.6014761,146.83746,445.36893)"
+         id="reader0_controller_0_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="reader0_controller_0_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="reader0_controller_0_label"><tspan
+             id="tspan1930-5-7-9"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-781.8)"
+       id="reader1">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="reader1_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="reader1_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="reader1_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="scale(1.0236506,0.97689578)"
+         id="reader1_label"
+         y="963.12903"
+         x="4.2074423"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;"
+           y="963.12903"
+           x="4.2074423"
+           id="tspan1901-7-3-2">r1</tspan></text>
+      <g
+         onclick="StartRedax(1)"
+         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
+         id="reader1_reader_0_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="reader1_reader_0_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="reader1_reader_0_label"><tspan
+             id="tspan1930-0-59-6"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1969-02-8-2"
+         y="930.62726"
+         x="116.0003"
+         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="930.62726"
+           x="116.0003"
+           id="tspan1967-5-57-1">reader</tspan></text>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-698.2)"
+       id="reader2">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="reader2_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="reader2_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="reader2_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="scale(1.0236506,0.97689578)"
+         id="reader2_label"
+         y="963.12903"
+         x="4.2074423"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;"
+           y="963.12903"
+           x="4.2074423"
+           id="tspan1901-7-3-2-0">r2</tspan></text>
+      <g
+         onclick="StartRedax(2)"
+         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
+         id="reader2_r_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467;"
+           id="reader2_reader_0_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="reader2_reader_0_label"><tspan
+             id="tspan1930-0-59-6-4"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1969-02-8-2-0"
+         y="930.62726"
+         x="116.0003"
+         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="930.62726"
+           x="116.0003"
+           id="tspan1967-5-57-1-0">reader</tspan></text>
+      <g
+         transform="translate(0,83.600005)"
+         id="reader3">
+        <rect
+           y="258.70975"
+           x="24.748737"
+           height="73.867409"
+           width="302.54068"
+           id="reader3_bkg"
+           style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+           transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+        <rect
+           y="263.63425"
+           x="29.791082"
+           height="64.018417"
+           width="292.45599"
+           id="reader3_status"
+           style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+           transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+        <rect
+           y="885"
+           x="20.252539"
+           height="55"
+           width="280"
+           id="reader3_fg"
+           style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+        <text
+           transform="scale(1.0236506,0.97689578)"
+           id="reader3_label"
+           y="963.12903"
+           x="4.2074423"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;"
+             y="963.12903"
+             x="4.2074423"
+             id="tspan1901-7-3-2-5">r3</tspan></text>
+        <g
+           onclick="StartRedax(3)"
+           transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
+           id="reader3_reader_0_btn">
+          <rect
+             style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+             id="reader3_reader_0_status"
+             width="119.95562"
+             height="32.577419"
+             x="141.16882"
+             y="785.46185" />
+          <text
+             xml:space="preserve"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-             xml:space="preserve"><tspan
-               y="816.60272"
+             x="140.34396"
+             y="816.60272"
+             id="reader3_reader_0_label"><tspan
+               id="tspan1930-0-59-6-7"
                x="140.34396"
-               id="tspan1930-0-59-6-7">START</tspan></text>
+               y="816.60272">START</tspan></text>
         </g>
         <text
-           transform="scale(1.025515,0.97511981)"
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="116.0003"
+           id="text1969-02-8-2-2"
            y="930.62726"
-           id="text1969-02-8-2-2"><tspan
-             id="tspan1967-5-57-1-8"
-             x="116.0003"
+           x="116.0003"
+           style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           xml:space="preserve"
+           transform="scale(1.025515,0.97511981)"><tspan
+             style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
              y="930.62726"
-             style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
+             x="116.0003"
+             id="tspan1967-5-57-1-8">reader</tspan></text>
       </g>
     </g>
     <g
-       onclick="StopRedax('all')"
+       transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,45.202904)"
        id="redax_stop_btn"
-       transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,45.202904)">
+       onclick="StopRedax('all')">
       <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.57646179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="redax_start_all-9"
-         width="298.23486"
-         height="38.474098"
-         x="330.88257"
+         onclick="StartRedax('all')"
          y="45.64333"
-         onclick="StartRedax('all')" />
+         x="330.88257"
+         height="38.474098"
+         width="298.23486"
+         id="redax_start_all-9"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.57646179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="359.03448"
-         y="75.331429"
+         transform="scale(0.94735025,1.0555758)"
          id="text1240-9"
-         transform="scale(0.94735025,1.0555758)"><tspan
-           id="tspan1238-6"
-           x="359.03448"
+         y="75.331429"
+         x="359.03448"
+         style="font-style:normal;font-weight:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.95662147;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
            y="75.331429"
-           style="stroke-width:0.95662147;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">STOP READERS</tspan></text>
+           x="359.03448"
+           id="tspan1238-6">STOP READERS</tspan></text>
     </g>
     <g
-       id="nim0"
-       transform="matrix(1.0125647,0,0,1.0041184,-11.494044,12.187269)">
+       transform="matrix(1.0125647,0,0,1.0041184,-11.494044,12.187269)"
+       id="nim0">
       <rect
-         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect7046-4-7"
-         width="294.28571"
-         height="207.14287"
+         y="58.571426"
          x="654.28571"
-         y="58.571426" />
+         height="207.14287"
+         width="294.28571"
+         id="rect7046-4-7"
+         style="fill:#7777ff;fill-opacity:1;stroke:#191919;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
-         id="text5626"
-         y="196.63893"
-         x="678.51959"
+         xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:102.37752533px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.39947319"
-         xml:space="preserve"><tspan
-           style="stroke-width:2.39947319"
-           id="tspan5624"
+         x="678.51959"
+         y="196.63893"
+         id="text5626"><tspan
+           x="678.51959"
            y="196.63893"
-           x="678.51959"><tspan
-             style="stroke-width:2.39947319"
-             id="tspan5622"
+           id="tspan5624"
+           style="stroke-width:2.39947319"><tspan
+             x="678.51959"
              y="196.63893"
-             x="678.51959">NIM0</tspan></tspan></text>
+             id="tspan5622"
+             style="stroke-width:2.39947319">NIM0</tspan></tspan></text>
     </g>
   </g>
 </svg>
