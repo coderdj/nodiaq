@@ -136,7 +136,7 @@ function UpdateBootstrax() {
   var timeout = 20000;
   var svgobj = document.getElementById("svg_frame").contentDocument;
   for (var i in all_bootstrax) {
-    $.getJSON('hypervisor/eb_status?proc=bootstrax&host='+all_bootstrax[i], (data) => {
+    $.getJSON('hypervisor/eb_status?host='+all_bootstrax[i], (data) => {
       if (Object.entries(data).length == 0) return;
       if (typeof data.err != 'undefined') {
         console.log(data);
@@ -162,7 +162,7 @@ function UpdateAjax() {
   var timeout = 3600*1000*1.5;
   var svgobj = document.getElementById("svg_frame").contentDocument;
   for (var i in all_ajax) {
-    $.getJSON('hypervisor/eb_status?proc=ajax&host='+all_ajax[i], (data) => {
+    $.getJSON('hypervisor/eb_status?host='+all_ajax[i], (data) => {
       if (Object.entries(data).length == 0) return;
       if (typeof data.err != 'undefiend') {
         console.log(err);
