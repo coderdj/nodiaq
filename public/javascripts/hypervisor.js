@@ -96,10 +96,16 @@ function UpdateVME() {
       return;
     }
     //console.log(data);
-    for (var i = 0; i < 5; i++) {
-      svgobj.getElementById("vme"+i+"_current").textContent(data[i]['IMON_0'] + '/' + data[i]['ISET_0']);
-      svgobj.getElementById("vme"+i+"_current").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";
-    }
+    try{
+      svgobj.getElementById("vme_timeout").style.fill=data['checkin'] > timeout ? "black" : "red";
+
+      for (var i = 0; i < 5; i++) {
+        svgobj.getElementById("vme"+i+"_current").textContent = data[i]['IMON_0'] + '/' + data[i]['ISET_0'];
+        svgobj.getElementById("vme"+i+"_rect").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";
+      }
+    }catch(error){
+      console.log(error);
+      console.log(data);
   });
 }
 
