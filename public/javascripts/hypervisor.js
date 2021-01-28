@@ -1,10 +1,10 @@
 var eb2 = ['eb2'];
 var not_eb2 = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
 var all_hosts = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
-  'reader6', 'eb0.xenon.local', 'eb1.xenon.local', 'eb2.xenon.local', 'eb3.xenon.local', 'eb4.xenon.local', 'eb5.xenon.local', 'oldmaster'];
+  'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
 var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0'];
-var all_bootstrax = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
-var all_ajax = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
+var all_bootstrax = ['eb0.xenon.local', 'eb1.xenon.local', 'eb3.xenon.local', 'eb4.xenon.local', 'eb5.xenon.local'];
+var all_ajax = ['ajax.eb0.xenon.local', 'ajax.eb1.xenon.local', 'ajax.eb3.xenon.local', 'ajax.eb4.xenon.local', 'ajax.eb5.xenon.local'];
 
 function ControlBase(task, targets) {
   $.ajax({
@@ -95,7 +95,7 @@ function UpdateVME() {
       console.log(data);
       return;
     }
-    console.log(data);
+    //console.log(data);
     for (var i = 0; i < 5; i++) {
       svgobj.getElementById("vme"+i+"_current").textContent(data[i]['IMON_0'] + '/' + data[i]['ISET_0']);
       svgobj.getElementById("vme"+i+"_current").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";

@@ -1973,7 +1973,7 @@
       <g
          onclick="StartRedax(2)"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         id="reader2_r_btn">
+         id="reader2_reader_0_btn">
         <rect
            style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467;"
            id="reader2_reader_0_status"
@@ -2002,76 +2002,6 @@
            y="930.62726"
            x="116.0003"
            id="tspan1967-5-57-1-0">reader</tspan></text>
-      <g
-         transform="translate(0,83.600005)"
-         id="reader3">
-        <rect
-           y="258.70975"
-           x="24.748737"
-           height="73.867409"
-           width="302.54068"
-           id="reader3_bkg"
-           style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
-           transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
-        <rect
-           y="263.63425"
-           x="29.791082"
-           height="64.018417"
-           width="292.45599"
-           id="reader3_status"
-           style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
-           transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
-        <rect
-           y="885"
-           x="20.252539"
-           height="55"
-           width="280"
-           id="reader3_fg"
-           style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
-        <text
-           transform="scale(1.0236506,0.97689578)"
-           id="reader3_label"
-           y="963.12903"
-           x="4.2074423"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;"
-             y="963.12903"
-             x="4.2074423"
-             id="tspan1901-7-3-2-5">r3</tspan></text>
-        <g
-           onclick="StartRedax(3)"
-           transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-           id="reader3_reader_0_btn">
-          <rect
-             style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
-             id="reader3_reader_0_status"
-             width="119.95562"
-             height="32.577419"
-             x="141.16882"
-             y="785.46185" />
-          <text
-             xml:space="preserve"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
-             x="140.34396"
-             y="816.60272"
-             id="reader3_reader_0_label"><tspan
-               id="tspan1930-0-59-6-7"
-               x="140.34396"
-               y="816.60272">START</tspan></text>
-        </g>
-        <text
-           id="text1969-02-8-2-2"
-           y="930.62726"
-           x="116.0003"
-           style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           xml:space="preserve"
-           transform="scale(1.025515,0.97511981)"><tspan
-             style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
-             y="930.62726"
-             x="116.0003"
-             id="tspan1967-5-57-1-8">reader</tspan></text>
-      </g>
     </g>
     <g
        transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,45.202904)"
@@ -2121,6 +2051,77 @@
              y="196.63893"
              id="tspan5622"
              style="stroke-width:2.39947319">NIM0</tspan></tspan></text>
+    </g>
+    <g
+       transform="translate(-1.4132412e-7,-614.6)"
+       id="reader3"
+       style="">
+      <rect
+         y="258.70975"
+         x="24.748737"
+         height="73.867409"
+         width="302.54068"
+         id="reader3_bkg"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.00238144"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="263.63425"
+         x="29.791082"
+         height="64.018417"
+         width="292.45599"
+         id="reader3_status"
+         style="fill:#00ff00;fill-opacity:1;stroke-width:3.7263422"
+         transform="matrix(0.99160219,0,0,1.0153328,-14.540902,612.3235)" />
+      <rect
+         y="885"
+         x="20.252539"
+         height="55"
+         width="280"
+         id="reader3_fg"
+         style="fill:#000000;fill-opacity:1;stroke-width:5.23237514" />
+      <text
+         transform="scale(1.0236506,0.97689578)"
+         id="reader3_label"
+         y="963.12903"
+         x="4.2074423"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;"
+           y="963.12903"
+           x="4.2074423"
+           id="tspan1901-7-3-2-5">r3</tspan></text>
+      <g
+         onclick="StartRedax(3)"
+         transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
+         id="reader3_reader_0_btn">
+        <rect
+           style="fill:#ff0000;fill-opacity:1;stroke-width:2.31840467"
+           id="reader3_reader_0_status"
+           width="119.95562"
+           height="32.577419"
+           x="141.16882"
+           y="785.46185" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           x="140.34396"
+           y="816.60272"
+           id="reader3_reader_0_label"><tspan
+             id="tspan1930-0-59-6-7"
+             x="140.34396"
+             y="816.60272">START</tspan></text>
+      </g>
+      <text
+         id="text1969-02-8-2-2"
+         y="930.62726"
+         x="116.0003"
+         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         xml:space="preserve"
+         transform="scale(1.025515,0.97511981)"><tspan
+           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="930.62726"
+           x="116.0003"
+           id="tspan1967-5-57-1-8">reader</tspan></text>
     </g>
   </g>
 </svg>
