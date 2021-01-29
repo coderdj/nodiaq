@@ -219,4 +219,20 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
   }).catch((err) => res.json({message: err.message}));
 });
 
+function GetSystemMonitorStatus(collection, host) {
+  var query = {host: host,};
+  var options = {sort: {'_id': -1}, limit: 1};
+  return collection.find(query, options);
+}
+router.get("/gethoststatus/:host", checkKey, function(req, res) {
+  var host = req.params.host
+  var collection = req.db.get("system_monitor");
+  GetSystemMonitorStatus(collection,host).then( docs => {
+    if (docs.length == 0)
+      return res.json({message: "No status update found for this host"});
+    return res.json(docs[0]);
+  }).catch( err => {
+    return res.json({message: err.message});
+  });
+});
 module.exports = router;
