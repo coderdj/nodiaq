@@ -15,7 +15,7 @@ function ControlBase(task, targets) {
     error: (jqXHR, text, error) => {alert("Error " + error + ": " + text);}
   });
 }
-
+/*
 function VMEControl(crate, onoff) {
   ControlBase('vmectl_'+ onoff, crate == 'all' ? ['vme0', 'vme1', 'vme2', 'vme3', 'vme4'] : ['vme'+crate]);
 }
@@ -58,7 +58,7 @@ function EBSync(eb) {
 function Microstrax(cmd) {
   ControlBase('microstraxctl_'+cmd, eb2);
 }
-
+*/
 function UpdateHosts() {
   var timeout = 5000;
   var svgobj = document.getElementById("svg_frame").contentDocument;
@@ -100,8 +100,11 @@ function UpdateVME() {
       svgobj.getElementById("vme_timeout").style.fill=data['checkin'] > timeout ? "black" : "red";
 
       for (var i = 0; i < 5; i++) {
-        svgobj.getElementById("vme"+i+"_current").textContent = data[i]['IMON_0'] + '/' + data[i]['ISET_0'];
-        svgobj.getElementById("vme"+i+"_bkg").style.fill=data[i]["IMON_0"] > 0 ? "red" : "FF7777";
+        var d = data[i];
+        var ON = d["IMON_0"] > 0;
+        svgobj.getElementById("vme"+i+"_current").textContent = d['IMON_0'] + '/' + d['ISET_0'];
+        svgobj.getElementById("vme"+i+"_bkg").style.fill = ON ? "red" : "FF7777";
+        svgobj.getElementById("vme"+i+"_btn").children[0].textContent = ON ? "OFF" : "ON";
       }
     }catch(error){
       console.log(error);
@@ -124,11 +127,9 @@ function UpdateReadout() {
         if (data.checkin > timeout) {
           svgobj.getElementById(data.host+"_status").style.fill='red';
           svgobj.getElementById(data.host+"_label").textContent="START";
-          svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StartRedax("+host_i+")");
         } else {
           svgobj.getElementById(data.host+"_status").style.fill='lime';
           svgobj.getElementById(data.host+"_label").textContent="STOP";
-          svgobj.getElementById(data.host+"_btn").setAttribute("onclick", "StopRedax("+host_i+")");
         }
       }catch(error){
         console.log(error);
@@ -152,13 +153,9 @@ function UpdateBootstrax() {
       if (data.checkin > timeout) {
         svgobj.getElementById(data.host+"_bootstrax_status").style.fill='red';
         svgobj.getElementById(data.host+"_bootstrax_label").textContent="START";
-        svgobj.getElementById(data.host+"_bootstrax_btn").setAttribute("onclick",
-            "StartBootstrax("+host[2]+")");
       } else {
         svgobj.getElementById(data.host+"_bootstrax_status").style.fill='lime';
         svgobj.getElementById(data.host+"_bootstrax_label").textContent="STOP";
-        svgobj.getElementById(data.host+"_bootstrax_btn").setAttribute("onclick",
-            "StopBootstrax("+host[2]+")");
       }
     });
   }
@@ -176,11 +173,9 @@ function UpdateAjax() {
       }
       var host = data['host'].substr(5,8);
       if (data.checkin > timeout) {
-        $("#"+host+"_ajax_btn").setAttribute("onclick", `StartAjax(${host[2]})`);
         $("#"+host+"_ajax_label").textContent="START";
         $("#"+host+"_ajax_status").style.fill="red";
       } else {
-        $("#"+host+"_ajax_btn").setAttribute("onclick", `StopAjax(${host[2]})`);
         $("#"+host+"_ajax_label").textContent="STOP";
         $("#"+host+"_ajax_status").style.fill="lime";
       }
@@ -194,7 +189,7 @@ function UpdateLoop() {
   UpdateReadout();
   UpdateBootstrax();
   UpdateAjax();
-  $.getJSON('hypervisor/eb_status?proc=microstrax&host=eb2', (data) => {
+  $.getJSON('hypervisor/eb_status?host=microstrax.eb2.xenon.local', (data) => {
     if (Object.entries(data).length == 0) return;
     if (typeof data.err != 'undefined') {
       console.log(err);
@@ -205,11 +200,9 @@ function UpdateLoop() {
     if (data.checkin > timeout) {
       $("#eb2_microstrax_label").textContent="START";
       $("#eb2_microstrax_status").style.fill="red";
-      $("#eb2_microstrax_btn").setAttribute("onclick", "Microstrax('start')");
     } else {
       $("#eb2_microstrax_label").textContent="STOP";
       $("#eb2_microstrax_status").style.fill="green";
-      $("#eb2_microstrax_btn").setAttribute("onclick", "Microstrax('stop')");
     }
   });
 }
