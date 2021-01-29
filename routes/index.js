@@ -386,14 +386,15 @@ function TryToFindUser(cursor, email, collection, callback){
     });
 }
 
-router.post("/linkLDAP", (req, res) => {
+router.post("/linkLDAP", function(req, res) {
     var db = req.runs_db;
     var collection = db.get("users");
     if(req.body.lngs_id != "" && req.body.email != ""){
 	collection.find({"email": req.body.email},
 			function(e, docs){
-			    TryToFindUser(docs, req.body.email, collection, function(haveUser){
-				if(!haveUser)
+			    //TryToFindUser(docs, req.body.email, collection, function(haveUser){
+				//if(!haveUser)
+                if (docs.length == 0)
 				    return res.render(
 					"confirmationLander",
 					{message: "You don't seem to be in our database"});
@@ -415,7 +416,7 @@ router.post("/linkLDAP", (req, res) => {
 					    "confirmationLander",
 					    {message: "Failed to send email confirmation"});
 				    }); // end confirmation mail callback
-			}); // end try to find user callback
+			//}); // end try to find user callback
 			}); // end mongo query callback
     }
     else
@@ -423,15 +424,16 @@ router.post("/linkLDAP", (req, res) => {
 			  {message: "You must provide a valid email and LDAP ID"});
 });
 
-router.post("/linkGithub", (req, res) => {
+router.post("/linkGithub", function(req, res) {
     var db = req.runs_db;
     var collection = db.get("users");
     if(req.body.github != "" && req.body.email != ""){
 	// set github ID to github_temp and send mail
 	collection.find({"email": req.body.email},
 			function(e, docs){
-			    TryToFindUser(docs, req.body.email, collection, function(haveUser){
-                                if(!haveUser)
+			    //TryToFindUser(docs, req.body.email, collection, function(haveUser){
+                //                if(!haveUser)
+                if (docs.length == 0)
                                     return res.render(
                                         "confirmationLander",
                                         {message: "You don't seem to be in our database"});
@@ -452,7 +454,7 @@ router.post("/linkGithub", (req, res) => {
 					return res.render("confirmationLander",
 							  {message: "Failed to send email confirmation"});
 				}); // End email callback
-			    }); // End user callback
+//			    }); // End user callback
 			});	// End mongo callback
     }
     else
