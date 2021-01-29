@@ -5,15 +5,13 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    id="SVGRoot"
    version="1.1"
    viewBox="0 0 1920 1080"
    height="1080px"
    width="1920px">
   <script
-     id="script1639"
-     xlink:href="/home/xedaq/nodiaq_test_2/public/javascripts/hypervisor.js" />
+     id="script1666" />
   <defs
      id="defs2013" />
   <metadata
@@ -172,41 +170,19 @@
          x="654.28497"
          y="404.57074" />
       <g
-         onclick="VMEControl(0, &quot;on&quot;)"
-         id="vme0_on_btn">
+         onclick="VMEControl(this)"
+         id="vme0_btn"
+         transform="translate(63.873524,-2.6072176)">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            x="702.85712"
            y="592.71429"
-           id="vme0_on_label"
-           onclick=""><tspan
-             id="tspan4360"
-             x="702.85712"
-             y="592.71429">ON</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
-           y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(0, &quot;off&quot;)"
-         id="vme0_off_btn"
-         transform="translate(140.90991,-2.6072176)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
-           id="vme0_off_label"
+           id="vme0_btn_label"
            onclick=""><tspan
              id="tspan4360-8"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             y="592.71429">ON</tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
            id="vme0_off_bkg"
@@ -344,41 +320,19 @@
            style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <g
-         onclick="VMEControl(1, &quot;on&quot;)"
-         id="vme1_on_btn">
+         onclick="VMEControl(this)"
+         id="vme1_btn"
+         transform="translate(67.824635,-2.6072176)">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            x="702.85712"
            y="592.71429"
-           id="vme0_on_label-07"
-           onclick=""><tspan
-             id="tspan4360-6"
-             x="702.85712"
-             y="592.71429">ON</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-3"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
-           y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(1, &quot;off&quot;)"
-         id="vme1_off_btn"
-         transform="translate(140.90991,-2.6072176)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
-           id="vme0_on_label-0-6"
+           id="vme1_btn_label"
            onclick=""><tspan
              id="tspan4360-8-1"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             y="592.71429">ON</tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
            id="vme0_on-0-5"
@@ -436,41 +390,19 @@
          x="654.28571"
          y="404.28571" />
       <g
-         onclick="VMEControl(2, &quot;on&quot;)"
-         id="vme2_on_btn">
+         onclick="VMEControl(this)"
+         id="vme2_btn"
+         transform="translate(61.89881,-2.6072176)">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            x="702.85712"
            y="592.71429"
-           id="vme0_on_label-2"
-           onclick=""><tspan
-             id="tspan4360-80"
-             x="702.85712"
-             y="592.71429">ON</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
-           y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(2, &quot;off&quot;)"
-         id="vme2_off_btn"
-         transform="translate(140.90991,-2.6072176)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
-           id="vme0_on_label-0-0"
+           id="vme2_btn_label"
            onclick=""><tspan
              id="tspan4360-8-3"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             y="592.71429">ON</tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
            id="vme0_on-0-4"
@@ -531,42 +463,19 @@
            style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <g
-         transform="translate(0,-2.6027611)"
-         onclick="VMEControl(3, &quot;on&quot;)"
-         id="vme3_on_btn">
+         onclick="VMEControl(this)"
+         id="vme3_btn"
+         transform="translate(61.89881,-2.6072176)">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            x="702.85712"
            y="592.71429"
-           id="vme0_on_label-2-0"
-           onclick=""><tspan
-             id="tspan4360-80-8"
-             x="702.85712"
-             y="592.71429">ON</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37-9"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
-           y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(3, &quot;off&quot;)"
-         id="vme3_off_btn"
-         transform="translate(140.90991,-2.6072176)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
-           id="vme0_on_label-0-0-2"
+           id="vme3_btn_label"
            onclick=""><tspan
              id="tspan4360-8-3-2"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             y="592.71429">ON</tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
            id="vme0_on-0-4-3"
@@ -624,41 +533,19 @@
          x="654.28571"
          y="404.28571" />
       <g
-         onclick="VMEControl(4, &quot;on&quot;)"
-         id="vme4_on_btn">
+         onclick="VMEControl(this)"
+         id="vme4_btn"
+         transform="translate(65.84936,-2.6072176)">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            x="702.85712"
            y="592.71429"
-           id="vme0_on_label-2-8"
-           onclick=""><tspan
-             id="tspan4360-80-1"
-             x="702.85712"
-             y="592.71429">ON</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-37-3"
-           width="71.720833"
-           height="42.426407"
-           x="698.01538"
-           y="557.75116"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(4, &quot;off&quot;)"
-         id="vme4_off_btn"
-         transform="translate(140.90991,-2.6072176)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-           x="702.85712"
-           y="592.71429"
-           id="vme0_on_label-0-0-3"
+           id="vme4_btn_label"
            onclick=""><tspan
              id="tspan4360-8-3-3"
              x="702.85712"
-             y="592.71429">OFF</tspan></text>
+             y="592.71429">ON</tspan></text>
         <rect
            style="fill:none;stroke:#000000;stroke-width:1.30884099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
            id="vme0_on-0-4-7"
@@ -720,72 +607,26 @@
       </g>
       <g
          transform="matrix(1.5050176,0,0,1.4786122,-366.73682,-398.65496)"
-         onclick="VMEControl(&quot;all&quot;, &quot;on&quot;)"
-         id="vme_on_btn">
+         onclick="VMEControl(this)"
+         id="vmea_on_btn">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-           x="702.85712"
+           x="799.98212"
            y="592.71429"
-           id="vme0_on_label-2-9"
+           id="vmea_on_label"
            onclick=""><tspan
              id="tspan4360-80-9"
-             x="702.85712"
-             y="592.71429">ALL ON</tspan></text>
+             x="799.98212"
+             y="592.71429">ON</tspan></text>
         <rect
-           style="fill:none;stroke:#000000;stroke-width:1.74325204;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           style="fill:none;stroke:#000000;stroke-width:1.03660583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
            id="vme0_on-37-6"
-           width="153.32043"
+           width="54.21344"
            height="41.883156"
-           x="698.28699"
+           x="797.39398"
            y="558.02277"
            onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         onclick="VMEControl(&quot;all&quot;, &quot;off&quot;)"
-         id="vme_off_btn"
-         transform="matrix(1.3704625,0,0,1.3704625,-273.43172,-266.67496)">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-           x="702.85712"
-           y="592.71429"
-           id="vme0_on_label-0-0-0"
-           onclick=""><tspan
-             id="tspan4360-8-3-6"
-             x="702.85712"
-             y="592.71429">ALL OFF</tspan></text>
-        <rect
-           style="fill:none;stroke:#000000;stroke-width:1.85655808;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-           id="vme0_on-0-4-4"
-           width="174.37021"
-           height="41.769936"
-           x="698.34363"
-           y="558.07941"
-           onclick="VMEControl(0, &quot;on&quot;)" />
-      </g>
-      <g
-         transform="matrix(1.3704625,0,0,1.3704625,-273.43172,-266.67496)"
-         id="g1618"
-         onclick="VMEControl(&quot;all&quot;, &quot;off&quot;)">
-        <text
-           onclick=""
-           id="text1614"
-           y="592.71429"
-           x="702.85712"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-           xml:space="preserve"><tspan
-             y="592.71429"
-             x="702.85712"
-             id="tspan1612">ALL OFF</tspan></text>
-        <rect
-           onclick="VMEControl(0, &quot;on&quot;)"
-           y="558.07941"
-           x="698.34363"
-           height="41.769936"
-           width="174.37021"
-           id="rect1616"
-           style="fill:none;stroke:#000000;stroke-width:1.85655808;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
       </g>
       <text
          transform="scale(1.0027749,0.99723278)"
@@ -798,6 +639,44 @@
            y="597.14331"
            x="661.10675"
            id="tspan1641">VME TIMEOUT</tspan></text>
+      <g
+         transform="matrix(1.5050176,0,0,1.4786122,-378.72666,-330.49896)"
+         onclick="VMEControl(this)"
+         id="vmea_off_btn">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           x="799.98212"
+           y="592.71429"
+           id="vmea_off_label"
+           onclick=""><tspan
+             id="tspan4360-80-9-7"
+             x="799.98212"
+             y="592.71429">OFF</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1.21337247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+           id="vme0_on-37-6-5"
+           width="74.596123"
+           height="41.705284"
+           x="797.48303"
+           y="558.11169"
+           onclick="VMEControl(0, &quot;on&quot;)" />
+      </g>
+      <text
+         transform="scale(1.0027749,0.99723278)"
+         id="text1694"
+         y="482.84064"
+         x="658.92535"
+         style="font-style:normal;font-weight:normal;font-size:40.40833664px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.01020837"
+         xml:space="preserve"><tspan
+           style="stroke-width:1.01020837"
+           y="482.84064"
+           x="658.92535"
+           id="tspan1692">ALL</tspan><tspan
+           id="tspan1702"
+           style="stroke-width:1.01020837"
+           y="533.35107"
+           x="658.92535">CRATES</tspan></text>
     </g>
     <g
        transform="matrix(0.99160219,0,0,1.0153328,-14.540903,-5.6363627)"
@@ -1075,7 +954,7 @@
       <g
          id="eb0_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(0)">
+         onclick="EBSync(this)">
         <rect
            y="840.07098"
            x="150.93658"
@@ -1097,7 +976,7 @@
       <g
          id="eb0_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(0)">
+         onclick="BootstraxStart(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1140,7 +1019,7 @@
       <g
          id="eb0_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(0)">
+         onclick="AjaxStart(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1160,20 +1039,20 @@
       </g>
     </g>
     <g
-       transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,-4.7970957)"
-       onclick="StartRedax('all')"
-       id="redax_start_btn">
+       transform="matrix(1.0006344,0,0,0.99871245,13.695503,11.202904)"
+       onclick="RedaxControl(this)"
+       id="readout_start_all_btn">
       <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.57646179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:0.99337596;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="redax_start_all"
-         width="298.23486"
-         height="38.474098"
-         x="330.88257"
-         y="45.64333"
+         width="116.64867"
+         height="39.057766"
+         x="330.59085"
+         y="45.351494"
          onclick="StartRedax('all')" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147"
          x="350.59528"
          y="75.331429"
          id="text1240"
@@ -1181,7 +1060,7 @@
            id="tspan1238"
            x="350.59528"
            y="75.331429"
-           style="stroke-width:0.95662147;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">START READERS</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.95662147">START</tspan></text>
     </g>
     <g
        onclick="EBSync('all')"
@@ -1343,7 +1222,7 @@
       <g
          id="eb1_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(1)">
+         onclick="EBSync(this)">
         <rect
            y="840.07098"
            x="150.93658"
@@ -1365,7 +1244,7 @@
       <g
          id="eb1_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(1)">
+         onclick="BootstraxStart(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1408,7 +1287,7 @@
       <g
          id="eb1_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(1)">
+         onclick="AjaxStart(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1827,7 +1706,7 @@
          y="885" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:81.20477295px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:2.03011894"
          x="4.2074423"
          y="963.12903"
          id="reader0_label"
@@ -1835,11 +1714,11 @@
            id="tspan1901-7-3"
            x="4.2074423"
            y="963.12903"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894;">r0</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:2.03011894">r0</tspan></text>
       <g
          id="reader0_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(0)">
+         onclick="RedaxControl(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1851,38 +1730,38 @@
            id="reader0_reader_0_label"
            y="816.60272"
            x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            xml:space="preserve"><tspan
              y="816.60272"
              x="140.34396"
              id="tspan1930-0-59">START</tspan></text>
       </g>
       <text
-         transform="scale(1.0068485,0.99319809)"
+         transform="scale(0.90114859,1.1096949)"
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:25.37976265px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.63449401;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="101.49457"
-         y="943.46039"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.71537209px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.56788421"
+         x="113.93647"
+         y="844.41504"
          id="text1965-34-62"><tspan
            id="tspan1963-66-17"
-           x="101.49457"
-           y="943.46039"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.63449401;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">controller</tspan></text>
+           x="113.93647"
+           y="844.41504"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:0.56788421">controller</tspan></text>
       <text
          transform="scale(1.025515,0.97511981)"
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.73539162px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.69338471"
          x="116.0003"
          y="930.62726"
          id="text1969-02-8"><tspan
            id="tspan1967-5-57"
            x="116.0003"
            y="930.62726"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:0.69338471">reader</tspan></text>
       <g
          id="reader0_controller_0_btn"
          transform="matrix(0.57800147,0,0,0.6014761,146.83746,445.36893)"
-         onclick="StartRedax(0, &quot;controller&quot;)">
+         onclick="RedaxControl(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1894,7 +1773,7 @@
            id="reader0_controller_0_label"
            y="816.60272"
            x="140.34396"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
            xml:space="preserve"><tspan
              y="816.60272"
              x="140.34396"
@@ -1941,7 +1820,7 @@
       <g
          id="reader1_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(1)">
+         onclick="RedaxControl(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -2011,7 +1890,7 @@
       <g
          id="reader2_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(2)">
+         onclick="RedaxControl(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -2042,28 +1921,28 @@
            style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
     </g>
     <g
-       onclick="StopRedax('all')"
-       id="redax_stop_btn"
-       transform="matrix(1.0006344,0,0,0.99871245,-0.30449693,45.202904)">
+       onclick="RedaxControl(this)"
+       id="readout_stop_all_btn"
+       transform="matrix(1.0006344,0,0,0.99871245,169.6955,11.202904)">
       <rect
-         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.57646179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:0.91034609;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="redax_start_all-9"
-         width="298.23486"
-         height="38.474098"
-         x="330.88257"
-         y="45.64333"
+         width="97.755768"
+         height="39.140877"
+         x="330.54929"
+         y="45.309937"
          onclick="StartRedax('all')" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="359.03448"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.26486206px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:0.95662147"
+         x="352.70508"
          y="75.331429"
          id="text1240-9"
          transform="scale(0.94735025,1.0555758)"><tspan
            id="tspan1238-6"
-           x="359.03448"
+           x="352.70508"
            y="75.331429"
-           style="stroke-width:0.95662147;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">STOP READERS</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.95662147">STOP</tspan></text>
     </g>
     <g
        id="nim0"
@@ -2131,7 +2010,7 @@
       <g
          id="reader3_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="StartRedax(3)">
+         onclick="RedaxControl(this)">
         <rect
            y="785.46185"
            x="141.16882"
@@ -2161,5 +2040,14 @@
            y="930.62726"
            style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
     </g>
+    <text
+       id="text1725"
+       y="41.720238"
+       x="341.58237"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="41.720238"
+         x="341.58237"
+         id="tspan1723">ALL READERS</tspan></text>
   </g>
 </svg>
