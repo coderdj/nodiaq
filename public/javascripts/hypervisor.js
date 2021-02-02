@@ -15,38 +15,30 @@ function ControlBase(task, targets) {
     error: (jqXHR, text, error) => {alert("Error " + error + ": " + text);}
   });
 }
-/*
-function VMEControl(crate, onoff) {
-  ControlBase('vmectl_'+ onoff, crate == 'all' ? ['vme0', 'vme1', 'vme2', 'vme3', 'vme4'] : ['vme'+crate]);
+
+function VMEControl(obj) {
+  var crate = obj.getAttribute('id').slice(0,4);
+  var action = obj.textContent.trim().toLowerCase();
+  ControlBase('vmectl_' + action, [crate]);
 }
 
-function StartRedax(reader, proc="reader") {
-  var targets = reader == 'all' ? all_readout : ["reader" + reader + "_" + proc + "_0"];
-  ControlBase("redaxctl_start", targets);
+function RedaxControl(obj) {
+  var proc = obj.getAttribute('id').slice(0,-4);
+  var action = obj.textContent.trim().toLowerCase();
+  if (proc.slice(0,7) === 'redout')
+    proc = 'all';
+  ControlBase("redaxctl_" + action, [proc]);
 }
 
-function StopRedax(reader, proc="reader") {
-  var targets = reader == 'all' ? all_readout : ["reader" + reader + "_" + proc + "_0"];
-  ControlBase("redaxctl_stop", targets);
-}
-
-function StartBootstrax(eb) {
+function BootstraxCtl(eb) {
   ControlBase('bootstraxctl_start', eb == 'all' ? not_eb2 : ['eb'+eb]);
 }
 
-function StopBootstrax(eb) {
-  ControlBase('bootstraxctl_stop', eb == 'all' ? not_eb2 : ['eb'+eb]);
-}
-
-function StartAjax(eb) {
+function AjaxCtl(eb) {
   ControlBase('ajaxctl_start', eb == 'all' ? not_eb2 : ['eb'+eb])
 }
 
-function StopAjax(eb) {
-  ControlBase('ajaxctl_stop', eb == 'all' ? not_eb2 : ['eb'+eb]);
-}
-
-function EBSync(eb) {
+function EBSync() {
   var targets = [];
   if (eb == 'all')
     targets = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
@@ -55,10 +47,10 @@ function EBSync(eb) {
   ControlBase('ebctl_sync', targets);
 }
 
-function Microstrax(cmd) {
+function MicrostraxCtl(cmd) {
   ControlBase('microstraxctl_'+cmd, eb2);
 }
-*/
+
 function UpdateHosts() {
   var timeout = 5000;
   var svgobj = document.getElementById("svg_frame").contentDocument;
@@ -179,11 +171,11 @@ function UpdateAjax() {
       var host = data['host'].substr(5,8);
       try{
         if (data.checkin > timeout) {
-          $("#"+host+"_ajax_label").textContent="START";
-          $("#"+host+"_ajax_status").style.fill="red";
+          svgobj.getElementById(host+"_ajax_label").textContent="START";
+          svgobj.getElementById(host+"_ajax_status").style.fill="red";
         } else {
-          $("#"+host+"_ajax_label").textContent="STOP";
-          $("#"+host+"_ajax_status").style.fill="lime";
+          svgobj.getElementById(host+"_ajax_label").textContent="STOP";
+          svgobj.getElementById(host+"_ajax_status").style.fill="lime";
         }
       }catch(error){
         console.log(error);
@@ -209,11 +201,11 @@ function UpdateLoop() {
     var timeout = 30000;
     try{
       if (data.checkin > timeout) {
-        $("#eb2_microstrax_label").textContent="START";
-        $("#eb2_microstrax_status").style.fill="red";
+        svgobj.getElementById("eb2_microstrax_label").textContent="START";
+        svgobj.getElementById("eb2_microstrax_status").style.fill="red";
       } else {
-        $("#eb2_microstrax_label").textContent="STOP";
-        $("#eb2_microstrax_status").style.fill="lime";
+        svgobj.getElementById("eb2_microstrax_label").textContent="STOP";
+        svgobj.getElementById("eb2_microstrax_status").style.fill="lime";
       }
     }catch(error){
       console.log(error);
@@ -222,3 +214,13 @@ function UpdateLoop() {
   });
 }
 
+function SetupButtons() {
+  var svgobj = document.getElementById("svg_frame").contentDocument;
+  var redax = ["readout_start_all_btn", "readout_stop_all_btn", "reader0_controller_0_btn",
+    "reader0_reader_0_btn", "reader1_reader_0_btn", "reader2_reader_0_btn", "reader3_reader_0_btn"];
+  for (var i in redax_id)
+    svgobj.getElementById(redax_id[i]).addEventListener("click", function() {RedaxControl(this);});
+  var vme = ["vme0_btn", "vme1_btn", "vme2_btn", "vme3_btn", "vme4_btn", "vmea_on_btn", "vmea_off_btn"];
+  for (var i in vme)
+    svgobj.getElementById(vme[i]).addEventListener("click", function() {VMEControl(this);});
+}
