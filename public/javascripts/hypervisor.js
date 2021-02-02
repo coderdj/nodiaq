@@ -151,12 +151,17 @@ function UpdateBootstrax() {
         return;
       }
       var host = data['host'].substr(5,8);
-      if (data.checkin > timeout) {
-        svgobj.getElementById(data.host+"_bootstrax_status").style.fill='red';
-        svgobj.getElementById(data.host+"_bootstrax_label").textContent="START";
-      } else {
-        svgobj.getElementById(data.host+"_bootstrax_status").style.fill='lime';
-        svgobj.getElementById(data.host+"_bootstrax_label").textContent="STOP";
+      try{
+        if (data.checkin > timeout) {
+          svgobj.getElementById(data.host+"_bootstrax_status").style.fill='red';
+          svgobj.getElementById(data.host+"_bootstrax_label").textContent="START";
+        } else {
+          svgobj.getElementById(data.host+"_bootstrax_status").style.fill='lime';
+          svgobj.getElementById(data.host+"_bootstrax_label").textContent="STOP";
+        }
+      }catch(error){
+        console.log(error);
+        console.log(data);
       }
     });
   }
@@ -173,12 +178,17 @@ function UpdateAjax() {
         return;
       }
       var host = data['host'].substr(5,8);
-      if (data.checkin > timeout) {
-        $("#"+host+"_ajax_label").textContent="START";
-        $("#"+host+"_ajax_status").style.fill="red";
-      } else {
-        $("#"+host+"_ajax_label").textContent="STOP";
-        $("#"+host+"_ajax_status").style.fill="lime";
+      try{
+        if (data.checkin > timeout) {
+          $("#"+host+"_ajax_label").textContent="START";
+          $("#"+host+"_ajax_status").style.fill="red";
+        } else {
+          $("#"+host+"_ajax_label").textContent="STOP";
+          $("#"+host+"_ajax_status").style.fill="lime";
+        }
+      }catch(error){
+        console.log(error);
+        console.log(data);
       }
     });
   }
@@ -198,12 +208,17 @@ function UpdateLoop() {
     }
     var svgobj = document.getElementById("svg_frame").contentDocument;
     var timeout = 30000;
-    if (data.checkin > timeout) {
-      $("#eb2_microstrax_label").textContent="START";
-      $("#eb2_microstrax_status").style.fill="red";
-    } else {
-      $("#eb2_microstrax_label").textContent="STOP";
-      $("#eb2_microstrax_status").style.fill="green";
+    try{
+      if (data.checkin > timeout) {
+        $("#eb2_microstrax_label").textContent="START";
+        $("#eb2_microstrax_status").style.fill="red";
+      } else {
+        $("#eb2_microstrax_label").textContent="STOP";
+        $("#eb2_microstrax_status").style.fill="lime";
+      }
+    }catch(error){
+      console.log(error);
+      console.log(data);
     }
   });
 }
