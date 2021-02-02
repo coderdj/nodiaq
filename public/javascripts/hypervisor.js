@@ -87,7 +87,7 @@ function UpdateHosts() {
 }
 
 function UpdateVME() {
-  var timeout = 10000;
+  var timeout = 20000;
   var svgobj = document.getElementById("svg_frame").contentDocument;
   $.getJSON('hosts/get_host_status?host=vme', (data) => {
     if (Object.entries(data).length == 0) return;
@@ -97,7 +97,6 @@ function UpdateVME() {
     }
     //console.log(data);
     try{
-      svgobj.getElementById("vme_timeout").style.fill=data['checkin'] > timeout ? "black" : "red";
 
       for (var i = 0; i < 5; i++) {
         var d = data[i];
@@ -105,6 +104,11 @@ function UpdateVME() {
         svgobj.getElementById("vme"+i+"_current").textContent = d['IMON_0'] + '/' + d['ISET_0'];
         svgobj.getElementById("vme"+i+"_bkg").style.fill = ON ? "red" : "FF7777";
         svgobj.getElementById("vme"+i+"_btn").children[0].textContent = ON ? "OFF" : "ON";
+      }
+      if (data['checkin'] > timeout) {
+          svgobj.getElementById("vme_timeout").style.fill="black";
+      } else {
+          svgobj.getElementById("vme_timeout").style.fill="red";
       }
     }catch(error){
       console.log(error);
