@@ -230,5 +230,24 @@ function SetupButtons() {
     svgobj.getElementById(vme[i]).addEventListener("click", function() {VMEControl(this);});
   var eb = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
   for (var i in eb) {
-    svgobj.getElementById(eb[i]+"_ajax_btn").addEventListener("click", function() {
+    try{
+      svgobj.getElementById(eb[i]+"_ajax_btn").addEventListener("click",
+        function() {AjaxControl(this);});
+      svgobj.getElementById(eb[i]+"_sync").addEventListener("click",
+        function() {EBSync(this);});
+      svgobj.getElementById(eb[i]+"_bootstrax_btn").addEventListener("click",
+        function() {BootstraxControl(this);});
+    }catch(error){
+      console.log(error);
+      console.log(eb[i]);
+    }
+  }
+  try{
+    svgobj.getElementById("eb2_sync").addEventListener("click", function() {EBSync(this);});
+    svgobj.getElementById("eb2_microstrax_btn").addEventListener("click",
+      function() {MicrostraxControl(this);});
+  }catch(error){
+    console.log(error);
+    console.log("eb2");
+  }
 }
