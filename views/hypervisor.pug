@@ -1,0 +1,19 @@
+extends layout
+block extrahead
+  script(src="javascripts/hypervisor.js", type="text/javascript")
+
+block content
+  h3 Hypervisor Process Monitor and Control
+  div.main-container(style='background-color:#eeeeee;margin:-5px;padding:15px;height:100vh')
+    div
+      div(style="width:90%;resize: horizontal; overflow: hidden;")
+        //img(src="images/hypervisor.svg")
+        object(type="image/svg+xml" id="svg_frame" data="images/hypervisor.svg" style="width:100%;" class="hvview" )
+
+  script.
+    $(document).ready(function(){
+      DrawActiveLink("#lhypervisor");
+      setInterval(UpdateLoop, 5000);
+    });
+    window.addEventListener("load", SetupButtons);
+
