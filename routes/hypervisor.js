@@ -47,10 +47,9 @@ router.post('/control', ensureAuthenticated, function(req, res) {
   console.log('CONTROL GOT DATA');
   console.log(data);
   return res.sendStatus(200);
-  var commands = data.commands.map((cmd) => [data.task, cmd]);
   req.db.get('hypervisor').updateOne(
     {ack: 0},
-    {'$push': {commands: commands},
+    {'$push': {commands: data},
      '$currentDate': {time: 1},
      '$set': {user: req.user.lngs_ldap_uid, ack: 0}
     },

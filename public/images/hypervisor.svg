@@ -168,7 +168,7 @@
          x="654.28497"
          y="404.57074" />
       <g
-         onclick="VMEControl(this)"
+         onclick=""
          id="vme0_btn"
          transform="translate(63.873524,-2.6072176)">
         <text
@@ -318,7 +318,7 @@
            style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <g
-         onclick="VMEControl(this)"
+         onclick=""
          id="vme1_btn"
          transform="translate(67.824635,-2.6072176)">
         <text
@@ -388,7 +388,7 @@
          x="654.28571"
          y="404.28571" />
       <g
-         onclick="VMEControl(this)"
+         onclick=""
          id="vme2_btn"
          transform="translate(61.89881,-2.6072176)">
         <text
@@ -461,7 +461,7 @@
            style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
       <g
-         onclick="VMEControl(this)"
+         onclick=""
          id="vme3_btn"
          transform="translate(61.89881,-2.6072176)">
         <text
@@ -531,7 +531,7 @@
          x="654.28571"
          y="404.28571" />
       <g
-         onclick="VMEControl(this)"
+         onclick=""
          id="vme4_btn"
          transform="translate(65.84936,-2.6072176)">
         <text
@@ -605,7 +605,7 @@
       </g>
       <g
          transform="matrix(1.5050176,0,0,1.4786122,-366.73682,-398.65496)"
-         onclick="VMEControl(this)"
+         onclick=""
          id="vmea_on_btn">
         <text
            xml:space="preserve"
@@ -639,7 +639,7 @@
            id="tspan1641">VME TIMEOUT</tspan></text>
       <g
          transform="matrix(1.5050176,0,0,1.4786122,-378.72666,-330.49896)"
-         onclick="VMEControl(this)"
+         onclick=""
          id="vmea_off_btn">
         <text
            xml:space="preserve"
@@ -861,7 +861,7 @@
       <g
          id="eb2_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(2)">
+         onclick="">
         <rect
            y="840.07098"
            x="150.93658"
@@ -881,19 +881,20 @@
              id="tspan1911-84">SYNC</tspan></text>
       </g>
       <text
+         transform="scale(0.96812574,1.0329237)"
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:17.8776207px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.44694051;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="143.37634"
-         y="906.34686"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.30778503px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#777777;fill-opacity:1;stroke:none;stroke-width:0.43269461"
+         x="148.15848"
+         y="877.4577"
          id="text1965-9"><tspan
            id="tspan1963-6"
-           x="143.37634"
-           y="906.34686"
-           style="fill:#777777;fill-opacity:1;stroke-width:0.44694051;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">microstrax</tspan></text>
+           x="148.15848"
+           y="877.4577"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#777777;fill-opacity:1;stroke-width:0.43269461">microstrax</tspan></text>
       <g
          id="eb2_microstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,580.16191)"
-         onclick="Microstrax('start')">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -952,7 +953,7 @@
       <g
          id="eb0_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(this)">
+         onclick="">
         <rect
            y="840.07098"
            x="150.93658"
@@ -974,7 +975,7 @@
       <g
          id="eb0_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1017,7 +1018,7 @@
       <g
          id="eb0_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1038,7 +1039,7 @@
     </g>
     <g
        transform="matrix(1.0006344,0,0,0.99871245,13.695503,11.202904)"
-       onclick="RedaxControl(this)"
+       onclick=""
        id="readout_start_all_btn">
       <rect
          style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:0.99337596;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1061,8 +1062,8 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.95662147">START</tspan></text>
     </g>
     <g
-       onclick="EBSync('all')"
-       id="sync_btn"
+       onclick=""
+       id="all_sync_btn"
        transform="translate(2.8014183e-6,425)">
       <rect
          style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1085,8 +1086,8 @@
            style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">SYNC ALL</tspan></text>
     </g>
     <g
-       onclick="StartBootstrax('all')"
-       id="bs_start_btn"
+       onclick=""
+       id="eba_bootstrax_start_btn"
        transform="translate(2.8014184e-6,485)">
       <rect
          style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1109,8 +1110,8 @@
            style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">START BS</tspan></text>
     </g>
     <g
-       onclick="StopBootstrax('all')"
-       id="bs_stop_btn"
+       onclick=""
+       id="eba_bootstrax_stop_btn"
        transform="translate(2.8014184e-6,545)">
       <rect
          style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1133,8 +1134,8 @@
            style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">STOP BS</tspan></text>
     </g>
     <g
-       onclick="StartAjax('all')"
-       id="ajax_start_btn"
+       onclick=""
+       id="eba_ajax_start_btn"
        transform="matrix(0.99999825,0,0,0.9504954,8.4356557e-4,606.73248)">
       <rect
          style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1146,19 +1147,19 @@
          onclick="RedaxCycle('all')" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214;-inkscape-font-specification:monospace;font-stretch:normal;font-variant:normal;"
-         x="342.60977"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.34408951px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:1.25860214"
+         x="334.48282"
          y="76.157593"
          id="text1240-7-3"
          transform="scale(0.98438325,1.0158645)"><tspan
            id="tspan1238-5-6"
-           x="342.60977"
+           x="334.48282"
            y="76.157593"
-           style="stroke-width:1.25860214;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">START AJAX</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:1.25860214">START AJAX</tspan></text>
     </g>
     <g
-       onclick="StopAjax('all')"
-       id="ajax_stop_btn"
+       onclick=""
+       id="eba_ajax_stop_btn"
        transform="matrix(1.0001487,0,0,0.95049541,-0.04886877,666.73248)">
       <rect
          style="fill:#777777;fill-opacity:1;stroke:#191919;stroke-width:1.76514232;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1220,7 +1221,7 @@
       <g
          id="eb1_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(this)">
+         onclick="">
         <rect
            y="840.07098"
            x="150.93658"
@@ -1242,7 +1243,7 @@
       <g
          id="eb1_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1285,7 +1286,7 @@
       <g
          id="eb1_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1344,7 +1345,7 @@
       <g
          id="eb3_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(3)">
+         onclick="">
         <rect
            y="840.07098"
            x="150.93658"
@@ -1366,7 +1367,7 @@
       <g
          id="eb3_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(3)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1409,7 +1410,7 @@
       <g
          id="eb3_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(3)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1468,7 +1469,7 @@
       <g
          id="eb4_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(4)">
+         onclick="">
         <rect
            y="840.07098"
            x="150.93658"
@@ -1490,7 +1491,7 @@
       <g
          id="eb4_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(4)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1533,7 +1534,7 @@
       <g
          id="eb4_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(4)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1592,7 +1593,7 @@
       <g
          id="eb5_sync"
          transform="matrix(0.58663676,0,0,0.69878792,53.455051,324.96854)"
-         onclick="EBSync(5)">
+         onclick="">
         <rect
            y="840.07098"
            x="150.93658"
@@ -1614,7 +1615,7 @@
       <g
          id="eb5_bootstrax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,577.36191)"
-         onclick="BootstraxStart(5)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1657,7 +1658,7 @@
       <g
          id="eb5_ajax_btn"
          transform="matrix(0.38347516,0,0,0.39904941,195.86526,604.36191)"
-         onclick="AjaxStart(5)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1716,7 +1717,7 @@
       <g
          id="reader0_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="RedaxControl(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1759,7 +1760,7 @@
       <g
          id="reader0_controller_0_btn"
          transform="matrix(0.57800147,0,0,0.6014761,146.83746,445.36893)"
-         onclick="RedaxControl(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1818,7 +1819,7 @@
       <g
          id="reader1_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="RedaxControl(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1888,7 +1889,7 @@
       <g
          id="reader2_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="RedaxControl(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"
@@ -1919,7 +1920,7 @@
            style="fill:#777777;fill-opacity:1;stroke-width:0.69338471;-inkscape-font-specification:monospace;font-family:monospace;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">reader</tspan></text>
     </g>
     <g
-       onclick="RedaxControl(this)"
+       onclick=""
        id="readout_stop_all_btn"
        transform="matrix(1.0006344,0,0,0.99871245,169.6955,11.202904)">
       <rect
@@ -2008,7 +2009,7 @@
       <g
          id="reader3_reader_0_btn"
          transform="matrix(0.56915936,0,0,0.59227489,148.43924,423.1158)"
-         onclick="RedaxControl(this)">
+         onclick="">
         <rect
            y="785.46185"
            x="141.16882"

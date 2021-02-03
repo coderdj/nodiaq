@@ -1,17 +1,15 @@
-var eb2 = ['eb2'];
-var not_eb2 = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
 var all_hosts = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
   'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
 var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0'];
 var all_bootstrax = ['eb0.xenon.local', 'eb1.xenon.local', 'eb3.xenon.local', 'eb4.xenon.local', 'eb5.xenon.local'];
 var all_ajax = ['ajax.eb0.xenon.local', 'ajax.eb1.xenon.local', 'ajax.eb3.xenon.local', 'ajax.eb4.xenon.local', 'ajax.eb5.xenon.local'];
 
-function ControlBase(task, targets) {
+function ControlBase(command, action, target) {
   $.ajax({
     type: 'POST',
     url: 'hypervisor/control',
-    data: {data: {task: task, targets: targets}},
-    success: () => {},
+    data: {data: {command: command, action: action, target: target}},
+    success: (result, status, xhr) => {},
     error: (jqXHR, text, error) => {alert("Error " + error + ": " + text);}
   });
 }
@@ -19,36 +17,37 @@ function ControlBase(task, targets) {
 function VMEControl(obj) {
   var crate = obj.getAttribute('id').slice(0,4);
   var action = obj.textContent.trim().toLowerCase();
-  ControlBase('vmectl_' + action, [crate]);
+  ControlBase('vmectl', action, crate);
 }
 
 function RedaxControl(obj) {
   var proc = obj.getAttribute('id').slice(0,-4);
   var action = obj.textContent.trim().toLowerCase();
-  if (proc.slice(0,7) === 'redout')
+  if (proc.slice(0,7) === 'readout')
     proc = 'all';
-  ControlBase("redaxctl_" + action, [proc]);
+  ControlBase("redaxctl", action, proc);
 }
 
-function BootstraxCtl(eb) {
-  ControlBase('bootstraxctl_start', eb == 'all' ? not_eb2 : ['eb'+eb]);
+function BootstraxControl(obj) {
+  var eb = obj.getAttribute("id").slice(0,3);
+  var action = obj.textContent.trim().toLowerCase();
+  ControlBase('bootstraxctl', action, eb);
 }
 
-function AjaxCtl(eb) {
-  ControlBase('ajaxctl_start', eb == 'all' ? not_eb2 : ['eb'+eb])
+function AjaxControl(obj) {
+  var eb = obj.getAttribute("id").slice(5,8);
+  var action = obj.textContent.trim().toLowerCase();
+  ControlBase('ajaxctl', action, eb);
 }
 
-function EBSync() {
-  var targets = [];
-  if (eb == 'all')
-    targets = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
-  else
-    targets = ['eb'+eb];
-  ControlBase('ebctl_sync', targets);
+function EBSync(obj) {
+  var eb = obj.getAttribute("id").slice(0,3);
+  ControlBase('ebctl', 'sync', eb);
 }
 
-function MicrostraxCtl(cmd) {
-  ControlBase('microstraxctl_'+cmd, eb2);
+function MicrostraxControl(obj) {
+  var action = obj.textContent.trim().toLowerCase()
+  ControlBase('microstraxctl', action, 'eb2');
 }
 
 function UpdateHosts() {
@@ -218,9 +217,18 @@ function SetupButtons() {
   var svgobj = document.getElementById("svg_frame").contentDocument;
   var redax = ["readout_start_all_btn", "readout_stop_all_btn", "reader0_controller_0_btn",
     "reader0_reader_0_btn", "reader1_reader_0_btn", "reader2_reader_0_btn", "reader3_reader_0_btn"];
-  for (var i in redax_id)
-    svgobj.getElementById(redax_id[i]).addEventListener("click", function() {RedaxControl(this);});
+  for (var i in redax) {
+    try{
+      svgobj.getElementById(redax[i]).addEventListener("click", function() {RedaxControl(this);});
+    }catch(error){
+      console.log(error);
+      console.log(redax[i]);
+    }
+  }
   var vme = ["vme0_btn", "vme1_btn", "vme2_btn", "vme3_btn", "vme4_btn", "vmea_on_btn", "vmea_off_btn"];
   for (var i in vme)
     svgobj.getElementById(vme[i]).addEventListener("click", function() {VMEControl(this);});
+  var eb = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
+  for (var i in eb) {
+    svgobj.getElementById(eb[i]+"_ajax_btn").addEventListener("click", function() {
 }
