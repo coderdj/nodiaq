@@ -75,19 +75,23 @@ function FillDetectorInfo(det, callback){
 
 function GetFillLevel(){
   $.getJSON('status/get_fill', (data) => {
-    console.log(data);
-    if (typeof data.message != 'undefined' || data.length == 0)
+    //console.log(data);
+    if (typeof data.message != 'undefined' || data.length == 0) {
+        console.log('Err ' + data.message);
       return;
-    var x = "linear-gradient(";
-    for (var i = 10; i > 0; i--) {
-      if (data[0].value > i)
-        x += "blue";
-      else
-        x += "white";
-      if (i != 9) x += ',';
     }
+    var x = "linear-gradient(";
+    var step = 0.5; // this is in m
+    for (var i = 10; i > 0; i-= step) {
+      if (data[0].value > i)
+        x += "Blue,";
+      else
+        x += "White,";
+    }
+      x = x.slice(0, x.length-1);
     x += ");"
-    $("#content").css("background-image", x);
+      //console.log(x);
+    $("#content").css("background-image", x.slice(0,x.length-1));
   });
 }
 

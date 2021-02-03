@@ -23,13 +23,13 @@ function checkKey(req, res, next) {
   var collection = req.users_db.get("users");
   var query = {lngs_ldap_uid: user};
   var options = {api_key: 1, groups: 1};
-  collection.findOne(query, options, function(e, doc) {
+  collection.find(query, options, function(e, docs) {
     if (e) {
       return res.json({message: e.message});
     }
-    if (typeof doc == 'undefined' || typeof(doc.api_key) == 'undefined')
+    if (docs.length == 0 || typeof(docs[0].api_key) == 'undefined')
       return res.json({message: 'Access denied'});
-    bcrypt.compare(key, doc.api_key, function(err, ret) {
+    bcrypt.compare(key, docs[0].api_key, function(err, ret) {
       if (err) return res.json({message: err});
       if (ret == true) {
         req.user.is_daq = typeof doc.groups != 'undefined' && doc.groups.includes('daq');
@@ -201,4 +201,20 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
   }).catch((err) => res.json({message: err.message}));
 });
 
+function GetSystemMonitorStatus(collection, host) {
+  var query = {host: host,};
+  var options = {sort: {'_id': -1}, limit: 1};
+  return collection.find(query, options);
+}
+router.get("/gethoststatus/:host", checkKey, function(req, res) {
+  var host = req.params.host
+  var collection = req.db.get("system_monitor");
+  GetSystemMonitorStatus(collection,host).then( docs => {
+    if (docs.length == 0)
+      return res.json({message: "No status update found for this host"});
+    return res.json(docs[0]);
+  }).catch( err => {
+    return res.json({message: err.message});
+  });
+});
 module.exports = router;

@@ -4,7 +4,6 @@ block extrahead
   script(src="javascripts/control.js", type="text/javascript")
   link(rel="stylesheet", href="stylesheets/bootstrap-toggle.css")
   link(rel="stylesheet", href="stylesheets/control.css")
-  //script(src="javascripts/control.js", type="text/javascript")
 
 block content
   div.main-container
@@ -19,7 +18,6 @@ block content
 
     - var detectors = [["tpc", "TPC"], ["muon_veto", "Muon Veto"], ["neutron_veto", "Neutron Veto"], ["lz", "LZ TPC"]];
     each det in detectors
-      //div.reader_detail
       div.det_card_noheight(style="width:100%;border:1px solid #ccc;margin-top:10px")
         div.row
           div.col-12

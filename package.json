@@ -7,6 +7,7 @@
 	},
 	"dependencies": {
 		"apikeygen": "^1.1.0",
+		"axios": "^0.21.0",
 		"bcrypt": "^5.0.0",
 		"connect-mongodb-session": "^2.2.0",
 		"cookie-parser": "^1.4.4",

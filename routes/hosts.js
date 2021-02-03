@@ -19,13 +19,14 @@ router.get("/get_host_status", ensureAuthenticated, function(req, res){
     var q = url.parse(req.url, true).query;
     var host = q.host;
 
-    collection.find({"host": host},
-                    {"sort": {"_id": -1}, "limit": 1},
-                    function(e, sdoc){
-                        if(sdoc.length == 0)
-                            return res.json({});
-                        return res.json(sdoc[0]);
-                    });
+  collection.find({"host": host},
+    {"sort": {"_id": -1}, "limit": 1},
+    function(e, sdoc){
+      if(sdoc.length == 0)
+        return res.json({});
+      sdoc[0]['checkin'] = new Date() - sdoc[0]['time'];
+      return res.json(sdoc[0]);
+    });
 });
 
 router.get("/get_host_history", ensureAuthenticated, function(req, res){

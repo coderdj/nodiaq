@@ -3,6 +3,7 @@ var url = require('url');
 var ObjectId = require('mongodb').ObjectID;
 var router = express.Router();
 var http = require('http');
+var axios = require('axios');
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -222,14 +223,13 @@ router.get('/get_bootstrax_status', ensureAuthenticated, function(req, res) {
 router.get('/get_fill', ensureAuthenticated, function(req, res) {
   var url = "https://xenon1t-daq.lngs.infn.it/slowcontrol/GetSCLastValue";
   url += "?name=XE1T.WLP_INDLEVL_H20_1.PI";
-  url += "&username="process.env.SC_API_USER;
+  url += "&username="+process.env.SC_API_USER;
   url += "&api_key="+process.env.SC_API_KEY;
-  http.get(url, (resp) => {
-    let data="";
-    resp.on('data', (chunk) => {data += chunk;})
-    .on('end', () => res.send(data))
-    .on('error', (err) => res.json({message: err.message}));
-  })
+  //console.log('GETTING FILL');
+  //  console.log(url);
+  axios.get(url)
+    .then(response => res.send(response.data))
+    .catch(err => res.send({message: err}));
 });
 
 module.exports = router;
