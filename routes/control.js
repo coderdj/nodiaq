@@ -12,17 +12,17 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.get('/modes', ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get("options");
-    var q = url.parse(req.url, true).query;
-    var detector = q.detector;
-    collection.find({detector: detector}, {sort: {name: 1}, fields: {name: 1, description: 1}}).then( (docs) => {
-      var ret = [];
-      for (var i in docs)
-        ret.push([docs[i].name, docs[i].description ? docs[i].description : ""]);
-      return res.json(ret);
-    }).catch((err) => res.json({})
-    );
+  var db = req.db;
+  var collection = db.get("options");
+  var q = url.parse(req.url, true).query;
+  var detector = q.detector;
+  collection.aggregate([
+    {$match: {detector: {$ne: 'include'}}},
+    {$sort: {name: 1}},
+    {$group: {_id: '$detector', options: {$push: '$name'}, desc: {$push: '$description'}}},
+    {$project: {configs: {$zip: {inputs: ['$options', '$desc']}}}}
+  ]).then( (docs) => res.json(docs))
+  .catch( (err) => {console.log('GET MODES ERROR'); console.log(err.message); return res.json({error: err.message}));
 });
 
 function GetControlDocs(collection) {
@@ -67,6 +67,9 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     if (typeof req.user.lngs_ldap_uid == 'undefined')
       return res.sendStatus(401);
     var data = req.body.data;
+  console.log('CONTROL GET DATA');
+  console.log(data);
+  return res.sendStatus(200);
     GetControlDocs(collection).then((docs) => {
       var updates = [];
       for (var i in docs) {
