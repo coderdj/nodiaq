@@ -120,17 +120,16 @@ function DefineButtonRules(){
     }
   });
   $("#lz_remote").change(function(){
-    if($("#remote_lz").is(":checked")){
+    if(!$("#remote_lz").is(":checked")){
       alert("Local control of LZ is only available from SURF");
       $("#remote_lz").bootstrapToggle('on');
     }
   });
   $("#lz_active").change(function(){
-    if(document.page_ready){
+    if (!$("#lz_active").is(":checked")) {
       alert("You can't stop LZ");
       $("#lz_active").bootstrapToggle("on");
     }
-    //return;
   });
   $("#lz_softstop").change(function(){
     if($("#lz_softstop").is(":checked")){
@@ -152,7 +151,7 @@ function PopulateOptionsLists(callback){
     // [{_id: detector name, configs: []}, {_id: detector name....}]
     data.forEach(doc => $("#"+doc['_id']+"_mode").html(doc['configs'].reduce((html, val) => "<option value='"+val[0]+"'><strong>"+val[0]+":</strong> "+val[1]+"</option>", "")));
     callback();
-  }
+  });
   /*for(var i in detectors){
     var detector = detectors[i];
     $.getJSON("control/modes?detector="+detector, (function(d){ return function(data){
@@ -197,6 +196,7 @@ function PullServerData(callback){
 function PostServerData(){
   post = {};
   var empty = true;
+  console.log('Posting?');
   ['tpc', 'muon_veto', 'neutron_veto'].forEach(detector => {
     var thisdet = {};
     ['active', 'remote', 'softstop'].forEach( (att) => {
@@ -218,7 +218,7 @@ function PostServerData(){
       });
     }
     console.log(thisdet);
-    if (Object.items(thisdet).length == 0)
+    if (Object.keys(thisdet).length == 0)
       return;
     thisdet['detector'] = detector;
     thisdet['user'] = document.current_user;
