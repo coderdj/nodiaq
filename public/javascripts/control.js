@@ -120,9 +120,9 @@ function DefineButtonRules(){
     }
   });
   $("#lz_remote").change(function(){
-    if(!$("#remote_lz").is(":checked")){
+    if(!$("#lz_remote").is(":checked")){
       alert("Local control of LZ is only available from SURF");
-      $("#remote_lz").bootstrapToggle('on');
+      $("#lz_remote").bootstrapToggle('on');
     }
   });
   $("#lz_active").change(function(){
@@ -140,7 +140,7 @@ function DefineButtonRules(){
 }
 
 function PopulateOptionsLists(callback){
-  $("#remote_lz").bootstrapToggle('on');
+  $("#ls_remote").bootstrapToggle('on');
   $("#lz_softstop").bootstrapToggle('off');
   document.getElementById("lz_mode").innerHTML = "<option value='shit'><strong>xenon leak mode</strong></option><option value='goblind'><strong>HV spark mode</strong></option><option value='oops'><strong>find dark matter but it turns out not to be dark matter mode</strong></option><option value='n'><strong>Only measure neutrons because of all our teflon mode</strong></option><option value='blow'><strong>Lots of radon mode (note, this mode cannot be turned off)</strong></option><option value='whoops'>Don't drift electrons because all the teflon outgasses too much mode</option>";
   $.getJSON("control/modes", (data) => {
@@ -149,23 +149,11 @@ function PopulateOptionsLists(callback){
       return;
     }
     // [{_id: detector name, configs: []}, {_id: detector name....}]
-    data.forEach(doc => $("#"+doc['_id']+"_mode").html(doc['configs'].reduce((html, val) => "<option value='"+val[0]+"'><strong>"+val[0]+":</strong> "+val[1]+"</option>", "")));
+    data.forEach(doc => {
+        $("#"+doc['_id']+"_mode").html(doc['configs'].reduce((html, val) => html+"<option value='"+val[0]+"'><strong>"+val[0]+":</strong> "+val[1]+"</option>", ""));
+    });
     callback();
   });
-  /*for(var i in detectors){
-    var detector = detectors[i];
-    $.getJSON("control/modes?detector="+detector, (function(d){ return function(data){
-      var html = "";
-      for(var j=0; j<data.length; j+=1)
-        html+="<option value='"+data[j][0]+"'><strong>"+data[j][0]+":</strong> "+data[j][1]+"</option>";
-      var sdiv = d + "_mode";
-      document.getElementById(sdiv).innerHTML = html;
-      fetched+=1;
-      if(fetched === 3){
-        callback();
-      }
-
-    }}(detector)));*/
 }
 
 function PullServerData(callback){
@@ -179,7 +167,7 @@ function PullServerData(callback){
       initial_control[detector] = doc.state;
       ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc.state[att]));
 
-      $(`#${detector}_mode option`).filter(val => val === doc.state.mode).prop('selected', true);
+      $(`#${detector}_mode option`).filter(function() {return this.value===doc.state.mode}).prop('selected', true);
       $(`#${detector}_user`).val(doc.user);
 
       ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
@@ -196,11 +184,10 @@ function PullServerData(callback){
 function PostServerData(){
   post = {};
   var empty = true;
-  console.log('Posting?');
   ['tpc', 'muon_veto', 'neutron_veto'].forEach(detector => {
     var thisdet = {};
     ['active', 'remote', 'softstop'].forEach( (att) => {
-      var checked = $(`#${detector}_${att}`).is(":checked");
+      var checked = $(`#${detector}_${att}`).is(":checked").toString();
       if (checked != initial_control[detector][att])
         thisdet[att] = checked;
     });
@@ -213,15 +200,13 @@ function PostServerData(){
 
     if(detector === "tpc"){
       ['link_mv','link_nv'].forEach( (att) => {
-      if ($("#" + att).is(":checked") != initial_control['tpc'][att])
-        thisdet[att] = $("#"+att).is(":checked");
+        var checked = $("#" + att).is(":checked").toString();
+        if (checked != initial_control['tpc'][att])
+          thisdet[att] = checked;
       });
     }
-    console.log(thisdet);
     if (Object.keys(thisdet).length == 0)
       return;
-    thisdet['detector'] = detector;
-    thisdet['user'] = document.current_user;
     post[detector] = thisdet;
     empty &= false;
   });

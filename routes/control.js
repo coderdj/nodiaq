@@ -57,7 +57,7 @@ router.get("/get_control_docs", ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
     GetControlDocs(collection)
     .then((docs) => res.json(docs))
-    .catch((err) => {console.log(err.message); return res.json({});});
+    .catch((err) => {console.log("GET CONTROL ERROR"); console.log(err.message); return res.json({});});
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
@@ -67,16 +67,13 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     if (typeof req.user.lngs_ldap_uid == 'undefined')
       return res.sendStatus(401);
     var data = req.body.data;
-  console.log('CONTROL GET DATA');
-  console.log(data);
-  return res.sendStatus(200);
     GetControlDocs(collection).then((docs) => {
       var updates = [];
       for (var i in docs) {
         var olddoc = docs[i];
         var newdoc = data[olddoc['detector']];
         for (var key in olddoc.state)
-          if (newdoc[key] != olddoc.state[key])
+          if (typeof newdoc[key] != 'undefined' && newdoc[key] != olddoc.state[key])
             updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: olddoc['detector']+'.'+key});
       }
       if (updates.length > 0)
