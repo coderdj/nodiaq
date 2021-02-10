@@ -183,7 +183,7 @@ function PullServerData(callback){
       $(`#${detector}_mode option`).filter(val => val === doc.state.mode).prop('selected', true);
       $(`#${detector}_user`).val(doc.user);
 
-      ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
+      ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
 
       if(detector === "tpc"){
         ['link_mv', 'link_nv'].forEach(att => $("#" + att).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
@@ -217,12 +217,13 @@ function PostServerData(){
         thisdet[att] = $("#"+att).is(":checked");
       });
     }
+    console.log(thisdet);
     if (Object.items(thisdet).length == 0)
-      continue;
+      return;
     thisdet['detector'] = detector;
     thisdet['user'] = document.current_user;
     post[detector] = thisdet;
-    empty = false;
+    empty &= false;
   });
 
   if (!empty) {

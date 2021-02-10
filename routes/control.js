@@ -22,7 +22,7 @@ router.get('/modes', ensureAuthenticated, function(req, res){
     {$group: {_id: '$detector', options: {$push: '$name'}, desc: {$push: '$description'}}},
     {$project: {configs: {$zip: {inputs: ['$options', '$desc']}}}}
   ]).then( (docs) => res.json(docs))
-  .catch( (err) => {console.log('GET MODES ERROR'); console.log(err.message); return res.json({error: err.message}));
+  .catch( (err) => {console.log('GET MODES ERROR'); console.log(err.message); return res.json({error: err.message})});
 });
 
 function GetControlDocs(collection) {
