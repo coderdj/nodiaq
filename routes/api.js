@@ -215,6 +215,8 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
         time: new Date(), field: val[0], value: val[1], key: detector+'.'+val[0]})))
       .then( () => res.json({message: "Update successful"}))
       .catch( (err) => {throw err});
+    } else {
+      throw {message: "No changes registered"};
     }
   }).catch((err) => res.json({message: err.message}));
 });
