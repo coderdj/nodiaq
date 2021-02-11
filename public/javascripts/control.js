@@ -60,8 +60,11 @@ function DefineButtonRules(){
 
       var val = 'off';
       if($("#neutron_veto_active").is(":checked")) val = 'on';
-      if($("#link_nv").is(":checked")) {$("#tpc_active").bootstrapToggle(val);
-        if($("#link_mv").is(":checked")) $("#muon_veto_active").bootstrapToggle(val); }
+      if($("#link_nv").is(":checked")) {
+        $("#tpc_active").bootstrapToggle(val);
+        if($("#link_mv").is(":checked"))
+          $("#muon_veto_active").bootstrapToggle(val);
+      }
       document.page_ready = true;
     }
   });
@@ -140,7 +143,7 @@ function DefineButtonRules(){
 }
 
 function PopulateOptionsLists(callback){
-  $("#ls_remote").bootstrapToggle('on');
+  $("#lz_remote").bootstrapToggle('on');
   $("#lz_softstop").bootstrapToggle('off');
   document.getElementById("lz_mode").innerHTML = "<option value='shit'><strong>xenon leak mode</strong></option><option value='goblind'><strong>HV spark mode</strong></option><option value='oops'><strong>find dark matter but it turns out not to be dark matter mode</strong></option><option value='n'><strong>Only measure neutrons because of all our teflon mode</strong></option><option value='blow'><strong>Lots of radon mode (note, this mode cannot be turned off)</strong></option><option value='whoops'>Don't drift electrons because all the teflon outgasses too much mode</option>";
   $.getJSON("control/modes", (data) => {

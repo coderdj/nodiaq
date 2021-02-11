@@ -78,9 +78,10 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
       }
       if (updates.length > 0)
         return collection.insert(updates);
-      return 0;
-    }).then( () => { return res.sendStatus(200);
-    }).catch((err) => {
+      else
+        return 0;
+    }).then( () => res.sendStatus(200))
+    .catch((err) => {
       console.log(err.message);
       return res.sendStatus(451);
     });
