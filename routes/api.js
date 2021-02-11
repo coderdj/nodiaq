@@ -4,9 +4,6 @@ var bcrypt = require('bcrypt');
 var ObjectId = require('mongodb').ObjectID;
 var router = express.Router();
 
-var last_api_call = {};
-const MAX_STORED_CALLS = 20;
-const MAX_TIME_FOR_CALLS = 10000; // ms
 var status_enum = [
   "idle",
   "arming",
@@ -25,7 +22,7 @@ function checkKey(req, res, next) {
   }
   var collection = req.users_db.get("users");
   var query = {lngs_ldap_uid: user};
-  var options = {api_key: 1};
+  var options = {api_key: 1, groups: 1};
   collection.find(query, options, function(e, docs) {
     if (e) {
       return res.json({message: e.message});
@@ -35,23 +32,8 @@ function checkKey(req, res, next) {
     bcrypt.compare(key, docs[0].api_key, function(err, ret) {
       if (err) return res.json({message: err});
       if (ret == true) {
+        req.is_daq = typeof docs[0].groups != 'undefined' && docs[0].groups.includes('daq');
         return next();
-/*        if (typeof(last_api_call[user]) == 'undefined') {
-          last_api_call[user] = [];
-        }
-        if (last_api_call[user].length == MAX_STORED_CALLS) {
-          var now = new Date();
-          last_api_call[user].push(now);
-          var then = last_api_call[user].shift();
-          if (Math.abs(now - then) < MAX_TIME_FOR_CALLS) {
-            return res.json({message: 'Chill'});
-          } else {
-            return next();
-          }
-        } else { // if number of calls
-          last_api_call[user].push(new Date());
-          return next();
-        } */
       } // if (ret == true)
       return res.json({message: 'Access Denied'});
     });
@@ -181,7 +163,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
       throw {message: "Something went wrong"};
     var det = values[0][0].state;
     // first - is the detector in "remote" mode?
-    if (det.remote != 'true' && user != "masson")
+    if (det.remote != 'true' && !req.is_daq)
       throw {message: "Detector must be in remote mode to control via the API"};
     // check linking status
     if (detector == "tpc" && (det.link_nv != "false" || det.link_mv != "false"))
