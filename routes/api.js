@@ -32,7 +32,7 @@ function checkKey(req, res, next) {
     bcrypt.compare(key, docs[0].api_key, function(err, ret) {
       if (err) return res.json({message: err});
       if (ret == true) {
-        req.user.is_daq = typeof doc.groups != 'undefined' && doc.groups.includes('daq');
+        req.is_daq = typeof docs[0].groups != 'undefined' && docs[0].groups.includes('daq');
         return next();
       } // if (ret == true)
       return res.json({message: 'Access Denied'});
@@ -163,7 +163,7 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
       throw {message: "Something went wrong"};
     var det = values[0][0].state;
     // first - is the detector in "remote" mode?
-    if (det.remote != 'true' && !req.user.is_daq)
+    if (det.remote != 'true' && !req.is_daq)
       throw {message: "Detector must be in remote mode to control via the API"};
     // check linking status
     if (detector == "tpc" && (det.link_nv != "false" || det.link_mv != "false"))
