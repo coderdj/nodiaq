@@ -12,17 +12,17 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.get('/modes', ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get("options");
-    var q = url.parse(req.url, true).query;
-    var detector = q.detector;
-    collection.find({detector: detector}, {sort: {name: 1}, fields: {name: 1, description: 1}}).then( (docs) => {
-      var ret = [];
-      for (var i in docs)
-        ret.push([docs[i].name, docs[i].description ? docs[i].description : ""]);
-      return res.json(ret);
-    }).catch((err) => res.json({})
-    );
+  var db = req.db;
+  var collection = db.get("options");
+  var q = url.parse(req.url, true).query;
+  var detector = q.detector;
+  collection.aggregate([
+    {$match: {detector: {$ne: 'include'}}},
+    {$sort: {name: 1}},
+    {$group: {_id: '$detector', options: {$push: '$name'}, desc: {$push: '$description'}}},
+    {$project: {configs: {$zip: {inputs: ['$options', '$desc']}}}}
+  ]).then( (docs) => res.json(docs))
+  .catch( (err) => {console.log('GET MODES ERROR'); console.log(err.message); return res.json({error: err.message})});
 });
 
 function GetControlDocs(collection) {
@@ -57,7 +57,7 @@ router.get("/get_control_docs", ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
     GetControlDocs(collection)
     .then((docs) => res.json(docs))
-    .catch((err) => {console.log(err.message); return res.json({});});
+    .catch((err) => {console.log("GET CONTROL ERROR"); console.log(err.message); return res.json({});});
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
@@ -73,14 +73,15 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
         var olddoc = docs[i];
         var newdoc = data[olddoc['detector']];
         for (var key in olddoc.state)
-          if (newdoc[key] != olddoc.state[key])
+          if (typeof newdoc[key] != 'undefined' && newdoc[key] != olddoc.state[key])
             updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: olddoc['detector']+'.'+key});
       }
       if (updates.length > 0)
         return collection.insert(updates);
-      return 0;
-    }).then( () => { return res.sendStatus(200);
-    }).catch((err) => {
+      else
+        return 0;
+    }).then( () => res.sendStatus(200))
+    .catch((err) => {
       console.log(err.message);
       return res.sendStatus(451);
     });

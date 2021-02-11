@@ -21,21 +21,21 @@ block content
       div.det_card_noheight(style="width:100%;border:1px solid #ccc;margin-top:10px")
         div.row
           div.col-12
-            if det[0] == 'tpc'
-              span(style='font-size:20px;font-weight:bold;') #{det[1]}
-              div.float-right(style='display:inline-block')
-                  div.form-check-inline
-                    label.form-check-label
-                      span Control &nbsp;
-                      input#remote_tpc(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="web" data-off="remote" data-size="small")
-                  div.form-check-inline 
-                    label.form-check-label
-                      span Run &nbsp;
-                      input#tpc_active(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
-                  div.form-check-inline 
-                    label.form-check-label
-                      span Soft stop &nbsp;
-                      input#tpc_softstop(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
+            span(style='font-size:20px;font-weight:bold;') #{det[1]}
+            div.float-right(style='display:inline-block')
+                div.form-check-inline
+                  label.form-check-label
+                    span Control &nbsp;
+                    input(id=`${det[0]}_remote` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="success" data-on="remote" data-off="local" data-size="small")
+                div.form-check-inline 
+                  label.form-check-label
+                    span Run &nbsp;
+                    input(id=`${det[0]}_active` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
+                div.form-check-inline 
+                  label.form-check-label
+                    span Soft stop &nbsp;
+                    input(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
+                if det[0] == 'tpc'
                   div.form-check-inline 
                     label.form-check-label
                       span Muon Veto &nbsp;
@@ -44,21 +44,6 @@ block content
                     label.form-check-label
                       span Neutron Veto &nbsp;
                       input#link_nv(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"  data-on="Linked" data-off="Unlinked" data-size='small')
-            else
-              span(style='font-size:20px;font-weight:bold;') #{det[1]}
-              div.float-right(style='display:inline-block')
-                div.form-check-inline
-                  label.form-check-label
-                    span Control &nbsp;
-                    input(id=`remote_${det[0]}` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="web" data-off="remote" data-size="small")
-                div.form-check-inline
-                  label.form-check-label
-                    span Run &nbsp;
-                    input(id=`${det[0]}_active` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
-                div.form-check-inline
-                  label.form-check-label
-                    span Soft stop &nbsp;
-                    input(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
         hr(style='margin-top:3px')
         div.row(style="padding:5px")
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
@@ -82,6 +67,6 @@ block content
       document.page_ready = false;
       document.current_user = "#{user.lngs_ldap_uid}";
       DrawActiveLink("#lcontrol");
-      PopulateRunsList(PullServerData);
+      PopulateOptionsLists(PullServerData);
       DefineButtonRules();
     });
