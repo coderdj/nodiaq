@@ -44,7 +44,7 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
 
     var runs = req.body.runs;
     var tag = req.body.tag;
-    var user = req.user.last_name;
+    var user = req.user.lngs_ldap_uid;
 
     // Convert runs to int
     runsint = [];
@@ -67,12 +67,13 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
 
     var run = req.body.run;
     var tag = req.body.tag;
-    var user = req.user.last_name;
+    var user = req.user;
     var tag_user = req.body.user;
 
-    if (tag_user != user) { // deleting someone else's tag
-        if ((typeof user.groups == 'undefined') || !('ac' in user.groups || 'admin' in user.groups))
-            return res.status(418).send("Permission denied");
+    if (tag_user != user.lngs_ldap_uid) { // deleting someone else's tag
+        if ((typeof user.groups == 'undefined') || !(user.groups.includes('ac') || user.groups.includes('admin'))) {
+            return res.status(403).send("Permission denied");
+        }
     }
 
     // Convert runs to int
@@ -92,7 +93,7 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
 
     var runs = req.body.runs;
     var comment = req.body.comment;
-    var user = req.user.last_name;
+    var user = req.user.lngs_ldap_uid;
 
     // Convert runs to int
     var runsint = [];

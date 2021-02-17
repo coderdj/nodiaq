@@ -72,6 +72,8 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
       for (var i in docs) {
         var olddoc = docs[i];
         var newdoc = data[olddoc['detector']];
+        if (typeof newdoc == 'undefined')
+          continue;
         for (var key in olddoc.state)
           if (typeof newdoc[key] != 'undefined' && newdoc[key] != olddoc.state[key])
             updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: olddoc['detector']+'.'+key});
