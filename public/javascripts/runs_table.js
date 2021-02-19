@@ -12,255 +12,244 @@ function CheckMongoQuery(){
 	alert("Your mongo query is not valid JSON!");
 	return;
     }
-    document.datatable_options['ajax']['data'] ={"conditions": query, detector: document.detector};
+    document.datatable_options['ajax']['data'] ={"conditions": query};
     $(document.datatable_div).DataTable().destroy();
     $(document.datatable_div).DataTable(document.datatable_options);
 }
 
 function InitializeRunsTable(divname){
 
-    $('#detectorselector label').on("click", function() {
-        document.detector = this.childNodes[0].value;
-        $(document.datatable_div).DataTable().destroy();
-        $(document.datatable_div).DataTable(document.datatable_options);
-    });
+  var table_options = {
+    processing : true,
+    serverSide : true,
+    paging: true,
+    scrollY: "80%",
+    scrollCollapse: true,
+    lengthChange: true,
+    //responsive: true,
 
-    document.detector = 'xenonnt';
-    var table_options = {
-        processing : true,
-        serverSide : true,
-        paging: true,
-        scrollY: "80%",
-        scrollCollapse: true,
-        lengthChange: true,
-        //responsive: true,
-        
-        order: [[1, "desc"]], // descending sort order
-        pageLength:100,
-        //iDisplayLength: 100,
-        lengthMenu : [10, 25, 50, 100],
+    order: [[1, "desc"]], // descending sort order
+    pageLength:100,
+    //iDisplayLength: 100,
+    lengthMenu : [10, 25, 50, 100],
 
-	// Custom DOM settings to add date filters to datatable header
-	dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'b><'col-sm-3'f>>" +
-	    "<'row'<'col-sm-12'tr>>" +
-	    "<'row'<'col-sm-5'i><'col-sm-7'p>>", 
+    // Custom DOM settings to add date filters to datatable header
+    dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'b><'col-sm-3'f>>" +
+    "<'row'<'col-sm-12'tr>>" +
+    "<'row'<'col-sm-5'i><'col-sm-7'p>>", 
 
-        ajax : {
-            url: 'runtable/getDatatable',
-            beforeSend: function ( jqXHR,  settings) {
-                //console.log(jqXHR);
-                //console.log(settings.url);
-            },
-            data: function ( d ) {
-                return $.extend( {}, d, {
-		    "date_min": $('#datepicker_from').val(),
-		    "date_max": $('#datepicker_to').val(),
-		    "detector": document.detector,
-            "start" : d.start/d.length,
-		});
-            },
-            /*dataFilter: function(data) {
-                var x = jQuery.parseJSON(data);
-                for (key in x) if (key != 'data') console.log(key + ' ' + x[key]);
-                console.log(x.data[0]);
-                return data;
-            },*/
+    ajax : {
+      url: 'runtable/getDatatable',
+      beforeSend: function ( jqXHR,  settings) {
+        //console.log(jqXHR);
+        //console.log(settings.url);
+      },
+      data: function ( d ) {
+        return $.extend( {}, d, {
+          "date_min": $('#datepicker_from').val(),
+          "date_max": $('#datepicker_to').val(),
+          "start" : d.start/d.length,
+        });
+      },
+    },
+    columns : [
+      { data : "number", "render": function(data, type, row){
+        return "<button style='padding:3px;padding-left:5px;padding-right:5px;background-color:#ef476f;color:#eee' class='btn btn-defailt btn-xs' onclick='ShowDetail(" + data + ");'>show</button>"}
+      },
+      { data : "number" , searchable: true},
+      { data : "detectors", "render" : function(data, type, row)
+        {return String(data);}},
+      { data : "mode", searchable: true },
+      { data : "bootstrax", searchable: false,
+        "render": function(data, type, row){
+          ret = "";
+          if(typeof(data) != "undefined" && data.state != null && typeof data.host != 'undefined'){
+            ret+=data["host"]+":"+data["state"];
+          }
+          return ret;
+        }
+      },
+      { data : "user"},
+      { data : "start", format: 'YYYY-MM-DD HH:mm', type: 'datetime'},
+      { data : "end", defaultContent: "",
+        "render": function(data, type, row){
+
+          if(typeof(row) === "undefined" || typeof(row.end) === "undefined" ||
+            typeof(row.start) === "undefined" || row.end == null)
+            return "not set"
+          tdiff = (new Date(row.end)).getTime() - (new Date(row.start)).getTime();
+          var hours = Math.floor(tdiff/(1000*3600));
+          var mins = Math.floor(tdiff/(1000*60)) - (60*hours);
+          var secs = Math.floor(tdiff/(1000)) - (3600*hours + 60*mins);
+          var ret = ("00" + hours.toString()).substr(-2) + ":" +
+            ("00" + mins.toString()).substr(-2) + ":" +
+            ("00" + secs.toString()).substr(-2);
+          return ret;
         },
-        columns : [
-        	{ data : "number", "render": function(data, type, row){
-        	    return "<button style='padding:3px;padding-left:5px;padding-right:5px;background-color:#ef476f;color:#eee' class='btn btn-defailt btn-xs' onclick='ShowDetail(" + data + ', "'+document.detector+'"'+");'>show</button>"}
-		},
-            { data : "number" , searchable: true},
-            { data : "detectors", "render" : function(data, type, row)
-              {return String(data);}},
-            { data : "mode", searchable: true },
-            { data : "bootstrax", searchable: false,
-	      "render": function(data, type, row){
-		  ret = "";
-		  if(typeof(data) != "undefined"){
-		      ret+=data["host"]+":"+data["state"];
-		  }
-		  return ret;
-	      }
-	    },
-            { data : "user"},
-            { data : "start", format: 'YYYY-MM-DD HH:mm', type: 'datetime'},
-            { data : "end", defaultContent: "",
-		"render": function(data, type, row){
-		    
-		  if(typeof(row) === "undefined" || typeof(row.end) === "undefined" ||
-		     typeof(row.start) === "undefined" || row.end == null)
-		      return "not set"
-		  tdiff = (new Date(row.end)).getTime() - (new Date(row.start)).getTime();
-		    var hours = Math.floor(tdiff/(1000*3600));
-		    var mins = Math.floor(tdiff/(1000*60)) - (60*hours);
-		    var secs = Math.floor(tdiff/(1000)) - (3600*hours + 60*mins);
-		    var ret = ("00" + hours.toString()).substr(-2) + ":" +
-			("00" + mins.toString()).substr(-2) + ":" +
-			("00" + secs.toString()).substr(-2);
-		    return ret;
-	      },
-	    },
-            { data : "tags.name", "defaultContent": "",
-	      searchable: true,
-	      "render": function(data, type, row){		  
-		  ret = "";	  
-		  if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
-		      for(var i=0; i<row.tags.length; i+=1){
-			  var divclass = "badge-secondary";
-			  if(row.tags[i]["name"][0] == "_")
-			      divclass = "badge-primary";
-			  ret += "<div class='inline-block'><span class='badge " +
-			      divclass + "' style='cursor:pointer' onclick='SearchTag("
-			      + '"' + row.tags[i]['name'] +
-			      '"' + ")'>" + row.tags[i]["name"] + "</span>";
-			  //ret+=<row.tags[i]["name"];
-			  //if(i!=row.tags.length-1)
-			  //ret+=", ";
-		      }
-		  }
-		  return ret;
-	      }
-	    },
-            { data : "comments", "defaultContent": "",
-	      "render": function(data, type, row){
-		  if(typeof(data) != "undefined" && data.length>0){
-		      if(typeof data[data.length-1]["comment"] != "undefined")
-			  return data[data.length-1]["comment"];
-		      if(typeof data[data.length-1]["text"] != "undefined")
-			  return data[data.length-1]["text"];
-		      return "";}
-	      }}
-        ],
-	columnDefs: [
-	    { className: "not-selectable", width: 50, targets: [ 0 ] },
-	    { width: 60, targets: [1, 2]},
-	    {
-		targets: [6],
-		render: function(data){
-		    return moment(data).format('YYYY-MM-DD HH:mm');
-		}
-	    }
-	],
-	fixedColumns: true
-    };
-    var table = $(divname).DataTable(table_options);
-    document.table = table;
-    document.datatable_options = table_options;
-    document.datatable_div = divname;
-    
-    var filter_html = "<span class='date-label' id='date-label-from'> From: <input class='date_range_filter date' id='datepicker_from' type='date'></span><span class='date-label' id='date-label-to'> To: <input class='date_range_filter date' id='datepicker_to' type='date'></span>";
+      },
+      { data : "tags.name", "defaultContent": "",
+        searchable: true,
+        "render": function(data, type, row){
+          ret = "";
+          if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
+            ret = row.tags.reduce((tot, tag) => {
+              var divclass = row.tags[i]["name"][0] == "_" ? "badge-primary" : "badge-secondary";
+              tot += `<div class='inline-block'><span class='badge ${divclass}' style='cursor:pointer' onclick='SearchTag("${tag.name}")'></span>`;
+            }, ret);
+            /*
+            for(var i=0; i<row.tags.length; i+=1){
+              var divclass = row.tags[i]["name"][0] == "_" ? "badge-primary" : "badge-secondary";
+              ret += "<div class='inline-block'><span class='badge " +
+                divclass + "' style='cursor:pointer' onclick='SearchTag("
+                + '"' + row.tags[i]['name'] +
+                '"' + ")'>" + row.tags[i]["name"] + "</span>";
+              //ret+=<row.tags[i]["name"];
+              //if(i!=row.tags.length-1)
+              //ret+=", ";
+            } */
+          }
+          return ret;
+        }
+      },
+      { data : "comments", "defaultContent": "",
+        "render": function(data, type, row){
+          if(typeof(data) != "undefined" && data.length>0){
+            if(typeof data[data.length-1]["comment"] != "undefined")
+              return data[data.length-1]["comment"];
+            if(typeof data[data.length-1]["text"] != "undefined")
+              return data[data.length-1]["text"];
+            return "";}
+        }}
+    ],
+    columnDefs: [
+      { className: "not-selectable", width: 50, targets: [ 0 ] },
+      { width: 60, targets: [1, 2]},
+      {
+        targets: [6],
+        render: function(data){
+          return moment(data).format('YYYY-MM-DD HH:mm');
+        }
+      }
+    ],
+    fixedColumns: true
+  };
+  var table = $(divname).DataTable(table_options);
+  document.table = table;
+  document.datatable_options = table_options;
+  document.datatable_div = divname;
 
-    $("#runs_table_wrapper .row .col-sm-6").html(filter_html);
-    $('#datepicker_from').change(function() {
-	table.ajax.reload();
-    });
-    $('#datepicker_to').change(function() {
-        table.ajax.reload();
-    });
+  var filter_html = "<span class='date-label' id='date-label-from'> From: <input class='date_range_filter date' id='datepicker_from' type='date'></span><span class='date-label' id='date-label-to'> To: <input class='date_range_filter date' id='datepicker_to' type='date'></span>";
+
+  $("#runs_table_wrapper .row .col-sm-6").html(filter_html);
+  $('#datepicker_from').change(function() {
+    table.ajax.reload();
+  });
+  $('#datepicker_to').change(function() {
+    table.ajax.reload();
+  });
 
 
-    $(divname + ' tbody').on( 'click', 'td', function () {
-    	if(!$(this).hasClass("not-selectable")){
-	        $(this).parent().toggleClass('selected');
-    	    $("#addtagrow").slideDown();
-	    }
+  $(divname + ' tbody').on( 'click', 'td', function () {
+    if(!$(this).hasClass("not-selectable")){
+      $(this).parent().toggleClass('selected');
+      $("#addtagrow").slideDown();
+    }
 
-        } );
- 	
- 	
-    $('#add_comment_button').click( function () {
-	var comment = $("#commentinput").val();
-	if(typeof comment ==="undefined")
-	    console.log("No comment!");
-        else{
-	    var runs = [];
-	    for(var i=0; i<table.rows('.selected')[0].length; i++)
-			runs.push(table.rows('.selected').data()[i]['number']);
-			$.ajax({
-		    	type: "POST",
-		    	url: "runsui/addcomment",
-		    	data: {"runs": runs, "comment": comment, "user": "web user"},
-		    	success: function(){ table.ajax.reload();},
-		    	error:   function(jqXHR, textStatus, errorThrown) {
-				alert("Error, status = " + textStatus + ", " +
-			    	  "error thrown: " + errorThrown
-			     );
-		    	}
-			});
-		}
-	});
+  } );
 
-    $('#add_tag_button').click( function () {
-	var tag = $("#taginput").val();
-	if(typeof tag ==="undefined")
-	    console.log("No tag!")
-        else{
-	    runs = [];
-	    for(var i=0; i<table.rows('.selected')[0].length; i++)
-		runs.push(table.rows('.selected').data()[i]['number']);
-	    if(runs.length>0)
-		$.ajax({
-		    type: "POST",
-		    url: "runsui/addtags",
-		    data: {"runs": runs, "tag": tag, "user": "web user"},
-		    success: function(){ table.ajax.reload();},
-		    error:   function(jqXHR, textStatus, errorThrown) {
-			alert("Error, status = " + textStatus + ", " +
-			      "error thrown: " + errorThrown
-			     );
-		    }
-		});
-	    
-	}
-    
-    });
-    
-    $('#add_tag_detail_button').click( function () {
-	var tag = $("#newtag").val();
-	if(typeof tag ==="undefined")
-	    console.log("No tag!")
-        else{
-	    	var runs = [];
-			runs.push($("#detail_Number").html());
-	    	if(runs.length>0 && typeof runs[0] !== "undefined")
-				$.ajax({
-		    		type: "POST",
-		    		url: "runsui/addtags",
-		    		data: {"runs": runs, "tag": tag, "user": "web user"},
-		    success: function(){ $("#newtag").val(""); ShowDetail(runs[0])},
-		    error:   function(jqXHR, textStatus, errorThrown) {
-			alert("Error, status = " + textStatus + ", " +
-			      "error thrown: " + errorThrown
-			     );
-		    }
-		});
-	}
-    
-    });
-    
-    $('#add_comment_detail_button').click( function () {
-	var comment = $("#newcomment").val();
-	if(typeof comment ==="undefined")
-	    console.log("No comment!")
-        else{
-	    	var runs = [];
-			runs.push($("#detail_Number").html());
-	    	if(runs.length>0 && typeof runs[0] !== "undefined")
-				$.ajax({
-		    		type: "POST",
-		    		url: "runsui/addcomment",
-		    		data: {"runs": runs, "comment": comment, "user": "web user"},		   
-		    		success: function(){ $("#newcomment").val(""); ShowDetail(runs[0])},
-		    		error:   function(jqXHR, textStatus, errorThrown) {
-			alert("Error, status = " + textStatus + ", " +
-			      "error thrown: " + errorThrown
-			     );
-		    }
-		});
-	}
-    
-    });
+
+  $('#add_comment_button').click( function () {
+    var comment = $("#commentinput").val();
+    if(typeof comment ==="undefined")
+      console.log("No comment!");
+    else{
+      var runs = [];
+      for(var i=0; i<table.rows('.selected')[0].length; i++)
+        runs.push(table.rows('.selected').data()[i]['number']);
+      $.ajax({
+        type: "POST",
+        url: "runsui/addcomment",
+        data: {"runs": runs, "comment": comment, "user": "web user"},
+        success: function(){ table.ajax.reload();},
+        error:   function(jqXHR, textStatus, errorThrown) {
+          alert("Error, status = " + textStatus + ", " +
+            "error thrown: " + errorThrown
+          );
+        }
+      });
+    }
+  });
+
+  $('#add_tag_button').click( function () {
+    var tag = $("#taginput").val();
+    if(typeof tag ==="undefined")
+      console.log("No tag!")
+    else{
+      runs = [];
+      for(var i=0; i<table.rows('.selected')[0].length; i++)
+        runs.push(table.rows('.selected').data()[i]['number']);
+      if(runs.length>0)
+        $.ajax({
+          type: "POST",
+          url: "runsui/addtags",
+          data: {"runs": runs, "tag": tag, "user": "web user"},
+          success: function(){ table.ajax.reload();},
+          error:   function(jqXHR, textStatus, errorThrown) {
+            alert("Error, status = " + textStatus + ", " +
+              "error thrown: " + errorThrown
+            );
+          }
+        });
+
+    }
+
+  });
+
+  $('#add_tag_detail_button').click( function () {
+    var tag = $("#newtag").val();
+    if(typeof tag ==="undefined")
+      console.log("No tag!")
+    else{
+      var runs = [];
+      runs.push($("#detail_Number").html());
+      if(runs.length>0 && typeof runs[0] !== "undefined")
+        $.ajax({
+          type: "POST",
+          url: "runsui/addtags",
+          data: {"runs": runs, "tag": tag, "user": "web user"},
+          success: function(){ $("#newtag").val(""); ShowDetail(runs[0])},
+          error:   function(jqXHR, textStatus, errorThrown) {
+            alert("Error, status = " + textStatus + ", " +
+              "error thrown: " + errorThrown
+            );
+          }
+        });
+    }
+
+  });
+
+  $('#add_comment_detail_button').click( function () {
+    var comment = $("#newcomment").val();
+    if(typeof comment ==="undefined")
+      console.log("No comment!")
+    else{
+      var runs = [];
+      runs.push($("#detail_Number").html());
+      if(runs.length>0 && typeof runs[0] !== "undefined")
+        $.ajax({
+          type: "POST",
+          url: "runsui/addcomment",
+          data: {"runs": runs, "comment": comment, "user": "web user"},
+          success: function(){ $("#newcomment").val(""); ShowDetail(runs[0])},
+          error:   function(jqXHR, textStatus, errorThrown) {
+            alert("Error, status = " + textStatus + ", " +
+              "error thrown: " + errorThrown
+            );
+          }
+        });
+    }
+
+  });
 }
 function RemoveTag(run, user, tag){
     // Remove ALL tags with a given text string
