@@ -88,28 +88,17 @@ function InitializeRunsTable(divname){
         },
       },
       { data : "tags.name", "defaultContent": "",
-        searchable: true,
-        "render": function(data, type, row){
-          ret = "";
-          if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
-            ret = row.tags.reduce((tot, tag) => {
-              var divclass = row.tags[i]["name"][0] == "_" ? "badge-primary" : "badge-secondary";
-              tot += `<div class='inline-block'><span class='badge ${divclass}' style='cursor:pointer' onclick='SearchTag("${tag.name}")'></span>`;
-            }, ret);
-            /*
-            for(var i=0; i<row.tags.length; i+=1){
-              var divclass = row.tags[i]["name"][0] == "_" ? "badge-primary" : "badge-secondary";
-              ret += "<div class='inline-block'><span class='badge " +
-                divclass + "' style='cursor:pointer' onclick='SearchTag("
-                + '"' + row.tags[i]['name'] +
-                '"' + ")'>" + row.tags[i]["name"] + "</span>";
-              //ret+=<row.tags[i]["name"];
-              //if(i!=row.tags.length-1)
-              //ret+=", ";
-            } */
+        searchable: true, "render": function(data, type, row){
+              var ret = "";
+              if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
+                  ret = row.tags.reduce((tot, tag) => {
+                      var divclass = "badge-" + (tag["name"][0] === "_" ? "primary" : "secondary");
+                      var html = `<div class='inline-block'><span class='badge ${divclass}' style='cursor:pointer' onclick='SearchTag("${tag.name}")'>${tag.name}</span></div>`;
+                      return tot + html;
+                  }, "");
+              }
+              return ret;
           }
-          return ret;
-        }
       },
       { data : "comments", "defaultContent": "",
         "render": function(data, type, row){
@@ -259,7 +248,7 @@ function RemoveTag(run, user, tag){
 	type: "POST",
 	url: "runsui/removetag",
 	data: {"run": run, "user": user, "tag": tag},
-	success: function(){ ShowDetail(run); document.table.ajax.redraw();},
+	success: function(){ ShowDetail(run); document.table.ajax.reload();},
 	error: function(jqXHR, textStatus, errorThrown){
 	    alert("Error, status = " +textStatus + ", " + "error thrown: " + errorThrown);
 	}
