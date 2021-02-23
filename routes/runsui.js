@@ -55,14 +55,7 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
 
   var run = req.body.run;
   var tag = req.body.tag;
-  var user = req.user;
   var tag_user = req.body.user;
-
-  if (tag_user != user.lngs_ldap_uid) { // deleting someone else's tag
-    if ((typeof user.groups == 'undefined') || !(user.groups.includes('ac') || user.groups.includes('admin'))) {
-      return res.status(403).send("Permission denied");
-    }
-  }
 
   // Convert runs to int
   runint = parseInt(run);
