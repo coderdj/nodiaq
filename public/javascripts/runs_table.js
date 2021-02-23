@@ -89,16 +89,16 @@ function InitializeRunsTable(divname){
       },
       { data : "tags.name", "defaultContent": "",
         searchable: true, "render": function(data, type, row){
-              var ret = "";
-              if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
-                  ret = row.tags.reduce((tot, tag) => {
-                      var divclass = "badge-" + (tag["name"][0] === "_" ? "primary" : "secondary");
-                      var html = `<div class='inline-block'><span class='badge ${divclass}' style='cursor:pointer' onclick='SearchTag("${tag.name}")'>${tag.name}</span></div>`;
-                      return tot + html;
-                  }, "");
-              }
-              return ret;
+          var ret = "";
+          if(typeof(row) != "undefined" && typeof(row.tags) != "undefined"){
+            ret = row.tags.reduce((tot, tag) => {
+              var divclass = "badge-" + (tag["name"][0] === "_" ? "primary" : "secondary");
+              var html = `<div class='inline-block'><span class='badge ${divclass}' style='cursor:pointer' onclick='SearchTag("${tag.name}")'>${tag.name}</span></div>`;
+              return tot + html;
+            }, "");
           }
+          return ret;
+        }
       },
       { data : "comments", "defaultContent": "",
         "render": function(data, type, row){
@@ -143,7 +143,6 @@ function InitializeRunsTable(divname){
       $(this).parent().toggleClass('selected');
       $("#addtagrow").slideDown();
     }
-
   } );
 
 
@@ -189,9 +188,7 @@ function InitializeRunsTable(divname){
             );
           }
         });
-
     }
-
   });
 
   $('#add_tag_detail_button').click( function () {
@@ -214,7 +211,6 @@ function InitializeRunsTable(divname){
           }
         });
     }
-
   });
 
   $('#add_comment_detail_button').click( function () {
@@ -228,7 +224,7 @@ function InitializeRunsTable(divname){
         $.ajax({
           type: "POST",
           url: "runsui/addcomment",
-          data: {"runs": runs, "comment": comment, "user": "web user"},
+          data: {"runs": runs, "comment": comment},
           success: function(){ $("#newcomment").val(""); ShowDetail(runs[0])},
           error:   function(jqXHR, textStatus, errorThrown) {
             alert("Error, status = " + textStatus + ", " +
@@ -240,6 +236,7 @@ function InitializeRunsTable(divname){
 
   });
 }
+
 function RemoveTag(run, user, tag){
     // Remove ALL tags with a given text string
     if(typeof run === 'undefined' || typeof user === 'undefined' || typeof tag === 'undefined')
@@ -257,59 +254,71 @@ function RemoveTag(run, user, tag){
 
 function ShowDetail(run, experiment){
 
-    var querystring = "runsui/get_run_doc?run="+run;
-    if(experiment=="xenon1t")
-	querystring+="&experiment=xenon1t";
-    $.getJSON(querystring, function(data){
-	
-	// Set base data
-	document.getElementById("detail_Number").innerHTML = data['number'];
-	$("#detail_Detectors").html(data['detector']);
-	$("#detail_Start").html(moment(data['start']).format('YYYY-MM-DD HH:mm'));
-	$("#detail_End").html(moment(data['end']).format('YYYY-MM-DD HH:mm'));
-	$("#detail_User").html(data['user']);
-	$("#detail_Mode").html(data['mode']);
-	$("#detail_Source").html(data['source']);
-	
-	var tag_html = "";
-	for(var i in data['tags']){
-	    var row = data['tags'][i];
-	    tag_html += "<tr><td>" + row['name'] + "</td><td>" + row['user'] + "</td><td>";
-	    tag_html += moment(row['date']).format("YYYY-MM-DD HH:mm") + "</td>";
-	    //if(row['user'] === window['user']){
-		tag_html += ("<td><button onclick='RemoveTag("+data['number']+", "+
-			     '"'+row['user']+'"'+", "+'"'+row['name']+'"');
-		tag_html += ")' class='btn btn-warning'>Remove tag</button></td></tr>";
-	    //}
-	    //else
-		//tag_html += "<td></td></tr>";
-	}
-	$("#detail_Tags").html(tag_html);
-	var comment_html = "";
-	for(var i in data['comments']){
-	    var row = data['comments'][i];
-	    comment_html += "<tr><td>" + row['user'] + "</td><td>";
-	    if(typeof row["comment"] != "undefined")
-		comment_html += row['comment'];
-	    else
-		comment_html += row["text"];
-	    comment_html += "</td><td>";
-	    comment_html += moment(row['date']).format("YYYY-MM-DD HH:mm") + "</td></tr>";
-	}
-	$("#detail_Comments").html(comment_html);
-	
-	// Locations
-	var location_html = "";
-	for(var i in data['data']){
-	    location_html+=("<table style='width:100%;border-bottom:1px solid #eee'>"+
-			    "<tr><td>Type</td><td>"+
-			    data['data'][i]['type']+"</td></tr><tr><td>Host</td><td>"+
-			    data['data'][i]['host']+"</td></tr><tr><td>Path</td><td>"+
-			    data['data'][i]['location']+"</td></tr></table>");
-	}
-	document.getElementById("location_div").innerHTML=location_html;
-	$("#detail_JSON").JSONView(data, {"collapsed": true});
-	$("#runsModal").modal();
-    });
-    
+  var querystring = "runsui/get_run_doc?run="+run;
+  $.getJSON(querystring, function(data){
+
+    // Set base data
+    $("#detail_Number")html(data['number']);
+    $("#detail_Detectors").html(data['detector'].toString());
+    $("#detail_Start").html(moment(data['start']).format('YYYY-MM-DD HH:mm'));
+    $("#detail_End").html(data.end == null ? "Not set" : moment(data['end']).format('YYYY-MM-DD HH:mm'));
+    $("#detail_User").html(data['user']);
+    $("#detail_Mode").html(data['mode']);
+    $("#detail_Source").html(data['source']);
+
+    var tag_html = data['tags'].reduce((total, tag) => {
+      var row = `<tr><td>${tag.name}</td>`;
+      row += `<td>${tag.user}</td>`;
+      row += `<td>${moment(row.date).format("YYYY-MM-DD HH:mm")}</td>`;
+      row += `<td><button onclick='RemoveTag("${data.number}", "${tag.user}", "${tag.name}")' class='btn btn-warning'>Remove tag</button></td></tr>`;
+      return total + row;
+    }, "");
+    /*for(var i in data['tags']){
+            var row = data['tags'][i];
+            tag_html += "<tr><td>" + row['name'] + "</td><td>" + row['user'] + "</td><td>";
+            tag_html += moment(row['date']).format("YYYY-MM-DD HH:mm") + "</td>";
+                tag_html += ("<td><button onclick='RemoveTag("+data['number']+", "+
+                             '"'+row['user']+'"'+", "+'"'+row['name']+'"');
+                tag_html += ")' class='btn btn-warning'>Remove tag</button></td></tr>";
+        }*/
+    $("#detail_Tags").html(tag_html);
+    var comment_html = dat['comments'].reduce((total, comment) => {
+      var row = `<tr><td>${comment.user}</td>`;
+      row += `<td>${comment.comment}</td>`;
+      row += `<td>${moment(comment.date).format("YYYY-MM-DD HH:mm")}</td></tr>`;
+      return total + row;
+    }, "");
+    /*for(var i in data['comments']){
+            var row = data['comments'][i];
+            comment_html += "<tr><td>" + row['user'] + "</td><td>";
+            if(typeof row["comment"] != "undefined")
+                comment_html += row['comment'];
+            else
+                comment_html += row["text"];
+            comment_html += "</td><td>";
+            comment_html += moment(row['date']).format("YYYY-MM-DD HH:mm") + "</td></tr>";
+        }*/
+    $("#detail_Comments").html(comment_html);
+
+    // Locations
+    var location_html = data['data'].reduce((total, entry) => {
+      var row = `<table style='width:100%;border-bottom:1px solid #eee'>`;
+      row += `<tr><td>Type</td><td>entry.type</td></tr>`;
+      row += `<tr><td>Host</td><td>entry.host</td></tr>`;
+      row += `<tr><td>Location</td><td>entry.location</td></tr></table>`;
+      return total + row;
+    }, "");
+    /*for(var i in data['data']){
+            location_html+=("<table style='width:100%;border-bottom:1px solid #eee'>"+
+                            "<tr><td>Type</td><td>"+
+                            data['data'][i]['type']+"</td></tr><tr><td>Host</td><td>"+
+                            data['data'][i]['host']+"</td></tr><tr><td>Path</td><td>"+
+                            data['data'][i]['location']+"</td></tr></table>");
+        }*/
+    $("#location_div").html(location_html);
+    $("#detail_JSON").JSONView(data, {"collapsed": true});
+    $("#runsModal").modal();
+  });
+
 }
+
