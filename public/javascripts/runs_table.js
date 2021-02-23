@@ -258,15 +258,15 @@ function ShowDetail(run, experiment){
   $.getJSON(querystring, function(data){
 
     // Set base data
-    $("#detail_Number")html(data['number']);
-    $("#detail_Detectors").html(data['detector'].toString());
+    $("#detail_Number").html(data['number']);
+    $("#detail_Detectors").html(data['detectors'].toString());
     $("#detail_Start").html(moment(data['start']).format('YYYY-MM-DD HH:mm'));
     $("#detail_End").html(data.end == null ? "Not set" : moment(data['end']).format('YYYY-MM-DD HH:mm'));
     $("#detail_User").html(data['user']);
     $("#detail_Mode").html(data['mode']);
     $("#detail_Source").html(data['source']);
 
-    var tag_html = data['tags'].reduce((total, tag) => {
+    var tag_html = typeof data.tags == 'undefined' ? "" : data['tags'].reduce((total, tag) => {
       var row = `<tr><td>${tag.name}</td>`;
       row += `<td>${tag.user}</td>`;
       row += `<td>${moment(row.date).format("YYYY-MM-DD HH:mm")}</td>`;
@@ -282,7 +282,7 @@ function ShowDetail(run, experiment){
                 tag_html += ")' class='btn btn-warning'>Remove tag</button></td></tr>";
         }*/
     $("#detail_Tags").html(tag_html);
-    var comment_html = dat['comments'].reduce((total, comment) => {
+    var comment_html = typeof data.comments == 'undefined' ? "" : data['comments'].reduce((total, comment) => {
       var row = `<tr><td>${comment.user}</td>`;
       row += `<td>${comment.comment}</td>`;
       row += `<td>${moment(comment.date).format("YYYY-MM-DD HH:mm")}</td></tr>`;
@@ -303,9 +303,9 @@ function ShowDetail(run, experiment){
     // Locations
     var location_html = data['data'].reduce((total, entry) => {
       var row = `<table style='width:100%;border-bottom:1px solid #eee'>`;
-      row += `<tr><td>Type</td><td>entry.type</td></tr>`;
-      row += `<tr><td>Host</td><td>entry.host</td></tr>`;
-      row += `<tr><td>Location</td><td>entry.location</td></tr></table>`;
+      row += `<tr><td>Type</td><td>${entry.type}</td></tr>`;
+      row += `<tr><td>Host</td><td>${entry.host}</td></tr>`;
+      row += `<tr><td>Location</td><td>${entry.location}</td></tr></table>`;
       return total + row;
     }, "");
     /*for(var i in data['data']){
