@@ -4,17 +4,17 @@ function SearchTag(name){
 }
 
 function CheckMongoQuery(){
-    var query = $("#mongoquery").val();
-    if(query === "")
-	query = "{}";
-    try{JSON.parse(query);}
-    catch(e){
-	alert("Your mongo query is not valid JSON!");
-	return;
-    }
-    document.datatable_options['ajax']['data'] ={"conditions": query};
-    $(document.datatable_div).DataTable().destroy();
-    $(document.datatable_div).DataTable(document.datatable_options);
+  var query = $("#mongoquery").val();
+  if(query === "")
+    query = "{}";
+  try{JSON.parse(query);}
+  catch(e){
+    alert("Your mongo query is not valid JSON!");
+    return;
+  }
+  document.datatable_options['ajax']['data'] ={"conditions": query};
+  $(document.datatable_div).DataTable().destroy();
+  $(document.datatable_div).DataTable(document.datatable_options);
 }
 
 function InitializeRunsTable(divname){
@@ -238,18 +238,18 @@ function InitializeRunsTable(divname){
 }
 
 function RemoveTag(run, user, tag){
-    // Remove ALL tags with a given text string
-    if(typeof run === 'undefined' || typeof user === 'undefined' || typeof tag === 'undefined')
-	return;
-    $.ajax({
-	type: "POST",
-	url: "runsui/removetag",
-	data: {"run": run, "user": user, "tag": tag},
-	success: function(){ ShowDetail(run); document.table.ajax.reload();},
-	error: function(jqXHR, textStatus, errorThrown){
-	    alert("Error, status = " +textStatus + ", " + "error thrown: " + errorThrown);
-	}
-    });
+  // Remove ALL tags with a given text string
+  if(typeof run === 'undefined' || typeof user === 'undefined' || typeof tag === 'undefined')
+    return;
+  $.ajax({
+    type: "POST",
+    url: "runsui/removetag",
+    data: {"run": run, "user": user, "tag": tag},
+    success: function(){ ShowDetail(run); document.table.ajax.reload();},
+    error: function(jqXHR, textStatus, errorThrown){
+      alert("Error, status = " +textStatus + ", " + "error thrown: " + errorThrown);
+    }
+  });
 }
 
 function ShowDetail(run){
