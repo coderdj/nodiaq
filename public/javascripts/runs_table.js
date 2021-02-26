@@ -203,7 +203,7 @@ function InitializeRunsTable(divname){
           type: "POST",
           url: "runsui/addtags",
           data: {"runs": runs, "tag": tag, "user": "web user"},
-          success: function(){ $("#newtag").val(""); ShowDetail(runs[0])},
+          success: () => {$("#newtag").val(""); ShowDetail(runs[0]); table.ajax.reload();},
           error:   function(jqXHR, textStatus, errorThrown) {
             alert("Error, status = " + textStatus + ", " +
               "error thrown: " + errorThrown
@@ -225,7 +225,7 @@ function InitializeRunsTable(divname){
           type: "POST",
           url: "runsui/addcomment",
           data: {"runs": runs, "comment": comment},
-          success: function(){ $("#newcomment").val(""); ShowDetail(runs[0])},
+          success: () => {$("#newcomment").val(""); ShowDetail(runs[0]); table.ajax.reload();},
           error:   function(jqXHR, textStatus, errorThrown) {
             alert("Error, status = " + textStatus + ", " +
               "error thrown: " + errorThrown
@@ -252,10 +252,8 @@ function RemoveTag(run, user, tag){
     });
 }
 
-function ShowDetail(run, experiment){
-
-  var querystring = "runsui/get_run_doc?run="+run;
-  $.getJSON(querystring, function(data){
+function ShowDetail(run){
+  $.getJSON("runsui/get_run_doc?run="+run, function(data){
 
     // Set base data
     $("#detail_Number").html(data['number']);
@@ -266,56 +264,30 @@ function ShowDetail(run, experiment){
     $("#detail_Mode").html(data['mode']);
     $("#detail_Source").html(data['source']);
 
-    var tag_html = typeof data.tags == 'undefined' ? "" : data['tags'].reduce((total, tag) => {
+    // Tags, if any
+    $("#detail_Tags").html(typeof data.tags == 'undefined' ? "" : data['tags'].reduce((total, tag) => {
       var row = `<tr><td>${tag.name}</td>`;
       row += `<td>${tag.user}</td>`;
       row += `<td>${moment(row.date).format("YYYY-MM-DD HH:mm")}</td>`;
       row += `<td><button onclick='RemoveTag("${data.number}", "${tag.user}", "${tag.name}")' class='btn btn-warning'>Remove tag</button></td></tr>`;
       return total + row;
-    }, "");
-    /*for(var i in data['tags']){
-            var row = data['tags'][i];
-            tag_html += "<tr><td>" + row['name'] + "</td><td>" + row['user'] + "</td><td>";
-            tag_html += moment(row['date']).format("YYYY-MM-DD HH:mm") + "</td>";
-                tag_html += ("<td><button onclick='RemoveTag("+data['number']+", "+
-                             '"'+row['user']+'"'+", "+'"'+row['name']+'"');
-                tag_html += ")' class='btn btn-warning'>Remove tag</button></td></tr>";
-        }*/
-    $("#detail_Tags").html(tag_html);
-    var comment_html = typeof data.comments == 'undefined' ? "" : data['comments'].reduce((total, comment) => {
+    }, ""));
+
+    $("#detail_Comments").html(typeof data.comments == 'undefined' ? "" : data['comments'].reduce((total, comment) => {
       var row = `<tr><td>${comment.user}</td>`;
       row += `<td>${comment.comment}</td>`;
       row += `<td>${moment(comment.date).format("YYYY-MM-DD HH:mm")}</td></tr>`;
       return total + row;
-    }, "");
-    /*for(var i in data['comments']){
-            var row = data['comments'][i];
-            comment_html += "<tr><td>" + row['user'] + "</td><td>";
-            if(typeof row["comment"] != "undefined")
-                comment_html += row['comment'];
-            else
-                comment_html += row["text"];
-            comment_html += "</td><td>";
-            comment_html += moment(row['date']).format("YYYY-MM-DD HH:mm") + "</td></tr>";
-        }*/
-    $("#detail_Comments").html(comment_html);
+    }, ""));
 
     // Locations
-    var location_html = data['data'].reduce((total, entry) => {
+    $("#location_div").html(data['data'].reduce((total, entry) => {
       var row = `<table style='width:100%;border-bottom:1px solid #eee'>`;
       row += `<tr><td>Type</td><td>${entry.type}</td></tr>`;
       row += `<tr><td>Host</td><td>${entry.host}</td></tr>`;
       row += `<tr><td>Location</td><td>${entry.location}</td></tr></table>`;
       return total + row;
-    }, "");
-    /*for(var i in data['data']){
-            location_html+=("<table style='width:100%;border-bottom:1px solid #eee'>"+
-                            "<tr><td>Type</td><td>"+
-                            data['data'][i]['type']+"</td></tr><tr><td>Host</td><td>"+
-                            data['data'][i]['host']+"</td></tr><tr><td>Path</td><td>"+
-                            data['data'][i]['location']+"</td></tr></table>");
-        }*/
-    $("#location_div").html(location_html);
+    }, ""));
     $("#detail_JSON").JSONView(data, {"collapsed": true});
     $("#runsModal").modal();
   });
