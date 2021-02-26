@@ -1,39 +1,40 @@
+// public/javascripts/scope.js
 function PopulateAvailableRuns(divname){
-    $.getJSON('scope/available_runs', function(data){
-        if (typeof data.message != 'undefined') {
-            alert(data.message);
-            return;
-        }
-        var html = "";
-        if (data.length == 0) {
-            alert("No runs available");
-            return;
-        }
-	for(var i in data.reverse()){
-	    html += "<option value="+data[i]+">"+data[i]+"</option>";
-	}
-	document.getElementById(divname).innerHTML = html;
+  $.getJSON('scope/available_runs', function(data){
+    if (typeof data.message != 'undefined') {
+      alert(data.message);
+      return;
+    }
+    var html = "";
+    if (data.length == 0) {
+      alert("No runs available");
+      return;
+    }
+    for(var i in data.reverse()){
+      html += "<option value="+data[i]+">"+data[i]+"</option>";
+    }
+    document.getElementById(divname).innerHTML = html;
     FillTargets();
-    });
+  });
 }
 
 function FillTargets() {
-    var run = $("#run_select").val();
-    $.getJSON('scope/available_targets?run=' + run, function(data) {
-        if (typeof data.message != 'undefined') {
-            alert(data.message);
-            return;
-        }
-        var html = "";
-        if (data.length == 0) {
-            alert("No data types available");
-            return;
-        }
-        for (var i in data) {
-            html += "<option value=" + data[i] + ">" + data[i] + "</option>";
-        }
-        $("#target_select").html(html);
-    });
+  var run = $("#run_select").val();
+  $.getJSON('scope/available_targets?run=' + run, function(data) {
+    if (typeof data.message != 'undefined') {
+      alert(data.message);
+      return;
+    }
+    var html = "";
+    if (data.length == 0) {
+      alert("No data types available");
+      return;
+    }
+    for (var i in data) {
+      html += "<option value=" + data[i] + ">" + data[i] + "</option>";
+    }
+    $("#target_select").html(html);
+  });
 }
 
 function DisableChannelInput() {
@@ -140,38 +141,38 @@ function Prev(){
 }
 
 function DrawChart(){
-    var dat = [];
-    for(var i in document.data[document.index]['data']) {
-      if (i >= document.data[document.index]['length'])
-        break;
-      dat.push([parseInt(i), parseInt(document.data[document.index]['data'][i])]);
+  var dat = [];
+  for(var i in document.data[document.index]['data']) {
+    if (i >= document.data[document.index]['length'])
+      break;
+    dat.push([parseInt(i), parseInt(document.data[document.index]['data'][i])]);
+  }
+
+  for(var i =0; i<document.data.length; i+=1){
+    if(i != document.index){
+      $("#"+i.toString()+"_row").css('background-color', 'white');
+      $("#"+i.toString()+"_row").css('color', 'black');
+    }else{
+      $("#"+i.toString()+"_row").css('background-color', '#ef476f');
+      $("#"+i.toString()+"_row").css('color', 'white');
     }
+  }
 
-    for(var i =0; i<document.data.length; i+=1){
-	    if(i != document.index){
-	        $("#"+i.toString()+"_row").css('background-color', 'white');
-	        $("#"+i.toString()+"_row").css('color', 'black');
-	    }else{
-	        $("#"+i.toString()+"_row").css('background-color', '#ef476f');
-	        $("#"+i.toString()+"_row").css('color', 'white');
-	    }
+  document.chart = new Dygraph(
+
+    // containing div
+    document.getElementById("chartdiv"),
+
+    dat,
+
+    {
+      "xlabel": "Sample in pulse [units of dt]",
+      "ylabel": "Amplitude [depends]",
+      "yLabelWidth": 18,
+      "labels": ["Sample", "Amplitude"],
     }
+  );
 
-    document.chart = new Dygraph(
 
-	// containing div
-	document.getElementById("chartdiv"),
 
-	dat,
-
-	{
-	    "xlabel": "Sample in pulse [units of dt]",
-	    "ylabel": "Amplitude [depends]",
-	    "yLabelWidth": 18,
-	    "labels": ["Sample", "Amplitude"],
-	}
-    );
-	
-
-  
 }

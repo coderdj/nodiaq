@@ -59,7 +59,6 @@ var controlRouter = require('./routes/control');
 var scopeRouter = require('./routes/scope');
 var monitorRouter = require('./routes/monitor');
 var shiftRouter = require('./routes/shifts');
-var adminRouter = require('./routes/admin');
 var equipmentRouter = require('./routes/equipment');
 var apiRouter = require('./routes/api');
 var hvRouter = require('./routes/hypervisor');
@@ -167,7 +166,6 @@ app.use('/scope', scopeRouter);
 app.use('/monitor', monitorRouter);
 app.use('/shifts', shiftRouter);
 app.use('/equipment', equipmentRouter);
-app.use('/admin', adminRouter);
 app.use('/api', apiRouter);
 app.use('/hypervisor', hvRouter);
 
@@ -177,11 +175,23 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// Make user object accessible to templates
+// Make user object and other info accessible to templates
 app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
+  res.locals.user = req.user;
+  req.template_info_base = {
+    pagetitle: 'XENONnT DAQ',
+    detectors: [['tpc', 'TPC'], ['muon_veto', 'Muon Veto'], ['neutron_veto', 'Neutron Veto']],
+    headertitle: 'XENONnT Data Acquisition',
+  };
+  try{
+    if (typeof req.user.nodiaq.links != 'undefined')
+      req.template_info_base.shortcuts = req.user.nodiaq.links;
+  }catch(error){
+    req.template_info_base.shortcuts = ['control', 'status', 'runs', 'monitor', 'help', 'shifts'];
+  }
+  next();
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

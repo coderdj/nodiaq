@@ -26,7 +26,8 @@ block content
     br
 
     div.row
-      each val in [['tpc', 'TPC'], ['neutron_veto', 'Neutron Veto'], ['muon_veto', 'Muon Veto']]
+      //each val in [['tpc', 'TPC'], ['neutron_veto', 'Neutron Veto'], ['muon_veto', 'Muon Veto']]
+      each val in detectors
         div.col-md-4.col-xs-12
           div.det_card_noheight
             h5
@@ -68,16 +69,11 @@ block content
           h5 Who's on Shift
           div#shift_box
             div(style='text-align:center') Nobody on shift. Direct all requests to localhost.
-    //
-      div#treant(style="width:100%;height:100%;margin:0")
-    //
-      canvas#d3_canvas(style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);")
-      div#graph_canvas(style="width:100%;min-width:600px;height:65%;min-height:800px;")
-      div#plot_div(style="width:100%;height:30%")
 
   script.
     $(document).ready(function(){
-      DetectorInfoLoop();
+      SetDetectors(detectors);
+      setInterval(DetectorInfoLoop, 5000);
       DrawActiveLink("#lindex");
       PopulateShifters("shift_box");
       DrawPie("pie_box", 30);

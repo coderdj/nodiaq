@@ -9,66 +9,63 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('hosts', { title: 'Hosts', user: req.user });
+  var template_info = req.template_info_base;
+  template_info['hosts'] = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
+    'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster', 'xenonnt'];
+    res.render('hosts', template_info);
 });
 
 router.get("/get_host_status", ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get('system_monitor');
-    
-    var q = url.parse(req.url, true).query;
-    var host = q.host;
+  var db = req.db;
+  var collection = db.get('system_monitor');
 
-  collection.find({"host": host},
-    {"sort": {"_id": -1}, "limit": 1},
-    function(e, sdoc){
-      if(sdoc.length == 0)
-        return res.json({});
-      sdoc[0]['checkin'] = new Date() - sdoc[0]['time'];
-      return res.json(sdoc[0]);
-    });
+  var q = url.parse(req.url, true).query;
+  var host = q.host;
+
+  collection.find({"host": host}, {"sort": {"_id": -1}, "limit": 1})
+  .then(docs => {
+    if (docs.length == 0)
+      return res.json({});
+    docs[0]['checkin'] = new Date() - docs[0]['time'];
+    return res.json({docs[0]});
+  }).catch(err => {console.log(err.message); res.json({});});
 });
 
 router.get("/get_host_history", ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get("system_monitor");
+  var db = req.db;
+  var collection = db.get("system_monitor");
 
-    var q = url.parse(req.url, true).query;
-    var host = q.host;
-    var limit = parseInt(q.limit);
-    if(typeof(limit)=="undefined")
-	limit = 1;
-    collection.find({"host": host},
-		    {"sort": {"_id": -1}, "limit": limit},
-		    function(e, sdoc){
-			if(typeof(sdoc)=="undefined")
-			    console.log(e);
-			if(sdoc.length==0)
-			    return res.json({});
+  var q = url.parse(req.url, true).query;
+  var host = q.host;
+  var limit = parseInt(q.limit);
+  if(typeof(limit)=="undefined")
+    limit = 1;
+  collection.find({"host": host}, {"sort": {"_id": -1}, "limit": limit})
+    .then(docs => {
+      if(docs.length==0)
+        return res.json({});
 
-			// Mem %, CPU %, Disk % on each disk
-			r = {"mem": [], "cpu": [], "swap": []};
-			names = {"mem": "Memory%", "cpu": "CPU%", "swap": "Swap%"};
-			for(i in sdoc){
-			    var oid = new req.ObjectID(sdoc[i]['_id']);
-			    var dt = Date.parse(oid.getTimestamp());
-			    r["cpu"].unshift([dt, sdoc[i]['cpu_percent']]);
-			    r["mem"].unshift([dt, sdoc[i]['virtual_memory']['percent']]);
-			    r["swap"].unshift([dt, sdoc[i]['swap_memory']['percent']]);
-			    for(j in sdoc[i]['disk']){
-				if(!(j in r)){
-				    r[j] = [];
-				    names[j] = "Disk%("+j+")";
-				}
-				r[j].unshift([dt, sdoc[i]['disk'][j]['percent']]);
-			    }
-			}
-			ret = [];
-			for(i in r)
-			    ret.push({"type": "area", "name": names[i], "data": r[i]})
+      // Mem %, CPU %, Disk % on each disk
+      r = {"mem": [], "cpu": [], "swap": []};
+      names = {"mem": "Memory%", "cpu": "CPU%", "swap": "Swap%"};
+      docs.forEach(doc => {
+        r["cpu"].unshift([doc['time'], doc['cpu_percent']]);
+        r["mem"].unshift([doc['time'], doc['virtual_memory']['percent']]);
+        r["swap"].unshift([doc['time'], doc['swap_memory']['percent']]);
+        for(j in doc['disk']){
+          if(!(j in r)){
+            r[j] = [];
+            names[j] = "Disk%("+j+")";
+          }
+          r[j].unshift([doc['time'], doc['disk'][j]['percent']]);
+        }
+      }
+      ret = [];
+      for(i in r)
+        ret.push({"type": "line", "name": names[i], "data": r[i]})
 
-			return res.json(ret);
-		    });
+      return res.json(ret);
+    });
 });
 
 module.exports = router;

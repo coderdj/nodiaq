@@ -1,3 +1,4 @@
+// views/options.pug
 extends layout
 
 block content
@@ -9,10 +10,10 @@ block content
   div.main-container
     h3 DAQ Configuration
     hr
-    p You can view the configuration parameters for various operating modes here. All users can fetch and view any file but only DAQ administrators are allowed to manage these settings.
+    p You can view the configuration parameters for DAQ operating modes here. All users can fetch and view any file but only experts are allowed to modify them.
     div.row(style="height:50px")
        div.col-xs-6.col-sm-3
-         select.form-control(id='run_mode_select' title='Choose a run mode' disabled)
+         select.form-control#run_mode_select(title='Choose a run mode' disabled)
        div.col-xs-6.col-sm-3
          button#fetch_mode_button.btn.brn-info(onclick="FetchMode('run_mode_select')") Fetch
     br
@@ -26,6 +27,7 @@ block content
 
     $(document).ready(function () {
       DrawActiveLink("#loptions");
+      SetDetectors(detectors, extra_detectors);
       document.jsoneditor = new JSONEditor(document.getElementById("json_text"), 
         {"modes":  ['tree', 'view', 'form', 'code', 'text']});
       PopulateModeList("run_mode_select");

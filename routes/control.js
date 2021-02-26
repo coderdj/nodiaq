@@ -1,3 +1,4 @@
+// routes.control.js
 var express = require("express");
 var url = require("url");
 var router = express.Router();
@@ -8,7 +9,9 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('control', { title: 'Control', user:req.user });
+  var template = req.template_info_base;
+
+  res.render('control', template);
 });
 
 router.get('/modes', ensureAuthenticated, function(req, res){
@@ -78,10 +81,7 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
           if (typeof newdoc[key] != 'undefined' && newdoc[key] != olddoc.state[key])
             updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: olddoc['detector']+'.'+key});
       }
-      if (updates.length > 0)
-        return collection.insert(updates);
-      else
-        return 0;
+      return updates.length > 0 ? collection.insert(updates) : 0;
     }).then( () => res.sendStatus(200))
     .catch((err) => {
       console.log(err.message);

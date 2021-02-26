@@ -26,7 +26,8 @@ html
     link(rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32")
     link(rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16")
     link(rel="icon" type="image/png" href="/images/favicon-128.png" sizes="128x128")
-    meta(name="application-name" content="XENONnT DAQ")
+    //meta(name="application-name" content="XENONnT DAQ")
+    meta(name="application-name" content=#{pagetitle})
     meta(name="msapplication-TileColor" content="#0c1178")
     meta(name="msapplication-TileImage" content="/images/mstile-144x144.png")
     meta(name="msapplication-square70x70logo" content="/images/mstile-70x70.png")
@@ -38,6 +39,8 @@ html
     script(src="javascripts/chart.js" type="text/javascript")
     block extrahead
   body
+    - 
+      var ShortcutClass = name => shortcuts.includes(name) ? "'colored'" : "'colored CTAs'";
     div.overlay
     div.wrapper
       nav#topbar.colored.active
@@ -45,7 +48,8 @@ html
             span.anticolored(style="background-color:white")
             span.anticolored(style="background-color:white")
             span.anticolored(style="background-color:white")
-          span.pagetitle XENONnT DAQ
+          //span.pagetitle XENONnT DAQ
+          span.pagetitle `${pagetitle}`
       div#sidebar_wrapper.active
         nav#sidebar.colored.active
           button.navbar-btn.colored.sidebarCollapse(type="button")
@@ -57,98 +61,97 @@ html
               img.second_logo(src="/images/nTLogoBar.svg")
               //
                 div.headertitle
-                  h4 XENONnT Data Acquisition
+                  //h4 XENONnT Data Acquisition
+                  h4 `${headertitle}`
           img.logo(src="/images/ntLogo.svg")
           div.detectorIconDiv(style="margin-top:0px;background:#0e0e75;height:30px;padding-top:5px;padding-left:3px")
             span.CTAs(style='float:left;color:white') &nbsp; Detector status: &nbsp;
-            i.fa.fa-plus-circle#tpc_status_icon(style="color:gray;font-size:12px;float:left;padding-top:5px")
-            span.CTAs(style='float:left;color:white') &nbsp; (TPC) &nbsp;
-            i.fa.fa-plus-circle#muon_veto_status_icon(style="color:gray;font-size:12px;padding-left:3px;padding-top:5px;float:left")
-            span.CTAs(style='float:left;color:white') &nbsp; (Muon Veto) &nbsp;
-            i.fa.fa-plus-circle#neutron_veto_status_icon(style="color:gray;font-size:12px;padding-left:3px;padding-top:5px;float:left")
-            span.CTAs(style='float:left;color:white') &nbsp; (Neutron Veto) &nbsp;
+            each det in detectors
+              //i.fa.fa-plus-circle#tpc_status_icon(style="color:gray;font-size:12px;float:left;padding-top:5px")
+              i.fa.fa-plus-circle(id=`${det[0]}_status_icon`, style="color:gray;font-size:12px;float:left;padding-top:5px")
+              //span.CTAs(style='float:left;color:white') &nbsp; (TPC) &nbsp;
+              span.CTAs(style='float:left;color:white') &nbsp; (#{det[1]}) &nbsp;
           ul.list-unstyled.components
+            // TODO this can be compactified
             li.sectionlabel.CTAs(style='color:#0c1178;margin-top:0')
               span DAQ System
-            li.colored.CTAs#lindex
-               a(href="/")
-                 //
-                   span.fa-stack.has-badge#errorIcon(style="height:1.3em")
-                 i.fas.fa-pastafarianism
-                 span Overview
-                 span.extralabel Main DAQ landing page
+            li#lindex(class=ShortcutClass('index'))
+              a(href="/")
+                i.fas.fa-pastafarianism
+                span Overview
+                span.extralabel Main DAQ landing page
             br
-            li.colored#lcontrol
+            li#lcontrol(class=ShortcutClass('control'))
               a(href='/control')
                 i.fa.fa-wrench
                 span Control
                 span.extralabel Start/Stop DAQ
-            li.colored#lstatus
+            li#lstatus(class=ShortcutClass('status'))
               a(href='/status')
                 i.fa.fa-tasks
                 span Status
                 span.extralabel Detailed system status
-            li.colored.CTAs#lhosts
+            li#lhosts(class=ShortcutClass('hosts'))
               a(href='/hosts') 
                 i.fa.fa-desktop
                 span Hosts
                 span.extralabel System monitor for DAQ machines
-            li.colored.CTAs#loptions
+            li#loptions(class=ShortcutClass('options'))
               a(href='/options') 
                 i.fa.fa-cogs
                 span Config
                 span.extralabel View or configure DAQ options
-            li.colored.CTAs#llog
+            liCTAs#llog(class=ShortcutClass('log'))
               a(href='/logui')
                 i.fa.fa-book-open
                 span Log
                 span.extralabel View log and acnknowledge errors
             if typeof user.groups != 'undefined' && user.groups.includes('daq')
-              li.colored.CTAs#lhypervisor
+              li#lhypervisor(class=ShortcutClass('hypervisor'))
                 a(href='/hypervisor')
                   i.fa.fa-hat-wizard
                   span HPC
                   span.extralabel Hypervisor Process Controller
             li.sectionlabel.CTAs(style='color:#0c1178')
               span Data and Monitoring
-            li.colored#lruns
+            li#lruns(class=ShortcutClass('runs'))
               a(href='/runsui')
                 i.fas.fa-running
                 span Runs
                 span.extralabel User interface to the Runs DB
-            li.colored#lmonitor
+            li#lmonitor(class=ShortcutClass('monitor'))
               a(href='/monitor')
                 i.fa.fa-binoculars
                 span Monitor
                 span.extralabel Online data-rate monitoring
-            li.colored.CTAs#lscope
+            li#lscope(class=ShortcutClass('scope'))
               a(href='/scope')
                 i.fa.fa-heartbeat
                 span Pulse Viewer
                 span.extralabel View data live
-            li.colored#lhelp
+            li#lhelp(class=ShortcutClass('help'))
               a(href='/help')
                 i.fa.fa-question
                 span Help
                 span.extralabel Operator's quick reference
             li.sectionlabel.CTAs(style='color:#0c1178')
               span Operations and Organization
-            li.colored#lshifts
+            li#lshifts(class=ShortcutClass('shifts'))
               a(href='https://xenonnt.lngs.infn.it/shifts/')
                 i.fa.fa-id-badge
                 span Shifts
                 span.extralabel Access the shift calendar
-            li.colored.CTAs#lusers
+            li#lusers(class=ShortcutClass('users'))
               a(href='/users')
                 i.fa.fa-kiwi-bird
                 span Users
                 span.extralabel Browse members
-            li.colored.CTAs#laccount
+            li#laccount(class=ShortcutClass('account'))
               a(href="/account") 
                 i.fa.fa-user-astronaut
                 span Profile
                 span.extralabel Keep your info up to date
-            li.colored.CTAs#lequipment
+            li#lequipment(class=ShortcutClass('equipment'))
               a(href='/equipment')
                 i.fa.fa-server
                 span Equipment
@@ -173,7 +176,8 @@ html
 
     script.
       $(document).ready(function(){
-        CheckForErrors();
+        setInterval(CheckForErrors, 5000);
+        //CheckForErrors();
         //GetFillLevel();
         $('.sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');

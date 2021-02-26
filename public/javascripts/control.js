@@ -1,4 +1,10 @@
 var initial_control = {};
+var detectors = [];
+
+function SetDetectors(detectors_) {
+  detectors = detectors_.map(val => val[0]);
+}
+
 
 function DefineButtonRules(){
 
@@ -187,7 +193,7 @@ function PullServerData(callback){
 function PostServerData(){
   post = {};
   var empty = true;
-  ['tpc', 'muon_veto', 'neutron_veto'].forEach(detector => {
+  detectors.forEach(detector => {
     var thisdet = {};
     ['active', 'remote', 'softstop'].forEach( (att) => {
       var checked = $(`#${detector}_${att}`).is(":checked").toString();

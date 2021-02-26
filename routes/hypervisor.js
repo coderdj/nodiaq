@@ -1,3 +1,4 @@
+// routes/hypervisor.js
 var express = require('express');
 var url = require('url');
 var router = express.Router();
@@ -12,7 +13,7 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-  res.render('hypervisor', {user: req.user});
+  res.render('hypervisor', req.template_base_info);
 });
 
 router.get('/readout_status', ensureAuthenticated, function(req, res) {

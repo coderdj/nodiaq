@@ -11,76 +11,57 @@ function ensureAuthenticated(req, res, next) {
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('index', { title: 'Express', user: req.user });
+  res.render('index', req.template_info_base);
 });
 
 router.get('/detector_history', ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get('aggregate_status');
+  var db = req.db;
+  var collection = db.get('aggregate_status');
 
-    // Get limit from GET
-    var q = url.parse(req.url, true).query;
-    var limit = q.limit;
-    var detector = q.detector;
+  // Get limit from GET
+  var q = url.parse(req.url, true).query;
+  var limit = q.limit;
+  var detector = q.detector;
 
-    if(typeof(limit) == 'undefined')
-	limit = 1;
-    if(typeof(detector) == 'undefined')
-	return res.json({});
+  if(typeof(limit) == 'undefined')
+    limit = 1;
+  if(typeof(detector) == 'undefined')
+    return res.json({});
 
-    collection.find({'detector': detector}, {'sort': {'_id': -1}, 'limit': parseInt(limit)},
-		    function(e, docs){
-			ret = { "rates": [], "buffs": []};
-			for(i in docs){
-			    var oid = new req.ObjectID(docs[i]['_id']);
-			    var dt = Date.parse(oid.getTimestamp());
-			    ret['rates'].unshift([dt, docs[i]['rate']]);
-			    ret['buffs'].unshift([dt, docs[i]['buff']]);
-			}
-			return res.json(ret);
-		    });
+  collection.find({'detector': detector}, {'sort': {'_id': -1}, 'limit': parseInt(limit)})
+  .then(docs => {
+    ret = { "rates": [], "buffs": []};
+    docs.forEach(doc => {
+      //var oid = new req.ObjectID(docs[i]['_id']);
+      //var dt = Date.parse(oid.getTimestamp());
+      ret['rates'].unshift([doc['time'], doc['rate']]);
+      ret['buffs'].unshift([doc['time'], doc['buff']]);
+    });
+    return res.json(ret);
+  })
+  .catch(err => {console.log(err.message); return res.json({});});
 });
 
 router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
-    var db = req.users_db;
-    var collection = db.get("shifts");
+  var db = req.users_db;
+  var collection = db.get("shifts");
 
-    var today = new Date();
-    collection.find(
-	{"start": {"$lte": today},"end": {"$gte": today}},
-	function(e, docs){
-	    var users = [];
-	    var qusers = [];
-	    for(var i in docs){
-		users.push({"shifter": docs[i]['shifter'], 
-			    "shift_type": docs[i]['type']});
-		qusers.push(docs[i]['shifter']);
-	    }
-	    var user_collection = db.get("users");
-	    user_collection.find(
-		{"lngs_ldap_uid": {"$in": qusers}},
-		function(err, cursor){
-		    for(var i in cursor){
-			for(var j in users){
-			    if(cursor[i]['daq_id'] === users[j]['shifter']){
-				users[j]['shifter_name'] = cursor[i]['first_name'] + ' ' + cursor[i]['last_name'];
-				
-				fields = [ ['shifter_email', 'email'], ['shifter_phone', 'cell'],
-					   ['shifter_skype', 'skype'], ['shifter_github', 'github']];
-				for(var k in fields){
-				    try{
-					users[j][fields[k][0]] = cursor[i][fields[k][1]];
-				    }
-				    catch(error){
-					users[j][fields[k][0]] = 'Not set';
-				    }
-				}
-			    }
-			}
-		    }
-		    return res.json(users);
-		});
-	});
+  var today = new Date();
+  collection.aggregate([
+    {$match: {start: {$lte: today}, end: {$gte: today}}},
+    {$lookup: {from: 'users', localField: 'shifter', foreignField: 'lngs_ldap_uid', as: 'userdoc'}},
+    {$project: {udoc: {$first: '$userdoc'}, shifter: 1, type: 1}},
+    {$project: {
+      'shifter': '$udoc.lngs_ldap_uid',
+      'shift_type': '$type',
+      'shifter_name': {$concat: ['$udoc.first_name', ' ', '$udoc.last_name']},
+      'shifter_email': {$ifNull: ['$udoc.email', 'Not set']},
+      'shifter_phone': {$ifNull: ['$udoc.cell', 'Not set']},
+      'shifter_skype': {$ifNull: ['$udoc.skype', 'Not set']},
+      'shifter_github': {$ifNull: ['$udoc.github', 'Not set']}
+    }}
+  ]).then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 router.get('/account', ensureAuthenticated, function(req, res){
@@ -100,6 +81,13 @@ router.get('/account/request_github_access', ensureAuthenticated, function(req, 
 	console.log(group);
 	return res.json({"error": "sneaky"});
     }
+
+  axios.post('https://api.github.com/orgs/xenonnt/invitations',
+    {"invitee_id": gid,
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET
+    },
+    {headers: {'Accept': 'application/vnd.github.v3+json'}},
 
     options = {
 	hostname: 'api.github.com',
@@ -306,85 +294,6 @@ function ConvertToDate(value){
 // Use Google APIs to search our membership spreadsheet
 const {google} = require('googleapis');
 let privatekey = require("/etc/googleapikey.json");
-
-function TryToFindUser(cursor, email, collection, callback){
-
-    // If we have the user in DB just return callback without hitting API
-    if(cursor.length == 1){
-	callback(true);
-	return;
-    }
-
-    // Authenticate and set up google API
-    let spreadsheetId = process.env.USER_SPREADSHEET_ID;
-    let sheetName = 'Members'
-    let sheets = google.sheets('v4');
-    let jwtClient = new google.auth.JWT(
-       privatekey.client_email,
-       null,
-       privatekey.private_key,
-       ['https://www.googleapis.com/auth/spreadsheets']);
-    //authenticate request
-    jwtClient.authorize(function (err, tokens) {
-	if (err) {
-	    console.log(err);
-	    callback(false);
-	    return;
-	} else {
-	    console.log("Successfully connected!");
-	}
-    });
-
-    sheets.spreadsheets.values.get({
-	auth: jwtClient,
-	spreadsheetId: spreadsheetId,
-	range: sheetName
-    }, function (err, response) {
-	if (err) {
-	    console.log('The API returned an error: ' + err);
-	    callback(false);
-	} else {
-	    //console.log('Member list:');
-	    var institute = '';
-	    for (let row of response.data.values) {
-
-		// We've reached the end of our new users
-		if(row[0] == 'People that left the collaboration')
-		    break;
-		if(row[0] != '')
-		    institute = row[0];
-		var checkmail = row[3];
-		if(row[3] == undefined)
-		    continue;
-		if(checkmail.toLowerCase() == email.toLowerCase()){
-		    //console.log(row);
-		    // New collaboration member! Put in DB
-		    var pct_xe = row[5];
-		    pct_xe = pct_xe.substring(0, pct_xe.length - 1);
-		    
-		    var doc = {
-			"last_name": row[1],
-			"first_name": row[2],
-			"institute": institute,
-			"email": email.toLowerCase(),
-			"start_date": ConvertToDate(row[6]),
-			"percent_xenon": parseInt(pct_xe),
-			"position": row[4]
-		    };
-		    //console.log(doc);
-		    collection.insert(doc);
-
-		    callback(true);
-		    return;
-		}
-	    }
-
-	    // Can't find our person
-	    callback(false);
-	}
-	
-    });
-}
 
 router.post("/linkLDAP", function(req, res) {
     var db = req.runs_db;

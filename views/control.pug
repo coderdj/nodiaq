@@ -16,7 +16,6 @@ block content
             div.float-right
               button.btn.btn-warning.btn-xl#submit_changes(onclick="PostServerData()") Submit Changes
 
-    - var detectors = [["tpc", "TPC"], ["muon_veto", "Muon Veto"], ["neutron_veto", "Neutron Veto"], ["lz", "LZ TPC"]];
     each det in detectors
       div.det_card_noheight(style="width:100%;border:1px solid #ccc;margin-top:10px")
         div.row
@@ -63,6 +62,7 @@ block content
   audio#ahahah(src="images/ahahah.mp3")
   script.
     $(document).ready(function(){
+      SetDetectors(detectors);
       //FYouButton("submit_changes");
       document.page_ready = false;
       document.current_user = "#{user.lngs_ldap_uid}";
