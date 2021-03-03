@@ -57,6 +57,9 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   var tag = req.body.tag;
   var tag_user = req.body.user;
 
+  if (tag[0] === '_') // underscore tags are protected
+    return res.sendStatus(403);
+
   // Convert runs to int
   runint = parseInt(run);
   // Update one
