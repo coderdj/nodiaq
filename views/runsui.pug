@@ -78,7 +78,11 @@ block content
                       strong #{att}:
                     div.col-sm-6
                       span(id=`detail_${att}`)
-              div.tab-pane.fade#tab_tags(role="tabpanel" aria-labelledby="tags-tab") 
+                  div.col-sm-6
+                    strong Processing status:
+                  div.col-sm-6
+                    span#detail_bootstrax
+              div.tab-pane.fade#tab_tags(role="tabpanel" aria-labelledby="tags-tab")
                 table.table.table-striped
                   thead
                     td Tag

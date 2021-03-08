@@ -173,9 +173,17 @@ function InitializeRunsTable(divname){
     if(typeof tag ==="undefined")
       console.log("No tag!")
     else{
-      runs = [];
-      for(var i=0; i<table.rows('.selected')[0].length; i++)
-        runs.push(table.rows('.selected').data()[i]['number']);
+      var runs = [];
+      var timelimit = 7*24*3600*1000; // one week
+      for(var i=0; i<table.rows('.selected')[0].length; i++) {
+        var data = table.rows(".selected").data()[i];
+        if (tag === 'abandon' && new Date() - new Date(data.start) > timelimit && data.bootstrax.state !== 'failed') {
+          // can't abandon unfailed runs older than a week
+        } else {
+          runs.push(data.number);
+        }
+      }
+      console.log(runs);
       if(runs.length>0)
         $.ajax({
           type: "POST",
@@ -198,6 +206,14 @@ function InitializeRunsTable(divname){
     else{
       var runs = [];
       runs.push($("#detail_Number").html());
+      var timelimit = 7*24*3600*1000; // one week
+      if (tag === 'abandon') {
+        if (new Date() - new Date($("#detail_Start")) > timelimit && $("#detail_bootstrax") !== "failed") {
+          // can't abandon unfailed runs older than a week
+          alert("You can't abandon this run");
+          return;
+        }
+      }
       if(runs.length>0 && typeof runs[0] !== "undefined")
         $.ajax({
           type: "POST",
@@ -263,6 +279,7 @@ function ShowDetail(run){
     $("#detail_User").html(data['user']);
     $("#detail_Mode").html(data['mode']);
     $("#detail_Source").html(data['source']);
+    $("#detail_bootstrax").html(data['bootstrax']['state']);
 
     // Tags, if any
     $("#detail_Tags").html(typeof data.tags == 'undefined' ? "" : data['tags'].reduce((total, tag) => {
