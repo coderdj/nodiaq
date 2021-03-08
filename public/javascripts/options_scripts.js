@@ -1,6 +1,16 @@
+
 function PopulateModeList(div){
+    var detectors = {'tpc': 'TPC', 'muon_veto': 'Muon Veto', 'neutron_veto': "Neutron Veto",
+        'include': 'Subconfigs'};
     $.getJSON("options/options_list", function(data){
-		var html = "";
+        $("#"+div).html(data.reduce((total, entry) =>
+            entry.modes.reduce((tot, mode) =>
+                tot + `<option value='${mode}'>${mode}</option>`,
+                total + `<optgroup label='${detectors[entry["_id"]]}'>`),
+            ""));
+		$("#"+div).prop('disabled', false);
+		$('#'+div).selectpicker();
+	/*	var html = "";
 		var detectors = ['tpc', 'muon_veto', 'neutron_veto', 'include'];
 		var detector_names = ["TPC", "Muon Veto", "Neutron Veto", 'Includes'];
 		for(var j in detectors){
@@ -14,7 +24,7 @@ function PopulateModeList(div){
 		document.getElementById(div).innerHTML = html;
 		$("#"+div).prop('disabled', false);
 		$('#'+div).selectpicker();
-		
+		*/
     });
 }
 
