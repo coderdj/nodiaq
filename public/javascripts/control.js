@@ -71,19 +71,31 @@ function DefineButtonRules(){
 
   $("#link_nv").change(function(){
     if(document.page_ready){
+      var tpc_mode = $('#tpc_mode').val();
+      if ($("#neutron_veto_mode option").filter((i, val) => val===tpc_mode).length != 1) {
+        alert("Incompatible linked config selected");
+        return;
+      }
       document.page_ready = false;
-      var val = 'off';
-      if($("#tpc_active").is(":checked")) val = 'on';
-      if($("#link_nv").is(":checked")) $("#neutron_veto_active").bootstrapToggle(val);
+      if($("#link_nv").is(":checked")) {
+        $("#neutron_veto_active").bootstrapToggle($("#tpc_active").is(":checked") ? "on" : "off");
+        $('#neutron_veto_mode option').filter((i, val) => val===tpc_mode).prop('selected', true);
+      }
       document.page_ready = true;
     }
   });
   $("#link_mv").change(function(){
     if(document.page_ready){
+      var tpc_mode = $('#tpc_mode').val();
+      if ($("#muon_veto_mode option").filter((i, val) => val===tpc_mode).length != 1) {
+        alert("Incompatible linked config selected");
+        return;
+      }
       document.page_ready = false;
-      var val = 'off';
-      if($("#tpc_active").is(":checked")) val = 'on';
-      if($("#link_mv").is(":checked")) $("#muon_veto_active").bootstrapToggle(val);
+      if($("#link_mv").is(":checked")) {
+        $("#muon_veto_active").bootstrapToggle($("#tpc_active").is(":checked") ? "on" : "off");
+        $('#muon_veto_mode option').filter((i,val) => val===tpc_mode).prop('selected', true);
+      }
       document.page_ready = true;
     }
   });
@@ -142,10 +154,15 @@ function DefineButtonRules(){
   });
 }
 
+function CanLink(veto) {
+  var tpc_mode = $('#tpc_mode').val();
+  return 
+}
+
 function PopulateOptionsLists(callback){
   $("#lz_remote").bootstrapToggle('on');
   $("#lz_softstop").bootstrapToggle('off');
-  document.getElementById("lz_mode").innerHTML = "<option value='shit'><strong>xenon leak mode</strong></option><option value='goblind'><strong>HV spark mode</strong></option><option value='oops'><strong>find dark matter but it turns out not to be dark matter mode</strong></option><option value='n'><strong>Only measure neutrons because of all our teflon mode</strong></option><option value='blow'><strong>Lots of radon mode (note, this mode cannot be turned off)</strong></option><option value='whoops'>Don't drift electrons because all the teflon outgasses too much mode</option>";
+  $("#lz_mode").html("<option value='shit'><strong>xenon leak mode</strong></option><option value='goblind'><strong>HV spark mode</strong></option><option value='oops'><strong>find dark matter but it turns out not to be dark matter mode</strong></option><option value='n'><strong>Only measure neutrons because of all our teflon mode</strong></option><option value='blow'><strong>Lots of radon mode (note, this mode cannot be turned off)</strong></option><option value='whoops'>Don't drift electrons because all the teflon outgasses too much mode</option>");
   $.getJSON("control/modes", (data) => {
     if (typeof data.message != 'undefined') {
       console.log(data);
@@ -170,7 +187,7 @@ function PullServerData(callback){
       initial_control[detector] = doc.state;
       ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc.state[att]));
 
-      $(`#${detector}_mode option`).filter(function() {return this.value===doc.state.mode}).prop('selected', true);
+      $(`#${detector}_mode option`).filter((i, val) => val===doc.state.mode}).prop('selected', true);
       $(`#${detector}_user`).val(doc.user);
 
       ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
@@ -179,6 +196,10 @@ function PullServerData(callback){
         ['link_mv', 'link_nv'].forEach(att => $("#" + att).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
       }
     });
+    // select a random LZ mode for fun
+    var lz = $("#lz_mode option");
+    var n = Math.floor(Math.random()*lz.length);
+    lz.filter((i, val) => i==n).prop("selected", true);
     document.page_ready = true;
     callback;
   });
