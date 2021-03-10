@@ -8,19 +8,14 @@ function DefineButtonRules(){
   $("#tpc_active").change(function(){
     if(document.page_ready){
       document.page_ready = false;
-      var val = 'off';
 
       // First, fail in case "remote" mode enabled"
       if($("#tpc_remote").is(":checked")){
         alert("You cannot control the TPC when it is in remote mode!");
         $("#tpc_active").bootstrapToggle('toggle');
-        document.page_ready = true;
-        return;
       }
+      SetLinking();
 
-      if($("#tpc_active").is(":checked")) val = 'on';
-      if($("#link_mv").is(":checked")) $("#muon_veto_active").bootstrapToggle(val);
-      if($("#link_nv").is(":checked")) $("#neutron_veto_active").bootstrapToggle(val);
       document.page_ready = true;
     }
   });
@@ -32,17 +27,9 @@ function DefineButtonRules(){
       if($("#muon_veto_remote").is(":checked")){
         alert("You cannot control the muon veto when it is in remote mode!");
         $("#muon_veto_active").bootstrapToggle('toggle');
-        document.page_ready = true;
-        return;
       }
+      SetLinking();
 
-      var val = 'off';
-      if($("#muon_veto_active").is(":checked")) val = 'on';
-      if($("#link_mv").is(":checked")) {
-        $("#tpc_active").bootstrapToggle(val);
-        if($("#link_nv").is(":checked"))
-          $("#neutron_veto_active").bootstrapToggle(val); 
-      }
       document.page_ready = true;
     }
   });
@@ -54,48 +41,16 @@ function DefineButtonRules(){
       if($("#neutron_veto_remote").is(":checked")){
         alert("You cannot control the neutron veto when it is in remote mode!");
         $("#neutron_veto_active").bootstrapToggle('toggle');
-        document.page_ready = true;
-        return;
       }
+      SetLinking();
 
-      var val = 'off';
-      if($("#neutron_veto_active").is(":checked")) val = 'on';
-      if($("#link_nv").is(":checked")) {
-        $("#tpc_active").bootstrapToggle(val);
-        if($("#link_mv").is(":checked"))
-          $("#muon_veto_active").bootstrapToggle(val);
-      }
       document.page_ready = true;
     }
   });
-
-  $("#link_nv").change(function(){
+  $("select").change(() => {
     if(document.page_ready){
-      var tpc_mode = $('#tpc_mode').val();
-      if ($("#neutron_veto_mode option").filter((i, val) => val===tpc_mode).length != 1) {
-        alert("Incompatible linked config selected");
-        return;
-      }
       document.page_ready = false;
-      if($("#link_nv").is(":checked")) {
-        $("#neutron_veto_active").bootstrapToggle($("#tpc_active").is(":checked") ? "on" : "off");
-        $('#neutron_veto_mode option').filter((i, val) => val===tpc_mode).prop('selected', true);
-      }
-      document.page_ready = true;
-    }
-  });
-  $("#link_mv").change(function(){
-    if(document.page_ready){
-      var tpc_mode = $('#tpc_mode').val();
-      if ($("#muon_veto_mode option").filter((i, val) => val===tpc_mode).length != 1) {
-        alert("Incompatible linked config selected");
-        return;
-      }
-      document.page_ready = false;
-      if($("#link_mv").is(":checked")) {
-        $("#muon_veto_active").bootstrapToggle($("#tpc_active").is(":checked") ? "on" : "off");
-        $('#muon_veto_mode option').filter((i,val) => val===tpc_mode).prop('selected', true);
-      }
+      SetLinking();
       document.page_ready = true;
     }
   });
@@ -106,8 +61,6 @@ function DefineButtonRules(){
       document.page_ready = false;
       if($("#tpc_remote").is(":checked")){
         $("#tpc_active").bootstrapToggle('off');
-        $("#link_nv").bootstrapToggle('off');
-        $("#link_mv").bootstrapToggle('off');
       }
       document.page_ready = true;
     }
@@ -118,7 +71,6 @@ function DefineButtonRules(){
       document.page_ready = false;
       if($("#muon_veto_remote").is(":checked")){
         $("#muon_veto_active").bootstrapToggle('off');
-        $("#link_mv").bootstrapToggle('off');
       }
       document.page_ready = true;
     }
@@ -129,7 +81,6 @@ function DefineButtonRules(){
       document.page_ready = false;
       if($("#neutron_veto_remote").is(":checked")){
         $("#neutron_veto_active").bootstrapToggle('off');
-        $("#link_nv").bootstrapToggle('off');
       }
       document.page_ready = true;
     }
@@ -154,9 +105,36 @@ function DefineButtonRules(){
   });
 }
 
-function CanLink(veto) {
-  var tpc_mode = $('#tpc_mode').val();
-  return 
+function SetLinking() {
+  var detectors = ['tpc', 'muon_veto', 'neutron_veto'];
+  var modes = detectors.map(det => $(`#${det}_mode`).val());
+  var links = detectors.map(det => $(`#{det}_mode :selected`).link_mode.split(","));
+  var active = detectors.map(det => $(`#{det}_active`).is(":checked"));
+  var invalid = false;
+  var is_linked = [false, false, false]; // tpc-mv, tpc-nv, mv-nv
+
+  for (var i = 0; i < detectors.length; i++) {
+    for (var j = 0; j < detectors.length; j++) {
+      if (i == j)
+        continue;
+      if (links[i].includes(detectors[j]))
+        invalid ||= (modes[i] != modes[j] || active[i] != active[j]);
+      is_linked[i] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
+    }
+  }
+  var case_e = is_linked[0] == false && is_linked[1] == false && is_linked[2] == true;
+
+  var html = "";
+  if (!case_e) {
+    var mv = is_linked[0] ? "" : "un";
+    var nv = is_linked[1] ? "" : "un";
+    html = `MV <i class="fas fa-${mv}link"></i> TPC <i class="fas fa-${nv}link"</i> NV`;
+  } else {
+    html = `TPC <i class="fas fa-unlink"></i> NV <i class="fas fa-link"></i> MV`;
+  }
+  $("#linking_span").html(html);
+  $("#linking_span").css("color", invalid ? "red" : "black");
+  $("#submit_changes").prop("disabled", invalid);
 }
 
 function PopulateOptionsLists(callback){
@@ -164,13 +142,13 @@ function PopulateOptionsLists(callback){
   $("#lz_softstop").bootstrapToggle('off');
   $("#lz_mode").html("<option value='shit'><strong>xenon leak mode</strong></option><option value='goblind'><strong>HV spark mode</strong></option><option value='oops'><strong>find dark matter but it turns out not to be dark matter mode</strong></option><option value='n'><strong>Only measure neutrons because of all our teflon mode</strong></option><option value='blow'><strong>Lots of radon mode (note, this mode cannot be turned off)</strong></option><option value='whoops'>Don't drift electrons because all the teflon outgasses too much mode</option>");
   $.getJSON("control/modes", (data) => {
-    if (typeof data.message != 'undefined') {
+    if (typeof data.error != 'undefined') {
       console.log(data);
       return;
     }
     // [{_id: detector name, configs: []}, {_id: detector name....}]
     data.forEach(doc => {
-        $("#"+doc['_id']+"_mode").html(doc['configs'].reduce((html, val) => html+"<option value='"+val[0]+"'><strong>"+val[0]+":</strong> "+val[1]+"</option>", ""));
+        $("#"+doc['_id']+"_mode").html(doc['configs'].reduce((html, val) => html+`<option value='${val[0]}' link_type='${val[2].join()}'><strong>${val[0]}:</strong> ${val[1]}</option>`, ""));
     });
     callback();
   });
@@ -187,7 +165,7 @@ function PullServerData(callback){
       initial_control[detector] = doc.state;
       ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc.state[att]));
 
-      $(`#${detector}_mode option`).filter((i, val) => val===doc.state.mode}).prop('selected', true);
+      $(`#${detector}_mode option`).filter(function() {return this.value===doc.state.mode;}).prop('selected', true);
       $(`#${detector}_user`).val(doc.user);
 
       ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));

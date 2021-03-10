@@ -14,6 +14,7 @@ block content
             span Once you're done, submit your changes with this button. If you're not sure if you should be touching this consider just not.
           div.col-12
             div.float-right
+              span#linking_span
               button.btn.btn-warning.btn-xl#submit_changes(onclick="PostServerData()") Submit Changes
 
     - var detectors = [["tpc", "TPC"], ["muon_veto", "Muon Veto"], ["neutron_veto", "Neutron Veto"], ["lz", "LZ TPC"]];
@@ -36,14 +37,7 @@ block content
                     span Soft stop &nbsp;
                     input(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
                 if det[0] == 'tpc'
-                  div.form-check-inline 
-                    label.form-check-label
-                      span Muon Veto &nbsp;
-                      input#link_mv(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Linked" data-off="Unlinked" data-size='small')
-                  div.form-check-inline
-                    label.form-check-label
-                      span Neutron Veto &nbsp;
-                      input#link_nv(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"  data-on="Linked" data-off="Unlinked" data-size='small')
+                  span#linking_span
         hr(style='margin-top:3px')
         div.row(style="padding:5px")
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group

@@ -15,14 +15,24 @@ router.get('/modes', ensureAuthenticated, function(req, res){
   var db = req.db;
   var collection = db.get("options");
   var q = url.parse(req.url, true).query;
+  var link_reduce = {$reduce: {
+    input: {$ifNull: ['$link', []]},
+    initialValue: "",
+    in: {$concat: ["$$value", ",", "$$this"]}
+  }}
   var detector = q.detector;
   collection.aggregate([
     {$match: {detector: {$ne: 'include'}}},
     {$sort: {name: 1}},
-    {$group: {_id: '$detector', options: {$push: '$name'}, desc: {$push: '$description'}}},
-    {$project: {configs: {$zip: {inputs: ['$options', '$desc']}}}}
+    {$group: {
+      _id: '$detector',
+      options: {$push: '$name'},
+      desc: {$push: '$description'},
+      link: {$push: {$ifNull: ['$link', []]}}
+    }},
+    {$project: {configs: {$zip: {inputs: ['$options', '$desc', '$link']}}}}
   ]).then( (docs) => res.json(docs))
-  .catch( (err) => {console.log('GET MODES ERROR'); console.log(err.message); return res.json({error: err.message})});
+  .catch( (err) => {console.log(err.message); return res.json({error: err.message})});
 });
 
 function GetControlDocs(collection) {
