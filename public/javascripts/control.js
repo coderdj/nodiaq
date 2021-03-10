@@ -13,8 +13,8 @@ function DefineButtonRules(){
       if($("#tpc_remote").is(":checked")){
         alert("You cannot control the TPC when it is in remote mode!");
         $("#tpc_active").bootstrapToggle('toggle');
-      }
-      SetLinking();
+      } else
+        SetLinking();
 
       document.page_ready = true;
     }
@@ -27,8 +27,8 @@ function DefineButtonRules(){
       if($("#muon_veto_remote").is(":checked")){
         alert("You cannot control the muon veto when it is in remote mode!");
         $("#muon_veto_active").bootstrapToggle('toggle');
-      }
-      SetLinking();
+      } else
+        SetLinking();
 
       document.page_ready = true;
     }
@@ -41,8 +41,8 @@ function DefineButtonRules(){
       if($("#neutron_veto_remote").is(":checked")){
         alert("You cannot control the neutron veto when it is in remote mode!");
         $("#neutron_veto_active").bootstrapToggle('toggle');
-      }
-      SetLinking();
+      } else
+        SetLinking();
 
       document.page_ready = true;
     }
@@ -59,6 +59,7 @@ function DefineButtonRules(){
   $("#tpc_remote").change(function(){
     if(document.page_ready){
       document.page_ready = false;
+      SetRemote("tpc");
       if($("#tpc_remote").is(":checked")){
         $("#tpc_active").bootstrapToggle('off');
       }
@@ -69,6 +70,7 @@ function DefineButtonRules(){
   $("#muon_veto_remote").change(function(){
     if(document.page_ready){
       document.page_ready = false;
+      SetRemote("muon_veto");
       if($("#muon_veto_remote").is(":checked")){
         $("#muon_veto_active").bootstrapToggle('off');
       }
@@ -79,6 +81,7 @@ function DefineButtonRules(){
   $("#neutron_veto_remote").change(function(){
     if(document.page_ready){
       document.page_ready = false;
+      SetRemote("neutron_veto");
       if($("#neutron_veto_remote").is(":checked")){
         $("#neutron_veto_active").bootstrapToggle('off');
       }
@@ -105,23 +108,34 @@ function DefineButtonRules(){
   });
 }
 
+function SetRemote(detector){
+  var is_remote = $(`#${detector}_remote`).is(":checked");
+  ['active', 'softstop', 'stop_after', 'comment'].forEach(att => $(`#${detector}_${att}`).prop('disabled', is_remote));
+  if (is_remote) {
+    $(`#${detector}_active`).bootstrapToggle('off');
+  } else {
+
+  }
+}
+
 function SetLinking() {
   var detectors = ['tpc', 'muon_veto', 'neutron_veto'];
   var modes = detectors.map(det => $(`#${det}_mode`).val());
   var links = detectors.map(det => $(`#${det}_mode :selected`).attr("link_type").split(","));
   var active = detectors.map(det => $(`#${det}_active`).is(":checked"));
+  var stopafter = detectors.map(det => $(`#${det}_stop_after`).val());
   var invalid = false;
   var is_linked = [[null, false, false], [null, null, false]];
-  var max = (a,b) => a > b ? a : b;
-  var min = (a,b) => a < b ? a : b;
 
   for (var i = 0; i < detectors.length; i++) {
     for (var j = 0; j < detectors.length; j++) {
+      // we explicitly loop over the whole matrix, not just the upper part, because we have to
+      // make sure that A wants to link with B, and B wants to link with A
       if (i == j)
         continue;
       if (links[i].includes(detectors[j]))
-        invalid ||= (modes[i] != modes[j] || active[i] != active[j]);
-      if (j > i)
+        invalid ||= (modes[i] != modes[j] || active[i] != active[j] || stopafter[i] != stopafter[j]);
+      if (i < j)
         is_linked[i][j] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
     }
   }
@@ -158,7 +172,7 @@ function PopulateOptionsLists(callback){
   });
 }
 
-function PullServerData(callback){
+function PullServerData(){
   $.getJSON("control/get_control_docs", function(data){
     document.page_ready = false;
     data.forEach(doc => {
@@ -174,16 +188,13 @@ function PullServerData(callback){
 
       ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
 
-      if(detector === "tpc"){
-        ['link_mv', 'link_nv'].forEach(att => $("#" + att).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
-      }
+      SetRemote(detector);
     });
     // select a random LZ mode for fun
     var lz = $("#lz_mode option");
     var n = Math.floor(Math.random()*lz.length);
     lz.filter((i, val) => i==n).prop("selected", true);
     document.page_ready = true;
-    callback;
   });
 }
 
@@ -192,29 +203,27 @@ function PostServerData(){
   var empty = true;
   ['tpc', 'muon_veto', 'neutron_veto'].forEach(detector => {
     var thisdet = {};
-    ['active', 'remote', 'softstop'].forEach( (att) => {
-      var checked = $(`#${detector}_${att}`).is(":checked").toString();
-      if (checked != initial_control[detector][att])
-        thisdet[att] = checked;
-    });
-
-    ["stop_after", "mode", "comment"].forEach( (att) => {
-      var val = $(`#${detector}_${att}`).val();
-      if (val != initial_control[detector][att])
-        thisdet[att] = val;
-    });
-
-    if(detector === "tpc"){
-      ['link_mv','link_nv'].forEach( (att) => {
-        var checked = $("#" + att).is(":checked").toString();
-        if (checked != initial_control['tpc'][att])
+    if ($(`#${detector}_remote`).is(":checked")) {
+      thisdet['remote'] = 'true';
+      thisdet['active'] = 'false';
+    } else {
+      ['active', 'remote', 'softstop'].forEach( (att) => {
+        var checked = $(`#${detector}_${att}`).is(":checked").toString();
+        if (checked != initial_control[detector][att])
           thisdet[att] = checked;
       });
+
+      ["stop_after", "mode", "comment"].forEach( (att) => {
+        var val = $(`#${detector}_${att}`).val();
+        if (val != initial_control[detector][att])
+          thisdet[att] = val;
+      });
+
     }
     if (Object.keys(thisdet).length == 0)
       return;
     post[detector] = thisdet;
-    empty &= false;
+    empty &&= false;
   });
 
   if (!empty) {
