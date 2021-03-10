@@ -15,20 +15,17 @@ router.get('/modes', ensureAuthenticated, function(req, res){
   var db = req.db;
   var collection = db.get("options");
   var q = url.parse(req.url, true).query;
-  var link_reduce = {$reduce: {
-    input: {$ifNull: ['$link', []]},
-    initialValue: "",
-    in: {$concat: ["$$value", ",", "$$this"]}
-  }}
   var detector = q.detector;
   collection.aggregate([
+    {$addFields: {_detector: '$detector'}},
+    {$unwind: '$detector'},
     {$match: {detector: {$ne: 'include'}}},
     {$sort: {name: 1}},
     {$group: {
       _id: '$detector',
       options: {$push: '$name'},
       desc: {$push: '$description'},
-      link: {$push: {$ifNull: ['$link', []]}}
+      link: {$push: {$cond: [{$isArray: '$_detector'}, '$_detector', ['$_detector']]}}
     }},
     {$project: {configs: {$zip: {inputs: ['$options', '$desc', '$link']}}}}
   ]).then( (docs) => res.json(docs))

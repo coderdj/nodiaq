@@ -108,10 +108,12 @@ function DefineButtonRules(){
 function SetLinking() {
   var detectors = ['tpc', 'muon_veto', 'neutron_veto'];
   var modes = detectors.map(det => $(`#${det}_mode`).val());
-  var links = detectors.map(det => $(`#{det}_mode :selected`).link_mode.split(","));
-  var active = detectors.map(det => $(`#{det}_active`).is(":checked"));
+  var links = detectors.map(det => $(`#${det}_mode :selected`).attr("link_type").split(","));
+  var active = detectors.map(det => $(`#${det}_active`).is(":checked"));
   var invalid = false;
-  var is_linked = [false, false, false]; // tpc-mv, tpc-nv, mv-nv
+  var is_linked = [[null, false, false], [null, null, false]];
+  var max = (a,b) => a > b ? a : b;
+  var min = (a,b) => a < b ? a : b;
 
   for (var i = 0; i < detectors.length; i++) {
     for (var j = 0; j < detectors.length; j++) {
@@ -119,22 +121,24 @@ function SetLinking() {
         continue;
       if (links[i].includes(detectors[j]))
         invalid ||= (modes[i] != modes[j] || active[i] != active[j]);
-      is_linked[i] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
+      if (j > i)
+        is_linked[i][j] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
     }
   }
-  var case_e = is_linked[0] == false && is_linked[1] == false && is_linked[2] == true;
+  var case_e = is_linked[0][1] == false && is_linked[0][2] == false && is_linked[1][2] == true;
 
   var html = "";
   if (!case_e) {
-    var mv = is_linked[0] ? "" : "un";
-    var nv = is_linked[1] ? "" : "un";
-    html = `MV <i class="fas fa-${mv}link"></i> TPC <i class="fas fa-${nv}link"</i> NV`;
+    var mv = is_linked[0][1] ? "" : "un";
+    var nv = is_linked[0][2] ? "" : "un";
+    html = `MV <i class="fas fa-${mv}link"></i> TPC <i class="fas fa-${nv}link"></i> NV`;
   } else {
     html = `TPC <i class="fas fa-unlink"></i> NV <i class="fas fa-link"></i> MV`;
   }
   $("#linking_span").html(html);
   $("#linking_span").css("color", invalid ? "red" : "black");
   $("#submit_changes").prop("disabled", invalid);
+  $("#submit_changes").text(invalid ? "Invalid combination" : "Submit");
 }
 
 function PopulateOptionsLists(callback){
