@@ -1,10 +1,10 @@
+
 function PopulateModeList(div){
     detectors = {'tpc': 'TPC', 'muon_veto': "Muon Veto", 'neutron_veto': "Neutron Veto", include: 'Subconfigs'};
     $.getJSON("options/options_list", function(data){
-        $("#"+div).html(data.reduce((total, entry) => entry.modes.reduce((tot, mode) => tot + `<option value='${mode}'>${mode}</option>`, total + `<optgroup label='${detectors[entry["_id"]]}'>`), ""));
-		$("#"+div).prop('disabled', false);
-		$('#'+div).selectpicker();
-		
+      $("#"+div).html(data.reduce((total, entry) => entry.modes.reduce((tot, mode) => tot + `<option value='${mode}'>${mode}</option>`, total + `<optgroup label='${detectors[entry["_id"]]}'>`), ""));
+      $("#"+div).prop('disabled', false);
+      $('#'+div).selectpicker();
     });
 }
 

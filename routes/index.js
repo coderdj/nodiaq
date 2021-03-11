@@ -62,7 +62,7 @@ router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
 		function(err, cursor){
 		    for(var i in cursor){
 			for(var j in users){
-			    if(cursor[i]['daq_id'] === users[j]['shifter']){
+			    if(cursor[i]['lngs_ldap_uid'] === users[j]['shifter']){
 				users[j]['shifter_name'] = cursor[i]['first_name'] + ' ' + cursor[i]['last_name'];
 				
 				fields = [ ['shifter_email', 'email'], ['shifter_phone', 'cell'],

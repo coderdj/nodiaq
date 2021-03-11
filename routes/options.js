@@ -41,14 +41,11 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
   doc = JSON.parse(req.body.doc);
   delete doc._id;
   var db = req.db;
+  doc['last_modified'] = new Date();
 
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
     return res.json({"res": "I can't allow you to do that Dave"});
-
-  if (doc['detector'] !== 'include' && typeof doc.link_mode == 'undefined') {
-    return res.json({res: 'Invalid config'});
-  }
 
   var collection = db.get('options');
   if(typeof doc['name'] === 'undefined')
