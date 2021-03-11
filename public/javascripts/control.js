@@ -2,52 +2,38 @@ var initial_control = {};
 
 function DefineButtonRules(){
 
-  $("input").change(function(){if(document.page_ready==true){$("#confirm_div").fadeIn("fast"); $(".my_name_is").val(document.current_user);}});
-  $("select").change(function(){if(document.page_ready==true){$("#confirm_div").fadeIn("fast"); $(".my_name_is").val(document.current_user);}});
+  $(".det_control").change(function(){
+    if(document.page_ready == true)
+      $("#confirm_div").fadeIn("fast");
+  });
 
-  $("#tpc_active").change(function(){
-    if(document.page_ready){
+  $(".det_remote").change(function() {
+    if (document.page_ready) {
       document.page_ready = false;
-
-      // First, fail in case "remote" mode enabled"
-      if($("#tpc_remote").is(":checked")){
-        alert("You cannot control the TPC when it is in remote mode!");
-        $("#tpc_active").bootstrapToggle('toggle');
-      } else
-        SetLinking();
-
+      var det = this.id.substr(0, this.id.length-'_remote'.length);
+      if ($(`#{det}_remote`).is(":checked")) {
+        $(`#${det}_active`).bootstrapToggle('off');
+      }
+      SetRemote(det);
       document.page_ready = true;
     }
   });
-  $("#muon_veto_active").change(function(){
-    if(document.page_ready){
-      document.page_ready = false;
 
-      // First, fail in case "remote" mode enabled"
-      if($("#muon_veto_remote").is(":checked")){
-        alert("You cannot control the muon veto when it is in remote mode!");
-        $("#muon_veto_active").bootstrapToggle('toggle');
+  $(".det_active").change(function() {
+    if (document.page_ready) {
+      document.page_ready = false;
+      var det = this.id.substr(0, this.id.length-'_active'.length);
+      // If we're in remote mode, fail
+      if ($(`#${det}_remote`).is(":checked")) {
+        alert(`You cannot control the ${det.replace('_',' ')} when it is in remote mode`);
+        $(`#${det}_active`).bootstrapToggle('toggle');
       } else
         SetLinking();
-
       document.page_ready = true;
     }
   });
-  $("#neutron_veto_active").change(function(){
-    if(document.page_ready){
-      document.page_ready = false;
 
-      // First, fail in case "remote" mode enabled"
-      if($("#neutron_veto_remote").is(":checked")){
-        alert("You cannot control the neutron veto when it is in remote mode!");
-        $("#neutron_veto_active").bootstrapToggle('toggle');
-      } else
-        SetLinking();
-
-      document.page_ready = true;
-    }
-  });
-  $("select").change(() => {
+  $(".det_mode").change(() => {
     if(document.page_ready){
       document.page_ready = false;
       SetLinking();
@@ -55,60 +41,30 @@ function DefineButtonRules(){
     }
   });
 
-  // Remote mode TPC: unlink both other detectors, set TPC to IDLE
-  $("#tpc_remote").change(function(){
-    if(document.page_ready){
-      document.page_ready = false;
-      SetRemote("tpc");
-      if($("#tpc_remote").is(":checked")){
-        $("#tpc_active").bootstrapToggle('off');
-      }
-      document.page_ready = true;
-    }
-  });
-  // Remote mode MV: unlink MV if linked, set MV to IDLE
-  $("#muon_veto_remote").change(function(){
-    if(document.page_ready){
-      document.page_ready = false;
-      SetRemote("muon_veto");
-      if($("#muon_veto_remote").is(":checked")){
-        $("#muon_veto_active").bootstrapToggle('off');
-      }
-      document.page_ready = true;
-    }
-  });
-  // Remote mode NV: unlink NV if linked, set NV to IDLE
-  $("#neutron_veto_remote").change(function(){
-    if(document.page_ready){
-      document.page_ready = false;
-      SetRemote("neutron_veto");
-      if($("#neutron_veto_remote").is(":checked")){
-        $("#neutron_veto_active").bootstrapToggle('off');
-      }
-      document.page_ready = true;
-    }
-  });
-  $("#lz_remote").change(function(){
+  $("#lz_remote").removeClass("det_control").removeClass("det_remote").change(function(){
     if(!$("#lz_remote").is(":checked")){
       alert("Local control of LZ is only available from SURF");
       $("#lz_remote").bootstrapToggle('on');
     }
   });
-  $("#lz_active").change(function(){
+
+  $("#lz_active").removeClass("det_control").removeClass("det_active").change(function(){
     if (!$("#lz_active").is(":checked")) {
       alert("You can't stop LZ");
       $("#lz_active").bootstrapToggle("on");
     }
   });
-  $("#lz_softstop").change(function(){
+
+  $("#lz_softstop").removeClass("det_control").removeClass("det_softstop").change(function(){
     if($("#lz_softstop").is(":checked")){
       alert("You want to go soft on LZ? I hope you aren't an AC");
       $("#lz_softstop").bootstrapToggle('off');
     }
   });
-}
+} // DefineButtonRules
 
 function SetRemote(detector){
+  if (detector == 'lz') return;
   var is_remote = $(`#${detector}_remote`).is(":checked");
   ['active', 'softstop', 'stop_after', 'comment'].forEach(att => $(`#${detector}_${att}`).prop('disabled', is_remote));
   if (is_remote) {
@@ -127,16 +83,12 @@ function SetLinking() {
   var invalid = false;
   var is_linked = [[null, false, false], [null, null, false]];
 
-  for (var i = 0; i < detectors.length; i++) {
-    for (var j = 0; j < detectors.length; j++) {
-      // we explicitly loop over the whole matrix, not just the upper part, because we have to
-      // make sure that A wants to link with B, and B wants to link with A
-      if (i == j)
-        continue;
-      if (links[i].includes(detectors[j]))
+  // check these combos: tpc-mv, tpc-nv, mv-nv
+  for (var i = 0; i < detectors.length-1; i++) {
+    for (var j = i+1; j < detectors.length; j++) {
+      if (links[i].includes(detectors[j]) || links[j].includes(detectors[i]))
         invalid ||= (modes[i] != modes[j] || active[i] != active[j] || stopafter[i] != stopafter[j]);
-      if (i < j)
-        is_linked[i][j] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
+      is_linked[i][j] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
     }
   }
   var case_e = is_linked[0][1] == false && is_linked[0][2] == false && is_linked[1][2] == true;

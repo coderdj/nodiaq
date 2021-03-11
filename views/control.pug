@@ -28,15 +28,15 @@ block content
                 div.form-check-inline
                   label.form-check-label
                     span Control &nbsp;
-                    input(id=`${det[0]}_remote` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="success" data-on="remote" data-off="local" data-size="small")
-                div.form-check-inline 
+                    input.det_control.det_remote(id=`${det[0]}_remote` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="success" data-on="remote" data-off="local" data-size="small")
+                div.form-check-inline
                   label.form-check-label
                     span Run &nbsp;
-                    input(id=`${det[0]}_active` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
-                div.form-check-inline 
+                    input.det_control.det_active(id=`${det[0]}_active` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
+                div.form-check-inline
                   label.form-check-label
                     span Soft stop &nbsp;
-                    input(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
+                    input.det_control.det_softstop(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
         hr(style='margin-top:3px')
         div.row(style="padding:5px")
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
@@ -44,13 +44,13 @@ block content
             input.form-control.my_name_is.fontscale(id=`${det[0]}_user` type="text" value=`${user.lngs_ldap_uid}` name="user" readonly required)
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
             label.form-label(for=`${det[0]}_stop_after`) Length (minutes)
-            input.form-control(id=`${det[0]}_stop_after` type="number" name="stop_after" min=1 max=1440 value=60)
+            input.form-control.det_control.det_stop_after(id=`${det[0]}_stop_after` type="number" name="stop_after" min=1 max=1440 value=60)
           div.col-xs-12.col-sm-6.col-md-4.col-xl-4.form-group.fontscale
             label.form-label(for=`${det[0]}_mode`) Run Mode
-            select.form-control(id=`${det[0]}_mode` name="run_mode" required)
+            select.form-control.det_control.det_mode(id=`${det[0]}_mode` name="run_mode" required)
           div.col-xs-12.col-sm-6.col-md-12.col-xl-4.form-group
             label.form-label(for=`${det[0]}_comment`) Comment
-            textarea.form-control(id=`${det[0]}_comment` rows="2" name="comment" type='text')
+            textarea.form-control.det_control.det_comment(id=`${det[0]}_comment` rows="2" name="comment" type='text')
 
 
   audio#ahahah(src="images/ahahah.mp3")
