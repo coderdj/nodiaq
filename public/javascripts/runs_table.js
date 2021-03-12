@@ -174,11 +174,12 @@ function InitializeRunsTable(divname){
       console.log("No tag!")
     else{
       var runs = [];
-      var timelimit = 7*24*3600*1000; // one week
+      var timelimit = 24*3600*1000; // one day
       for(var i=0; i<table.rows('.selected')[0].length; i++) {
         var data = table.rows(".selected").data()[i];
         if (tag === 'abandon' && new Date() - new Date(data.start) > timelimit && data.bootstrax.state !== 'failed') {
-          // can't abandon unfailed runs older than a week
+          console.log('Not abandoning ' + data.number);
+          // can't abandon old unfailed runs
         } else {
           runs.push(data.number);
         }
@@ -206,10 +207,10 @@ function InitializeRunsTable(divname){
     else{
       var runs = [];
       runs.push($("#detail_Number").html());
-      var timelimit = 7*24*3600*1000; // one week
+      var timelimit = 24*3600*1000; // one day
       if (tag === 'abandon') {
         if (new Date() - new Date($("#detail_Start")) > timelimit && $("#detail_bootstrax") !== "failed") {
-          // can't abandon unfailed runs older than a week
+          // can't abandon unfailed runs older than one day
           alert("You can't abandon this run");
           return;
         }
