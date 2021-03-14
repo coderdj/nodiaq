@@ -87,6 +87,8 @@ function InitializeTable(DOM){
             {title:"Time", field:"time", width: 200},
             {title:"User", field:"user", align:"left", width: 200,
 	     headerFilter: "input", headerFilterPlaceholder: "filter users"},
+	    {title:"Run id", field:"runid", align:"left", width: 50,
+	     headerFilter: "input", headerFilterPlaceholder: "filter run id"},
             {title:"Message", field:"message", headerFilter: "input",
 	     headerFilterPlaceholder: "filter messages"},	    
             {title:"Priority", field:"priority", width: 200,
