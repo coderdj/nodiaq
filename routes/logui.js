@@ -35,19 +35,13 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
 
     if (typeof limit == 'undefined')
         limit = 100; //sure, why not
-    collection.find({"priority": {"$in": include}},  { "sort": {"_id": -1}, "limit" : parseInt(limit) },
-                    function(e,docs){
-                        var ret = [];
-                        for(var i in docs){
-                            var oid = new req.ObjectID(docs[i]['_id']);
-                            var rd = {"time": oid.getTimestamp()};
-                            for(var key in docs[i]){
-                                rd[key] = docs[i][key];
-                            }
-                            ret.push(rd);
-                        }
-                        return res.json(ret);
-                        });
+    collection.aggregate([
+      {$match: {priority: {$in: include}}},
+      {$sort: {_id: -1}},
+      {$limit: parseInt(limit)},
+      {$addFields: {time: {$toDate: '$_id'}}}
+    ]).then(docs => res.json(docs))
+    .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 
