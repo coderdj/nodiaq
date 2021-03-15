@@ -137,8 +137,6 @@ function UpdateLogTable(DOM){
 	}
     }
     $.getJSON('logui/getMessages?limit=500'+get_me, function(data){
-        console.log(data.length);
-        console.log(data[0]);
 	$(DOM).tabulator("setData", data);
     });
 
