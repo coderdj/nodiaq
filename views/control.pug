@@ -11,10 +11,12 @@ block content
         div.row(style="padding:5px;")
           div.col-12
             strong DAQ control. &nbsp;
-            span Once you're done, submit your changes with this button. If you're not sure if you should be touching this consider just not.
+            span Once you're done, submit your changes with this button. If you're not sure if you should be touching this consider just not. To run in linked mode, the relevant detectors must have identical control inputs (excluding comments).
           div.col-12
             div.float-right
-              button.btn.btn-warning.btn-xl#submit_changes(onclick="PostServerData()") Submit Changes
+              span#linking_span
+              span &nbsp;&nbsp;
+              button.btn.btn-warning.btn-xl#submit_changes(onclick="PostServerData()") Submit
 
     - var detectors = [["tpc", "TPC"], ["muon_veto", "Muon Veto"], ["neutron_veto", "Neutron Veto"], ["lz", "LZ TPC"]];
     each det in detectors
@@ -26,38 +28,29 @@ block content
                 div.form-check-inline
                   label.form-check-label
                     span Control &nbsp;
-                    input(id=`${det[0]}_remote` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="success" data-on="remote" data-off="local" data-size="small")
-                div.form-check-inline 
+                    input.det_control.det_remote(id=`${det[0]}_remote` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="success" data-on="remote" data-off="local" data-size="small")
+                div.form-check-inline
                   label.form-check-label
                     span Run &nbsp;
-                    input(id=`${det[0]}_active` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
-                div.form-check-inline 
+                    input.det_control.det_active(id=`${det[0]}_active` type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
+                div.form-check-inline
                   label.form-check-label
                     span Soft stop &nbsp;
-                    input(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
-                if det[0] == 'tpc'
-                  div.form-check-inline 
-                    label.form-check-label
-                      span Muon Veto &nbsp;
-                      input#link_mv(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Linked" data-off="Unlinked" data-size='small')
-                  div.form-check-inline
-                    label.form-check-label
-                      span Neutron Veto &nbsp;
-                      input#link_nv(type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"  data-on="Linked" data-off="Unlinked" data-size='small')
+                    input.det_control.det_softstop(id=`${det[0]}_softstop` type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="on" data-off="off" data-size='small')
         hr(style='margin-top:3px')
         div.row(style="padding:5px")
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
-            label.form-label(for="user") Controller
+            label.form-label(for=`$(det[0]}_user`) Controller
             input.form-control.my_name_is.fontscale(id=`${det[0]}_user` type="text" value=`${user.lngs_ldap_uid}` name="user" readonly required)
           div.col-xs-12.col-sm-6.col-md-4.col-xl-2.form-group
-            label.form-label(for="stopafter") Length (minutes)
-            input.form-control(id=`${det[0]}_stop_after` type="number" name="stop_after" min=0 max=1440 value=60)
+            label.form-label(for=`${det[0]}_stop_after`) Length (minutes)
+            input.form-control.det_control.det_stop_after(id=`${det[0]}_stop_after` type="number" name="stop_after" min=1 max=1440 value=60)
           div.col-xs-12.col-sm-6.col-md-4.col-xl-4.form-group.fontscale
-            label.form-label(for="mode") Run Mode
-            select.form-control(id=`${det[0]}_mode` name="run_mode" type='text' required)
+            label.form-label(for=`${det[0]}_mode`) Run Mode
+            select.form-control.det_control.det_mode(id=`${det[0]}_mode` name="run_mode" required)
           div.col-xs-12.col-sm-6.col-md-12.col-xl-4.form-group
-            label.form-label(for="comment") Comment
-            textarea.form-control(id=`${det[0]}_comment` rows="2" name="comment" type='text')
+            label.form-label(for=`${det[0]}_comment`) Comment
+            textarea.form-control.det_control.det_comment(id=`${det[0]}_comment` rows="2" name="comment" type='text')
 
 
   audio#ahahah(src="images/ahahah.mp3")
