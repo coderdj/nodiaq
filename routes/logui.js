@@ -39,7 +39,7 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
       {$match: {priority: {$in: include}}},
       {$sort: {_id: -1}},
       {$limit: parseInt(limit)},
-      {$project: {time: {$toDate: '$_id'}}}
+      {$addFields: {time: {$toDate: '$_id'}}}
     ]).then(docs => res.json(docs))
     .catch(err => {console.log(err.message); return res.json([]);});
 });

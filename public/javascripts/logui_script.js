@@ -78,17 +78,19 @@ function InitializeTable(DOM){
 		
 
     // Get the window height minus padding (80px)
-    var vh = $(window).height() - $("#newentry").outerHeight(true) - 50;
+    var vh = $(window).height() - $("#newentry").outerHeight(true) - $("#errorbar").outerHeight(true) - 80;
     $(DOM).tabulator({
-	height: vh, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+	//height: vh, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+    height: '85%',
 	layout:"fitDataFill", //fit columns to width of table (optional)
 	pagination: "local",
+    paginationSize: 23, // magic number based on my screen size
 	columns:[ //Define Table Columns
             {title:"Time", field:"time", width: 200},
+	    {title:"Run ID", field:"runid", align:"left", width: 100,
+	     headerFilter: "input", headerFilterPlaceholder: "filter run ID"},
             {title:"User", field:"user", align:"left", width: 200,
 	     headerFilter: "input", headerFilterPlaceholder: "filter users"},
-	    {title:"Run id", field:"runid", align:"left", width: 50,
-	     headerFilter: "input", headerFilterPlaceholder: "filter run id"},
             {title:"Message", field:"message", headerFilter: "input",
 	     headerFilterPlaceholder: "filter messages"},	    
             {title:"Priority", field:"priority", width: 200,
@@ -134,8 +136,9 @@ function UpdateLogTable(DOM){
 	    }
 	}
     }
-    console.log(get_me);
     $.getJSON('logui/getMessages?limit=500'+get_me, function(data){
+        console.log(data.length);
+        console.log(data[0]);
 	$(DOM).tabulator("setData", data);
     });
 
