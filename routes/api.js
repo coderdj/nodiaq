@@ -86,10 +86,10 @@ router.get("/geterrors", checkKey, function(req, res) {
   });
 });
 
-async function GetControlDocTest(collection, detector) {
+function GetControlDoc(collection, detector) {
   var keys = ['active', 'comment', 'mode', 'remote', 'softstop', 'stop_after'];
-  var p = keys.map(k => collection.find_one({key: `${detector}.${k}`}, {sort: {_id: -1}}));
-  return await Promise.all(p).then(values => {
+  var p = keys.map(k => collection.findOne({key: `${detector}.${k}`}, {sort: {_id: -1}}));
+  return Promise.all(p).then(values => {
     var ret = {};
     var latest = values[0].time;
     var user = "";
@@ -105,55 +105,19 @@ async function GetControlDocTest(collection, detector) {
   }).catch(err => {console.log(err.message); return {};});
 }
 
-function GetControlDoc(collection, detector) {
-  return collection.aggregate([
-    {$match: {detector: detector}},
-    {$sort: {_id: -1}},
-    {$group: {
-      _id: '$field',
-      value: {$first: '$value'},
-      user: {$first: '$user'},
-      time: {$first: '$time'}
-    }},
-    {$group: {
-      _id: null,
-      keys: {$push: '$_id'},
-      values: {$push: '$value'},
-      users: {$push: '$user'},
-      times: {$push: '$time'}
-    }},
-    {$project: {
-      detector: detector,
-      _id: 0,
-      state: {$arrayToObject: {$zip: {inputs: ['$keys', '$values']}}},
-      user: {$arrayElemAt: ['$users', {$indexOfArray: ['$times', {$max: '$times'}]}]}
-    }}
-  ]);
-}
-
-function GetDetectorStatus(collection, detector, callback) {
+function GetDetectorStatus(collection, detector) {
   var timeout = 30;
   var query = {detector: detector, time: {$gte: new Date(new Date()-timeout*1000)}};
   var options = {sort: {'_id': -1}, limit: 1};
   return collection.find(query, options);
 }
 
-router.get("/getcommandtest/:detector", checkKey, function(req, res) {
-  var detector = req.params.detector;
-  var collection = req.db.get("detector_control");
-  return res.json(GetControlDocTest(collection, detector));
-});
-
 router.get("/getcommand/:detector", checkKey, function(req, res) {
   var detector = req.params.detector;
   var collection = req.db.get("detector_control");
-  GetControlDoc(collection, detector).then( docs => {
-    if (docs.length == 0)
-      return res.json({message: "No control doc for detector " + detector});
-    return res.json(docs[0]);
-  }).catch( err => {
-    return res.json({message: err.message});
-  });
+  GetControlDoc(collection, detector)
+    .then(doc => res.json({detector: detector, user: doc.user, state: doc}))
+    .catch(err => res.json({}));
 });
 
 router.get("/detector_status/:detector", checkKey, function(req, res) {
@@ -168,27 +132,32 @@ router.get("/detector_status/:detector", checkKey, function(req, res) {
   });
 });
 
+function GetCurrentMode(options_coll, ctrl_coll, detector) {
+  return ctrl_coll.findOne({key: `${detector}.mode`},{sort: {_id: -1}})
+    .then(doc => options_coll.findOne({name: doc.value}))
+    .catch(err => ({}));
+}
+
 router.post("/setcommand/:detector", checkKey, function(req, res) {
   var q = url.parse(req.url, true).query;
   var user = q.api_user;
   var data = req.body;
   var detector = req.params.detector;
   var ctrl_coll = req.db.get("detector_control");
-  var agg_coll = req.db.get("aggregate_status");
   var options_coll = req.db.get("options");
   promises = [GetControlDoc(ctrl_coll, detector)];
   if (typeof data.mode != 'undefined') {
-    promises.push(options_coll.find_one({name: data.mode}));
+    promises.push(options_coll.findOne({name: data.mode}));
+  } else {
+    promises.push(GetCurrentMode(options_coll, ctrl_coll, detector));
   }
   Promise.all(promises).then( values => {
-    if (values[0].length == 0)
-      throw {message: "Something went wrong"};
-    var det = values[0][0].state;
+    var det = values[0];
     // first - is the detector in "remote" mode?
     if (det.remote != 'true' && !req.is_daq)
       throw {message: "Detector must be in remote mode to control via the API"};
-    // check linking status
-    if (values.length > 1 && typeof values[1].detector != 'string') {
+    // is the mode valid?
+    if (values[1] === null) {
       throw {message: "Invalid mode provided"};
     }
     // now we validate the incoming command
@@ -201,18 +170,22 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
           }catch(error){
             continue;
           }
-        } else if (key == 'mode' && values[values.length-1] == 0) {
-          throw {message: "No options document named \"" + data.mode + "\""};
+        } else if (key == 'active' && data[key] == 'true' && values[1].detector !== detector) {
+          // check linking
+          throw {message: 'Incompatible mode'};
+        } else if (key == 'mode' && typeof values[1].detector != 'string') {
+          throw {message: 'Linked modes not available for API use'};
         } else {
         }
         changes.push([key, data[key]]);
-      }
-    }
+      } // if key is valid
+    } // for all keys
     if (changes.length > 0) {
       ctrl_coll.insert(changes.map((val) => ({detector: detector, user: user,
-        time: new Date(), field: val[0], value: val[1], key: detector+'.'+val[0]})))
-      .then( () => res.json({message: "Update successful"}))
-      .catch( (err) => {throw err});
+          time: new Date(), field: val[0], value: val[1],
+          key: `${detector}.${val[0]}`})))
+        .then( () => res.json({message: "Update successful"}))
+        .catch( (err) => {throw err});
     } else {
       throw {message: "No changes registered"};
     }
