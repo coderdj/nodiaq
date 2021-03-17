@@ -68,7 +68,7 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
     return res.json({"res": "I can't allow you to do that Dave"});
 
   collection.remove({'name': name}, {})
-  .then(() => res.sendStatus(200)))
+  .then(() => res.sendStatus(200))
   .catch(err => {console.log(err.message); return res.redirect("/options");});
 });
 
