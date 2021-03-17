@@ -39,10 +39,11 @@ router.get("/options_json", ensureAuthenticated, function(req, res){
 
 router.post("/set_run_mode", ensureAuthenticated, function(req, res){
   doc = JSON.parse(req.body.doc);
-  delete doc._id;
-  var db = req.db;
+  if (typeof doc._id != 'undefined')
+    delete doc._id;
   doc['last_modified'] = new Date();
 
+  var db = req.db;
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
     return res.json({"res": "I can't allow you to do that Dave"});
@@ -52,8 +53,8 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
     return res.redirect("/options");
   collection.remove({name: doc['name']}, {})
     .then( () => collection.insert(doc, {}))
-    .then( () => res.redirect("/options"))
-    .catch((err) => res.json({"res": err.message}));
+    .then( () => res.sendStatus(200))
+    .catch((err) => {console.log(err.message); return res.json({"res": err.message});});
 });
 
 router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
@@ -67,7 +68,7 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
     return res.json({"res": "I can't allow you to do that Dave"});
 
   collection.remove({'name': name}, {})
-  .then(() => res.redirect("/options"))
+  .then(() => res.sendStatus(200)))
   .catch(err => {console.log(err.message); return res.redirect("/options");});
 });
 
