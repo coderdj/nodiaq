@@ -86,6 +86,25 @@ router.get("/geterrors", checkKey, function(req, res) {
   });
 });
 
+async function GetControlDocTest(collection, detector) {
+  var keys = ['active', 'comment', 'mode', 'remote', 'softstop', 'stop_after'];
+  var p = keys.map(k => collection.find_one({key: `${detector}.${k}`}, {sort: {_id: -1}}));
+  return await Promise.all(p).then(values => {
+    var ret = {};
+    var latest = values[0].time;
+    var user = "";
+    values.forEach(doc => {
+      ret[doc.field] = doc.value;
+      if (doc.time > latest) {
+        user = doc.user;
+        latest = doc.time;
+      }
+    });
+    ret['user'] = user;
+    return ret;
+  }).catch(err => {console.log(err.message); return {};});
+}
+
 function GetControlDoc(collection, detector) {
   return collection.aggregate([
     {$match: {detector: detector}},
@@ -118,6 +137,12 @@ function GetDetectorStatus(collection, detector, callback) {
   var options = {sort: {'_id': -1}, limit: 1};
   return collection.find(query, options);
 }
+
+router.get("/getcommandtest/:detector", checkKey, function(req, res) {
+  var detector = req.params.detector;
+  var collection = req.db.get("detector_control");
+  return res.json(GetControlDocTest(collection, detector));
+});
 
 router.get("/getcommand/:detector", checkKey, function(req, res) {
   var detector = req.params.detector;
@@ -152,11 +177,8 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
   var agg_coll = req.db.get("aggregate_status");
   var options_coll = req.db.get("options");
   promises = [GetControlDoc(ctrl_coll, detector)];
-  if (detector != 'tpc') {
-    promises.push(GetControlDoc(ctrl_coll, 'tpc'));
-  }
-  if (data.active == 'true') {
-    promises.push(options_coll.count({name: data.mode}, {}));
+  if (typeof data.mode != 'undefined') {
+    promises.push(options_coll.find_one({name: data.mode}));
   }
   Promise.all(promises).then( values => {
     if (values[0].length == 0)
@@ -166,14 +188,8 @@ router.post("/setcommand/:detector", checkKey, function(req, res) {
     if (det.remote != 'true' && !req.is_daq)
       throw {message: "Detector must be in remote mode to control via the API"};
     // check linking status
-    if (detector == "tpc" && (det.link_nv != "false" || det.link_mv != "false"))
-      throw {message: 'All detectors must be unlinked to start TPC via API'};
-    if (detector != 'tpc') {
-      var tpc = values[1][0].state;
-      if (detector == "neutron_veto" && tpc.link_nv != "false")
-        throw {message: 'NV must be unlinked to control via API'};
-      if (detector == "muon_veto" && tpc.link_mv != "false")
-        throw {message: 'MV must be unlinked to control via API'};
+    if (values.length > 1 && typeof values[1].detector != 'string') {
+      throw {message: "Invalid mode provided"};
     }
     // now we validate the incoming command
     var changes = [];
