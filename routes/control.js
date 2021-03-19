@@ -4,8 +4,7 @@ var url = require("url");
 var router = express.Router();
 var gp='';
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
+  return res.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
@@ -21,11 +20,12 @@ router.get('/modes', ensureAuthenticated, function(req, res){
   var detector = q.detector;
   collection.aggregate([
     {$match: {detector: {$ne: 'include'}}},
+    {$unwind: '$detector'},
     {$sort: {name: 1}},
     {$group: {_id: '$detector', options: {$push: '$name'}, desc: {$push: '$description'}}},
     {$project: {configs: {$zip: {inputs: ['$options', '$desc']}}}}
   ]).then( (docs) => res.json(docs))
-  .catch( (err) => {console.log('GET MODES ERROR'); console.log(err.message); return res.json({error: err.message})});
+  .catch( (err) => {console.log(err.message); return res.json({error: err.message})});
 });
 
 function GetControlDocs(collection) {
@@ -60,7 +60,7 @@ router.get("/get_control_docs", ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
     GetControlDocs(collection)
     .then((docs) => res.json(docs))
-    .catch((err) => {console.log("GET CONTROL ERROR"); console.log(err.message); return res.json({});});
+    .catch((err) => {console.log(err.message); return res.json({});});
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){

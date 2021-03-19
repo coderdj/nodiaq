@@ -1,15 +1,15 @@
+// routes/users.js
 var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
-} 
+  return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
+}
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('users', { title: 'User Directory', user: req.user });
+  res.render('users', req.template_info_base);
 });
 
 router.post('/getDirectory', ensureAuthenticated, function(req, res){

@@ -15,18 +15,6 @@ function PopulateModeList(div){
     }, ""));
     $("#"+div).prop('disabled', false);
     $('#'+div).selectpicker();
-    /*var detectors = ['tpc', 'muon_veto', 'neutron_veto', 'include'];
-    var detector_names = ["TPC", "Muon Veto", "Neutron Veto", 'Includes'];
-    for(var j in detectors){
-      var detector = detectors[j];
-      html+="<optgroup label='"+detector_names[j]+"'>";
-      if(typeof data[detector] === 'undefined')
-        continue;
-      for(var i=0; i<data[detector].length; i+=1)
-        html+="<option value='"+data[detector][i]+"'>"+data[detector][i]+"</option>";
-    }
-    document.getElementById(div).innerHTML = html;
-*/
   });
 }
 

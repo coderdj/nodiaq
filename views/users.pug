@@ -1,3 +1,4 @@
+// views/users.pug
 extends layout
 
 block extrahead
@@ -19,10 +20,6 @@ block content
   div.modal#detailModal(tabindex="-1" role="dialog")
     div.modal-dialog(role="document")
       div.modal-content
-        // div.modal-header
-        //  h5.modal-title User Info
-        //  button.close(type="button" data-dismiss="modal" aria-label="Close")
-        //    span(aria-hidden="true")&times;
         div.modal-body
           div.row(style="width:100%")
             div.col-6#ppic
@@ -43,7 +40,7 @@ block content
           &nbsp;
           input#newgroupinput(type='text')
           input#user_id(type='text' hidden)
-               
+
         div.modal-footer
           button.btn.btn-secondary(type="button" data-dismiss="modal") Close
 

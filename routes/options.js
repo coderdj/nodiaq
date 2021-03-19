@@ -16,17 +16,18 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.get("/options_list", ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get('options');
+  var db = req.db;
+  var collection = db.get('options');
   collection.aggregate([
     {$unwind: '$detector'},
     {$sort: {name: 1}},
     {$group: {
       _id: '$detector',
       modes: {$push: '$name'}
-    }}])
-  .then( docs => res.json(docs))
-  .catch(error => {console.log(error.message); return res.json([]);});
+    }},
+    {$sort: {_id: -1}}])
+    .then( docs => res.json(docs))
+    .catch(error => {console.log(error.message); return res.json([]);});
 });
 
 router.get("/options_json", ensureAuthenticated, function(req, res){
@@ -56,7 +57,7 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
     return res.redirect("/options");
   collection.deleteOne({name: doc['name']})
     .then( () => collection.insertOne(doc))
-    .then( () => res.redirect('/options'))
+    .then( () => res.sendStatus(200))
     .catch((err) => res.json({"res": err.message}));
 });
 
@@ -71,7 +72,7 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
     return res.json({"res": "I can't allow you to do that Dave"});
 
   collection.deleteOne({'name': name})
-  .then( () => res.redirect('/options'))
+  .then( () => res.sendStatus(200))
   .catch((err) => res.json({res: err.message}));
 });
 

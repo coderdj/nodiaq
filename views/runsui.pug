@@ -38,15 +38,6 @@ block content
           textarea#mongoquery(rows="1" cols="10" type="text" placeholder="{}")
           span &nbsp;
           button.btn.btn-default(onclick="CheckMongoQuery()" style="margin-top:-25px") Apply
-      div.col-4.align-right(style="margin-top:5px")
-        div.btn-group.btn-group-toggle#detectorselector(data-toggle="buttons")
-          label.btn.btn-secondary.active(name='xenonnt')
-            input(value="xenonnt" type="radio" autocomplete="off" checked)
-            span(name='xenonnt') XENONnT
-          label.btn.btn-secondary(name='xenon1t')
-            input(type="radio" autocomplete="off" value="xenon1t" disabled)
-            span(name='xenon1t') XENON1T
-
     br
     span Note: 'Start' is given in your local time
     div.det_card_noheight#resize_wrapper(style="height:90%;width:100%;background-color:white;padding-top:15px")
@@ -124,8 +115,6 @@ block content
             br
             button.btn.btn-error(type='button' data-dismiss='modal') Close
   script.
-    // This allows the included javascript to see who the user is
-    var user = '#{user.last_name}';
     $(document).ready(function(){
       DrawActiveLink("#lruns");
       InitializeRunsTable("#runs_table");
