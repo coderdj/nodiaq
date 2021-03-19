@@ -53,7 +53,7 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
     return res.redirect("/options");
   collection.remove({name: doc['name']}, {})
     .then( () => collection.insert(doc, {}))
-    .then( () => res.sendStatus(200))
+    .then( () => res.json({msg: "Success"}))
     .catch((err) => {console.log(err.message); return res.json({"res": err.message});});
 });
 
@@ -68,7 +68,7 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
     return res.json({"res": "I can't allow you to do that Dave"});
 
   collection.remove({'name': name}, {})
-  .then(() => res.sendStatus(200))
+  .then(() => res.json({msg: 'Success'}))
   .catch(err => {console.log(err.message); return res.redirect("/options");});
 });
 

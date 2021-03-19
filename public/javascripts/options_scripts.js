@@ -17,28 +17,24 @@ function FetchMode(select_div){
 };
 
 function SubmitMode(){
-    try{JSON.parse(document.jsoneditor.get());}
+    try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
     catch(error){alert(error);return}
     $.post("options/set_run_mode",
 	   {"doc": (JSON.stringify(document.jsoneditor.get()))},
 	   function(data){
-	       try{JSON.parse(data);}
-	       catch(error){alert(error);location.reload(true);}
-	       if(typeof(data) !== "undefined" && "res" in JSON.parse(data))
-		   alert(JSON.parse(data)['res']);
-	       else
-		   alert("Something strange has happened");
+             if (typeof data.res != 'undefined')
+               alert(data.res);
+             else
+               location.reload();
 	   });
 };
 
 function RemoveMode(select_div){
     $.get("options/remove_run_mode?name="+$("#"+select_div).val(),
-	  function(data, status){
-	      try{JSON.parse(data);}
-	      catch(error){location.reload(true);}
-	      if(typeof(data) !== "undefined" && "res" in JSON.parse(data))
-		  alert(JSON.parse(data)['res']);
-	      else
-		  alert("Something strange has happened");
-	  });
+	   function(data){
+             if (typeof data.res != 'undefined')
+               alert(data.res);
+             else
+               location.reload();
+	   });
 }

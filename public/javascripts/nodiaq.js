@@ -57,7 +57,6 @@ function FillDetectorInfo(det, callback){
 		      document.getElementById(det+"_mode").innerHTML = data['mode'];
 		      document.getElementById(det+"_run").innerHTML = data['number'];
 		      document.getElementById(det+"_rate").innerHTML = data['rate'].toFixed(2);
-		      document.getElementById(det+"_readers").innerHTML = data['readers'];
 		  }
 		  for(var i in status_classes)
 		      $("#"+det+"_status_icon").removeClass(status_classes[i]);
