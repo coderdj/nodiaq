@@ -176,6 +176,7 @@ html
       $(document).ready(function(){
         CheckForErrors();
         //GetFillLevel();
+        document.getElementById("flash_whoa").volume = 0.1;
         $('.sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');
           $('.overlay').toggleClass('active');

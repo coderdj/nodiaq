@@ -186,7 +186,7 @@ function InitializeRunsTable(divname){
       }
       console.log(runs);
       if(runs.length>0) {
-        if (tag === 'flash') $("#flash_woah").play();
+        if (tag === 'flash') document.getElementById("flash_whoa").play();
         $.ajax({
           type: "POST",
           url: "runsui/addtags",
@@ -218,7 +218,7 @@ function InitializeRunsTable(divname){
         }
       }
       if(runs.length>0 && typeof runs[0] !== "undefined") {
-        if (tag === 'flash') $("#flash_woah").play();
+        if (tag === 'flash') document.getElementById("flash_whoa").play();
         $.ajax({
           type: "POST",
           url: "runsui/addtags",
