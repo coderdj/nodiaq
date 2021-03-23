@@ -13,24 +13,11 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.get('/get_updates', ensureAuthenticated,function(req,res){
-  var readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
+  var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
   var db = req.db;
   var collection = db.get('status');
   ObjectID = req.ObjectID;
 
-  var q = {host: {$in: readers}};
-  if (typeof req.query.unixtime != 'undefined') {
-    try{
-      var unixtime = parseInt(req.query.unixtime);
-      q._id = {$gt: ObjectID((unixtime-1).toString(16) + "0000000000000000"),
-               $lt: ObjectID((unixtime+1).toString(16) + "0000000000000000")};
-    }catch(err){
-    }
-  }
-  collection.find(q, {sort: {_id: -1}, limit: 1})
-  .then(docs => res.json(docs))
-  .catch(err => {console.log(err.message); return res.json({});});
-});
   // start mongo pipeline with empty array
   var mongo_pipeline = []
   mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
