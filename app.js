@@ -143,7 +143,6 @@ app.use(function(req,res,next){
     req.transporter = transporter;
     req.runs_db = runs_db;
     req.users_db = users_db;
-    req.monitor_db = db;
     req.ObjectID = ObjectID;
     next();
 });

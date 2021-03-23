@@ -5,9 +5,8 @@ var router = express.Router();
 var gp="";
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
-}  
+  return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
+}
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, function(req, res) {
@@ -269,31 +268,6 @@ function SendConfirmationMail(req, random_hash, link, callback){
 	callback(true);
     });
 }
-
-function ConvertToDate(value){
-    // The member sheet contains a lot of different date formats. 
-    // We will try here to convert the string to a date object.
-    var moment = require('moment');
-    
-    // wtf
-    var allowedDateFormats = ['YYYY', 'MMM. YYYY', 'MMM.YYYY', 'MMM-YY', 'MMM. YY', 'MMM.YY',
-			      'MMM YYYY'];
-    if(moment(value, allowedDateFormats, true).isValid())
-	return moment(value, allowedDateFormats, true).toDate();
-    
-    // Try second time with non-strict mode
-    if(moment(value, allowedDateFormats, false).isValid())
-	return moment(value, allowedDateFormats, false).toDate();
-
-    // I give up, maybe it's in Portuguese. Return some dummy date so querying easy.
-    return moment("1999-01-01").toDate();
-
-}
-
-
-// Use Google APIs to search our membership spreadsheet
-const {google} = require('googleapis');
-let privatekey = require("/etc/googleapikey.json");
 
 router.post("/linkLDAP", function(req, res) {
     var db = req.runs_db;

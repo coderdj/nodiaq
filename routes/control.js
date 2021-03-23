@@ -3,6 +3,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp='';
+
 function ensureAuthenticated(req, res, next) {
   return res.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
@@ -19,11 +20,18 @@ router.get('/modes', ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var detector = q.detector;
   collection.aggregate([
+    {$addFields: {_detector: '$detector'}},
+    {$unwind: '$detector'},
     {$match: {detector: {$ne: 'include'}}},
     {$unwind: '$detector'},
     {$sort: {name: 1}},
-    {$group: {_id: '$detector', options: {$push: '$name'}, desc: {$push: '$description'}}},
-    {$project: {configs: {$zip: {inputs: ['$options', '$desc']}}}}
+    {$group: {
+      _id: '$detector',
+      options: {$push: '$name'},
+      desc: {$push: '$description'},
+      link: {$push: {$cond: [{$isArray: '$_detector'}, '$_detector', ['$_detector']]}}
+    }},
+    {$project: {configs: {$zip: {inputs: ['$options', '$desc', '$link']}}}}
   ]).then( (docs) => res.json(docs))
   .catch( (err) => {console.log(err.message); return res.json({error: err.message})});
 });
@@ -68,7 +76,7 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
 
     if (typeof req.user.lngs_ldap_uid == 'undefined')
-      return res.sendStatus(401);
+      return res.sendStatus(403);
     var data = req.body.data;
     GetControlDocs(collection).then((docs) => {
       var updates = [];

@@ -1,4 +1,5 @@
 // public/javascripts/logui_scripts.js
+
 function CheckFlash(){
   //console.log(document.flashDatButton);
   if(typeof(document.flashDatButton)!="undefined" && document.flashDatButton){
@@ -24,7 +25,7 @@ function NewMessage(){
   $.ajax({
     url:'logui/new_log_message',
     type:'post',
-    data:{"entry": $("#log_entry_box").val()},//$('#new_message').serialize(),
+    data:{"entry": $("#log_entry_box").val()},
     success:function(){
       UpdateLogTable("#log_table");
       $("#log_entry_box").val("");
@@ -78,13 +79,17 @@ function InitializeTable(DOM){
   ];
 
   // Get the window height minus padding (80px)
-  var vh = $(window).height() - $("#newentry").outerHeight(true) - 50;
+  var vh = $(window).height() - $("#newentry").outerHeight(true) - $("#errorbar").outerHeight(true) - 80;
   $(DOM).tabulator({
-    height: vh, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+    //height: vh, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+    height: '85%',
     layout:"fitDataFill", //fit columns to width of table (optional)
     pagination: "local",
+    paginationSize: 23, // magic number based on my screen size
     columns:[ //Define Table Columns
       {title:"Time", field:"time", width: 200},
+      {title:"Run ID", field:"runid", align:"left", width: 100,
+        headerFilter: "input", headerFilterPlaceholder: "filter run ID"},
       {title:"User", field:"user", align:"left", width: 200,
         headerFilter: "input", headerFilterPlaceholder: "filter users"},
       {title:"Message", field:"message", headerFilter: "input",

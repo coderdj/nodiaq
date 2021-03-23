@@ -5,8 +5,7 @@ var router = express.Router();
 var gp = '';
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  return res.redirect(gp+'/login');
+  return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
@@ -21,13 +20,10 @@ router.get("/options_list", ensureAuthenticated, function(req, res){
   collection.aggregate([
     {$unwind: '$detector'},
     {$sort: {name: 1}},
-    {$group: {
-      _id: '$detector',
-      modes: {$push: '$name'}
-    }},
-    {$sort: {_id: -1}}])
-    .then( docs => res.json(docs))
-    .catch(error => {console.log(error.message); return res.json([]);});
+    {$group: {_id: '$detector', modes: {$push: '$name'}}},
+    {$sort: {_id: -1}}
+  ]).then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 router.get("/options_json", ensureAuthenticated, function(req, res){
@@ -45,20 +41,22 @@ router.get("/options_json", ensureAuthenticated, function(req, res){
 
 router.post("/set_run_mode", ensureAuthenticated, function(req, res){
   doc = JSON.parse(req.body.doc);
-  delete doc._id;
-  var db = req.db;
+  if (typeof doc._id != 'undefined')
+    delete doc._id;
+  doc['last_modified'] = new Date();
 
+  var db = req.db;
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
-    return res.json({"res": "I'm sorry Dave, I'm afraid I can't allow you to do that"});
+    return res.json({"err": "I can't allow you to do that Dave"});
 
   var collection = db.get('options');
   if(typeof doc['name'] === 'undefined')
     return res.redirect("/options");
-  collection.deleteOne({name: doc['name']})
-    .then( () => collection.insertOne(doc))
-    .then( () => res.sendStatus(200))
-    .catch((err) => res.json({"res": err.message}));
+  collection.remove({name: doc['name']})
+    .then( () => collection.insert(doc, {}))
+    .then( () => res.status(200).json({}))
+    .catch(err => {console.log(err.message); return res.json({"err": err.message});});
 });
 
 router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
@@ -69,11 +67,11 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
 
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
-    return res.json({"res": "I can't allow you to do that Dave"});
+    return res.json({"err": "I can't allow you to do that Dave"});
 
   collection.deleteOne({'name': name})
-  .then( () => res.sendStatus(200))
-  .catch((err) => res.json({res: err.message}));
+  .then( () => res.status(200).json({}))
+  .catch(err => {console.log(err.message); return res.json({err: err.message});});
 });
 
 

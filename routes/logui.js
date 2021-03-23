@@ -4,8 +4,7 @@ var url = require("url");
 var router = express.Router();
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  return res.redirect('/login');
+  return req.isAuthenticated() ? next() : res.redirect('/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
@@ -39,7 +38,6 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
     {$sort: {_id: -1}},
     {$limit: limit},
     {$addFields: {time: {$toDate: '$_id'}}},
-    {$project: {_id: 0}}
   ])
   .then(docs => res.json(docs))
   .catch(err => {console.log(err.message); return res.json([]);});
@@ -78,4 +76,5 @@ router.post('/acknowledge_errors', ensureAuthenticated, (req, res) => {
   .then( result => res.json(200))
   .catch(err => {console.log(err.message); return res.status(400).send('Failed to update db');});
 });
+
 module.exports = router;

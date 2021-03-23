@@ -1,118 +1,69 @@
+// routes/monitor.js
 var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
 
-var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0'];
-
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
+  return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('monitor', { title: 'Monitor', user: req.user });
+  res.render('monitor', req.template_info_base);
 });
-
-// obtain first and last entire in status collection where channels entrie is not empty
-router.get('/get_limits', ensureAuthenticated, function(req, res){
-    var db = req.monitor_db;
-
-    var collection = db.get("status");
-    var mongo_pipeline = [];
-
-    // only take reader 0 to 2 and non empty channel entries
-    mongo_pipeline.push({
-        "$match":{
-            "host": {'$in': tpc_readers},
-            "channels":{$ne: {}},
-        }
-    });
-    
-    // calculate unixtime from object id
-    mongo_pipeline.push({
-       "$project":{
-            _id: 1,
-            unixtime : {
-                $divide:[{
-                    $subtract: [{
-                        $toDate: "$_id"},
-                        new Date("1970-01-01")
-                    ]},
-                1000
-            ]},
-        }
-    });
-    
-    
-    // obtain first and last entrie
-    mongo_pipeline.push({
-        $group: {
-            _id: null,
-            // for whatever reason they are inverted
-            first: { $last: "$$ROOT" },
-            last: { $first: "$$ROOT" },
-        }
-    });
-    
-    
-    // limit to two entires just to be sure
-    mongo_pipeline.push({$limit: 2});
-    
-    // run actual request
-    collection.aggregate(
-        mongo_pipeline,
-        function(e,docs){
-            res.json(docs);
-        }
-        
-    );
-    
-    
-});
-
-
 
 router.get('/get_updates', ensureAuthenticated,function(req,res){
-    var db = req.monitor_db;
-    var collection = db.get('status');
-        ObjectID = req.ObjectID;
-    
-    var oid_min = ObjectID(0);
-    
-    // start mongo pipeline with empty array
-    var mongo_pipeline = []
-    mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
-    mongo_pipeline.push({"$sort": {"_id":-1}});
-    mongo_pipeline.push({"$limit": 15});
-    mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
-    
-    
-    // append time filter if parameter unixtime is given in url
-    var int_unixtime = parseInt(req.query.unixtime);
-    if(!isNaN(int_unixtime)){
-        
-        if(int_unixtime > 0){
-            str_unixtime_min = (int_unixtime-1).toString(16) + "0000000000000000";
-            str_unixtime_max = (int_unixtime+1).toString(16) + "0000000000000000";
-            
-            var oid_min = ObjectID(str_unixtime_min);
-            var oid_max = ObjectID(str_unixtime_max);
-            
-            mongo_pipeline[0]["$match"]["_id"] = {
-                    "$gt": oid_min,
-                    "$lt": oid_max
-            }
-        }
+  var readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
+  var db = req.db;
+  var collection = db.get('status');
+  ObjectID = req.ObjectID;
+
+  var q = {host: {$in: readers}};
+  if (typeof req.query.unixtime != 'undefined') {
+    try{
+      var unixtime = parseInt(req.query.unixtime);
+      q._id = {$gt: ObjectID((unixtime-1).toString(16) + "0000000000000000"),
+               $lt: ObjectID((unixtime+1).toString(16) + "0000000000000000")};
+    }catch(err){
     }
-    //console.log(mongo_pipeline[0]["$match"]);
-    collection.aggregate(
-        mongo_pipeline,
-        function(e,docs){
-            res.json(docs);
-        }
-        
-    );
+  }
+  collection.find(q, {sort: {_id: -1}, limit: 1})
+  .then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json({});});
+});
+  // start mongo pipeline with empty array
+  var mongo_pipeline = []
+  mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
+  mongo_pipeline.push({"$sort": {"_id":-1}});
+  mongo_pipeline.push({"$limit": 15});
+  mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
+
+
+  // append time filter if parameter unixtime is given in url
+  var int_unixtime = parseInt(req.query.unixtime);
+  if(!isNaN(int_unixtime)){
+
+    if(int_unixtime > 0){
+      str_unixtime_min = (int_unixtime-1).toString(16) + "0000000000000000";
+      str_unixtime_max = (int_unixtime+1).toString(16) + "0000000000000000";
+
+      var oid_min = ObjectID(str_unixtime_min);
+      var oid_max = ObjectID(str_unixtime_max);
+
+      mongo_pipeline[0]["$match"]["_id"] = {
+        "$gt": oid_min,
+        "$lt": oid_max
+      }
+    }
+  }
+  //console.log(mongo_pipeline[0]["$match"]);
+  collection.aggregate(
+    mongo_pipeline,
+    function(e,docs){
+      res.json(docs);
+    }
+
+  );
 });
 
 
@@ -121,7 +72,7 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
 // requires int_time_start, int_time_end and int_time_averaging_window
 // averages then the data over int_time_averaging_window
 router.get('/get_history', ensureAuthenticated,function(req,res){
-    var db = req.monitor_db;
+    var db = req.db;
     var collection = db.get('status');
         ObjectID = req.ObjectID;
     

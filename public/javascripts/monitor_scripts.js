@@ -1,3 +1,4 @@
+// public/javascripts/monitor.js
 var max_pmt_id = 0;
 var results_empty={};
 var global_json;
@@ -179,26 +180,11 @@ var svgObject2  = false//document.getElementById('svg_frame2').contentDocument;
 
 
 function set_limits(){
-        
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var limits = JSON.parse(this.responseText);
-            limits = [limits[0]["first"]["unixtime"], limits[0]["last"]["unixtime"]];
-            
-            //document.getElementById("field_current_timestamp").value = Math.min(...limits);
-            document.getElementById("field_history_start").value = Math.min(...limits);
-            document.getElementById("field_history_end").value   = Math.max(...limits);
-            
-            
-        }
-    };
-    
-    str_url = "/monitor/get_limits";
-    xmlhttp.open("GET", str_url, true);
-    xmlhttp.send();
+  var now = Math.floor(new Date().getTime()/1000);
+  var dt = 3*24*3600; // only 3 days of stored data
+  $("#field_history_start").val(now-dt);
+  $("#field_history_end").val(now);
 }
-
 
 // convert datarate into percentage value
 function color_scheme(x){

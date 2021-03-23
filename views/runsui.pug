@@ -1,3 +1,4 @@
+// views/runsui.pug
 extends layout
 
 block extrahead
@@ -18,11 +19,10 @@ block content
         div.form-group.row
           label(for="taginput") Add tags to selected: &nbsp;
           select.form-control#taginput(style="width:20%;min-width:150px") Choose a tag
+            option(value="prioritize") prioritize
             option(value="messy") messy
-            option(value="bad") bad
+            option(value="abandon") abandon
             option(value="flash") flash
-            option(value="nofield") nofield
-            option(value="earthquake") earthquake
             span &nbsp;
           button.btn.btn-default#add_tag_button Add Tags
       div.col-md-12.col-lg-6
@@ -78,7 +78,11 @@ block content
                       strong #{att}:
                     div.col-sm-6
                       span(id=`detail_${att}`)
-              div.tab-pane.fade#tab_tags(role="tabpanel" aria-labelledby="tags-tab") 
+                  div.col-sm-6
+                    strong Processing status:
+                  div.col-sm-6
+                    span#detail_bootstrax
+              div.tab-pane.fade#tab_tags(role="tabpanel" aria-labelledby="tags-tab")
                 table.table.table-striped
                   thead
                     td Tag
