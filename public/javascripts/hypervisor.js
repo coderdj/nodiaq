@@ -1,6 +1,6 @@
 var all_hosts = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
   'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
-var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0'];
+var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
 var all_bootstrax = ['eb0.xenon.local', 'eb1.xenon.local', 'eb3.xenon.local', 'eb4.xenon.local', 'eb5.xenon.local'];
 var all_ajax = ['ajax.eb0.xenon.local', 'ajax.eb1.xenon.local', 'ajax.eb3.xenon.local', 'ajax.eb4.xenon.local', 'ajax.eb5.xenon.local'];
 
@@ -78,9 +78,9 @@ function UpdateHosts() {
 }
 
 function UpdateVME() {
-  var timeout = 20000;
+  var timeout = 10000;
   var svgobj = document.getElementById("svg_frame").contentDocument;
-  $.getJSON('hosts/get_host_status?host=vme', (data) => {
+  $.getJSON('hosts/get_host_status?host=crate', (data) => {
     if (Object.entries(data).length == 0) return;
     if (typeof data.err != 'undefined') {
       console.log(data);
@@ -89,11 +89,21 @@ function UpdateVME() {
     //console.log(data);
     try{
       for (var i = 0; i < 5; i++) {
-        var d = data[i];
+        // VME crates
+        var d = data['vme'+i];
         var ON = d["IMON_0"] > 0;
-        svgobj.getElementById("vme"+i+"_current").textContent = d['IMON_0'] + '/' + d['ISET_0'];
+        for (var ch = 0; ch < 3; ch++) {
+          svgobj.getElementById(`vme${i}_${ch}`).textContent = d['IMON_'+ch] + '/' + d['ISET_'ch];
+        }
         svgobj.getElementById("vme"+i+"_bkg").style.fill = ON ? "red" : "FF7777";
         svgobj.getElementById("vme"+i+"_btn").children[0].textContent = ON ? "OFF" : "ON";
+      }
+      for (var i = 0; i < 6; i++) {
+        // NIM crates
+        var d = data['nim'+i];
+        for (var ch = 0; ch < 6; ch++) {
+          svgobj.getElementById(`nim${i}_${ch}`).textContent = d['IMON_'+ch] + '/' + d['ISET_'ch];
+        }
       }
       svgobj.getElementById("vme_timeout").style.fill=data['checkin'] > timeout ? "black" : "red";
     }catch(error){
