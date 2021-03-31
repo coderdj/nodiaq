@@ -3,7 +3,7 @@ document.ceph_chart = null;
 document.last_time_charts = {};
 document.reader_data = {};
 
-var readers = ["reader0_reader_0", 'reader1_reader_0', 'reader2_reader_0', "reader3_reader_0", "reader5_reader_0", "reader6_reader_0", "reader6_reader_1"];
+var readers = ["reader0_reader_0", 'reader1_reader_0', 'reader2_reader_0', "reader5_reader_0", "reader6_reader_0", "reader6_reader_1"];
   var controllers = ['reader0_controller_0', "reader5_controller_0", "reader6_controller_0"];
 
 function GetStatus(i, checkin){
