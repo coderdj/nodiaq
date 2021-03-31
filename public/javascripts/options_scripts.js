@@ -21,23 +21,26 @@ function FetchMode(select_div){
     });
 };
 
-function SubmitMode() {
-  var s = JSON.stringify(document.jsoneditor.get());
-  try{
-    JSON.parse(JSON.stringify(s));
-  }catch(error){alert(error); return;}
-  $.post("options/set_run_mode", {doc: s}, (data) => {
-    if (typeof data.err != 'undefined')
-      alert(data.err);
-    location.reload();
-  }, 'json');
-}
+function SubmitMode(){
+  try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
+  catch(error){alert(error);return}
+  $.post("options/set_run_mode",
+    {"doc": (JSON.stringify(document.jsoneditor.get()))},
+    function(data){
+      if (typeof data.res != 'undefined')
+        alert(data.res);
+      else
+        location.reload();
+    });
+};
 
 function RemoveMode(select_div){
-  $.get("options/remove_run_mode?name="+$("#"+select_div).val(), (data) => {
-    if (typeof data.err != 'undefined')
-      alert(data.err);
-    location.reload();
-  }, 'json');
+  $.get("options/remove_run_mode?name="+$("#"+select_div).val(),
+    function(data){
+      if (typeof data.res != 'undefined')
+        alert(data.res);
+      else
+        location.reload();
+    });
 }
 

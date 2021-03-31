@@ -72,11 +72,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Session caching
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
-var dax_cstr = process.env.DAQ_MONGO_USER + ":" + process.env.DAQ_MONGO_PASSWORD + "@" + 
-    process.env.DAQ_MONGO_HOST + ":" + process.env.DAQ_MONGO_PORT + "/" +
-    process.env.DAQ_MONGO_AUTH_DB;
+var uri = `mongodb://${process.env.DAQ_MONGO_USER}:${process.env.MONGO_PASSWORD_DAQ}@${process.env.DAQ_MONGO_HOST}:${process.env.DAQ_MONGO_PORT}/${process.env.DAQ_MONGO_AUTH_DB}`;
 var store = new MongoDBStore({
-  uri: 'mongodb://' + dax_cstr,
+  uri: uri,
   collection: 'mySessions'
 });
 

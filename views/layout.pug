@@ -169,6 +169,7 @@ html
             span &nbsp; There are unacknowledged errors. Please go to the 
             a(href='/logui') log page 
             span to close them
+            audio#flash_whoa(src="images/flash_whoa.mp3")
         //
           nav.navbar.navbar-expand-lg.navbar-light.bg-light
           div.container-fluid
@@ -179,6 +180,7 @@ html
         setInterval(CheckForErrors, 5000);
         //CheckForErrors();
         //GetFillLevel();
+        document.getElementById("flash_whoa").volume = 0.1;
         $('.sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');
           $('.overlay').toggleClass('active');

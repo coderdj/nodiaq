@@ -44,7 +44,7 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
   // Convert runs to int
   runsint = runs.map(val => parseInt(val, 10));
   // Update many
-  var query = {number: {$in: runsint}};
+  var query = {number: {$in: runsint}, tags: {$elemMatch: {name: {$ne: tag}}}};
   var update = {$push: {tags: {date: new Date(), user: user, name: tag}}};
   collection.updateMany(query, update)
   .then( () => res.sendStatus(200))

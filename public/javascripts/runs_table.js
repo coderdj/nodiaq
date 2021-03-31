@@ -185,7 +185,8 @@ function InitializeRunsTable(divname){
         }
       }
       console.log(runs);
-      if(runs.length>0)
+      if(runs.length>0) {
+        if (tag === 'flash') document.getElementById("flash_whoa").play();
         $.ajax({
           type: "POST",
           url: "runsui/addtags",
@@ -197,6 +198,7 @@ function InitializeRunsTable(divname){
             );
           }
         });
+      }
     }
   });
 
@@ -215,7 +217,8 @@ function InitializeRunsTable(divname){
           return;
         }
       }
-      if(runs.length>0 && typeof runs[0] !== "undefined")
+      if(runs.length>0 && typeof runs[0] !== "undefined") {
+        if (tag === 'flash') document.getElementById("flash_whoa").play();
         $.ajax({
           type: "POST",
           url: "runsui/addtags",
@@ -227,6 +230,7 @@ function InitializeRunsTable(divname){
             );
           }
         });
+      }
     }
   });
 

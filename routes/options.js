@@ -55,8 +55,13 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
     return res.redirect("/options");
   collection.remove({name: doc['name']})
     .then( () => collection.insert(doc, {}))
+<<<<<<< HEAD
     .then( () => res.status(200).json({}))
     .catch(err => {console.log(err.message); return res.json({"err": err.message});});
+=======
+    .then( () => res.json({msg: "Success"}))
+    .catch((err) => {console.log(err.message); return res.json({"res": err.message});});
+>>>>>>> master
 });
 
 router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
@@ -69,9 +74,15 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
     return res.json({"err": "I can't allow you to do that Dave"});
 
+<<<<<<< HEAD
   collection.deleteOne({'name': name})
   .then( () => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.json({err: err.message});});
+=======
+  collection.remove({'name': name}, {})
+  .then(() => res.json({msg: 'Success'}))
+  .catch(err => {console.log(err.message); return res.redirect("/options");});
+>>>>>>> master
 });
 
 

@@ -37,7 +37,7 @@ function FillDetectorInfo(det){
     'fa-plus-circle',  // running
     'fa-times-circle', // error
     'fa-exclamation-triangle',      // timeout
-    'fa-question-circle'	 //unknown
+    'fa-question-circle' //unknown
   ];
   var status_colors = [
     'white',
@@ -54,7 +54,7 @@ function FillDetectorInfo(det){
   $.getJSON("status/get_detector_status?detector="+det,
     function(data){
       if($("#"+det+"_status").length){
-        ['mode', 'run', 'readers'].forEach( field => {
+        ['mode', 'run'].forEach( field => {
           $("#"+det+"_"+field).html(data[field]);
         });
         $('#'+det+"_status").html(statii[data['status']]);
@@ -70,7 +70,6 @@ function FillDetectorInfo(det){
         $("#"+det+"_status_icon").addClass('fa-spin');
       $("#"+det+"_status_icon").css("color", status_colors[data['status']]);
       $("#"+det+"_status_icon").attr('title', detectors[det] + title_text[data['status']]);
-      callback();
     });
 }
 
@@ -128,10 +127,9 @@ function CheckForErrors(){
 }
 
 function DrawActiveLink(this_page){
-  [
-    "#lindex", "#lplaylist", "#lstatus", "#lhosts", "#loptions", "#lruns", "#lhypervisor",
-    "#llog", "#lusers", "#lhelp", "#laccount", "#lcontrol", "#lshifts", "#lmonitor", "#lequipment"
-  ].forEach(page => {
+  ["#lindex", "#lplaylist", "#lstatus", "#lhosts", "#loptions", "#lruns",
+    "#lhypervisor", "#llog", "#lusers", "#lhelp", "#laccount", "#lcontrol",
+    "#lshifts", "#lmonitor", "#lequipment"].forEach(page => {
     if (page !== this_page)
       $(pages[i]).removeClass('active');
     else
