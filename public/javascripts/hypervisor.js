@@ -93,7 +93,8 @@ function UpdateVME() {
         var d = data['vme'+i];
         var ON = d["IMON_0"] > 0;
         for (var ch = 0; ch < 3; ch++) {
-          svgobj.getElementById(`vme${i}_${ch}`).textContent = d['IMON_'+ch] + '/' + d['ISET_'ch];
+          var imon = Math.round(10*d['IMON_'+ch])/10; // round to 0.1
+          svgobj.getElementById(`vme${i}_${ch}`).textContent = imon + '/' + d['ISET_'+ch];
         }
         svgobj.getElementById("vme"+i+"_bkg").style.fill = ON ? "red" : "FF7777";
         svgobj.getElementById("vme"+i+"_btn").children[0].textContent = ON ? "OFF" : "ON";
@@ -102,7 +103,8 @@ function UpdateVME() {
         // NIM crates
         var d = data['nim'+i];
         for (var ch = 0; ch < 6; ch++) {
-          svgobj.getElementById(`nim${i}_${ch}`).textContent = d['IMON_'+ch] + '/' + d['ISET_'ch];
+          var imon = Math.round(10*d['IMON_'+ch])/10; // round to 0.1
+          svgobj.getElementById(`nim${i}_${ch}`).textContent = imon + '/' + d['ISET_'+ch];
         }
       }
       svgobj.getElementById("vme_timeout").style.fill=data['checkin'] > timeout ? "black" : "red";
@@ -226,7 +228,7 @@ function UpdateLoop() {
 function SetupButtons() {
   var svgobj = document.getElementById("svg_frame").contentDocument;
   var redax = ["readout_start_all_btn", "readout_stop_all_btn", "reader0_controller_0_btn",
-    "reader0_reader_0_btn", "reader1_reader_0_btn", "reader2_reader_0_btn", "reader3_reader_0_btn"];
+    "reader0_reader_0_btn", "reader1_reader_0_btn", "reader2_reader_0_btn"];
   for (var i in redax) {
     try{
       svgobj.getElementById(redax[i]).addEventListener("click", function() {RedaxControl(this);});
