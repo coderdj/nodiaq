@@ -2,29 +2,15 @@ var gp = "";
 var statii = ["IDLE", "ARMING", "ARMED", "RUNNING", "ERROR", "UNKNOWN"];
 var detectors = {};
 
-function SetDetectors(det) {
-  det.forEach( val => detectors[val[0]] = val[1]);
-}
-
-function FYouButton(buttonid){
-    $("#"+buttonid).mouseover(function(){
-        var t = ($(window).height()-80)*Math.random() + 80;
-        var l = ($(window).width()-40)*Math.random();
-        $("#"+buttonid).css({'z-index': 10, //'height': '31px',
-                             'top': t, 'left': l, 'position':'absolute'});
-
-        var rand = Math.random() * 30;
-        if(rand<1){
-            var ahahah = document.getElementById("ahahah");
-            ahahah.pause();
-            ahahah.currentTime = 0;
-            ahahah.play();
-        }
-
-    });
+function SetDetectors() {
+  console.log('Setting detectors');
+  $.getJSON("template_info", data => {
+    data.detectors.forEach(val => {detectors[val[0]] = val[1];});
+  });
 }
 
 function DetectorInfoLoop(){
+  if (Object.keys(detectors).length == 0) return;
   for (var key in detectors)
     FillDetectorInfo(key);
 }
@@ -54,7 +40,7 @@ function FillDetectorInfo(det){
   $.getJSON("status/get_detector_status?detector="+det,
     function(data){
       if($("#"+det+"_status").length){
-        ['mode', 'run'].forEach( field => {
+        ['mode', 'number'].forEach( field => {
           $("#"+det+"_"+field).html(data[field]);
         });
         $('#'+det+"_status").html(statii[data['status']]);
@@ -131,9 +117,9 @@ function DrawActiveLink(this_page){
     "#lhypervisor", "#llog", "#lusers", "#lhelp", "#laccount", "#lcontrol",
     "#lshifts", "#lmonitor", "#lequipment"].forEach(page => {
     if (page !== this_page)
-      $(pages[i]).removeClass('active');
+      $(page).removeClass('active');
     else
-      $(pages[i]).addClass('active');
+      $(page).addClass('active');
   });
 }
 

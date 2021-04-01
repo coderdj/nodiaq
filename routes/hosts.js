@@ -27,7 +27,7 @@ router.get("/get_host_status", ensureAuthenticated, function(req, res){
     if (docs.length == 0)
       return res.json({});
     docs[0]['checkin'] = new Date() - docs[0]['time'];
-    return res.json({docs[0]});
+    return res.json(docs[0]);
   }).catch(err => {console.log(err.message); res.json({});});
 });
 
@@ -59,7 +59,7 @@ router.get("/get_host_history", ensureAuthenticated, function(req, res){
           }
           r[j].unshift([doc['time'], doc['disk'][j]['percent']]);
         }
-      }
+      });
       ret = [];
       for(i in r)
         ret.push({"type": "line", "name": names[i], "data": r[i]})

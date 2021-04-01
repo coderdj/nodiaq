@@ -12,7 +12,7 @@ function ensureAuthenticated(req, res, next) {
 
 router.get('/', ensureAuthenticated, function(req, res) {
   var template_info = req.template_info_base;
-  template_info.readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["reader3", "reader3_reader_0"], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto", "reader6_reader_0"], ["Neutron Veto", "reader6_reader_1"]];
+  template_info.readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto", "reader6_reader_0"], ["Neutron Veto", "reader6_reader_1"]];
   template_info.controllers = [["TPC aux", "reader0_controller_0"], ["MV_aux", "reader5_controller_0"], ["NV aux", "reader6_controller_0"]];
   template_info.eventbuilders = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
 
@@ -132,7 +132,7 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
   ])
   .then( docs => {
     var ret = {};
-    docs.forEach(doc => ret[doc.host] = doc;);
+    docs.forEach(doc => {ret[doc.host] = doc;});
     return res.json(ret);
   })
   .catch(err => {console.log(err.message); return res.json({});});

@@ -5,15 +5,18 @@ var router = express.Router();
 var gp="";
 
 function ensureAuthenticated(req, res, next) {
-  return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
 
 /* GET home page. */
-router.get('/', ensureAuthenticated, function(req, res) {
+router.get('/', function(req, res) {
   res.render('index', req.template_info_base);
 });
 
-router.get('/detector_history', ensureAuthenticated, function(req, res){
+router.get('/template_info', function(req, res) {
+  return res.json(req.template_info_base);
+});
+
+router.get('/detector_history', function(req, res){
   var db = req.db;
   var collection = db.get('aggregate_status');
 
@@ -41,7 +44,7 @@ router.get('/detector_history', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
+router.get('/get_current_shifters', function(req, res){
   var db = req.users_db;
   var collection = db.get("shifts");
 
@@ -63,11 +66,11 @@ router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.json([]);});
 });
 
-router.get('/account', ensureAuthenticated, function(req, res){
+router.get('/account', function(req, res){
     res.render('account', { user: req.user });
 });
 
-router.get('/account/request_github_access', ensureAuthenticated, function(req, res){
+router.get('/account/request_github_access', function(req, res){
 
     var owner = process.env.GITHUB_ADMIN_USER;
     var password = process.env.GITHUB_ADMIN_PASSWORD;
@@ -104,26 +107,14 @@ router.get('/account/request_github_access', ensureAuthenticated, function(req, 
 	//'Content-Type': 'application/x-www-form-urlencoded',
 	//'Content-Length': Buffer.byteLength(postData)
 	//}
-    };
-    console.log(options);
-    const request = http.request(options, (response) => {
-	response.setEncoding('utf8');
-	response.on('data', (chunk) => {
-	    console.log(`BODY: ${chunk}`);
-	    //return response.json(chunk);
-	});
-	response.on('end', () => {
-	    console.log('No more data in response.');
-	});
+    }).then( resp => {
+      console.log(resp);
+    }).catch (err => {
+      console.log(err);
     });
-    request.on('error', (e) => {
-	console.error(`problem with request: ${e.message}`);
-    });
-    request.end();    
-    
 });
 
-router.get('/account/request_api_key', ensureAuthenticated, function(req, res){
+router.get('/account/request_api_key', function(req, res){
     
     var api_username = req.user.lngs_ldap_uid;
     if (typeof req.user.lngs_lap_uid == 'undefined')
@@ -148,7 +139,7 @@ router.get('/account/request_api_key', ensureAuthenticated, function(req, res){
     });
 });
 
-router.post('/updateContactInfo', ensureAuthenticated, (req, res) => {
+router.post('/updateContactInfo', (req, res) => {
     var db = req.runs_db;
     var collection = db.get("users");
     var idoc = {};

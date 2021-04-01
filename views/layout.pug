@@ -2,11 +2,10 @@ doctype html
 html
   head
     title XENONnT Data Acquisition
-    //link(rel="stylesheet", href="/bs/css/bootstrap.min.css")
     link(rel="stylesheet", href="/stylesheets/nodiaq_style.css")
     script(src="/javascripts/jquery.min.js" type="text/javascript")
     script(src="/javascripts/highcharts.js" type="text/javascript")
-    script(src="/javascripts/nodiaq.js" type="text/javascript")
+    script(src="javascripts/nodiaq.js" type="text/javascript")
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous")
     link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
@@ -27,7 +26,7 @@ html
     link(rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16")
     link(rel="icon" type="image/png" href="/images/favicon-128.png" sizes="128x128")
     //meta(name="application-name" content="XENONnT DAQ")
-    meta(name="application-name" content=#{pagetitle})
+    meta(name="application-name" content=`${pagetitle}`)
     meta(name="msapplication-TileColor" content="#0c1178")
     meta(name="msapplication-TileImage" content="/images/mstile-144x144.png")
     meta(name="msapplication-square70x70logo" content="/images/mstile-70x70.png")
@@ -40,7 +39,7 @@ html
     block extrahead
   body
     - 
-      var ShortcutClass = name => shortcuts.includes(name) ? "'colored'" : "'colored CTAs'";
+      var ShortcutClass = name => shortcuts.includes(name) ? "colored" : "colored CTAs";
     div.overlay
     div.wrapper
       nav#topbar.colored.active
@@ -49,7 +48,7 @@ html
             span.anticolored(style="background-color:white")
             span.anticolored(style="background-color:white")
           //span.pagetitle XENONnT DAQ
-          span.pagetitle `${pagetitle}`
+          span.pagetitle #{pagetitle}
       div#sidebar_wrapper.active
         nav#sidebar.colored.active
           button.navbar-btn.colored.sidebarCollapse(type="button")
@@ -62,14 +61,12 @@ html
               //
                 div.headertitle
                   //h4 XENONnT Data Acquisition
-                  h4 `${headertitle}`
+                  h4 #{headertitle}
           img.logo(src="/images/ntLogo.svg")
           div.detectorIconDiv(style="margin-top:0px;background:#0e0e75;height:30px;padding-top:5px;padding-left:3px")
             span.CTAs(style='float:left;color:white') &nbsp; Detector status: &nbsp;
-            each det in detectors
-              //i.fa.fa-plus-circle#tpc_status_icon(style="color:gray;font-size:12px;float:left;padding-top:5px")
-              i.fa.fa-plus-circle(id=`${det[0]}_status_icon`, style="color:gray;font-size:12px;float:left;padding-top:5px")
-              //span.CTAs(style='float:left;color:white') &nbsp; (TPC) &nbsp;
+            each det,idx in detectors
+              i.fa.fa-plus-circle(id=`${det[0]}_status_icon` style=`color:gray;font-size:12px;float:left;padding-top:5px;padding-left:${idx==0?1:3}px`)
               span.CTAs(style='float:left;color:white') &nbsp; (#{det[1]}) &nbsp;
           ul.list-unstyled.components
             // TODO this can be compactified
@@ -101,7 +98,7 @@ html
                 i.fa.fa-cogs
                 span Config
                 span.extralabel View or configure DAQ options
-            liCTAs#llog(class=ShortcutClass('log'))
+            li#llog(class=ShortcutClass('log'))
               a(href='/logui')
                 i.fa.fa-book-open
                 span Log
@@ -177,8 +174,7 @@ html
 
     script.
       $(document).ready(function(){
-        setInterval(CheckForErrors, 5000);
-        //CheckForErrors();
+        //setInterval(CheckForErrors, 5000);
         //GetFillLevel();
         document.getElementById("flash_whoa").volume = 0.1;
         $('.sidebarCollapse').on('click', function () {

@@ -116,7 +116,7 @@ router.get('/runsfractions', ensureAuthenticated, function(req, res){
       } // runtime
     }}])
   .then(docs => res.json(docs))
-  .catch(err => {console.log(err.message); return res.json([]););
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 module.exports = router;

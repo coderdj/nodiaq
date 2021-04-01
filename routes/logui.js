@@ -11,13 +11,13 @@ router.get('/', ensureAuthenticated, function(req, res) {
   res.render('logui', req.template_info_base);
 });
 
-router.get('/areThereErrors', ensureAuthenticated, function(req, res){
+router.get('/areThereErrors', function(req, res){
   var db=req.db;
   var collection=db.get('log');
   var error_codes = [2, 3, 4]; //warning, error, fatal
   collection.count_documents({"priority": {"$in": error_codes}})
   .then( val => res.json({"error_docs": val}))
-  .catch(err => {console.log(err.message); return res.json({"error_docs", -1});});
+  .catch(err => {console.log(err.message); return res.json({"error_docs": -1});});
 });
 
 router.get('/getMessages', ensureAuthenticated, function(req, res){

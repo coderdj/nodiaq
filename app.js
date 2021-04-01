@@ -135,6 +135,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+app.use(function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.user = req.user;
+    req.template_info_base = {
+      pagetitle: 'XENONnT DAQ',
+      detectors: [['tpc', 'TPC'], ['muon_veto', 'Muon Veto'], ['neutron_veto', 'Neutron Veto']],
+      headertitle: 'XENONnT Data Acquisition',
+    };
+    try{
+      if (typeof req.user.nodiaq.links != 'undefined')
+        req.template_info_base.shortcuts = req.user.nodiaq.links;
+    }catch(error){
+      req.template_info_base.shortcuts = ['index', 'control', 'status', 'runs', 'monitor', 'shifts'];
+    }
+
+    return next();
+  }
+  return res.redirect(gp+'/login');
+});
+
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
@@ -168,23 +188,6 @@ app.use('/hypervisor', hvRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
-});
-
-// Make user object and other info accessible to templates
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  req.template_info_base = {
-    pagetitle: 'XENONnT DAQ',
-    detectors: [['tpc', 'TPC'], ['muon_veto', 'Muon Veto'], ['neutron_veto', 'Neutron Veto']],
-    headertitle: 'XENONnT Data Acquisition',
-  };
-  try{
-    if (typeof req.user.nodiaq.links != 'undefined')
-      req.template_info_base.shortcuts = req.user.nodiaq.links;
-  }catch(error){
-    req.template_info_base.shortcuts = ['control', 'status', 'runs', 'monitor', 'help', 'shifts'];
-  }
-  next();
 });
 
 
