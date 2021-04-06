@@ -3,19 +3,22 @@ var url = require("url");
 var router = express.Router();
 var gp='';
 
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
+function GetTemplateInfo(req) {
+  var template_info = req.template_info_base;
+  template_info['hosts'] = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4',
+    'reader5', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster', 'xenonnt'];
+  return template_info;
 }
 
-router.get('/', ensureAuthenticated, function(req, res) {
-  var template_info = req.template_info_base;
-  template_info['hosts'] = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
-    'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster', 'xenonnt'];
-    res.render('hosts', template_info);
+router.get('/', function(req, res) {
+  res.render('hosts', GetTemplateInfo(req));
 });
 
-router.get("/get_host_status", ensureAuthenticated, function(req, res){
+router.get('/template_info', function(req, res) {
+  return res.json(GetTemplateInfo(req));
+});
+
+router.get("/get_host_status", function(req, res){
   var db = req.db;
   var collection = db.get('system_monitor');
 
@@ -31,7 +34,7 @@ router.get("/get_host_status", ensureAuthenticated, function(req, res){
   }).catch(err => {console.log(err.message); res.json({});});
 });
 
-router.get("/get_host_history", ensureAuthenticated, function(req, res){
+router.get("/get_host_history", function(req, res){
   var db = req.db;
   var collection = db.get("system_monitor");
 

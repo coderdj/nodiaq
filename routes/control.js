@@ -4,17 +4,16 @@ var url = require("url");
 var router = express.Router();
 var gp='';
 
-function ensureAuthenticated(req, res, next) {
-  return res.isAuthenticated() ? next() : res.redirect(gp+'/login');
-}
-
-router.get('/', ensureAuthenticated, function(req, res) {
+router.get('/', function(req, res) {
   var template = req.template_info_base;
-
   res.render('control', template);
 });
 
-router.get('/modes', ensureAuthenticated, function(req, res){
+router.get('/template_info', function(req, res) {
+  return res.json(req.template_info_base);
+}
+
+router.get('/modes', function(req, res){
   var db = req.db;
   var collection = db.get("options");
   var q = url.parse(req.url, true).query;
@@ -63,7 +62,7 @@ function GetControlDocs(collection) {
   ]);
 }
 
-router.get("/get_control_docs", ensureAuthenticated, function(req, res){
+router.get("/get_control_docs", function(req, res){
     var db = req.db;
     var collection = db.get("detector_control");
     GetControlDocs(collection)
@@ -71,7 +70,7 @@ router.get("/get_control_docs", ensureAuthenticated, function(req, res){
     .catch((err) => {console.log(err.message); return res.json({});});
 });
 
-router.post('/set_control_docs', ensureAuthenticated, function(req, res){
+router.post('/set_control_docs', function(req, res){
     var db = req.db;
     var collection = db.get("detector_control");
 

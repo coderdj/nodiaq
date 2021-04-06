@@ -52,7 +52,6 @@ block content
             textarea.form-control.det_control.det_comment(id=`${det[0]}_comment` rows="2" name="comment" type='text')
 
 
-  audio#ahahah(src="images/ahahah.mp3")
   script.
     $(document).ready(function(){
       SetDetectors(detectors);
@@ -60,6 +59,4 @@ block content
       document.page_ready = false;
       document.current_user = "#{user.lngs_ldap_uid}";
       DrawActiveLink("#lcontrol");
-      PopulateOptionsLists(PullServerData);
-      DefineButtonRules();
     });

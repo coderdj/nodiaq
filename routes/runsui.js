@@ -4,18 +4,13 @@ var url = require("url");
 var router = express.Router();
 var gp = '';
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  return res.redirect(gp+'/login');
-}
-
-router.get('/', ensureAuthenticated, function(req, res) {
+router.get('/', function(req, res) {
   var template = template_info_base;
   template['experiment'] = 'XENONnT'
   res.render('runsui', req.template_info_base);
 });
 
-router.get('/get_run_doc', ensureAuthenticated, function(req, res){
+router.get('/get_run_doc', function(req, res){
   var db = req.runs_db;
   var q = url.parse(req.url, true).query;
   var num = q.run;
@@ -29,7 +24,7 @@ router.get('/get_run_doc', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.post('/addtags', ensureAuthenticated, function(req, res){
+router.post('/addtags', function(req, res){
   var db = req.runs_db;
   var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
 
@@ -51,7 +46,7 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.sendStatus(200);});
 });
 
-router.post('/removetag', ensureAuthenticated, function(req, res){
+router.post('/removetag', function(req, res){
   var db = req.runs_db;
   var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
 
@@ -72,7 +67,7 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.sendStatus(200);});
 });
 
-router.post('/addcomment', ensureAuthenticated, function(req, res){
+router.post('/addcomment', function(req, res){
   var db = req.runs_db;
   var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
 
@@ -90,7 +85,7 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.sendStatus(200);});
 });
 
-router.get('/runsfractions', ensureAuthenticated, function(req, res){
+router.get('/runsfractions', function(req, res){
   var db = req.runs_db;
   var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
   var q = url.parse(req.url, true).query;

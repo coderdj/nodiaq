@@ -1,8 +1,12 @@
 var initial_control = {};
 var detectors = [];
 
-function SetDetectors(detectors_) {
-  detectors = detectors_.map(val => val[0]);
+function SetDetectors() {
+  $.getJSON('control/template_info', data => {
+    detectors = data.detectors.map(val => val[0]);
+    PopulateOptionsLists(PullServerData);
+    DefineButtonRules();
+  }
 }
 
 
@@ -81,7 +85,7 @@ function SetRemote(detector){
 }
 
 function CheckLinking() {
-  var detectors = ['tpc', 'muon_veto', 'neutron_veto'];
+  if (detectors.length == 0) return;
   var modes = detectors.map(det => $(`#${det}_mode`).val());
   var links = detectors.map(det => $(`#${det}_mode :selected`).attr("link_type").split(","));
   var active = detectors.map(det => $(`#${det}_active`).is(":checked"));

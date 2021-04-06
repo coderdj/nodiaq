@@ -5,21 +5,23 @@ var ObjectId = require('mongodb').ObjectID;
 var router = express.Router();
 var axios = require('axios');
 
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect('/login');
-}
-
-router.get('/', ensureAuthenticated, function(req, res) {
+function TemplateInfo(req) {
   var template_info = req.template_info_base;
   template_info.readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto", "reader6_reader_0"], ["Neutron Veto", "reader6_reader_1"]];
   template_info.controllers = [["TPC aux", "reader0_controller_0"], ["MV_aux", "reader5_controller_0"], ["NV aux", "reader6_controller_0"]];
   template_info.eventbuilders = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
+  return template_info;
+}
 
-  res.render('status', template_info);
+router.get('/', function(req, res) {
+  res.render('status', TemplateInfo(req));
 });
 
-router.get('/get_detector_status', ensureAuthenticated, function(req, res){
+router.get('/template_info', function(req, res) {
+  return res.json(TemplateInfo(req));
+}
+
+router.get('/get_detector_status', function(req, res){
   var db = req.db;
   var collection = db.get('aggregate_status');
 
@@ -36,7 +38,7 @@ router.get('/get_detector_status', ensureAuthenticated, function(req, res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_process_status', ensureAuthenticated, function(req, res) {
+router.get('/get_process_status', function(req, res) {
   var db = req.db;
   var collection = db.get('status');
 
@@ -66,7 +68,7 @@ function objectIdWithTimestamp(timestamp) {
   return constructedObjectId;
 }
 
-router.get('/get_reader_history', ensureAuthenticated, function(req,res){
+router.get('/get_reader_history', function(req,res){
   var db = req.db;
   var collection = db.get('status');
 
@@ -138,7 +140,7 @@ router.get('/get_reader_history', ensureAuthenticated, function(req,res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_command_queue', ensureAuthenticated, function(req,res){
+router.get('/get_command_queue', function(req,res){
   var db = req.db;
   var collection = db.get("control");
 
@@ -158,7 +160,7 @@ router.get('/get_command_queue', ensureAuthenticated, function(req,res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_bootstrax_status', ensureAuthenticated, function(req, res) {
+router.get('/get_bootstrax_status', function(req, res) {
   var q = url.parse(req.url, true).query;
   var collection = req.db.get("eb_monitor");
   var now = new Date();
@@ -178,7 +180,7 @@ router.get('/get_bootstrax_status', ensureAuthenticated, function(req, res) {
   });
 });
 
-router.get('/get_fill', ensureAuthenticated, function(req, res) {
+router.get('/get_fill', function(req, res) {
   var url = "https://xenonnt.lngs.infn.it/slowcontrol/GetSCLastValue";
   url += "?name=XE1T.WLP_INDLEVL_H20_1.PI";
   url += "&username="+process.env.SC_API_USER;

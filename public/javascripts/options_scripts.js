@@ -1,9 +1,12 @@
 // public/javascripts/options_scripts.js
 var detectors = {};
 
-function SetDetectors(detectors_, extra){
-  detectors_.forEach(det => {detectors[det[0]] = det[1];});
-  extra.forEach(det => {detectors[det[0]] = det[1];});
+function SetDetectors(){
+  $.getJSON("options/template_info", data => {
+    data.detectors.forEach(det => {detectors[det[0]] = det[1];});
+    data.extra_detectors.forEach(det => {detectors[det[0]] = det[1];});
+    PopulateModeList("run_mode_select");
+  });
 }
 
 function PopulateModeList(div){

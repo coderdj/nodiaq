@@ -8,8 +8,10 @@ var readers = [];
 var controllers = [];
 
 function SetHosts(hosts) {
-  readers = hosts.readers.map(proc => proc[1]);
-  controllers = hosts.controllers.map(proc => proc[1]);
+  $.getJSON("staus/template_info", data => {
+    readers = data.readers.map(proc => proc[1]);
+    controllers = data.controllers.map(proc => proc[1]);
+  }
 }
 
 function GetStatus(i, checkin) {
@@ -18,15 +20,6 @@ function GetStatus(i, checkin) {
   var color = ['blue', 'cyan', 'cyan', 'green', 'red', 'red', 'yellow'];
   var c = checkin < CHECKIN_TIMOUT ? color[i] : 'red';
   return "<span style='color:" + c + "'><strong>" + s + "</strong></span>";
-}
-
-function FYouButton(buttonid){
-  $("#"+buttonid).mouseover(function(){
-    var t = $(window).height()*Math.random();
-    var l = $(window).width()*Math.random();
-    $("#"+buttonid).css({'z-index': 10, 'height': '31px', 
-      'top': t, 'left': l, 'position':'absolute'});
-  });
 }
 
 function RedrawRatePlot(){
@@ -56,7 +49,6 @@ function RedrawRatePlot(){
           DrawProgressRate(readers.length);
       });
   }
-
 }
 
 function DrawProgressRate(prog){

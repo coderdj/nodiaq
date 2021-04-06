@@ -1,7 +1,9 @@
+// public/javascripts/hosts.js
 var hosts = [];
 
-function SetHosts(hosts_) {
-  hosts = hosts;
+function SetHosts() {
+  $.getJSON('hosts/template_info', data => {
+    hosts = data.hosts;
 }
 
 function UpdateMonitorPage(){
@@ -37,8 +39,6 @@ function UpdateMonitorPage(){
       var timestamp = data['_id'].toString().substring(0,8);
       //var ts = new Date( parseInt( timestamp, 16 ) * 1000 );
       var ts = parseInt(timestamp, 16) * 1000;
-      //console.log(ts);
-      //console.log(document.last_time_charts[h]);
       if(typeof(document.last_time_charts) != "undefined" &&
         data.host in document.last_time_charts &&
         !isNaN(ts) && document.last_time_charts[h] != ts){
@@ -50,7 +50,6 @@ function UpdateMonitorPage(){
 }
 
 function UpdateHostOverview(ts, data){
-  // Update CPU
   var h = data.host;
   if(h in document.charts && document.charts[h] != null){
     for(i in document.charts[h].series){
@@ -69,7 +68,6 @@ function UpdateHostOverview(ts, data){
   }
 }
 
-
 function DrawMonitorCharts(){
   document.charts = {};
   document.last_time_charts = {};
@@ -78,45 +76,41 @@ function DrawMonitorCharts(){
     $.getJSON("hosts/get_host_history?limit=1000&host="+host, data => {
       var h = host;
 
-        var div = h + "_chart";
-        document.last_time_charts[h] = data[0]['data'][data[0]['data'].length-1][0];
-        document.charts[host] = Highcharts.chart(
-          div, {
-            chart: {
-              zoomType: 'x',
-              //marginLeft: 50,
-              //marginTop: 20,
-              //marginBottom: 30,
-              // marginRight: 10
-            },
-            credits: {
-              enabled: false
-            },
+      var div = h + "_chart";
+      document.last_time_charts[h] = data[0]['data'][data[0]['data'].length-1][0];
+      document.charts[host] = Highcharts.chart(
+        div, {
+          chart: {
+            zoomType: 'x',
+          },
+          credits: {
+            enabled: false
+          },
+          title: {
+            text: "",
+          },
+          xAxis: {
+            type: "datetime",
+          },
+          yAxis: {
             title: {
-              text: "",
+              text: "%",
             },
-            xAxis: {
-              type: "datetime",
+            min: 0,
+            max: 110
+          },
+          plotOptions:{
+            series: {
+              lineWidth: 1
             },
-            yAxis: {
-              title: {
-                text: "%",
-              },
-              min: 0,
-              max: 110
-            },
-            plotOptions:{
-              series: {
-                lineWidth: 1
-              },
-            },
-            legend: {
-              enabled: true,
-              align: "right",
-              layout: "vertical"
-            },
-            series: data
-          }); // chart
-      }); // getJSON
+          },
+          legend: {
+            enabled: true,
+            align: "right",
+            layout: "vertical"
+          },
+          series: data
+        }); // chart
+    }); // getJSON
   }); // hosts.forEach
 }

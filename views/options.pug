@@ -15,7 +15,7 @@ block content
        div.col-xs-6.col-sm-3
          select.form-control#run_mode_select(title='Choose a run mode' disabled)
        div.col-xs-6.col-sm-3
-         button#fetch_mode_button.btn.brn-info(onclick="FetchMode('run_mode_select')") Fetch
+         button#fetch_mode_button.btn.btn-info(onclick="FetchMode('run_mode_select')") Fetch
     br
     div#json_text(style="width:100%;height:100%;resize:both")
     br
@@ -27,8 +27,7 @@ block content
 
     $(document).ready(function () {
       DrawActiveLink("#loptions");
-      SetDetectors(detectors, extra_detectors);
+      SetDetectors();
       document.jsoneditor = new JSONEditor(document.getElementById("json_text"), 
         {"modes":  ['tree', 'view', 'form', 'code', 'text']});
-      PopulateModeList("run_mode_select");
     });
