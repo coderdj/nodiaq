@@ -34,6 +34,8 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
 
   var runs = req.body.runs;
   var tag = req.body.tag;
+  if (typeof req.body.version == 'undefined' || req.body.version != 20210407)
+    return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
   if (tag[0] === '_') // underscore tags are protected
     return res.sendStatus(403);
   var user = req.user.lngs_ldap_uid;
@@ -45,7 +47,7 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
     {"$push": {"tags": {"date": new Date(), "user": user,
       "name": tag}}},
     {multi:true}, function(){
-      return res.sendStatus(200);
+      return res.status(200).json({});
     });
 });
 
@@ -56,6 +58,8 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   var run = req.body.run;
   var tag = req.body.tag;
   var tag_user = req.body.user;
+  if (typeof req.body.version == 'undefined' || req.body.version != 20210407)
+    return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
   if (tag[0] === '_') // underscore tags are protected
     return res.sendStatus(403);
@@ -66,7 +70,7 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   collection.update({"number": runint},
     {"$pull": {"tags": {"name": tag, "user": tag_user}}},
     {multi:false}, function(){
-      return res.sendStatus(200);
+      return res.status(200).json({});
     });
 });
 
@@ -78,6 +82,8 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
     var runs = req.body.runs;
     var comment = req.body.comment;
     var user = req.user.lngs_ldap_uid;
+  if (typeof req.body.version == 'undefined' || req.body.version != 20210407)
+    return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
     // Convert runs to int
     var runsint = [];
@@ -89,7 +95,7 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
 		      {"$push": {"comments": {"date": new Date(), "user": user,
 					  "comment": comment}}},
 		      {multi:true}, function(){
-			  return res.sendStatus(200);
+			  return res.status(200).json({});
 		      });
 
 });

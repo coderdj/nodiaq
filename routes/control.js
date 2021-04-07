@@ -2,6 +2,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp='';
+
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     return res.redirect(gp+'/login');
@@ -72,8 +73,11 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
     var collection = db.get("detector_control");
 
     if (typeof req.user.lngs_ldap_uid == 'undefined')
-      return res.sendStatus(403);
+      return res.status(403);
     var data = req.body.data;
+  console.log(data);
+  if (typeof data.version == 'undefined' || data.version != 20210407)
+    return res.json({'err': 'Please hard-refresh your page (shift-f5 or equivalent)'});
     GetControlDocs(collection).then((docs) => {
       var updates = [];
       for (var i in docs) {
@@ -89,7 +93,7 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
         return collection.insert(updates);
       else
         return 0;
-    }).then( () => res.sendStatus(200))
+    }).then( () => res.status(200).json({}))
     .catch((err) => {
       console.log(err.message);
       return res.sendStatus(451);
