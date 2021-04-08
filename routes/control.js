@@ -2,6 +2,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp='';
+const SCRIPT_VERSION = '20210407';
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -76,8 +77,8 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
       return res.status(403);
     var data = req.body.data;
   console.log(data);
-  if (typeof data.version == 'undefined' || data.version != 20210407)
-    return res.json({'err': 'Please hard-refresh your page (shift-f5 or equivalent)'});
+  if (typeof data.version == 'undefined' || data.version != SCRIPT_VERSION)
+    return res.json({'err': 'Please hard-reload your page (shift-f5 or equivalent)'});
     GetControlDocs(collection).then((docs) => {
       var updates = [];
       for (var i in docs) {

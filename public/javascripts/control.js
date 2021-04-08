@@ -1,5 +1,5 @@
 var initial_control = {};
-const SCRIPT_VERSION = 20210407;
+const SCRIPT_VERSION = '20210407';
 
 function DefineButtonRules(){
   // handle LZ buttons first

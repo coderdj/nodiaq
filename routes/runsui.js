@@ -2,6 +2,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
+const SCRIPT_VERSION = '20210407';
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -34,7 +35,7 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
 
   var runs = req.body.runs;
   var tag = req.body.tag;
-  if (typeof req.body.version == 'undefined' || req.body.version != 20210407)
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
     return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
   if (tag[0] === '_') // underscore tags are protected
     return res.sendStatus(403);
@@ -58,7 +59,7 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   var run = req.body.run;
   var tag = req.body.tag;
   var tag_user = req.body.user;
-  if (typeof req.body.version == 'undefined' || req.body.version != 20210407)
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
     return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
   if (tag[0] === '_') // underscore tags are protected
@@ -82,7 +83,7 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
     var runs = req.body.runs;
     var comment = req.body.comment;
     var user = req.user.lngs_ldap_uid;
-  if (typeof req.body.version == 'undefined' || req.body.version != 20210407)
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
     return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
     // Convert runs to int

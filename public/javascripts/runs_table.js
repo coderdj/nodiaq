@@ -1,4 +1,4 @@
-const SCRIPT_VERSION = 20210407;
+const SCRIPT_VERSION = '20210407';
 
 function SearchTag(name){
     $("#mongoquery").val('{"tags.name": "' + name+ '"}');
