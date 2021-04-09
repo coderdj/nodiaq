@@ -2,6 +2,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
+const SCRIPT_VERSION = '20210407';
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
@@ -42,6 +43,8 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
   if (typeof doc._id != 'undefined')
     delete doc._id;
   doc['last_modified'] = new Date();
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
+    return res.json({res: "Please hard-reload your page (shift-f5 or equivalent)"});
 
   var db = req.db;
   // Check permissions
@@ -62,6 +65,8 @@ router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
   var name = query.name;
   var db = req.db;
   var collection = db.get('options');
+  if (typeof query.version == 'undefined' || query.version != SCRIPT_VERSION)
+    return res.json({res: 'Please hard-reload the page (shift-f5 or equivalent)'});
 
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))

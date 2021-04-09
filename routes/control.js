@@ -2,6 +2,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp='';
+const SCRIPT_VERSION = '20210407';
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -69,14 +70,15 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
 
   if (typeof req.user.lngs_ldap_uid == 'undefined')
     return res.sendStatus(403);
+  if (typeof data.version == 'undefined' || data.version != SCRIPT_VERSION)
+    return res.json({'err': 'Please hard-reload your page (shift-f5 or equivalent)'});
   var data = req.body.data;
   var count = 0;
   ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
     GetControlDoc(collection, det).then(olddoc => {
-      var updates = [];
       var newdoc = data[det];
       if (typeof newdoc == 'undefined') {
-        if (++count >= 3) return res.sendStatus(200);
+        if (++count >= 3) return res.status(200).json({});
         return;
       }
       for (var key in olddoc) {
@@ -86,11 +88,11 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
           collection.insert({detector: det, field: key, value: key == 'stop_after' ? parseInt(newdoc[key]) : newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: `${det}.${key}`});
         }
       }
-      if (++count >= 3) return res.sendStatus(200);
+      if (++count >= 3) return res.status(200).json({});
     })
     .catch(err => {
       console.log(err.message);
-      if (++count >= 3) return res.sendStatus(200);
+      if (++count >= 3) return res.status(200).json({err: err.message});
     });
   }); // forEach
 });

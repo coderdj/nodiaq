@@ -1,3 +1,5 @@
+const SCRIPT_VERSION = '20210407';
+
 function SearchTag(name){
     $("#mongoquery").val('{"tags.name": "' + name+ '"}');
     CheckMongoQuery();
@@ -157,8 +159,10 @@ function InitializeRunsTable(divname){
       $.ajax({
         type: "POST",
         url: "runsui/addcomment",
-        data: {"runs": runs, "comment": comment, "user": "web user"},
-        success: function(){ table.ajax.reload();},
+        data: {"version": SCRIPT_VERSION, "runs": runs, "comment": comment, "user": "web user"},
+        success: (data) => {
+            if (typeof data.err != 'undefined') alert(data.err);
+             table.ajax.reload();},
         error:   function(jqXHR, textStatus, errorThrown) {
           alert("Error, status = " + textStatus + ", " +
             "error thrown: " + errorThrown
@@ -190,8 +194,10 @@ function InitializeRunsTable(divname){
         $.ajax({
           type: "POST",
           url: "runsui/addtags",
-          data: {"runs": runs, "tag": tag, "user": "web user"},
-          success: function(){ table.ajax.reload();},
+          data: {"version": SCRIPT_VERSION, "runs": runs, "tag": tag, "user": "web user"},
+          success: (data) => {
+            if (typeof data.err != 'undefined') alert(data.err);
+             table.ajax.reload();},
           error:   function(jqXHR, textStatus, errorThrown) {
             alert("Error, status = " + textStatus + ", " +
               "error thrown: " + errorThrown
@@ -222,8 +228,10 @@ function InitializeRunsTable(divname){
         $.ajax({
           type: "POST",
           url: "runsui/addtags",
-          data: {"runs": runs, "tag": tag, "user": "web user"},
-          success: () => {$("#newtag").val(""); ShowDetail(runs[0]); table.ajax.reload();},
+          data: {"version": SCRIPT_VERSION, "runs": runs, "tag": tag, "user": "web user"},
+          success: (data) => {
+            if (typeof data.err != 'undefined') alert(data.err);
+            $("#newtag").val(""); ShowDetail(runs[0]); table.ajax.reload();},
           error:   function(jqXHR, textStatus, errorThrown) {
             alert("Error, status = " + textStatus + ", " +
               "error thrown: " + errorThrown

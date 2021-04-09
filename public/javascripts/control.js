@@ -1,4 +1,5 @@
 var initial_control = {};
+const SCRIPT_VERSION = '20210407';
 
 function DefineButtonRules(){
   // handle LZ buttons first
@@ -156,7 +157,7 @@ function PullServerData(){
 }
 
 function PostServerData(){
-  post = {};
+  post = {'version': SCRIPT_VERSION};
   var empty = true;
   ['tpc', 'muon_veto', 'neutron_veto'].forEach(detector => {
     var thisdet = {};
@@ -187,7 +188,10 @@ function PostServerData(){
       type: "POST",
       url: "control/set_control_docs",
       data: {"data": post},
-      success: () => location.reload(),
+      success: (data) => {
+        if (typeof data.err != 'undefined')
+          alert(data.err);
+        location.reload();},
       error: function(jqXHR, textStatus, errorThrown) {
         alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
       }
