@@ -34,71 +34,67 @@ router.get('/modes', ensureAuthenticated, function(req, res){
   .catch( (err) => {console.log(err.message); return res.json({error: err.message})});
 });
 
-function GetControlDocs(collection) {
-  return collection.aggregate([
-    {$sort: {_id: -1}},
-    {$group: {
-      _id: '$key',
-      value: {$first: '$value'},
-      user: {$first: '$user'},
-      time: {$first: '$time'},
-      detector: {$first: '$detector'},
-      key: {$first: '$field'}
-    }},
-    {$group: {
-      _id: '$detector',
-      keys: {$push: '$key'},
-      values: {$push: '$value'},
-      users: {$push: '$user'},
-      times: {$push: '$time'}
-    }},
-    {$project: {
-      detector: '$_id',
-      _id: 0,
-      state: {$arrayToObject: {$zip: {inputs: ['$keys','$values']}}},
-      user: {$arrayElemAt: ['$users', {$indexOfArray: ['$times', {$max: '$times'}]}]}
-    }}
-  ]);
+function GetControlDoc(collection, detector) {
+  var keys = ['active', 'comment', 'mode', 'remote', 'softstop', 'stop_after'];
+  var p = keys.map(k => collection.findOne({key: `${detector}.${k}`}, {sort: {_id: -1}}));
+  return Promise.all(p).then(values => {
+    var ret = {detector: detector};
+    var latest = values[0].time;
+    var user = values[0].user;
+    values.forEach(doc => {
+      ret[doc.field] = doc.field == 'stop_after' ? parseInt(doc.value) : doc.value;
+      if (doc.time > latest) {
+        user = doc.user;
+        latest = doc.time;
+      }
+    });
+    ret['user'] = user;
+    return ret;
+  }).catch(err => {console.log(err.message); return {};});
 }
 
-router.get("/get_control_docs", ensureAuthenticated, function(req, res){
+router.get("/get_control_doc", ensureAuthenticated, function(req, res){
     var db = req.db;
     var collection = db.get("detector_control");
-    GetControlDocs(collection)
-    .then((docs) => res.json(docs))
-    .catch((err) => {console.log(err.message); return res.json({});});
+  var detector = url.parse(req.url, true).query.detector;
+  if (typeof detector == 'undefined' || detector == '')
+    return res.json({});
+  GetControlDoc(collection, detector)
+    .then(doc => res.json(doc))
+    .catch(err => {console.log(err.message); return res.json({});});
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get("detector_control");
+  var db = req.db;
+  var collection = db.get("detector_control");
 
-    if (typeof req.user.lngs_ldap_uid == 'undefined')
-      return res.status(403);
-    var data = req.body.data;
-  console.log(data);
+  if (typeof req.user.lngs_ldap_uid == 'undefined')
+    return res.sendStatus(403);
   if (typeof data.version == 'undefined' || data.version != SCRIPT_VERSION)
     return res.json({'err': 'Please hard-reload your page (shift-f5 or equivalent)'});
-    GetControlDocs(collection).then((docs) => {
-      var updates = [];
-      for (var i in docs) {
-        var olddoc = docs[i];
-        var newdoc = data[olddoc['detector']];
-        if (typeof newdoc == 'undefined')
-          continue;
-        for (var key in olddoc.state)
-          if (typeof newdoc[key] != 'undefined' && newdoc[key] != olddoc.state[key])
-            updates.push({detector: olddoc['detector'], field: key, value: newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: olddoc['detector']+'.'+key});
+  var data = req.body.data;
+  var count = 0;
+  ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
+    GetControlDoc(collection, det).then(olddoc => {
+      var newdoc = data[det];
+      if (typeof newdoc == 'undefined') {
+        if (++count >= 3) return res.status(200).json({});
+        return;
       }
-      if (updates.length > 0)
-        return collection.insert(updates);
-      else
-        return 0;
-    }).then( () => res.status(200).json({}))
-    .catch((err) => {
+      for (var key in olddoc) {
+        if (key == 'user' || key == 'detector')
+          continue;
+        if (typeof newdoc[key] != 'undefined' && newdoc[key] != olddoc[key]){
+          collection.insert({detector: det, field: key, value: key == 'stop_after' ? parseInt(newdoc[key]) : newdoc[key], user: req.user.lngs_ldap_uid, time: new Date(), key: `${det}.${key}`});
+        }
+      }
+      if (++count >= 3) return res.status(200).json({});
+    })
+    .catch(err => {
       console.log(err.message);
-      return res.sendStatus(451);
+      if (++count >= 3) return res.status(200).json({err: err.message});
     });
+  }); // forEach
 });
 
 module.exports = router;
