@@ -127,29 +127,32 @@ function PopulateOptionsLists(callback){
 }
 
 function PullServerData(){
-  $.getJSON("control/get_control_docs", function(data){
-    document.page_ready = false;
-    data.forEach(doc => {
+  var ready = 0;
+  document.page_ready = false;
+  ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
+    $.getJSON("control/get_control_doc?detector="+det, function(doc){
       var detector = doc['detector'];
       if(detector !== 'tpc' && detector !== 'muon_veto' && detector !== 'neutron_veto'){
         return;
       }
-      initial_control[detector] = doc.state;
-      ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc.state[att]));
+      initial_control[detector] = doc;
+      ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc[att]));
 
-      $(`#${detector}_mode option`).filter(function() {return this.value===doc.state.mode;}).prop('selected', true);
+      $(`#${detector}_mode option`).filter(function() {return this.value===doc.mode;}).prop('selected', true);
       $(`#${detector}_user`).val(doc.user);
 
-      ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
+      ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc[att] == 'true' ? 'on' : 'off'));
 
       SetRemote(detector);
-    });
-    // select a random LZ mode for fun
-    var lz = $("#lz_mode option");
-    var n = Math.floor(Math.random()*lz.length);
-    lz.filter((i, val) => i==n).prop("selected", true);
-    document.page_ready = true;
-  });
+      ready++;
+      if (ready >= 3)
+        document.page_ready = true;
+    }); // getJSON
+  }); // forEach
+  // select a random LZ mode for fun
+  var lz = $("#lz_mode option");
+  var n = Math.floor(Math.random()*lz.length);
+  lz.filter((i, val) => i==n).prop("selected", true);
 }
 
 function PostServerData(){
@@ -179,7 +182,6 @@ function PostServerData(){
     post[detector] = thisdet;
     empty &&= false;
   });
-
   if (!empty) {
     $.ajax({
       type: "POST",
