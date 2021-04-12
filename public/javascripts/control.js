@@ -30,6 +30,8 @@ function DefineButtonRules(){
     document.page_ready = true;
   });
 
+  $("#lz_user").val("rgaitskell");
+
   $(".det_control").change(function(){
     if(document.page_ready == true) {
       $("#confirm_div").fadeIn("fast");
