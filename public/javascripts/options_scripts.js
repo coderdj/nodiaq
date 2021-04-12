@@ -1,3 +1,4 @@
+const SCRIPT_VERSION = '20210407';
 
 function PopulateModeList(div){
     detectors = {'tpc': 'TPC', 'muon_veto': "Muon Veto", 'neutron_veto': "Neutron Veto", include: 'Subconfigs'};
@@ -20,7 +21,7 @@ function SubmitMode(){
     try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
     catch(error){alert(error);return}
     $.post("options/set_run_mode",
-	   {"doc": (JSON.stringify(document.jsoneditor.get()))},
+	   {"doc": JSON.stringify(document.jsoneditor.get()), "version": SCRIPT_VERSION},
 	   function(data){
              if (typeof data.res != 'undefined')
                alert(data.res);
@@ -30,7 +31,7 @@ function SubmitMode(){
 };
 
 function RemoveMode(select_div){
-    $.get("options/remove_run_mode?name="+$("#"+select_div).val(),
+    $.get("options/remove_run_mode?name="+$("#"+select_div).val()"+&version="+SCRIPT_VERSION,
 	   function(data){
              if (typeof data.res != 'undefined')
                alert(data.res);

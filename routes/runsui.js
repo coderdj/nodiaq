@@ -2,6 +2,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
+const SCRIPT_VERSION = '20210407';
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -34,19 +35,19 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
 
   var runs = req.body.runs;
   var tag = req.body.tag;
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
+    return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
   if (tag[0] === '_') // underscore tags are protected
     return res.sendStatus(403);
   var user = req.user.lngs_ldap_uid;
 
   // Convert runs to int
-  var runsint = runs.map((val) => parseInt(val, 10));
+  var runsint = runs.map(parseInt);
   // Update many
-  collection.update({"number": {"$in": runsint}, 'tags.name': {$ne: tag}},
-    {"$push": {"tags": {"date": new Date(), "user": user,
-      "name": tag}}},
-    {multi:true}, function(){
-      return res.sendStatus(200);
-    });
+  collection.updateMany({"number": {"$in": runsint}, 'tags.name': {$ne: tag}},
+    {"$push": {"tags": {"date": new Date(), "user": user, "name": tag}}})
+  .then( () => res.status(200).json({}))
+  .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
 router.post('/removetag', ensureAuthenticated, function(req, res){
@@ -56,6 +57,8 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   var run = req.body.run;
   var tag = req.body.tag;
   var tag_user = req.body.user;
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
+    return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
   if (tag[0] === '_') // underscore tags are protected
     return res.sendStatus(403);
@@ -63,35 +66,29 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   // Convert runs to int
   runint = parseInt(run);
   // Update one
-  collection.update({"number": runint},
-    {"$pull": {"tags": {"name": tag, "user": tag_user}}},
-    {multi:false}, function(){
-      return res.sendStatus(200);
-    });
+  collection.updateOne({"number": runint},
+    {"$pull": {"tags": {"name": tag, "user": tag_user}}})
+  .then( () => res.status(200).json({}))
+  .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
-
 router.post('/addcomment', ensureAuthenticated, function(req, res){
-    var db = req.runs_db;
-    var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
+  var db = req.runs_db;
+  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
 
-    var runs = req.body.runs;
-    var comment = req.body.comment;
-    var user = req.user.lngs_ldap_uid;
+  var runs = req.body.runs;
+  var comment = req.body.comment;
+  var user = req.user.lngs_ldap_uid;
+  if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
+    return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
-    // Convert runs to int
-    var runsint = [];
-    for(var i=0; i<runs.length; i+=1)
-	  runsint.push(parseInt(runs[i], 10));
-    //console.log(runsint);
-    // Update many
-    collection.update({"number": {"$in": runsint}},
-		      {"$push": {"comments": {"date": new Date(), "user": user,
-					  "comment": comment}}},
-		      {multi:true}, function(){
-			  return res.sendStatus(200);
-		      });
-
+  // Convert runs to int
+  var runsint = runs.map(parseInt);
+  // Update many
+  collection.updateMany({"number": {"$in": runsint}},
+    {"$push": {"comments": {"date": new Date(), "user": user, "comment": comment}}})
+  .then( () => res.status(200).json({}))
+  .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
 router.get('/runsfractions', ensureAuthenticated, function(req, res){
