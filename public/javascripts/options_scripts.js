@@ -1,5 +1,6 @@
 // public/javascripts/options_scripts.js
 var detectors = {};
+const SCRIPT_VERSION = '20210407';
 
 function SetDetectors(){
   $.getJSON("options/template_info", data => {
@@ -28,7 +29,7 @@ function SubmitMode(){
   try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
   catch(error){alert(error);return}
   $.post("options/set_run_mode",
-    {"doc": (JSON.stringify(document.jsoneditor.get()))},
+    {"doc": (JSON.stringify(document.jsoneditor.get())), version: SCRIPT_VERSION},
     function(data){
       if (typeof data.res != 'undefined')
         alert(data.res);

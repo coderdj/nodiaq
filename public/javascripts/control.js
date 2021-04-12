@@ -1,5 +1,6 @@
 var initial_control = {};
 var detectors = [];
+const SCRIPT_VERSION = '20210407';
 
 function SetDetectors() {
   $.getJSON('control/template_info', data => {
@@ -8,7 +9,6 @@ function SetDetectors() {
     DefineButtonRules();
   }
 }
-
 
 function DefineButtonRules(){
   // handle LZ buttons first
@@ -38,6 +38,8 @@ function DefineButtonRules(){
     }
     document.page_ready = true;
   });
+
+  $("#lz_user").val("rgaitskell");
 
   $(".det_control").change(function(){
     if(document.page_ready == true) {
@@ -137,33 +139,36 @@ function PopulateOptionsLists(callback){
 }
 
 function PullServerData(){
-  $.getJSON("control/get_control_docs", function(data){
-    document.page_ready = false;
-    data.forEach(doc => {
+  var ready = 0;
+  document.page_ready = false;
+  ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
+    $.getJSON("control/get_control_doc?detector="+det, function(doc){
       var detector = doc['detector'];
       if(detector !== 'tpc' && detector !== 'muon_veto' && detector !== 'neutron_veto'){
         return;
       }
-      initial_control[detector] = doc.state;
-      ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc.state[att]));
+      initial_control[detector] = doc;
+      ["stop_after", "comment"].forEach( (att) => $(`#${detector}_${att}`).val(doc[att]));
 
-      $(`#${detector}_mode option`).filter(function() {return this.value===doc.state.mode;}).prop('selected', true);
+      $(`#${detector}_mode option`).filter(function() {return this.value===doc.mode;}).prop('selected', true);
       $(`#${detector}_user`).val(doc.user);
 
-      ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc.state[att] == 'true' ? 'on' : 'off'));
+      ['active', 'remote', 'softstop'].forEach(att => $(`#${detector}_${att}`).bootstrapToggle(doc[att] == 'true' ? 'on' : 'off'));
 
       SetRemote(detector);
-    });
-    // select a random LZ mode for fun
-    var lz = $("#lz_mode option");
-    var n = Math.floor(Math.random()*lz.length);
-    lz.filter((i, val) => i==n).prop("selected", true);
-    document.page_ready = true;
-  });
+      ready++;
+      if (ready >= 3)
+        document.page_ready = true;
+    }); // getJSON
+  }); // forEach
+  // select a random LZ mode for fun
+  var lz = $("#lz_mode option");
+  var n = Math.floor(Math.random()*lz.length);
+  lz.filter((i, val) => i==n).prop("selected", true);
 }
 
 function PostServerData(){
-  post = {};
+  post = {'version': SCRIPT_VERSION};
   var empty = true;
   detectors.forEach(detector => {
     var thisdet = {};
@@ -189,13 +194,15 @@ function PostServerData(){
     post[detector] = thisdet;
     empty &&= false;
   });
-
   if (!empty) {
     $.ajax({
       type: "POST",
       url: "control/set_control_docs",
       data: {"data": post},
-      success: () => location.reload(),
+      success: (data) => {
+        if (typeof data.err != 'undefined')
+          alert(data.err);
+        location.reload();},
       error: function(jqXHR, textStatus, errorThrown) {
         alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
       }
