@@ -17,9 +17,9 @@ router.get('/modes', ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var detector = q.detector;
   collection.aggregate([
+    {$match: {detector: {$ne: 'include'}}},
     {$addFields: {_detector: '$detector'}},
     {$unwind: '$detector'},
-    {$match: {detector: {$ne: 'include'}}},
     {$sort: {name: 1}},
     {$group: {
       _id: '$detector',
