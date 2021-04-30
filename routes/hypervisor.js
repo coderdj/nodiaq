@@ -46,7 +46,7 @@ router.post('/control', ensureAuthenticated, function(req, res) {
   var data = req.body.data;
   console.log('CONTROL GOT DATA');
   console.log(data);
-  return res.sendStatus(200);
+  // return res.sendStatus(200);
   req.db.get('hypervisor').updateOne(
     {ack: 0},
     {'$push': {commands: data},
@@ -54,8 +54,8 @@ router.post('/control', ensureAuthenticated, function(req, res) {
      '$set': {user: req.user.lngs_ldap_uid, ack: 0}
     },
     {upsert: true}
-  ).then( () => res.sendStatus(200))
-  .catch( (err) => res.status(200).json({message: err.message}));
+  ).then( () => res.sendStatus(200))  // not 201?
+  .catch( (err) => res.status(200).json({message: err.message}));  // not 400-sth or 500-sth?
 });
 
 module.exports = router;
