@@ -1,5 +1,5 @@
 var all_hosts = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
-  'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
+  'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
 var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
 var all_bootstrax = ['eb0.xenon.local', 'eb1.xenon.local', 'eb3.xenon.local', 'eb4.xenon.local', 'eb5.xenon.local'];
 var all_ajax = ['ajax.eb0.xenon.local', 'ajax.eb1.xenon.local', 'ajax.eb3.xenon.local', 'ajax.eb4.xenon.local', 'ajax.eb5.xenon.local'];
@@ -15,13 +15,13 @@ function ControlBase(command, action, target) {
 }
 
 function VMEControl(obj) {
-  var crate = obj.getAttribute('id').slice(0,4);
+  var crate = obj.getAttribute('id').slice(3,4);
   var action = obj.textContent.trim().toLowerCase();
   ControlBase('vmectl', action, crate);
 }
 
 function NIMControl(obj) {
-  var crate = obj.getAttribute('id').slice(0,4);
+  var crate = obj.getAttribute('id').slice(3,4);
   var action = obj.textContent.trim().toLowerCase();
   ControlBase('nimctl', action, crate);
 }
@@ -294,7 +294,7 @@ function SetupButtons() {
   var bs_all = ['eba_bootstrax_start_btn', 'eba_bootstrax_stop_btn']
   for (var i in bs_all) {
       try{
-          svgobj.getElementById(bs_all[i]).addEventListener("click", function(), {BootstraxAllControl(this)})
+          svgobj.getElementById(bs_all[i]).addEventListener("click", function() {BootstraxAllControl(this);});
       }catch(error){
         console.log(error);
         console.log(bs_all[i]);
@@ -303,7 +303,7 @@ function SetupButtons() {
   var ajax_all = ['eba_ajax_start_btn', 'eba_ajax_stop_btn']
   for (var i in bs_all) {
       try{
-          svgobj.getElementById(ajax_all[i]).addEventListener("click", function(), {AjaxAllControl(this)})
+          svgobj.getElementById(ajax_all[i]).addEventListener("click", function() {AjaxAllControl(this);});
       }catch(error){
         console.log(error);
         console.log(ajax_all[i]);
