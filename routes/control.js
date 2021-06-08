@@ -7,12 +7,13 @@ const SCRIPT_VERSION = '20210407';
 
 router.get('/', function(req, res) {
   var template = req.template_info_base;
+  template.detectors.push(['lz', 'LZ'])
   res.render('control', template);
 });
 
 router.get('/template_info', function(req, res) {
   return res.json(req.template_info_base);
-}
+});
 
 router.get('/modes', function(req, res){
   var db = req.db;
@@ -31,7 +32,7 @@ router.get('/modes', function(req, res){
       link: {$push: {$cond: [{$isArray: '$_detector'}, '$_detector', ['$_detector']]}}
     }},
     {$project: {configs: {$zip: {inputs: ['$options', '$desc', '$link']}}}}
-  ]).then( (docs) => res.json(docs))
+  ]).then( (docs) => {console.log(docs); return res.json(docs);})
   .catch( (err) => {console.log(err.message); return res.json({error: err.message})});
 });
 

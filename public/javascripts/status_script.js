@@ -6,19 +6,21 @@ document.reader_data = {};
 
 var readers = [];
 var controllers = [];
+var eventbuilders = [];
 
 function SetHosts(hosts) {
-  $.getJSON("staus/template_info", data => {
+  $.getJSON("status/template_info", data => {
     readers = data.readers.map(proc => proc[1]);
     controllers = data.controllers.map(proc => proc[1]);
-  }
+    eventbuilders = data.eventbuilders;
+  });
 }
 
 function GetStatus(i, checkin) {
   var statuses = ['Idle', 'Arming', 'Armed', 'Running', 'Error', 'Timeout', 'Unknown'];
   var s = statuses[i];
   var color = ['blue', 'cyan', 'cyan', 'green', 'red', 'red', 'yellow'];
-  var c = checkin < CHECKIN_TIMOUT ? color[i] : 'red';
+  var c = checkin < CHECKIN_TIMEOUT ? color[i] : 'red';
   return "<span style='color:" + c + "'><strong>" + s + "</strong></span>";
 }
 
@@ -38,9 +40,12 @@ function RedrawRatePlot(){
           console.log("Error: " + data.err);
           return;
         }
-        for (var key in data.getOwnPropertyNames()) {
+        for (var key in data) {
+          console.log(key);
           document.reader_data[key] = data[key];
         }
+        console.log(Object.keys(document.reader_data).length);
+        console.log(readers.length);
         if(Object.keys(document.reader_data).length == readers.length){
           DrawProgressRate(100);
           DrawInitialRatePlot();
@@ -48,7 +53,7 @@ function RedrawRatePlot(){
         else
           DrawProgressRate(readers.length);
       });
-  }
+  });
 }
 
 function DrawProgressRate(prog){
@@ -69,9 +74,8 @@ function DrawInitialRatePlot(){
   // Convert data dict to highcharts format
   var series = [];
   var yaxis_label = "";
+  console.log('Fixing data');
   for(var key in document.reader_data){
-    if(!document.reader_data.hasOwnProperty(key))
-      continue;
     var rates = {};
     if($("#menu_variable_s").val() == "rate") {
       rates = {"type": "line", 
@@ -120,7 +124,9 @@ function DrawInitialRatePlot(){
     series: series,
   };
   var div = 'rate_chart';
+  console.log('Making chart');
   document.RatePlot = Highcharts.chart(div, chart_opts);
+  console.log('Chart made');
 }
 
 function UpdateStatusPage(){
@@ -257,7 +263,7 @@ function UpdateFromReaders(){
         }
       }
     });
-  }
+  });
 }
 
 function UpdateCrateControllers(){
@@ -268,7 +274,7 @@ function UpdateCrateControllers(){
       var bool_atts = ['s_in', 'muon_veto', 'neutron_veto', 'led_trigger'];
       var c = data['host'];
       atts.forEach( att => {
-        $(`#${c}_{att}`).html(att == 'status' ? GetStatus(data[att], data['checkin']) : data[att]);
+        $(`#${c}_${att}`).html(att == 'status' ? GetStatus(data[att], data['checkin']) : data[att]);
       });
       var html = "";
       for(var i in data['active']){
@@ -344,7 +350,7 @@ function UpdateCommandPanel(){
       fillHTML += '</div><div class="panel-footer">';
       //                  fillHTML += 'Panel Footer';
       fillHTML += '</div></div></div></div>';
-    } // for i in data
+    }); // for i in data
 
     $("#command_panel").prepend(fillHTML);
 

@@ -8,7 +8,7 @@ var axios = require('axios');
 function TemplateInfo(req) {
   var template_info = req.template_info_base;
   template_info.readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto", "reader6_reader_0"], ["Neutron Veto", "reader6_reader_1"]];
-  template_info.controllers = [["TPC aux", "reader0_controller_0"], ["MV_aux", "reader5_controller_0"], ["NV aux", "reader6_controller_0"]];
+  template_info.controllers = [["TPC controller", "reader0_controller_0"], ["MV controller", "reader5_controller_0"], ["NV controller", "reader6_controller_0"]];
   template_info.eventbuilders = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
   return template_info;
 }
@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 
 router.get('/template_info', function(req, res) {
   return res.json(TemplateInfo(req));
-}
+});
 
 router.get('/get_detector_status', function(req, res){
   var db = req.db;
@@ -128,8 +128,8 @@ router.get('/get_reader_history', function(req,res){
     }},
     {$project: {
       host: '$_id',
-      rate: {$zip: {$inputs: ['$times', '$rates']}},
-      buff: {$zip: {$inputs: ['$times', '$buff']}},
+      rate: {$zip: {inputs: ['$times', '$rates']}},
+      buff: {$zip: {inputs: ['$times', '$buff']}},
     }},
   ])
   .then( docs => {

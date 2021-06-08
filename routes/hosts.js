@@ -6,7 +6,7 @@ var gp='';
 function GetTemplateInfo(req) {
   var template_info = req.template_info_base;
   template_info['hosts'] = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4',
-    'reader5', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster', 'xenonnt'];
+    'reader5', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
   return template_info;
 }
 
@@ -52,15 +52,16 @@ router.get("/get_host_history", function(req, res){
       r = {"mem": [], "cpu": [], "swap": []};
       names = {"mem": "Memory%", "cpu": "CPU%", "swap": "Swap%"};
       docs.forEach(doc => {
-        r["cpu"].unshift([doc['time'], doc['cpu_percent']]);
-        r["mem"].unshift([doc['time'], doc['virtual_memory']['percent']]);
-        r["swap"].unshift([doc['time'], doc['swap_memory']['percent']]);
+        var t = doc['time'].getTime();
+        r["cpu"].unshift([t, doc['cpu_percent']]);
+        r["mem"].unshift([t, doc['virtual_memory']['percent']]);
+        r["swap"].unshift([t, doc['swap_memory']['percent']]);
         for(j in doc['disk']){
           if(!(j in r)){
             r[j] = [];
             names[j] = "Disk%("+j+")";
           }
-          r[j].unshift([doc['time'], doc['disk'][j]['percent']]);
+          r[j].unshift([t, doc['disk'][j]['percent']]);
         }
       });
       ret = [];

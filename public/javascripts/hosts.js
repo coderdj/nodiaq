@@ -4,6 +4,8 @@ var hosts = [];
 function SetHosts() {
   $.getJSON('hosts/template_info', data => {
     hosts = data.hosts;
+    DrawMonitorCharts();
+  });
 }
 
 function UpdateMonitorPage(){
@@ -32,6 +34,7 @@ function UpdateMonitorPage(){
           total += "<div class='col-4' style='font-size:12px'><strong>Used: </strong></div>";
           total += "<div class='col-8' style='font-size:12px'>";
           total += (disk[1]['percent']).toFixed(1) + "%</div>";
+          return total;
         }, html);
       $('#'+h+"_disk_row").html(html);
 
@@ -97,7 +100,8 @@ function DrawMonitorCharts(){
               text: "%",
             },
             min: 0,
-            max: 110
+            max: 110,
+            endOnTick: false
           },
           plotOptions:{
             series: {

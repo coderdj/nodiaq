@@ -6,9 +6,9 @@ var gp = '';
 const SCRIPT_VERSION = '20210407';
 
 router.get('/', function(req, res) {
-  var template = template_info_base;
+  var template = req.template_info_base;
   template['experiment'] = 'XENONnT'
-  res.render('runsui', req.template_info_base);
+  res.render('runsui', template);
 });
 
 router.get('/get_run_doc', function(req, res){

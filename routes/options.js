@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 
 router.get('/template_info', function(req, res) {
   return res.json(TemplateInfo(req));
-}
+});
 
 router.get("/options_list", function(req, res){
   var db = req.db;

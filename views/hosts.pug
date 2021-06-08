@@ -33,8 +33,7 @@ block content
 
   script.
     $(document).ready(function(){
-      DrawActiveLink("#lhosts");
       SetHosts(hosts);
-      UpdateMonitorPage();
-      DrawMonitorCharts();
+      DrawActiveLink("#lhosts");
+      setInterval(UpdateMonitorPage, 5000);
     });

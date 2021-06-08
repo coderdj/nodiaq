@@ -36,7 +36,7 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
   collection.aggregate([
     {$match: {priority: {$in: include}}},
     {$sort: {_id: -1}},
-    {$limit: limit},
+    {$limit: parseInt(limit)},
     {$addFields: {time: {$toDate: '$_id'}}},
   ])
   .then(docs => res.json(docs))

@@ -7,7 +7,7 @@ function SetDetectors() {
     detectors = data.detectors.map(val => val[0]);
     PopulateOptionsLists(PullServerData);
     DefineButtonRules();
-  }
+  });
 }
 
 function DefineButtonRules(){

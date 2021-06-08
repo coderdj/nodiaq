@@ -1,26 +1,5 @@
 // public/javascripts/logui_scripts.js
 
-function CheckFlash(){
-  //console.log(document.flashDatButton);
-  if(typeof(document.flashDatButton)!="undefined" && document.flashDatButton){
-    $( "#ack_button" ).animate({
-      backgroundColor: "#d9534f",
-      color: "#fff",
-      //width: 500
-    }, 3000 , 'swing',
-      function(){
-        $( "#ack_button" ).animate({
-          backgroundColor: "#f0ad4e",
-          color: "#222",
-          //width: 500
-        }, 3000 , 'swing', CheckFlash)}
-    )
-  }
-  else{
-    setTimeout(CheckFlash, 2000);
-  }
-}
-
 function NewMessage(){
   $.ajax({
     url:'logui/new_log_message',
