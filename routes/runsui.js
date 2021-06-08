@@ -44,8 +44,9 @@ router.post('/addtags', ensureAuthenticated, function(req, res){
   // Convert runs to int
   var runsint = runs.map(parseInt);
   // Update many
-  collection.updateMany({"number": {"$in": runsint}, 'tags.name': {$ne: tag}},
-    {"$push": {"tags": {"date": new Date(), "user": user, "name": tag}}})
+  collection.update({"number": {"$in": runsint}, 'tags.name': {$ne: tag}},
+    {"$push": {"tags": {"date": new Date(), "user": user, "name": tag}}},
+    {multi: true})
   .then( () => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
@@ -66,7 +67,7 @@ router.post('/removetag', ensureAuthenticated, function(req, res){
   // Convert runs to int
   runint = parseInt(run);
   // Update one
-  collection.updateOne({"number": runint},
+  collection.update({"number": runint},
     {"$pull": {"tags": {"name": tag, "user": tag_user}}})
   .then( () => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
@@ -85,8 +86,9 @@ router.post('/addcomment', ensureAuthenticated, function(req, res){
   // Convert runs to int
   var runsint = runs.map(parseInt);
   // Update many
-  collection.updateMany({"number": {"$in": runsint}},
-    {"$push": {"comments": {"date": new Date(), "user": user, "comment": comment}}})
+  collection.update({"number": {"$in": runsint}},
+    {"$push": {"comments": {"date": new Date(), "user": user, "comment": comment}}},
+    {multi: true})
   .then( () => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });

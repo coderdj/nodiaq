@@ -18,20 +18,20 @@ function FetchMode(select_div){
 };
 
 function SubmitMode(){
-    try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
-    catch(error){alert(error);return}
-    $.post("options/set_run_mode",
-	   {"doc": JSON.stringify(document.jsoneditor.get()), "version": SCRIPT_VERSION},
-	   function(data){
-             if (typeof data.res != 'undefined')
-               alert(data.res);
-             else
-               location.reload();
-	   });
+  try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
+  catch(error){alert(error);return}
+  $.post("options/set_run_mode",
+    {"doc": JSON.stringify(document.jsoneditor.get()), "version": SCRIPT_VERSION},
+    function(data){
+      if (typeof data.res != 'undefined')
+        alert(data.res);
+      else
+        location.reload();
+    });
 };
 
 function RemoveMode(select_div){
-    $.get("options/remove_run_mode?name="+$("#"+select_div).val()"+&version="+SCRIPT_VERSION,
+    $.get("options/remove_run_mode?name="+$("#"+select_div).val()+"&version="+SCRIPT_VERSION,
 	   function(data){
              if (typeof data.res != 'undefined')
                alert(data.res);

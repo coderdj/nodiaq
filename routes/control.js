@@ -67,12 +67,11 @@ router.get("/get_control_doc", ensureAuthenticated, function(req, res){
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
   var db = req.db;
   var collection = db.get("detector_control");
-
   if (typeof req.user.lngs_ldap_uid == 'undefined')
     return res.sendStatus(403);
+  var data = req.body.data;
   if (typeof data.version == 'undefined' || data.version != SCRIPT_VERSION)
     return res.json({'err': 'Please hard-reload your page (shift-f5 or equivalent)'});
-  var data = req.body.data;
   var count = 0;
   ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
     GetControlDoc(collection, det).then(olddoc => {
