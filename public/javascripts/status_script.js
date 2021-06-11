@@ -13,6 +13,8 @@ function SetHosts(hosts) {
     readers = data.readers.map(proc => proc[1]);
     controllers = data.controllers.map(proc => proc[1]);
     eventbuilders = data.eventbuilders;
+    setInterval(UpdateStatusPage, 5000);
+    RedrawRatePlot();
   });
 }
 
@@ -30,7 +32,6 @@ function RedrawRatePlot(){
   var variable = $("#menu_variable_s").val();
 
   document.reader_data = {};
-  var colors = {"rate": "#1c0877", "buff": "#df3470"};
   DrawProgressRate(0);
   var limit = parseInt(history);
   readers.forEach(reader => {
@@ -41,11 +42,8 @@ function RedrawRatePlot(){
           return;
         }
         for (var key in data) {
-          console.log(key);
           document.reader_data[key] = data[key];
         }
-        console.log(Object.keys(document.reader_data).length);
-        console.log(readers.length);
         if(Object.keys(document.reader_data).length == readers.length){
           DrawProgressRate(100);
           DrawInitialRatePlot();
@@ -74,18 +72,17 @@ function DrawInitialRatePlot(){
   // Convert data dict to highcharts format
   var series = [];
   var yaxis_label = "";
-  console.log('Fixing data');
   for(var key in document.reader_data){
     var rates = {};
     if($("#menu_variable_s").val() == "rate") {
       rates = {"type": "line", 
         "name": key+" rate", 
-        "data": document.reader_data[key]['rates']};
+        "data": document.reader_data[key]['rate']};
       yaxis_label = "MB/s";
     } else if($("#menu_variable_s").val() == "buff") {
       rates = {"type": "area", 
         "name": key+" buffer", 
-        "data": document.reader_data[key]['buffs']};
+        "data": document.reader_data[key]['buff']};
       yaxis_label = "MB";
     }
     series.push(rates);
@@ -124,9 +121,7 @@ function DrawInitialRatePlot(){
     series: series,
   };
   var div = 'rate_chart';
-  console.log('Making chart');
   document.RatePlot = Highcharts.chart(div, chart_opts);
-  console.log('Chart made');
 }
 
 function UpdateStatusPage(){
@@ -141,37 +136,41 @@ function UpdateStatusPage(){
 function UpdateDispatcher() {
   $.getJSON("status/get_detector_status?detector=tpc", (data) => {
     if (typeof data.checkin != 'undefined' && data.checkin < 10) {
-      $("#dispatcher_status").html("online");
-      $("#dispatcher_status").css("color", "green");
+      $("#dispatcher_status").html("online").css("color", "green");
     } else {
-      $("#dispatcher_status").html("offline");
-      $("#dispatcher_status").css("color", "red");
+      $("#dispatcher_status").html("offline").css("color", "red");
     }
   });
 }
 
+function UnpackEBStatus(doc) {
+  if (doc.state === 'busy') return ['green', `processing ${doc.runid} on ${doc.max_cores} cores`];
+  if (doc.state === 'dead_bootstrax') return ['red', 'dead'];
+  if (doc.state === 'idle') return ['blue', 'napping'];
+  if (doc.state === 'hosting microstrax') return ['green', 'hosting SKYNET'];
+  if (doc.state === 'clean_abandoned') return ['yellow', 'cleaning abandoned data'];
+  if (doc.state === 'clean_ceph') return ['yellow', 'cleaning Ceph'];
+  if (doc.state === 'clean_non_latest') return ['yellow', 'cleaning old data'];
+  return ['orange', doc.state];
+}
+
 function UpdateBootstrax() {
-    $.getJSON("status/get_bootstrax_status", function(data) {
-      if (data.length == 0)
+  eventbuilders.forEach(eb => {
+    $.getJSON("status/get_eb_status?eb="+eb, function(data) {
+      if (Object.keys(data).length == 0)
         return;
+      var eb = data.host.substr(0,3);
       var html = "";
       var timeout = 20; // seconds since last update
-      for (var i in data) {
-        var doc = data[i];
-        html += "<div class=\"bootstrax_panel_entry\">"
-        if (doc['time'] > timeout) {
-          html += "<span style=\"color:red\">"+doc['_id'] + " is offline";
-        } else if (doc['state'] == 'idle'){
-          html += "<span style=\"color:blue\">"+doc['_id'] + " is idle";
-        } else if (doc['state'] == 'busy'){
-          html += "<span style=\"color:green\">"+doc['_id'] + " is processing run " + doc['run'] + " to " + doc['target'] + " on " + doc['cores'] + " cores";
-        } else {
-          html += "<span style=\"color:orange\">"+doc['_id'] + " is " + doc['state'];
-        }
-        html += " (" + doc['time'].toFixed(0) + " seconds ago)</span></div>";
+      if (data.checkin > timeout*1000) {
+        $(`#${eb}_status`).html("dead").css("color", "red");
+      } else {
+        var info = UnpackEBStatus(data)
+        $(`#${eb}_status`).css('color', info[0]).html(info[1]);
       }
-      $("#bootstrax_panel").html(html);
+      $(`#${eb}_checkin`).html((data['checkin']/1000).toFixed(0));
     });
+  });
 }
 
 function UpdateCeph(){
@@ -240,6 +239,7 @@ function UpdateFromReaders(){
       $("#"+rd+"_status").html(GetStatus(data['status'], data['checkin']));
       $("#"+rd+"_rate").html(data['rate'].toFixed(2));
       $("#"+rd+"_check-in").html(data['checkin']);
+      data['ts'] = parseInt(data['_id'].substr(0,8), 16)*1000;
 
       if(document.last_time_charts[rd] == undefined ||
         document.last_time_charts[rd] != data['ts']){
@@ -262,8 +262,8 @@ function UpdateFromReaders(){
         }catch(error){
         }
       }
-    });
-  });
+    }); // getJSON
+  }); // forEach
 }
 
 function UpdateCrateControllers(){
@@ -276,23 +276,22 @@ function UpdateCrateControllers(){
       atts.forEach( att => {
         $(`#${c}_${att}`).html(att == 'status' ? GetStatus(data[att], data['checkin']) : data[att]);
       });
-      var html = "";
-      for(var i in data['active']){
-        html += "<strong>"+data['active'][i]['type']+': </strong> ';
-        for(var j in bool_atts){
-          if(data['active'][i][bool_atts[j]]==0)
-            html += '<i data-toggle="tooltip" title="'+bool_atts[j]+' inactive" style="color:red" class="fas fa-times-circle"></i> ';
-          else if(data['active'][i][bool_atts[j]] == 1)
-            html += '<i data-toggle="tooltip" title="'+bool_atts[j]+' active" style="color:green" class="fas fa-check-circle"></i> ';
-          else
-            html += " ? ";
-        }
-        html += "<strong>(" + data['active'][i]['pulser_freq'] + "Hz)</strong>";
-      }
-      if(html=="") html="no devices active";
+      var html = data['active'].reduce((html, device) => {
+        var row = "<strong>"+device['type']+': </strong> ';
+        row += bool_attrs.reduce((tot, att) => {
+          var i = device[att];
+          var colors = ['red', 'green'];
+          var active = ['inactive', 'active'];
+          var shape = ['times', 'check'];
+          return tot + `<i data-toggle="tooltip" title="${att} ${active[i]}" style="color:${colors[i]}" class="fas fa-${shape[i]}-circle"></i> `;
+        }, "");
+        row += "<strong>(" + device['pulser_freq'] + "Hz)</strong>";
+        return html + row;
+      }, "");
+      if (html=="") html="no devices active";
       $('#'+c+"_devices").html(html);
-    });
-  });
+    }); // getJSON
+  }); // forEach
 }
 
 function UpdateCommandPanel(){

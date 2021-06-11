@@ -11,7 +11,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
   res.render('logui', req.template_info_base);
 });
 
-router.get('/areThereErrors', function(req, res){
+router.get('/areThereErrors', ensureAuthenticated, function(req, res){
   var db=req.db;
   var collection=db.get('log');
   var error_codes = [2, 3, 4]; //warning, error, fatal

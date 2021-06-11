@@ -5,14 +5,19 @@ var router = express.Router();
 var gp='';
 const SCRIPT_VERSION = '20210407';
 
-router.get('/', function(req, res) {
+function template_info(req) {
   var template = req.template_info_base;
-  template.detectors.push(['lz', 'LZ'])
-  res.render('control', template);
+  template._detectors = template.detectors.map(val => val); // make a copy
+  template._detectors.push(['lz', 'LZ'])
+  return template;
+}
+
+router.get('/', function(req, res) {
+  res.render('control', template_info(req));
 });
 
 router.get('/template_info', function(req, res) {
-  return res.json(req.template_info_base);
+  return res.json(template_info(req));
 });
 
 router.get('/modes', function(req, res){

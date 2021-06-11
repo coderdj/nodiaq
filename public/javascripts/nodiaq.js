@@ -5,6 +5,7 @@ var detectors = {};
 function SetDetectors() {
   $.getJSON("template_info", data => {
     data.detectors.forEach(val => {detectors[val[0]] = val[1];});
+    setInterval(DetectorInfoLoop, 5000);
   });
 }
 

@@ -160,24 +160,19 @@ router.get('/get_command_queue', function(req,res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_bootstrax_status', function(req, res) {
+router.get('/get_eb_status', function(req, res) {
   var q = url.parse(req.url, true).query;
   var collection = req.db.get("eb_monitor");
-  var now = new Date();
-  collection.aggregate([
-    {$sort : {_id : -1}},
-    {$group : {
-      _id : {$substr : ['$host', 0, 3]},
-      state : {$first : '$state'},
-      time : {$first : {$divide : [{$subtract : [now, '$time']}, 1000]}},
-      target : {$first : '$target'},
-      cores : {$first : '$cores'},
-      run : {$first : {$ifNull : ['$run_id', 'none']}},
-    }},
-    {$sort : {_id : 1}}
-  ], function(e, docs) {
-    return res.json(docs);
-  });
+  var host = q.eb;
+  if (typeof host == 'undefined')
+    return res.json({});
+  var ret = {};
+  collection.findOne({host: host + '.xenon.local'}, {sort: {_id: -1}})
+  .then(doc => {
+    for (var key in doc) ret[key] = doc[key];
+    ret['checkin'] = new Date()-doc['time'];
+    return res.json(ret);
+  }).catch(err => {console.log(err.message); return res.json({});});
 });
 
 router.get('/get_fill', function(req, res) {

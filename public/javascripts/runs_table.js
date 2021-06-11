@@ -1,8 +1,8 @@
 const SCRIPT_VERSION = '20210407';
 
 function SearchTag(name){
-    $("#mongoquery").val('{"tags.name": "' + name+ '"}');
-    CheckMongoQuery();
+  $("#mongoquery").val(`{"tags.name": "${name}"}`);
+  CheckMongoQuery();
 }
 
 function CheckMongoQuery(){
@@ -188,7 +188,6 @@ function InitializeRunsTable(divname){
           runs.push(data.number);
         }
       }
-      console.log(runs);
       if(runs.length>0) {
         if (tag === 'flash') document.getElementById("flash_whoa").play();
         $.ajax({

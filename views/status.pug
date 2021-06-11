@@ -99,8 +99,6 @@ block content
   script.
     $(document).ready(function () {
       //FYouButton('update_button');
-      SetHosts({readers: readers, controllers: controllers, ebs: eventbuilders});
-      RedrawRatePlot();
-      setInterval(UpdateStatusPage, 5000);
+      SetHosts();
       DrawActiveLink("#lstatus");
     });

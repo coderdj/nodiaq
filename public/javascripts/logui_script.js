@@ -62,7 +62,7 @@ function InitializeTable(DOM){
   $(DOM).tabulator({
     //height: vh, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
     height: '85%',
-    layout:"fitDataFill", //fit columns to width of table (optional)
+    layout:"fitColumns", //fit columns to width of table (optional)
     pagination: "local",
     paginationSize: 23, // magic number based on my screen size
     columns:[ //Define Table Columns
@@ -110,13 +110,10 @@ function UpdateLogTable(DOM){
     "cb_user_message": 5,
   }
   for(var key in checkboxes){
-    if (checkboxes.hasOwnProperty(key)) {
-      if($("#"+key).is(":checked")){
-        get_me+="&get_priorities="+checkboxes[key].toString();
-      }
+    if($("#"+key).is(":checked")){
+      get_me+="&get_priorities="+checkboxes[key].toString();
     }
   }
-  console.log(get_me);
   $.getJSON('logui/getMessages?limit=500'+get_me, function(data){
     $(DOM).tabulator("setData", data);
   });
