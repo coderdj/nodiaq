@@ -121,11 +121,6 @@ html
                 i.fa.fa-binoculars
                 span Monitor
                 span.extralabel Online data-rate monitoring
-            li#lscope(class=ShortcutClass('scope'))
-              a(href='/scope')
-                i.fa.fa-heartbeat
-                span Pulse Viewer
-                span.extralabel View data live
             li#lhelp(class=ShortcutClass('help'))
               a(href='/help')
                 i.fa.fa-question
@@ -139,7 +134,7 @@ html
                 span Shifts
                 span.extralabel Access the shift calendar
             li#lusers(class=ShortcutClass('users'))
-              a(href='/users')
+              a(href='https://xenonnt.lngs.infn.it/shifts/full_directory/')
                 i.fa.fa-kiwi-bird
                 span Users
                 span.extralabel Browse members
@@ -174,8 +169,7 @@ html
 
     script.
       $(document).ready(function(){
-        //setInterval(CheckForErrors, 5000);
-        //GetFillLevel();
+        setInterval(CheckForErrors, 5000);
         SetDetectors();
         document.getElementById("flash_whoa").volume = 0.3;
         $('.sidebarCollapse').on('click', function () {

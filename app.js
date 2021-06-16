@@ -7,8 +7,6 @@ var bodyParser = require("body-parser");
 var gp="";
 
 // General MongoDB Access via monk
-var mongo = require('mongodb');
-var ObjectID = mongo.ObjectID;
 var monk = require('monk');
 
 console.log("");
@@ -27,9 +25,6 @@ var users_db = monk(users_cstr, {authSource: process.env.USERS_MONGO_AUTH_DB});
 var dax_cstr = process.env.DAQ_URI;
 //console.log("DAX DB " + dax_cstr);
 var db = monk(dax_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
-
-// For Runs DB Datatable
-var runs_mongo = require("./runs_mongo");
 
 // For email confirmations
 var nodemailer = require("nodemailer");
@@ -50,17 +45,18 @@ var indexRouter = require('./routes/index');
 var optionsRouter = require('./routes/options');
 var hostsRouter = require('./routes/hosts');
 var runsRouter = require('./routes/runsui');
-var userRouter = require('./routes/users');
 var logRouter = require('./routes/logui');
 var helpRouter = require('./routes/help');
 var statusRouter = require('./routes/status');
 var authRouter = require('./routes/auth');
 var controlRouter = require('./routes/control');
-var scopeRouter = require('./routes/scope');
 var monitorRouter = require('./routes/monitor');
 var equipmentRouter = require('./routes/equipment');
 var apiRouter = require('./routes/api');
 var hvRouter = require('./routes/hypervisor');
+
+// For Runs DB Datatable
+var runs_mongo = require("./runs_mongo");
 
 // Using express!
 var app = express();
@@ -87,6 +83,7 @@ var assert = require("assert");
 store.on('error', function(error) {
   assert.ifError(error);
   assert.ok(false);
+  //console.log(error);
 });
 
 app.use(session({
@@ -159,9 +156,8 @@ app.use(function(req, res, next) {
 app.use(function(req,res,next){
     req.db = db;
     req.transporter = transporter;
-    req.runs_db = runs_db;
+    req.runs_coll = runs_db.get(process.env.RUNS_MONGO_COLLECTION);
     req.users_db = users_db;
-    req.ObjectID = ObjectID;
     next();
 });
 
@@ -174,11 +170,9 @@ app.use('/hosts', hostsRouter);
 app.use('/runsui', runsRouter);
 app.use('/logui', logRouter);
 app.use('/help', helpRouter);
-app.use('/users', userRouter);
 app.use('/status', statusRouter);
 app.use('/auth', authRouter);
 app.use('/control', controlRouter);
-app.use('/scope', scopeRouter);
 app.use('/monitor', monitorRouter);
 app.use('/equipment', equipmentRouter);
 app.use('/api', apiRouter);

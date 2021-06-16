@@ -19,13 +19,10 @@ router.get('/template_info', function(req, res) {
 });
 
 router.get("/get_host_status", function(req, res){
-  var db = req.db;
-  var collection = db.get('system_monitor');
-
   var q = url.parse(req.url, true).query;
   var host = q.host;
 
-  collection.find({"host": host}, {"sort": {"_id": -1}, "limit": 1})
+  req.db.get('system_monitor').find({"host": host}, {"sort": {"_id": -1}, "limit": 1})
   .then(docs => {
     if (docs.length == 0)
       return res.json({});
@@ -35,15 +32,14 @@ router.get("/get_host_status", function(req, res){
 });
 
 router.get("/get_host_history", function(req, res){
-  var db = req.db;
-  var collection = db.get("system_monitor");
-
   var q = url.parse(req.url, true).query;
   var host = q.host;
   var limit = parseInt(q.limit);
   if(typeof(limit)=="undefined")
     limit = 1;
-  collection.find({"host": host}, {"sort": {"_id": -1}, "limit": limit})
+  var query = {host: host};
+  var opts = {sort: {_id: -1}, limit: limit};
+  req.db.get('system_monitor').find(query, opts)
     .then(docs => {
       if(docs.length==0)
         return res.json({});
@@ -69,7 +65,8 @@ router.get("/get_host_history", function(req, res){
         ret.push({"type": "line", "name": names[i], "data": r[i]})
 
       return res.json(ret);
-    });
+    })
+    .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 module.exports = router;

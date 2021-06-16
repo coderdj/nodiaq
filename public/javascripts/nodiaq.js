@@ -5,12 +5,12 @@ var detectors = {};
 function SetDetectors() {
   $.getJSON("template_info", data => {
     data.detectors.forEach(val => {detectors[val[0]] = val[1];});
-    setInterval(DetectorInfoLoop, 5000);
+    DetectorInfoLoop(); // setInterval calls at the end of the loop timer
+    setInterval(DetectorInfoLoop, 5000); // and this makes things feel slow
   });
 }
 
 function DetectorInfoLoop(){
-  if (Object.keys(detectors).length == 0) return;
   for (var key in detectors)
     FillDetectorInfo(key);
 }

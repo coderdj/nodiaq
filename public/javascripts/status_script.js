@@ -13,6 +13,7 @@ function SetHosts(hosts) {
     readers = data.readers.map(proc => proc[1]);
     controllers = data.controllers.map(proc => proc[1]);
     eventbuilders = data.eventbuilders;
+    UpdateStatusPage();
     setInterval(UpdateStatusPage, 5000);
     RedrawRatePlot();
   });
@@ -278,7 +279,7 @@ function UpdateCrateControllers(){
       });
       var html = data['active'].reduce((html, device) => {
         var row = "<strong>"+device['type']+': </strong> ';
-        row += bool_attrs.reduce((tot, att) => {
+        row += bool_atts.reduce((tot, att) => {
           var i = device[att];
           var colors = ['red', 'green'];
           var active = ['inactive', 'active'];

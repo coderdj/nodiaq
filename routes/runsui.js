@@ -12,23 +12,18 @@ router.get('/', function(req, res) {
 });
 
 router.get('/get_run_doc', function(req, res){
-  var db = req.runs_db;
   var q = url.parse(req.url, true).query;
   var num = q.run;
   if(typeof num !== 'undefined')
     num = parseInt(num, 10);
   if(typeof num === "undefined")
     return res.json({});
-  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
-  collection.findOne({"number": num})
+  req.runs_coll.findOne({"number": num})
   .then( doc => res.json(doc === null ? {} : doc))
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
 router.post('/addtags', function(req, res){
-  var db = req.runs_db;
-  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
-
   var runs = req.body.runs;
   var tag = req.body.tag;
   if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
@@ -46,15 +41,13 @@ router.post('/addtags', function(req, res){
   // Update many
   var query = {number: {$in: runsint}, 'tags.name': {$ne: tag}};
   var update = {$push: {tags: {date: new Date(), user: user, name: tag}}};
-  collection.updateMany(query, update)
+  var opts = {multi: true};
+  req.runs_coll.update(query, update, opts)
   .then( () => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
 router.post('/removetag', function(req, res){
-  var db = req.runs_db;
-  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
-
   var run = req.body.run;
   var tag = req.body.tag;
   var tag_user = req.body.user;
@@ -69,15 +62,12 @@ router.post('/removetag', function(req, res){
   // Update one
   var query = {number: runint};
   var update = {$pull: {tags: {name: tag, user: tag_user}}};
-  collection.updateOne(query, update)
+  req.runs_coll.update(query, update)
   .then(() => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
 router.post('/addcomment', function(req, res){
-  var db = req.runs_db;
-  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
-
   var runs = req.body.runs;
   var comment = req.body.comment;
   var user = req.user.lngs_ldap_uid;
@@ -90,21 +80,20 @@ router.post('/addcomment', function(req, res){
   // Update many
   var query = {number: {$in: runsint}};
   var update = {$push: {comments: {date: new Date(), user: user, comment: comment}}};
-  collection.updateMany(query, update)
+  var opts = {multi: true};
+  req.runs_coll.update(query, update, opts)
   .then( () => res.status(200).json({}))
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
 router.get('/runsfractions', function(req, res){
-  var db = req.runs_db;
-  var collection = db.get(process.env.RUNS_MONGO_COLLECTION);
   var q = url.parse(req.url, true).query;
   var days = q.days;
   if( typeof days === 'undefined')
     days = 30;
   var total = days*86400*1000;
   var querydays = new Date(new Date() - total);
-  collection.aggregate([
+  req.runs_coll.aggregate([
     {$match : {detectors : 'tpc', start : {$gt : querydays}}},
     {$project : {mode : 1, user : 1, start : 1, end : 1}},
     {$group : {

@@ -14,8 +14,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
 router.get('/get_updates', ensureAuthenticated,function(req,res){
   var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
-  var db = req.db;
-  var collection = db.get('status');
   ObjectID = req.ObjectID;
 
   // start mongo pipeline with empty array
@@ -44,13 +42,9 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
     }
   }
   //console.log(mongo_pipeline[0]["$match"]);
-  collection.aggregate(
-    mongo_pipeline,
-    function(e,docs){
-      res.json(docs);
-    }
-
-  );
+  req.db.get('status').aggregate(mongo_pipeline)
+  .then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 
@@ -59,9 +53,7 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
 // requires int_time_start, int_time_end and int_time_averaging_window
 // averages then the data over int_time_averaging_window
 router.get('/get_history', ensureAuthenticated,function(req,res){
-    var db = req.db;
-    var collection = db.get('status');
-        ObjectID = req.ObjectID;
+    ObjectID = req.ObjectID;
     
     
     // initialize used variables
@@ -207,24 +199,19 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
     //console.log(mongo_pipeline);
     //res.json(mongo_pipeline);
     
-    collection.aggregate(
-        mongo_pipeline,
-        function(e,docs){
-            res.json(docs);
-        }
-    );
-    
+    req.db.get('status').aggregate(mongo_pipeline)
+  .then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 
 // get last update on individual reader
 router.get('/update/:reader', ensureAuthenticated,function(req,res){
-    var runs_db = req.runs_db;
-    var collection = runs_db.get('status');
-    
-    collection.find({host: "reader"+req.params.reader+"_reader_0"},{limit:1, sort:{_id:-1}},function(e,docs){
-        res.json(docs);
-    })
+  var query = {host: `reader${req.params.reader}_reader_0`};
+  var opts = {limit: 1, sort: {_id: -1}};
+  req.db.get('status').find(query,opts)
+    .then(docs => res.json(docs))
+    .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 

@@ -16,40 +16,9 @@ router.get('/template_info', function(req, res) {
   return res.json(req.template_info_base);
 });
 
-router.get('/detector_history', function(req, res){
-  var db = req.db;
-  var collection = db.get('aggregate_status');
-
-  // Get limit from GET
-  var q = url.parse(req.url, true).query;
-  var limit = q.limit;
-  var detector = q.detector;
-
-  if(typeof(limit) == 'undefined')
-    limit = 1;
-  if(typeof(detector) == 'undefined')
-    return res.json({});
-
-  collection.find({'detector': detector}, {'sort': {'_id': -1}, 'limit': parseInt(limit)})
-  .then(docs => {
-    ret = { "rates": [], "buffs": []};
-    docs.forEach(doc => {
-      //var oid = new req.ObjectID(docs[i]['_id']);
-      //var dt = Date.parse(oid.getTimestamp());
-      ret['rates'].unshift([doc['time'], doc['rate']]);
-      ret['buffs'].unshift([doc['time'], doc['buff']]);
-    });
-    return res.json(ret);
-  })
-  .catch(err => {console.log(err.message); return res.json({});});
-});
-
 router.get('/get_current_shifters', function(req, res){
-  var db = req.users_db;
-  var collection = db.get("shifts");
-
   var today = new Date();
-  collection.aggregate([
+  req.users_db.get('shifts').aggregate([
     {$match: {start: {$lte: today}, end: {$gte: today}}},
     {$lookup: {from: 'users', localField: 'shifter', foreignField: 'lngs_ldap_uid', as: 'userdoc'}},
     {$project: {udoc: {$first: '$userdoc'}, shifter: 1, type: 1}},
@@ -115,7 +84,7 @@ router.get('/account/request_github_access', function(req, res){
 });
 
 router.get('/account/request_api_key', function(req, res){
-    
+
     var api_username = req.user.lngs_ldap_uid;
     if (typeof req.user.lngs_lap_uid == 'undefined')
 
@@ -128,11 +97,9 @@ router.get('/account/request_api_key', function(req, res){
     const saltRounds = 10;
     //var salt = bcrypt.genSaltSync(saltRounds);
     //var hash = bcrypt.hashSync(key, salt);
-    var db = req.runs_db;
-    var collection = db.get("users");
     bcrypt.hash(key, saltRounds, function(err, hash) {
 
-        collection.update({"lngs_ldap_uid": req.user.lngs_ldap_uid},
+        req.users_db.get('users').update({"lngs_ldap_uid": req.user.lngs_ldap_uid},
 		          {"$set": {"api_key": hash}});
         req.user.api_key = key;
         return res.redirect(gp+"/account");
@@ -140,32 +107,28 @@ router.get('/account/request_api_key', function(req, res){
 });
 
 router.post('/updateContactInfo', (req, res) => {
-    var db = req.runs_db;
-    var collection = db.get("users");
-    var idoc = {};
-    if(req.body.email != ""){
-	idoc['email'] = req.body.email;
-	req.user.email = req.body.email;
-    }
-    if(req.body.skype != ""){
-        idoc["skype"] = req.body.skype;
-	req.user.skype = req.body.skype;
-    }
-    if(req.body.cell != ""){	
-        idoc["cell"] = req.body.cell;
-	req.user.cell = req.body.cell;
-    }
-    if(req.body.favorite_color != ""){
-        idoc["favorite_color"] = req.body.favorite_color;
-	req.user.favorite_color = req.body.favorite_color;
-    }
-    collection.update({"first_name": req.user.first_name,
-		       "last_name": req.user.last_name},
-		      {"$set": idoc});
-    //console.log(req.user);
-    //console.log(idoc);    
-    return(res.redirect(gp+'/account'));
-}); 
+  var collection = req.users_coll;
+  var idoc = {};
+  if(req.body.email != ""){
+    idoc['email'] = req.body.email;
+    req.user.email = req.body.email;
+  }
+  if(req.body.skype != ""){
+    idoc["skype"] = req.body.skype;
+    req.user.skype = req.body.skype;
+  }
+  if(req.body.cell != ""){
+    idoc["cell"] = req.body.cell;
+    req.user.cell = req.body.cell;
+  }
+  if(req.body.favorite_color != ""){
+    idoc["favorite_color"] = req.body.favorite_color;
+    req.user.favorite_color = req.body.favorite_color;
+  }
+  var query = {"first_name": req.user.first_name,"last_name": req.user.last_name};
+  req.users_db.get('users').update(query, {"$set": idoc});
+  return res.redirect(gp+'/account');
+});
 
 router.get('/login', function(req, res){
     res.render('login', { user: req.user });
@@ -178,12 +141,10 @@ router.get('/logout', function(req, res){
 
 
 router.get("/verify", function(req, res){
-    var db = req.runs_db;
-    var collection = db.get("users");
     var q = url.parse(req.url, true).query;
     var code = q.code;
     var timeout = 10*1000*60;
-    collection.find({"github_hash": code},
+    req.users_db.collection('users').find({"github_hash": code},
 		    function(e, docs){
 			if(docs.length == 1){
                 console.log('GITHUB verification at ' + new Date() + ' | ' + docs[0]["auth_time"]);
@@ -208,12 +169,10 @@ router.get("/verify", function(req, res){
 });
 
 router.get("/verify_ldap", function(req, res){
-    var db = req.runs_db;
-    var collection = db.get("users");
     var q = url.parse(req.url, true).query;
     var code = q.code;
     var timeout = 10*1000*60;
-    collection.find({"ldap_hash": code},
+    req.users_db.collection('users').find({"ldap_hash": code},
                     function(e, docs){
                         if(docs.length == 1){
                             console.log('LDAP verification at ' + new Date() + ' + ' + docs[0]["auth_time"]);
@@ -261,8 +220,7 @@ function SendConfirmationMail(req, random_hash, link, callback){
 }
 
 router.post("/linkLDAP", function(req, res) {
-    var db = req.runs_db;
-    var collection = db.get("users");
+    var collection = req.users_coll;
     if(req.body.lngs_id != "" && req.body.email != ""){
 	collection.find({"email": req.body.email},
 			function(e, docs){
@@ -299,8 +257,7 @@ router.post("/linkLDAP", function(req, res) {
 });
 
 router.post("/linkGithub", function(req, res) {
-    var db = req.runs_db;
-    var collection = db.get("users");
+    var collection = req.users_coll;
     if(req.body.github != "" && req.body.email != ""){
 	// set github ID to github_temp and send mail
 	collection.find({"email": req.body.email},

@@ -6,23 +6,28 @@ var gp='';
 const SCRIPT_VERSION = '20210407';
 
 function template_info(req) {
-  var template = req.template_info_base;
+  var template = {};
+  for (var key in req.template_info_base)
+    template[key] = req.template_info_base[key];
   template._detectors = template.detectors.map(val => val); // make a copy
   template._detectors.push(['lz', 'LZ'])
   return template;
 }
 
-router.get('/', function(req, res) {
+function ensureAuthenticated(req, res, next) {
+  return req.isAuthenticated() ? next() : res.redirect('/login');
+}
+
+router.get('/', ensureAuthenticated, function(req, res) {
   res.render('control', template_info(req));
 });
 
-router.get('/template_info', function(req, res) {
+router.get('/template_info', ensureAuthenticated, function(req, res) {
   return res.json(template_info(req));
 });
 
-router.get('/modes', function(req, res){
-  var db = req.db;
-  var collection = db.get("options");
+router.get('/modes', ensureAuthenticated, function(req, res){
+  var collection = req.db.get("options");
   var q = url.parse(req.url, true).query;
   var detector = q.detector;
   collection.aggregate([
@@ -37,7 +42,7 @@ router.get('/modes', function(req, res){
       link: {$push: {$cond: [{$isArray: '$_detector'}, '$_detector', ['$_detector']]}}
     }},
     {$project: {configs: {$zip: {inputs: ['$options', '$desc', '$link']}}}}
-  ]).then( (docs) => {console.log(docs); return res.json(docs);})
+  ]).then( (docs) => res.json(docs))
   .catch( (err) => {console.log(err.message); return res.json({error: err.message})});
 });
 
@@ -60,9 +65,8 @@ function GetControlDoc(collection, detector) {
   }).catch(err => {console.log(err.message); return {};});
 }
 
-router.get("/get_control_doc", function(req, res){
-  var db = req.db;
-  var collection = db.get("detector_control");
+router.get("/get_control_doc", ensureAuthenticated, function(req, res){
+  var collection = req.db.get("detector_control");
   var detector = url.parse(req.url, true).query.detector;
   if (typeof detector == 'undefined' || detector == '')
     return res.json({});
@@ -71,9 +75,8 @@ router.get("/get_control_doc", function(req, res){
     .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.post('/set_control_docs', function(req, res){
-  var db = req.db;
-  var collection = db.get("detector_control");
+router.post('/set_control_docs', ensureAuthenticated, function(req, res){
+  var collection = req.db.get("detector_control");
 
   if (typeof req.user.lngs_ldap_uid == 'undefined')
     return res.sendStatus(403);

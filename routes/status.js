@@ -7,7 +7,7 @@ var axios = require('axios');
 
 function TemplateInfo(req) {
   var template_info = req.template_info_base;
-  template_info.readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto", "reader6_reader_0"], ["Neutron Veto", "reader6_reader_1"]];
+  template_info.readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto a", "reader6_reader_0"], ["Neutron Veto b", "reader6_reader_1"]];
   template_info.controllers = [["TPC controller", "reader0_controller_0"], ["MV controller", "reader5_controller_0"], ["NV controller", "reader6_controller_0"]];
   template_info.eventbuilders = ['eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5'];
   return template_info;
@@ -22,13 +22,12 @@ router.get('/template_info', function(req, res) {
 });
 
 router.get('/get_detector_status', function(req, res){
-  var db = req.db;
-  var collection = db.get('aggregate_status');
-
   var q = url.parse(req.url, true).query;
   var detector = q.detector;
 
-  collection.find({"detector": detector}, {"sort": {"_id": -1}, "limit": 1})
+  var query = {detector: detector};
+  var opts = {"sort": {"_id": -1}, "limit": 1};
+  req.db.get('aggregate_status').find(query, opts)
   .then( docs => {
     if (docs.length == 0)
       return res.json({});
@@ -39,13 +38,13 @@ router.get('/get_detector_status', function(req, res){
 });
 
 router.get('/get_process_status', function(req, res) {
-  var db = req.db;
-  var collection = db.get('status');
 
   var q = url.parse(req.url, true).query;
   var proc = q.process;
 
-  collection.find({"host": proc},{"sort": {"_id": -1}, "limit": 1})
+  var query = {host: proc};
+  var opts = {sort: {_id: -1}, limit: 1};
+  req.db.get('status').find(query, opts)
   .then(docs => {
     if (docs.length == 0)
       return res.json({});
@@ -69,8 +68,6 @@ function objectIdWithTimestamp(timestamp) {
 }
 
 router.get('/get_reader_history', function(req,res){
-  var db = req.db;
-  var collection = db.get('status');
 
   var q = url.parse(req.url, true).query;
   var reader = q.reader;
@@ -88,7 +85,7 @@ router.get('/get_reader_history', function(req,res){
   var id = objectIdWithTimestamp(t);
   // Fancy-pants aggregation to take binning into account
   var query = {"host": reader, "_id": {"$gt": id}};
-  collection.aggregate([
+  req.db.get('status').aggregate([
     {$match: query},
     {$project: {
       time_bin: {
@@ -141,9 +138,6 @@ router.get('/get_reader_history', function(req,res){
 });
 
 router.get('/get_command_queue', function(req,res){
-  var db = req.db;
-  var collection = db.get("control");
-
   var q = url.parse(req.url, true).query;
   var limit = q.limit;
   if(typeof limit === 'undefined')
@@ -151,24 +145,28 @@ router.get('/get_command_queue', function(req,res){
   var query = {};
   var last_id = q.id;
   if(typeof last_id !== 'undefined' && last_id != '0'){
-    var oid = new req.ObjectID(last_id);
+    var oid = new ObjectId(last_id);
     query = {"_id": {"$gt": oid}};
   }
 
-  collection.find(query, {"sort": {"_id": -1}, "limit": parseInt(limit, 10)})
+  var opts = {sort: {_id: -1}, limit: parseInt(limit, 10)};
+  req.db.get('control').find(query, opts)
   .then(docs => res.json(docs))
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
 router.get('/get_eb_status', function(req, res) {
   var q = url.parse(req.url, true).query;
-  var collection = req.db.get("eb_monitor");
   var host = q.eb;
   if (typeof host == 'undefined')
     return res.json({});
   var ret = {};
-  collection.findOne({host: host + '.xenon.local'}, {sort: {_id: -1}})
+  var query = {host: host + '.xenon.local'};
+  var opts = {sort: {_id: -1}};
+  req.db.get('eb_monitor').findOne(query, opts)
   .then(doc => {
+    if (doc == null)
+      return res.json({host: host, checkin: 999999999});
     for (var key in doc) ret[key] = doc[key];
     ret['checkin'] = new Date()-doc['time'];
     return res.json(ret);

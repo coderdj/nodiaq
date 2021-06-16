@@ -48,7 +48,7 @@ router.post('/control', ensureAuthenticated, function(req, res) {
   console.log('CONTROL GOT DATA');
   console.log(data);
   return res.sendStatus(200);
-  req.db.get('hypervisor').updateOne(
+  req.db.get('hypervisor').update(
     {ack: 0},
     {'$push': {commands: data},
      '$currentDate': {time: 1},

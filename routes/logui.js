@@ -12,17 +12,13 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.get('/areThereErrors', ensureAuthenticated, function(req, res){
-  var db=req.db;
-  var collection=db.get('log');
   var error_codes = [2, 3, 4]; //warning, error, fatal
-  collection.count_documents({"priority": {"$in": error_codes}})
+  req.db.get('log').count({"priority": {"$in": error_codes}})
   .then( val => res.json({"error_docs": val}))
   .catch(err => {console.log(err.message); return res.json({"error_docs": -1});});
 });
 
 router.get('/getMessages', ensureAuthenticated, function(req, res){
-  var db = req.db;
-  var collection = db.get('log');
   var q = url.parse(req.url, true).query;
   var limit = q.limit;
   var include = q.get_priorities;
@@ -33,7 +29,7 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
 
   if (typeof limit == 'undefined')
     limit = 100; //sure, why not
-  collection.aggregate([
+  req.db.get('log').aggregate([
     {$match: {priority: {$in: include}}},
     {$sort: {_id: -1}},
     {$limit: parseInt(limit)},
@@ -44,8 +40,6 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
 });
 
 router.post('/new_log_message', ensureAuthenticated, (req, res) => {
-  var db = req.db;
-  var collection = db.get("log");
   var p = 5;
   if(typeof req.body.priority != 'undefined')
     p=parseInt(req.body.priority);
@@ -55,13 +49,11 @@ router.post('/new_log_message', ensureAuthenticated, (req, res) => {
     "priority": p,
     "time": new Date()
   }
-  collection.insertOne(idoc);
+  req.db.get('log').insert(idoc);
   return res.json(idoc);
 });
 
 router.post('/acknowledge_errors', ensureAuthenticated, (req, res) => {
-  var db = req.db;
-  var collection = db.get("log");
   var error_codes = [2, 3, 4]; //warning, error, fatal
   var matchdoc = {"priority": {"$in": error_codes}};
   var updatedoc = {
@@ -72,7 +64,8 @@ router.post('/acknowledge_errors', ensureAuthenticated, (req, res) => {
       "closing_date": new Date()
     }
   };
-  collection.updateMany(matchdoc, updatedoc)
+  var opts = {multi: true};
+  req.db.get('log').update(matchdoc, updatedoc, opts)
   .then( result => res.json(200))
   .catch(err => {console.log(err.message); return res.status(400).send('Failed to update db');});
 });

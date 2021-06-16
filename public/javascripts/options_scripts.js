@@ -2,7 +2,7 @@
 var detectors = {};
 const SCRIPT_VERSION = '20210407';
 
-function SetDetectors(){
+function SetDetectorsLocal(){
   $.getJSON("options/template_info", data => {
     data.detectors.forEach(det => {detectors[det[0]] = det[1];});
     data.extra_detectors.forEach(det => {detectors[det[0]] = det[1];});
@@ -16,6 +16,7 @@ function PopulateModeList(div){
     $("#"+div).prop('disabled', false);
     $('#'+div).selectpicker();
   });
+}
 
 function FetchMode(select_div){
   mode = $('#'+select_div).val();
@@ -23,7 +24,7 @@ function FetchMode(select_div){
     function(data){
       document.jsoneditor.set(data);
     });
-};
+}
 
 function SubmitMode(){
   try{JSON.parse(JSON.stringify(document.jsoneditor.get()));}
