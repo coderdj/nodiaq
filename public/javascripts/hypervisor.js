@@ -2,7 +2,7 @@
 // this isn't getting an experiment-agnostic template
 // deal with it
 var all_hosts = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
-  'reader6', 'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
+  'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
 var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
 var all_bootstrax = ['eb0.xenon.local', 'eb1.xenon.local', 'eb3.xenon.local', 'eb4.xenon.local', 'eb5.xenon.local'];
 var all_ajax = ['ajax.eb0.xenon.local', 'ajax.eb1.xenon.local', 'ajax.eb3.xenon.local', 'ajax.eb4.xenon.local', 'ajax.eb5.xenon.local'];
@@ -18,9 +18,15 @@ function ControlBase(command, action, target) {
 }
 
 function VMEControl(obj) {
-  var crate = obj.getAttribute('id').slice(0,4);
+  var crate = obj.getAttribute('id').slice(3,4);
   var action = obj.textContent.trim().toLowerCase();
   ControlBase('vmectl', action, crate);
+}
+
+function NIMControl(obj) {
+  var crate = obj.getAttribute('id').slice(3,4);
+  var action = obj.textContent.trim().toLowerCase();
+  ControlBase('nimctl', action, crate);
 }
 
 function RedaxControl(obj) {
@@ -51,6 +57,16 @@ function EBSync(obj) {
 function MicrostraxControl(obj) {
   var action = obj.textContent.trim().toLowerCase()
   ControlBase('microstraxctl', action, 'eb2');
+}
+
+function BootstraxAllControl(obj) {
+    var action = obj.getAttribute("id").slice(14, -4);
+    ControlBase('bootstraxctl', action, 'all');
+}
+
+function AjaxAllControl(obj) {
+    var action = obj.getAttribute("id").slice(9, -4);
+    ControlBase('ajaxctl', action, 'all');
 }
 
 function UpdateHosts() {
@@ -230,6 +246,7 @@ function UpdateLoop() {
 
 function SetupButtons() {
   var svgobj = document.getElementById("svg_frame").contentDocument;
+
   var redax = ["readout_start_all_btn", "readout_stop_all_btn", "reader0_controller_0_btn",
     "reader0_reader_0_btn", "reader1_reader_0_btn", "reader2_reader_0_btn"];
   for (var i in redax) {
@@ -240,9 +257,19 @@ function SetupButtons() {
       console.log(redax[i]);
     }
   }
+
   var vme = ["vme0_btn", "vme1_btn", "vme2_btn", "vme3_btn", "vme4_btn", "vmea_on_btn", "vmea_off_btn"];
-  for (var i in vme)
+  for (var i in vme) {
     svgobj.getElementById(vme[i]).addEventListener("click", function() {VMEControl(this);});
+  }
+
+/*  buttons with this id don't exist yet
+  var nim = ["nim0_btn", "nim1_btn", "nim2_btn", "nim3_btn", "nim4_btn", "nim5_btn", "nima_on_btn", "nima_off_btn"];
+  for (var i in nim) {
+    svgobj.getElementById(nim[i]).addEventListener("click", function() {NIMControl(this);});
+  }
+*/
+
   var eb = ['eb0', 'eb1', 'eb3', 'eb4', 'eb5'];
   for (var i in eb) {
     try{
@@ -257,6 +284,7 @@ function SetupButtons() {
       console.log(eb[i]);
     }
   }
+
   try{
     svgobj.getElementById("eb2_sync").addEventListener("click", function() {EBSync(this);});
     svgobj.getElementById("eb2_microstrax_btn").addEventListener("click",
@@ -265,4 +293,23 @@ function SetupButtons() {
     console.log(error);
     console.log("eb2");
   }
+
+  var bs_all = ['eba_bootstrax_start_btn', 'eba_bootstrax_stop_btn']
+  for (var i in bs_all) {
+      try{
+          svgobj.getElementById(bs_all[i]).addEventListener("click", function() {BootstraxAllControl(this);});
+      }catch(error){
+        console.log(error);
+        console.log(bs_all[i]);
+  }
+
+  var ajax_all = ['eba_ajax_start_btn', 'eba_ajax_stop_btn']
+  for (var i in bs_all) {
+      try{
+          svgobj.getElementById(ajax_all[i]).addEventListener("click", function() {AjaxAllControl(this);});
+      }catch(error){
+        console.log(error);
+        console.log(ajax_all[i]);
+  }
+
 }

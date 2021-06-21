@@ -476,8 +476,8 @@ function PMT_setcolour(json_result, timestamp){
     }
     var t_sorting_duration = Date.now() - t_sorting_start
     
-    
-    
+    //    reset the total rate
+    pmt_rate_sum = 0;
     var t_coloring_start = Date.now()
     color_pmts()
     var t_coloring_duration = Date.now() - t_coloring_start
