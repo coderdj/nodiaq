@@ -89,12 +89,12 @@ html
                 span Status
                 span.extralabel Detailed system status
             li#lhosts(class=ShortcutClass('hosts'))
-              a(href='/hosts') 
+              a(href='/hosts')
                 i.fa.fa-desktop
                 span Hosts
                 span.extralabel System monitor for DAQ machines
             li#loptions(class=ShortcutClass('options'))
-              a(href='/options') 
+              a(href='/options')
                 i.fa.fa-cogs
                 span Config
                 span.extralabel View or configure DAQ options
@@ -137,9 +137,9 @@ html
               a(href='https://xenonnt.lngs.infn.it/shifts/full_directory/')
                 i.fa.fa-kiwi-bird
                 span Users
-                span.extralabel Browse members
+                span.extralabel User list
             li#laccount(class=ShortcutClass('account'))
-              a(href="/account") 
+              a(href="/account")
                 i.fa.fa-user-astronaut
                 span Profile
                 span.extralabel Keep your info up to date
@@ -161,7 +161,6 @@ html
             span &nbsp; There are unacknowledged errors. Please go to the 
             a(href='/logui') log page 
             span to close them
-            audio#flash_whoa(src="images/flash_whoa.mp3")
         //
           nav.navbar.navbar-expand-lg.navbar-light.bg-light
           div.container-fluid
@@ -171,7 +170,6 @@ html
       $(document).ready(function(){
         setInterval(CheckForErrors, 5000);
         SetDetectors();
-        document.getElementById("flash_whoa").volume = 0.3;
         $('.sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');
           $('.overlay').toggleClass('active');

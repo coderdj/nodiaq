@@ -26,20 +26,6 @@ var dax_cstr = process.env.DAQ_URI;
 //console.log("DAX DB " + dax_cstr);
 var db = monk(dax_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
 
-// For email confirmations
-var nodemailer = require("nodemailer");
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-      //type : 'OAuth2',
-      //clientID : process.env.DAQ_CONFIRMATION_OAUTH_ID,
-      //clientSecret : process.env.DAQ_CONFIRMATION_OAUTH_SECRET,
-      user: process.env.DAQ_CONFIRMATION_ACCOUNT,
-      pass: process.env.DAQ_CONFIRMATION_PASSWORD
-  }
-});
-
-
 // Routers for all the sub-sites
 var indexRouter = require('./routes/index');
 var optionsRouter = require('./routes/options');
@@ -132,6 +118,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    req.runs_coll = runs_db.get(process.env.RUNS_MONGO_COLLECTION);
+    req.users_db = users_db;
+    next();
+});
+
+
 app.use(function(req, res, next) {
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
@@ -139,26 +134,10 @@ app.use(function(req, res, next) {
       pagetitle: 'XENONnT DAQ',
       detectors: [['tpc', 'TPC'], ['muon_veto', 'Muon Veto'], ['neutron_veto', 'Neutron Veto']],
       headertitle: 'XENONnT Data Acquisition',
+      shortcuts : (typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor'],
     };
-    try{
-      if (typeof req.user.nodiaq.links != 'undefined')
-        req.template_info_base.shortcuts = req.user.nodiaq.links;
-    }catch(error){
-      req.template_info_base.shortcuts = ['index', 'control', 'status', 'runs', 'monitor', 'shifts'];
-    }
-
-    return next();
   }
-  return res.redirect(gp+'/login');
-});
-
-// Make our db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    req.transporter = transporter;
-    req.runs_coll = runs_db.get(process.env.RUNS_MONGO_COLLECTION);
-    req.users_db = users_db;
-    next();
+  next();
 });
 
 // This is the route for the automatic runs datatable api function
@@ -184,7 +163,6 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -194,6 +172,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;

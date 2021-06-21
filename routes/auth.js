@@ -21,6 +21,7 @@ router.post('/ldap',
 		successRedirect: gp+'/',
 		failureRedirect: gp+'/login'}), 
 	    function(req, res){
+              console.log('Does this work?');
 		res.redirect(gp);
 	    });
 

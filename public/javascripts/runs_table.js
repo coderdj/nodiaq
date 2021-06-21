@@ -66,13 +66,14 @@ function InitializeRunsTable(divname){
         "render": function(data, type, row){
           ret = "";
           if(typeof(data) != "undefined" && data.state != null && typeof data.host != 'undefined'){
-            ret+=data["host"]+":"+data["state"];
-          }
+            ret+=data["host"].substr(0,3)+": "+data["state"];
+          } else ret += "Not yet processed";
           return ret;
         }
       },
       { data : "user"},
-      { data : "start", format: 'YYYY-MM-DD HH:mm', type: 'datetime'},
+      //{ data : "start", format: 'YYYY-MM-DD HH:mm', type: 'datetime', locale: 'UTC'},
+      { data : "start", render: (data, type, row) => moment(data).utc().format('YYYY-MM-DD HH:mm')},
       { data : "end", defaultContent: "",
         "render": function(data, type, row){
 
@@ -286,8 +287,8 @@ function ShowDetail(run){
     // Set base data
     $("#detail_Number").html(data['number']);
     $("#detail_Detectors").html(data['detectors'].toString());
-    $("#detail_Start").html(moment(data['start']).format('YYYY-MM-DD HH:mm'));
-    $("#detail_End").html(data.end == null ? "Not set" : moment(data['end']).format('YYYY-MM-DD HH:mm'));
+    $("#detail_Start").html(moment(data['start']).utc().format('YYYY-MM-DD HH:mm'));
+    $("#detail_End").html(data.end == null ? "Not set" : moment(data['end']).utc().format('YYYY-MM-DD HH:mm'));
     $("#detail_User").html(data['user']);
     $("#detail_Mode").html(data['mode']);
     $("#detail_Source").html(data['source']);

@@ -13,7 +13,7 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-  res.render('hypervisor', req.template_base_info);
+  res.render('hypervisor', req.template_info_base);
 });
 
 router.get('/readout_status', ensureAuthenticated, function(req, res) {

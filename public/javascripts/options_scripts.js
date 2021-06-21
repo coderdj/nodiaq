@@ -1,18 +1,18 @@
 // public/javascripts/options_scripts.js
-var detectors = {};
+var detectors_local = {};
 const SCRIPT_VERSION = '20210407';
 
 function SetDetectorsLocal(){
   $.getJSON("options/template_info", data => {
-    data.detectors.forEach(det => {detectors[det[0]] = det[1];});
-    data.extra_detectors.forEach(det => {detectors[det[0]] = det[1];});
+    data.detectors.forEach(det => {detectors_local[det[0]] = det[1];});
+    data.extra_detectors.forEach(det => {detectors_local[det[0]] = det[1];});
     PopulateModeList("run_mode_select");
   });
 }
 
 function PopulateModeList(div){
   $.getJSON("options/options_list", function(data){
-    $("#"+div).html(data.reduce((total, entry) => entry.modes.reduce((tot, mode) => tot + `<option value='${mode}'>${mode}</option>`, total + `<optgroup label='${detectors[entry["_id"]]}'>`), ""));
+    $("#"+div).html(data.reduce((total, entry) => entry.modes.reduce((tot, mode) => tot + `<option value='${mode}'>${mode}</option>`, total + `<optgroup label='${detectors_local[entry["_id"]]}'>`), ""));
     $("#"+div).prop('disabled', false);
     $('#'+div).selectpicker();
   });

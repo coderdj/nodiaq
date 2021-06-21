@@ -5,18 +5,19 @@ var router = express.Router();
 var gp="";
 
 function ensureAuthenticated(req, res, next) {
+  return req.isAuthenticated() ? next() : res.redirect('/login');
 }
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', ensureAuthenticated, function(req, res) {
   res.render('index', req.template_info_base);
 });
 
-router.get('/template_info', function(req, res) {
+router.get('/template_info', ensureAuthenticated, function(req, res) {
   return res.json(req.template_info_base);
 });
 
-router.get('/get_current_shifters', function(req, res){
+router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
   var today = new Date();
   req.users_db.get('shifts').aggregate([
     {$match: {start: {$lte: today}, end: {$gte: today}}},
@@ -35,11 +36,11 @@ router.get('/get_current_shifters', function(req, res){
   .catch(err => {console.log(err.message); return res.json([]);});
 });
 
-router.get('/account', function(req, res){
+router.get('/account', ensureAuthenticated, function(req, res){
     res.render('account', { user: req.user });
 });
 
-router.get('/account/request_github_access', function(req, res){
+router.get('/account/request_github_access', ensureAuthenticated, function(req, res){
 
     var owner = process.env.GITHUB_ADMIN_USER;
     var password = process.env.GITHUB_ADMIN_PASSWORD;
@@ -83,7 +84,7 @@ router.get('/account/request_github_access', function(req, res){
     });
 });
 
-router.get('/account/request_api_key', function(req, res){
+router.get('/account/request_api_key', ensureAuthenticated, function(req, res){
 
     var api_username = req.user.lngs_ldap_uid;
     if (typeof req.user.lngs_lap_uid == 'undefined')
@@ -106,7 +107,7 @@ router.get('/account/request_api_key', function(req, res){
     });
 });
 
-router.post('/updateContactInfo', (req, res) => {
+router.post('/updateContactInfo', ensureAuthenticated, (req, res) => {
   var collection = req.users_coll;
   var idoc = {};
   if(req.body.email != ""){

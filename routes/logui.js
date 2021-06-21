@@ -28,7 +28,7 @@ router.get('/getMessages', ensureAuthenticated, function(req, res){
     include = include.map(Number);
 
   if (typeof limit == 'undefined')
-    limit = 100; //sure, why not
+    limit = 100;
   req.db.get('log').aggregate([
     {$match: {priority: {$in: include}}},
     {$sort: {_id: -1}},
@@ -49,8 +49,9 @@ router.post('/new_log_message', ensureAuthenticated, (req, res) => {
     "priority": p,
     "time": new Date()
   }
-  req.db.get('log').insert(idoc);
-  return res.json(idoc);
+  req.db.get('log').insert(idoc)
+  .then(() => res.sendStatus(200))
+  .catch(err => {console.log(err.message); return res.sendStatus(400);});
 });
 
 router.post('/acknowledge_errors', ensureAuthenticated, (req, res) => {
@@ -66,8 +67,8 @@ router.post('/acknowledge_errors', ensureAuthenticated, (req, res) => {
   };
   var opts = {multi: true};
   req.db.get('log').update(matchdoc, updatedoc, opts)
-  .then( result => res.json(200))
-  .catch(err => {console.log(err.message); return res.status(400).send('Failed to update db');});
+  .then( result => res.sendStatus(200))
+  .catch(err => {console.log(err.message); return res.sendStatus(400);});
 });
 
 module.exports = router;

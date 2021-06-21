@@ -1,5 +1,7 @@
 // public/javascripts/logui_scripts.js
 
+var table;
+
 function NewMessage(){
   $.ajax({
     url:'logui/new_log_message',
@@ -59,17 +61,17 @@ function InitializeTable(DOM){
 
   // Get the window height minus padding (80px)
   var vh = $(window).height() - $("#newentry").outerHeight(true) - $("#errorbar").outerHeight(true) - 80;
-  $(DOM).tabulator({
-    //height: vh, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
-    height: '85%',
+  table = new Tabulator(DOM, {
+  //$(DOM).tabulator({
+    height: vh,
     layout:"fitColumns", //fit columns to width of table (optional)
     pagination: "local",
-    paginationSize: 23, // magic number based on my screen size
+    paginationSize: 24, // magic number based on my screen size
     columns:[ //Define Table Columns
       {title:"Time", field:"time", width: 200},
-      {title:"Run ID", field:"runid", align:"left", width: 100,
+      {title:"Run ID", field:"runid", hozAlign:"left", width: 100,
         headerFilter: "input", headerFilterPlaceholder: "filter run ID"},
-      {title:"User", field:"user", align:"left", width: 200,
+      {title:"User", field:"user", hozAlign:"left", width: 200,
         headerFilter: "input", headerFilterPlaceholder: "filter users"},
       {title:"Message", field:"message", headerFilter: "input",
         headerFilterPlaceholder: "filter messages"},
@@ -96,8 +98,6 @@ function InitializeTable(DOM){
 }
 
 function UpdateLogTable(DOM){
-
-  // TIL, you can send a list via a GET
   var get_me = "";
   var checkboxes = {
     "cb_message": 1,
@@ -114,8 +114,5 @@ function UpdateLogTable(DOM){
       get_me+="&get_priorities="+checkboxes[key].toString();
     }
   }
-  $.getJSON('logui/getMessages?limit=500'+get_me, function(data){
-    $(DOM).tabulator("setData", data);
-  });
-
+  table.setData('logui/getMessages', {limit: '500' + get_me})
 }
