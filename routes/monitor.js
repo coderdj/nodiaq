@@ -2,7 +2,9 @@
 var express = require("express");
 var url = require("url");
 var router = express.Router();
+var ObjectID = require('mongodb').ObjectID;
 var gp = '';
+var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
 
 function ensureAuthenticated(req, res, next) {
   return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
@@ -13,8 +15,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.get('/get_updates', ensureAuthenticated,function(req,res){
-  var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
-  ObjectID = req.ObjectID;
 
   // start mongo pipeline with empty array
   var mongo_pipeline = []
@@ -41,7 +41,6 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
       }
     }
   }
-  //console.log(mongo_pipeline[0]["$match"]);
   req.db.get('status').aggregate(mongo_pipeline)
   .then(docs => res.json(docs))
   .catch(err => {console.log(err.message); return res.json([]);});
@@ -53,8 +52,6 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
 // requires int_time_start, int_time_end and int_time_averaging_window
 // averages then the data over int_time_averaging_window
 router.get('/get_history', ensureAuthenticated,function(req,res){
-    ObjectID = req.ObjectID;
-    
     
     // initialize used variables
     var json_pmts = [];
@@ -76,13 +73,11 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
         var int_time_averaging_window = tmp
     }
     
-    
     // create time objects for comparission
     var str_time_start = (int_time_start).toString(16) + "0000000000000000";
     var oid_time_start = ObjectID(str_time_start);
     var str_time_end = (int_time_end+1).toString(16) + "0000000000000000";
     var oid_time_end = ObjectID(str_time_end);
-    
     
     // get all pmt ids that are required
     var tmp_json_pmts = req.query.str_pmts.split(",");
@@ -120,8 +115,6 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
     
     }
     
-    
-    
     var mongo_pipeline = [];
     // roughly filter data to relevant hosts and timeframe
     mongo_pipeline.push(
@@ -129,7 +122,6 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
         "_id":{"$gt": oid_time_start,"$lt": oid_time_end},
         "host":{$in: tpc_readers}}
     });
-    
     // create time in seconds and kick out unnecesarry pmts
     mongo_pipeline.push({
         '$project': {
@@ -148,7 +140,6 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
             channels: {"$mergeObjects": "$channels"}
         }
     });
-    
     // complicateed setup to generate propper json to check if a rate is not set
     // set it to -1 so max one step later does not ignore thos timebins
     $project =  {
