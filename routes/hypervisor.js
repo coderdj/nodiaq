@@ -44,9 +44,7 @@ router.get('/eb_status', ensureAuthenticated, function(req, res) {
 
 router.post('/control', ensureAuthenticated, function(req, res) {
   var data = req.body.data;
-  console.log('CONTROL GOT DATA');
-  console.log(data);
-  return res.sendStatus(200);
+  // return res.sendStatus(200);
   req.db.get('hypervisor').updateOne(
     {ack: 0},
     {'$push': {commands: data},
