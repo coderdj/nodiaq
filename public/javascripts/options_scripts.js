@@ -1,6 +1,6 @@
 // public/javascripts/options_scripts.js
 var detectors_local = {};
-const SCRIPT_VERSION = '20210407';
+const SCRIPT_VERSION = '20210622';
 
 function SetDetectorsLocal(){
   $.getJSON("options/template_info", data => {

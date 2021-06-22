@@ -1,6 +1,6 @@
 var initial_control = {};
 var _detectors = []; // namespacing issues
-const SCRIPT_VERSION = '20210407';
+const SCRIPT_VERSION = '20210622';
 
 function SetDetectorsLocal() {
   $.getJSON('control/template_info', data => {

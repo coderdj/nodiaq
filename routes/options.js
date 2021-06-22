@@ -3,7 +3,7 @@ var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
-const SCRIPT_VERSION = '20210407';
+const SCRIPT_VERSION = '20210622';
 
 function TemplateInfo(req) {
   var template_info = req.template_info_base;
