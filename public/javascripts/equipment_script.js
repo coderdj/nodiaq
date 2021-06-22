@@ -68,7 +68,7 @@ function LoadDetail(obj){
         MaybeUpdateItemField(data['_id'], str)});
     }
     $('#detail_modal').modal();
-  }
+  });
   var html = "";
   for(var j in data['actions']){
     html += "<div class='card card body' style='padding:10px'>";

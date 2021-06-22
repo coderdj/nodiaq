@@ -37,7 +37,7 @@ router.get('/get_current_shifters', ensureAuthenticated, function(req, res){
 });
 
 router.get('/account', ensureAuthenticated, function(req, res){
-    res.render('account', { user: req.user });
+    res.render('account', req.template_info_base);
 });
 
 router.get('/account/request_github_access', ensureAuthenticated, function(req, res){

@@ -301,6 +301,7 @@ function SetupButtons() {
       }catch(error){
         console.log(error);
         console.log(bs_all[i]);
+      }
   }
 
   var ajax_all = ['eba_ajax_start_btn', 'eba_ajax_stop_btn']
@@ -310,6 +311,7 @@ function SetupButtons() {
       }catch(error){
         console.log(error);
         console.log(ajax_all[i]);
+      }
   }
 
 }

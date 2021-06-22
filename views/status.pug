@@ -39,7 +39,9 @@ block content
           option(value='rate') Data rate
           option(value='buff') Buffer size
 
-        button.btn.btn-info#update_button(style="height:80%;padding-top:3px" onclick="RedrawRatePlot()") &nbsp;&nbsp; Update
+        span &nbsp;&nbsp;
+
+        button.btn.btn-info#update_button(style="height:80%;padding-top:3px" onclick="RedrawRatePlot()") Update
       div.chart_body#rate_chart(style="height:300px")
   div.row(style="width:100%;margin:0;padding-top:5px")
     each reader in readers

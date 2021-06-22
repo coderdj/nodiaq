@@ -136,6 +136,13 @@ app.use(function(req, res, next) {
       headertitle: 'XENONnT Data Acquisition',
       shortcuts : (typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor'],
     };
+  } else {
+    req.template_info_base = {
+      pagetitle: 'LZ DAQ',
+      detectors: [['lz_tpc', 'LZ TPC'], ['lz_veto', 'LZ Veto']],
+      headertitle: 'LZ Data Acquisition',
+      shortcuts : (typeof req.user != 'undefined' && typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor'],
+    };
   }
   next();
 });
