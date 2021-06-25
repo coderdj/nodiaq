@@ -145,7 +145,7 @@ function UpdateDispatcher() {
 }
 
 function UnpackEBStatus(doc) {
-  if (doc.state === 'busy') return ['green', `processing ${doc.runid} on ${doc.max_cores} cores`];
+  if (doc.state === 'busy') return ['green', `processing ${doc.run_id} on ${doc.cores} cores`];
   if (doc.state === 'dead_bootstrax') return ['red', 'dead'];
   if (doc.state === 'idle') return ['blue', 'napping'];
   if (doc.state === 'hosting microstrax') return ['green', 'hosting SKYNET'];

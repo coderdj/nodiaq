@@ -621,7 +621,7 @@ function get_TPC_data(timestamp = false) {
         }
     };
     
-    str_url = "monitor/get_updates"+unixtimestamp;
+    str_url = "/monitor/get_updates"+unixtimestamp;
     xmlhttp.open("GET", str_url, true);
     xmlhttp.send();
     
@@ -916,7 +916,7 @@ function history_draw(){
   if(pmts == false){
     remove_old_rates();
   } else {
-    str_url = "monitor/get_history?str_pmts=" + pmts +
+    str_url = "/monitor/get_history?str_pmts=" + pmts +
       "&int_time_start=" + time_start +
       "&int_time_end=" + time_end +
       "&int_time_averaging_window=" + time_width;
