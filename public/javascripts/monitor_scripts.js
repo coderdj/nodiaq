@@ -167,7 +167,7 @@ function update_color_scheme(min=pmt_min_rate, max=pmt_max_rate){
 function get_human_date(int_unix){
     date_ts = new Date(int_unix * 1000);
     return(
-        date_ts.getDate() + "." + zeroPad(date_ts.getMonth()+1,2) + "." + date_ts.getFullYear() + " " + date_ts.getHours() + ":" + zeroPad(date_ts.getMinutes(), 2) + ":" + zeroPad(date_ts.getSeconds(), 2)
+        date_ts.getUTCDate() + "." + zeroPad(date_ts.getUTCMonth()+1,2) + "." + date_ts.getUTCFullYear() + " " + date_ts.getUTCHours() + ":" + zeroPad(date_ts.getUTCMinutes(), 2) + ":" + zeroPad(date_ts.getUTCSeconds(), 2)  + " (UTC)"
     )
 }
 
