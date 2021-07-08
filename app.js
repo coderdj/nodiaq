@@ -134,7 +134,7 @@ app.use(function(req, res, next) {
       pagetitle: 'XENONnT DAQ',
       detectors: [['tpc', 'TPC'], ['muon_veto', 'Muon Veto'], ['neutron_veto', 'Neutron Veto']],
       headertitle: 'XENONnT Data Acquisition',
-      shortcuts : (typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor', 'shifts', 'users'],
+      shortcuts : (typeof req.user != 'undefined' && typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor', 'shifts', 'users'],
     };
   } else {
     req.template_info_base = {
