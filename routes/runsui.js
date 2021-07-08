@@ -32,10 +32,6 @@ router.post('/addtags', function(req, res){
     return res.sendStatus(403);
   var user = req.user.lngs_ldap_uid;
 
-  if (tag[0] === '_') { // underscore tags are protected
-    return res.sendStatus(403);
-  }
-
   // Convert runs to int
   var runsint = runs.map(parseInt);
   // Update many
