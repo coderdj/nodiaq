@@ -63,8 +63,6 @@ router.post("/set_run_mode", function(req, res){
 router.get("/remove_run_mode", function(req, res){
   var query = url.parse(req.url, true).query;
   var name = query.name;
-  if (typeof query.version == 'undefined' || query.version != SCRIPT_VERSION)
-    return res.json({res: 'Please hard-reload the page (shift-f5 or equivalent)'});
 
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
