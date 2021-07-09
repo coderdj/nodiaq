@@ -1,6 +1,6 @@
 var initial_control = {};
 var _detectors = []; // namespacing issues
-const SCRIPT_VERSION = '20210622';
+const SCRIPT_VERSION = '20210709';
 
 function SetDetectorsLocal() {
   $.getJSON('control/template_info', data => {
@@ -141,10 +141,10 @@ function PopulateOptionsLists(callback){
 function PullServerData(){
   var ready = 0;
   document.page_ready = false;
-  ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
+  _detectors.forEach(det => {
     $.getJSON("control/get_control_doc?detector="+det, function(doc){
       var detector = doc['detector'];
-      if(detector !== 'tpc' && detector !== 'muon_veto' && detector !== 'neutron_veto'){
+      if(typeof detector == 'undefined' || !_detectors.includes(detector)){
         return;
       }
       initial_control[detector] = doc;
@@ -157,8 +157,7 @@ function PullServerData(){
 
       SetRemote(detector);
       ready++;
-      if (ready >= 3)
-        document.page_ready = true;
+      document.page_ready = ready >= _detectors.length();
     }); // getJSON
   }); // forEach
   // select a random LZ mode for fun
@@ -173,8 +172,10 @@ function PostServerData(){
   _detectors.forEach(detector => {
     var thisdet = {};
     if ($(`#${detector}_remote`).is(":checked")) {
-      thisdet['remote'] = 'true';
-      thisdet['active'] = 'false';
+      if (initial_control[detector]['remote'] == 'false') {
+        thisdet['remote'] = 'true';
+        thisdet['active'] = 'false';
+      }
     } else {
       ['active', 'remote', 'softstop'].forEach( (att) => {
         var checked = $(`#${detector}_${att}`).is(":checked").toString();
