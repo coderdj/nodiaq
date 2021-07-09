@@ -1,57 +1,44 @@
-// NOTE: some of the filesystem access stuff will have to be reconfigured in the
-// final distribution. Consider this beta-level. Assumes you can mount your
-// raw data storage and have local filesystem access to it.
-
+// routes/scope.js
 var express = require("express");
 var http = require("http");
 var url = require("url");
 var { URL } = require("url");
 var router = express.Router();
 var gp = '';
-const BA = "https://xenon1t-daq.lngs.infn.it";
+const BA = "https://xenonnt.lngs.infn.it";
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
+    return res.redirect('/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('scope', { title: 'Scope', user: req.user });
+    res.render('scope', req.template_info_base);
 });
 
 router.get('/available_runs', ensureAuthenticated, function(req, res){
   var collection = req.runs_db.get(process.env.RUNS_MONGO_COLLECTION);
   var query = {'data.host' : /eb[0-5]\.xenon\.local/};
   var options = {};
-  collection.distinct('number', query, options, function(err, docs) {
-    if (err) return res.json({message : err.message});
-    return res.json(docs);
-  }); // collection.find
+  collection.distinct('number', query, options)
+  .then(docs => res.json(docs))
+  .catch(err => res.json({message: err.message}));
 });
 
 router.get("/available_targets", ensureAuthenticated, function(req, res) {
-    var q = url.parse(req.url, true).query;
-    var run = q.run;
-    if (typeof run === 'undefined') return res.json({message : 'Invalid run'});
-    var collection = req.runs_db.get(process.env.RUNS_MONGO_COLLECTION);
-    try {
-      var query = {number : parseInt(run)};
-    }catch(err){
-      return res.json({message : err.message});
-    }
-    var options = { data : 1};
-    collection.findOne(query, options, function(err, doc) {
-      if (err) return res.json({message : err.message});
-      if (typeof doc.data === 'undefined')
-        return res.json({message : 'No run found'});
-      var ret = [];
-      for (var i in doc['data']) {
-        var datadoc = doc['data'][i];
-        if (datadoc['host'].search(/eb[0-5]\.xenon\.local/) != -1)
-          ret.push(datadoc['type']);
-      }
-      return res.json(ret);
-    });
+  var q = url.parse(req.url, true).query;
+  var run = q.run;
+  if (typeof run === 'undefined') return res.json({message : 'Invalid run'});
+  var collection = req.runs_db.get(process.env.RUNS_MONGO_COLLECTION);
+  try {
+    var query = {number : parseInt(run)};
+  }catch(err){
+    return res.json({message : err.message});
+  }
+  var options = { data : 1};
+  collection.findOne(query, options)
+  .then(doc => res.json(doc.data.filter(entry => /eb[0-5]\.xenon\.local/.test(entry)).map(entry => entry.type)))
+  .catch(err => res.json({message: err.message}));
 });
 
 router.get("/get_data", ensureAuthenticated, function(req, res) {

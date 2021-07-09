@@ -1,118 +1,49 @@
+// routes/monitor.js
 var express = require("express");
 var url = require("url");
 var router = express.Router();
+var ObjectID = require('mongodb').ObjectID;
 var gp = '';
-
-var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0', 'reader3_reader_0'];
+var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
+  return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('monitor', { title: 'Monitor', user: req.user });
+  res.render('monitor', req.template_info_base);
 });
-
-// obtain first and last entire in status collection where channels entrie is not empty
-router.get('/get_limits', ensureAuthenticated, function(req, res){
-    var db = req.monitor_db;
-
-    var collection = db.get("status");
-    var mongo_pipeline = [];
-
-    // only take reader 0 to 2 and non empty channel entries
-    mongo_pipeline.push({
-        "$match":{
-            "host": {'$in': tpc_readers},
-            "channels":{$ne: {}},
-        }
-    });
-    
-    // calculate unixtime from object id
-    mongo_pipeline.push({
-       "$project":{
-            _id: 1,
-            unixtime : {
-                $divide:[{
-                    $subtract: [{
-                        $toDate: "$_id"},
-                        new Date("1970-01-01")
-                    ]},
-                1000
-            ]},
-        }
-    });
-    
-    
-    // obtain first and last entrie
-    mongo_pipeline.push({
-        $group: {
-            _id: null,
-            // for whatever reason they are inverted
-            first: { $last: "$$ROOT" },
-            last: { $first: "$$ROOT" },
-        }
-    });
-    
-    
-    // limit to two entires just to be sure
-    mongo_pipeline.push({$limit: 2});
-    
-    // run actual request
-    collection.aggregate(
-        mongo_pipeline,
-        function(e,docs){
-            res.json(docs);
-        }
-        
-    );
-    
-    
-});
-
-
 
 router.get('/get_updates', ensureAuthenticated,function(req,res){
-    var db = req.monitor_db;
-    var collection = db.get('status');
-        ObjectID = req.ObjectID;
-    
-    var oid_min = ObjectID(0);
-    
-    // start mongo pipeline with empty array
-    var mongo_pipeline = []
-    mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
-    mongo_pipeline.push({"$sort": {"_id":-1}});
-    mongo_pipeline.push({"$limit": 15});
-    mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
-    
-    
-    // append time filter if parameter unixtime is given in url
-    var int_unixtime = parseInt(req.query.unixtime);
-    if(!isNaN(int_unixtime)){
-        
-        if(int_unixtime > 0){
-            str_unixtime_min = (int_unixtime-1).toString(16) + "0000000000000000";
-            str_unixtime_max = (int_unixtime+1).toString(16) + "0000000000000000";
-            
-            var oid_min = ObjectID(str_unixtime_min);
-            var oid_max = ObjectID(str_unixtime_max);
-            
-            mongo_pipeline[0]["$match"]["_id"] = {
-                    "$gt": oid_min,
-                    "$lt": oid_max
-            }
-        }
+
+  // start mongo pipeline with empty array
+  var mongo_pipeline = []
+  mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
+  mongo_pipeline.push({"$sort": {"_id":-1}});
+  mongo_pipeline.push({"$limit": 15});
+  mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
+
+
+  // append time filter if parameter unixtime is given in url
+  var int_unixtime = parseInt(req.query.unixtime);
+  if(!isNaN(int_unixtime)){
+
+    if(int_unixtime > 0){
+      str_unixtime_min = (int_unixtime-1).toString(16) + "0000000000000000";
+      str_unixtime_max = (int_unixtime+1).toString(16) + "0000000000000000";
+
+      var oid_min = ObjectID(str_unixtime_min);
+      var oid_max = ObjectID(str_unixtime_max);
+
+      mongo_pipeline[0]["$match"]["_id"] = {
+        "$gt": oid_min,
+        "$lt": oid_max
+      }
     }
-    //console.log(mongo_pipeline[0]["$match"]);
-    collection.aggregate(
-        mongo_pipeline,
-        function(e,docs){
-            res.json(docs);
-        }
-        
-    );
+  }
+  req.db.get('status').aggregate(mongo_pipeline)
+  .then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 
@@ -121,10 +52,6 @@ router.get('/get_updates', ensureAuthenticated,function(req,res){
 // requires int_time_start, int_time_end and int_time_averaging_window
 // averages then the data over int_time_averaging_window
 router.get('/get_history', ensureAuthenticated,function(req,res){
-    var db = req.monitor_db;
-    var collection = db.get('status');
-        ObjectID = req.ObjectID;
-    
     
     // initialize used variables
     var json_pmts = [];
@@ -146,13 +73,11 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
         var int_time_averaging_window = tmp
     }
     
-    
     // create time objects for comparission
     var str_time_start = (int_time_start).toString(16) + "0000000000000000";
     var oid_time_start = ObjectID(str_time_start);
     var str_time_end = (int_time_end+1).toString(16) + "0000000000000000";
     var oid_time_end = ObjectID(str_time_end);
-    
     
     // get all pmt ids that are required
     var tmp_json_pmts = req.query.str_pmts.split(",");
@@ -190,8 +115,6 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
     
     }
     
-    
-    
     var mongo_pipeline = [];
     // roughly filter data to relevant hosts and timeframe
     mongo_pipeline.push(
@@ -199,7 +122,6 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
         "_id":{"$gt": oid_time_start,"$lt": oid_time_end},
         "host":{$in: tpc_readers}}
     });
-    
     // create time in seconds and kick out unnecesarry pmts
     mongo_pipeline.push({
         '$project': {
@@ -218,7 +140,6 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
             channels: {"$mergeObjects": "$channels"}
         }
     });
-    
     // complicateed setup to generate propper json to check if a rate is not set
     // set it to -1 so max one step later does not ignore thos timebins
     $project =  {
@@ -269,24 +190,19 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
     //console.log(mongo_pipeline);
     //res.json(mongo_pipeline);
     
-    collection.aggregate(
-        mongo_pipeline,
-        function(e,docs){
-            res.json(docs);
-        }
-    );
-    
+    req.db.get('status').aggregate(mongo_pipeline)
+  .then(docs => res.json(docs))
+  .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 
 // get last update on individual reader
 router.get('/update/:reader', ensureAuthenticated,function(req,res){
-    var runs_db = req.runs_db;
-    var collection = runs_db.get('status');
-    
-    collection.find({host: "reader"+req.params.reader+"_reader_0"},{limit:1, sort:{_id:-1}},function(e,docs){
-        res.json(docs);
-    })
+  var query = {host: `reader${req.params.reader}_reader_0`};
+  var opts = {limit: 1, sort: {_id: -1}};
+  req.db.get('status').find(query,opts)
+    .then(docs => res.json(docs))
+    .catch(err => {console.log(err.message); return res.json([]);});
 });
 
 

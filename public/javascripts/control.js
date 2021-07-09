@@ -1,5 +1,14 @@
 var initial_control = {};
-const SCRIPT_VERSION = '20210407';
+var _detectors = []; // namespacing issues
+const SCRIPT_VERSION = '20210709';
+
+function SetDetectorsLocal() {
+  $.getJSON('control/template_info', data => {
+    _detectors = data.detectors.map(val => val[0]);
+    PopulateOptionsLists(PullServerData);
+    DefineButtonRules();
+  });
+}
 
 function DefineButtonRules(){
   // handle LZ buttons first
@@ -78,22 +87,22 @@ function SetRemote(detector){
 }
 
 function CheckLinking() {
-  var detectors = ['tpc', 'muon_veto', 'neutron_veto'];
-  var modes = detectors.map(det => $(`#${det}_mode`).val());
-  var links = detectors.map(det => $(`#${det}_mode :selected`).attr("link_type").split(","));
-  var active = detectors.map(det => $(`#${det}_active`).is(":checked"));
-  var remote = detectors.map(det => $(`#${det}_remote`).is(":checked"));
-  var softstop = detectors.map(det => $(`#${det}_softstop`).is(":checked"));
-  var stopafter = detectors.map(det => $(`#${det}_stop_after`).val());
+  if (_detectors.length == 0) return;
+  var modes = _detectors.map(det => $(`#${det}_mode`).val());
+  var links = _detectors.map(det => $(`#${det}_mode :selected`).attr("link_type").split(","));
+  var active = _detectors.map(det => $(`#${det}_active`).is(":checked"));
+  var remote = _detectors.map(det => $(`#${det}_remote`).is(":checked"));
+  var softstop = _detectors.map(det => $(`#${det}_softstop`).is(":checked"));
+  var stopafter = _detectors.map(det => $(`#${det}_stop_after`).val());
   var invalid = false;
   var is_linked = [[null, false, false], [null, null, false]];
 
   // check these combos: tpc-mv, tpc-nv, mv-nv
-  for (var i = 0; i < detectors.length-1; i++) {
-    for (var j = i+1; j < detectors.length; j++) {
-      if (links[i].includes(detectors[j]) || links[j].includes(detectors[i]))
+  for (var i = 0; i < _detectors.length-1; i++) {
+    for (var j = i+1; j < _detectors.length; j++) {
+      if (links[i].includes(_detectors[j]) || links[j].includes(_detectors[i]))
         invalid ||= (modes[i] != modes[j] || active[i] != active[j] || stopafter[i] != stopafter[j] || softstop[i] != softstop[j] || remote[i] || remote[j]);
-      is_linked[i][j] = links[i].includes(detectors[j]) && links[j].includes(detectors[i]);
+      is_linked[i][j] = links[i].includes(_detectors[j]) && links[j].includes(_detectors[i]);
     }
   }
   var case_e = is_linked[0][1] == false && is_linked[0][2] == false && is_linked[1][2] == true;
@@ -132,10 +141,10 @@ function PopulateOptionsLists(callback){
 function PullServerData(){
   var ready = 0;
   document.page_ready = false;
-  ['tpc', 'muon_veto', 'neutron_veto'].forEach(det => {
+  _detectors.forEach(det => {
     $.getJSON("control/get_control_doc?detector="+det, function(doc){
       var detector = doc['detector'];
-      if(detector !== 'tpc' && detector !== 'muon_veto' && detector !== 'neutron_veto'){
+      if(typeof detector == 'undefined' || !_detectors.includes(detector)){
         return;
       }
       initial_control[detector] = doc;
@@ -148,8 +157,7 @@ function PullServerData(){
 
       SetRemote(detector);
       ready++;
-      if (ready >= 3)
-        document.page_ready = true;
+      document.page_ready = ready >= _detectors.length();
     }); // getJSON
   }); // forEach
   // select a random LZ mode for fun
@@ -161,11 +169,13 @@ function PullServerData(){
 function PostServerData(){
   post = {'version': SCRIPT_VERSION};
   var empty = true;
-  ['tpc', 'muon_veto', 'neutron_veto'].forEach(detector => {
+  _detectors.forEach(detector => {
     var thisdet = {};
     if ($(`#${detector}_remote`).is(":checked")) {
-      thisdet['remote'] = 'true';
-      thisdet['active'] = 'false';
+      if (initial_control[detector]['remote'] == 'false') {
+        thisdet['remote'] = 'true';
+        thisdet['active'] = 'false';
+      }
     } else {
       ['active', 'remote', 'softstop'].forEach( (att) => {
         var checked = $(`#${detector}_${att}`).is(":checked").toString();

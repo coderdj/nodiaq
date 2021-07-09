@@ -1,3 +1,6 @@
+// public/javascripts/hypervisor.js
+// this isn't getting an experiment-agnostic template
+// deal with it
 var all_hosts = ['reader0', 'reader1', 'reader2', 'reader3', 'reader4', 'reader5',
   'eb0', 'eb1', 'eb2', 'eb3', 'eb4', 'eb5', 'oldmaster'];
 var all_readout = ['reader0_controller_0', 'reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
@@ -298,6 +301,7 @@ function SetupButtons() {
       }catch(error){
         console.log(error);
         console.log(bs_all[i]);
+      }
   }
 
   var ajax_all = ['eba_ajax_start_btn', 'eba_ajax_stop_btn']
@@ -307,6 +311,7 @@ function SetupButtons() {
       }catch(error){
         console.log(error);
         console.log(ajax_all[i]);
+      }
   }
 
 }
