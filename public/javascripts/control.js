@@ -157,7 +157,7 @@ function PullServerData(){
 
       SetRemote(detector);
       ready++;
-      document.page_ready = ready >= _detectors.length();
+      document.page_ready = ready >= _detectors.length;
     }); // getJSON
   }); // forEach
   // select a random LZ mode for fun
