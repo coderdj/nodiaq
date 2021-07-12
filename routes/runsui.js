@@ -5,13 +5,17 @@ var router = express.Router();
 var gp = '';
 const SCRIPT_VERSION = '20210622';
 
-router.get('/', function(req, res) {
+function ensureAuthenticated(req, res, next) {
+  return req.isAuthenticated() ? next() : res.redirect('/login');
+}
+
+router.get('/', ensureAuthenticated, function(req, res) {
   var template = req.template_info_base;
   template['experiment'] = 'XENONnT'
   res.render('runsui', template);
 });
 
-router.get('/get_run_doc', function(req, res){
+router.get('/get_run_doc', ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var num = q.run;
   if(typeof num !== 'undefined')
@@ -23,7 +27,7 @@ router.get('/get_run_doc', function(req, res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.post('/addtags', function(req, res){
+router.post('/addtags', ensureAuthenticated, function(req, res){
   var runs = req.body.runs;
   var tag = req.body.tag;
   if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
@@ -31,6 +35,9 @@ router.post('/addtags', function(req, res){
   if (tag[0] === '_') // underscore tags are protected
     return res.sendStatus(403);
   var user = req.user.lngs_ldap_uid;
+  if (typeof user == 'undefined' || user == 'not set') {
+    return res.json({err: "Invalid user credentials"});
+  }
 
   // Convert runs to int
   var runsint = runs.map(parseInt);
@@ -43,7 +50,7 @@ router.post('/addtags', function(req, res){
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
-router.post('/removetag', function(req, res){
+router.post('/removetag', ensureAuthenticated, function(req, res){
   var run = req.body.run;
   var tag = req.body.tag;
   var tag_user = req.body.user;
@@ -63,7 +70,7 @@ router.post('/removetag', function(req, res){
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
-router.post('/addcomment', function(req, res){
+router.post('/addcomment', ensureAuthenticated, function(req, res){
   var runs = req.body.runs;
   var comment = req.body.comment;
   var user = req.user.lngs_ldap_uid;
@@ -71,6 +78,9 @@ router.post('/addcomment', function(req, res){
   if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
     return res.json({err: "Please hard-reload your page (shift-f5 or equivalent)"});
 
+  if (typeof user == 'undefined' || user == 'not set') {
+    return res.json({err: "Invalid user credentials"});
+  }
   // Convert runs to int
   var runsint = runs.map(parseInt);
   // Update many
@@ -82,7 +92,7 @@ router.post('/addcomment', function(req, res){
   .catch(err => {console.log(err.message); return res.status(200).json({err: err.message});});
 });
 
-router.get('/runsfractions', function(req, res){
+router.get('/runsfractions', ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var days = q.days;
   if( typeof days === 'undefined')

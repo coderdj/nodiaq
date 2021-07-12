@@ -13,15 +13,19 @@ function TemplateInfo(req) {
   return template_info;
 }
 
-router.get('/', function(req, res) {
+function ensureAuthenticated(req, res, next) {
+  return req.isAuthenticated() ? next() : res.redirect('/login');
+}
+
+router.get('/', ensureAuthenticated, function(req, res) {
   res.render('status', TemplateInfo(req));
 });
 
-router.get('/template_info', function(req, res) {
+router.get('/template_info', ensureAuthenticated, function(req, res) {
   return res.json(TemplateInfo(req));
 });
 
-router.get('/get_detector_status', function(req, res){
+router.get('/get_detector_status', ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var detector = q.detector;
 
@@ -37,7 +41,7 @@ router.get('/get_detector_status', function(req, res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_process_status', function(req, res) {
+router.get('/get_process_status', ensureAuthenticated, function(req, res) {
 
   var q = url.parse(req.url, true).query;
   var proc = q.process;
@@ -67,7 +71,7 @@ function objectIdWithTimestamp(timestamp) {
   return constructedObjectId;
 }
 
-router.get('/get_reader_history', function(req,res){
+router.get('/get_reader_history', ensureAuthenticated, function(req,res){
 
   var q = url.parse(req.url, true).query;
   var reader = q.reader;
@@ -137,7 +141,7 @@ router.get('/get_reader_history', function(req,res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_command_queue', function(req,res){
+router.get('/get_command_queue', ensureAuthenticated, function(req,res){
   var q = url.parse(req.url, true).query;
   var limit = q.limit;
   if(typeof limit === 'undefined')
@@ -155,7 +159,7 @@ router.get('/get_command_queue', function(req,res){
   .catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_eb_status', function(req, res) {
+router.get('/get_eb_status', ensureAuthenticated, function(req, res) {
   var q = url.parse(req.url, true).query;
   var host = q.eb;
   if (typeof host == 'undefined')
@@ -173,7 +177,7 @@ router.get('/get_eb_status', function(req, res) {
   }).catch(err => {console.log(err.message); return res.json({});});
 });
 
-router.get('/get_fill', function(req, res) {
+router.get('/get_fill', ensureAuthenticated, function(req, res) {
   var url = "https://xenonnt.lngs.infn.it/slowcontrol/GetSCLastValue";
   url += "?name=XE1T.WLP_INDLEVL_H20_1.PI";
   url += "&username="+process.env.SC_API_USER;

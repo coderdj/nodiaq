@@ -15,15 +15,19 @@ function GetTemplateInfo(req) {
   return template_info;
 }
 
-router.get('/', function(req, res) {
+function ensureAuthenticated(req, res, next) {
+  return req.isAuthenticated() ? next() : res.redirect('/login');
+}
+
+router.get('/', ensureAuthenticated, function(req, res) {
   res.render('hosts', GetTemplateInfo(req));
 });
 
-router.get('/template_info', function(req, res) {
+router.get('/template_info', ensureAuthenticated, function(req, res) {
   return res.json(GetTemplateInfo(req));
 });
 
-router.get("/get_host_status", function(req, res){
+router.get("/get_host_status", ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var host = q.host;
 
@@ -36,7 +40,7 @@ router.get("/get_host_status", function(req, res){
   }).catch(err => {console.log(err.message); res.json({});});
 });
 
-router.get("/get_host_history", function(req, res){
+router.get("/get_host_history", ensureAuthenticated, function(req, res){
   var q = url.parse(req.url, true).query;
   var host = q.host;
   if (typeof host == 'undefined')
