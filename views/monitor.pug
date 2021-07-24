@@ -13,42 +13,52 @@ block content
   div.main-container(style='background-color:#eeeeee;margin:-5px;padding:15px;height:100vh')
     div
       div(style="width: 800px;resize: horizontal; overflow: hidden;")
-        object(type="image/svg+xml" id="svg_frame1" data="/images/monitor_tpc_layout.svg" style="width:100%;" class="tpcview" )
+        object(type="image/svg+xml" id="svg_frame1" data="images/monitor_tpc_layout.svg" style="width:100%;" class="tpcview" )
 
       div.noprint
           div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
+            table
+                tr
+                    td view style:
+                    td(colspan = 3)
+                        select#layout_switcher(name='view_style', onchange="switch_layout(this.value)")
+                            option(value='tpc') TPC
+                            option(value='he') High Energy Array
+                            option(value='vme') VME-crates
+                            option(value='opt') Optical Links
+                            option(value='amp') Amplifiers
+                            option(value='init') Numerical
+                            option(value='off') OFF
+                
+                tr
+                    td(title="wheter live data should be checked for") live data:
+                    td
+                        input#monitor_live_toggle(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="live" data-off="off" data-size='small' checked)
+                    td(title="channels wtih a datarate below the lower legend limit will slowly fade to white") fading:
+                    td
+                        input#monitor_fade_toggle(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="fading" data-off="off" data-size='small' checked)
+               
+                tr
+                    td datarate scale:
+                    td
+                        input#legend_auto_set(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="auto" data-off="fixed" data-size='small' checked)
+                    td color scale:
+                    td
+                        input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
+                tr(title="which pmts shall be ignored when checking for the max rate (comma seperated, no spaces)")
+                    td ignore pmt rate:
+                    td(colspan = 3)
+                        input(id="field_ignore_pmts", size="25", value = "453", onchange='update_pmts_to_ignore_for_rate()')
+                tr(title="which pmts shall be plotted below (comma seperated, no spaces)")
+                    td pmts for line plot:
+                    td(colspan = 3)
+                        input(id="field_line_plot_pmts", size="25", value = "453")
+                    
+                    
 
-            div.form-check-inline 
-              span view style: &nbsp;
-              select(name='view_style', onchange="move_all_pmt_pos(this.value)")
-                option(value='array') Array
-                option(value='array_HE') High Energy Array
-                option(value='vme') VME-crates
-                option(value='amp') Amplifiers
-                option(value='opt') Optical Links
-                option(value='off') OFF
-            div.form-check-inline 
-              label.form-check-label
-                span datarate scale: &nbsp;
-                input#legend_auto_set(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="auto" data-off="fixed" data-size='small' checked)
-            div.form-check-inline 
-              label.form-check-label
-                span color scale: &nbsp;
-                input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
-
-          div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
-            button.btn.btn-info(onclick="stop_intervals()") stop auto update &nbsp;
-            button.btn.btn-default(onclick="jump_time(-10)") -10 s &nbsp;
-            button.btn.btn-default(onclick="jump_time(-1)") -1 s &nbsp;
-            button.btn.btn-default(onclick="jump_time(1)") +1 s &nbsp;
-            button.btn.btn-default(onclick="jump_time(10)") +10 s &nbsp;
-            button.btn.btn-info(onclick="pseudo_live()") playback &nbsp;
-            button.btn.btn-info(onclick="start_live_interval()") show live data
-
-          br
-          br
-          br
-
+                
+          
+          
           // controls for live view
           div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
             table
@@ -58,7 +68,7 @@ block content
                 tr
                     td time displayed
                     td
-                        input(id="field_current_timestamp", value="-1")
+                        input(id="field_current_timestamp", value="-1", size="25")
                     td
                         button.btn.btn-default(onclick="get_TPC_data(document.getElementById('field_current_timestamp').value)") show
 
@@ -91,7 +101,7 @@ block content
                         button.btn.btn-default(onclick="get_TPC_data(document.getElementById('field_history_end').value)") show &nbsp;
                         button.btn.btn-default(onclick="usetimestamp('field_history_end')") use displayed time
                 tr
-                    td averaging time
+                    td binning time
                     td 
                         input(id="field_history_window", value="10")
                     td
@@ -105,8 +115,6 @@ block content
 
   script.
     $(document).ready(function(){
-    setTimeout(function(){
         initialize_pmts();
-    }, 300);
     });
 
