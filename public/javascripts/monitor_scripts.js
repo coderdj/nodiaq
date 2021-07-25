@@ -16,6 +16,8 @@ var update_times = {}
 var optical_links_zero = {"-1":0}
 var pmts_per_detector = {}
 var pmts_per_detector_rates = {}
+var pmts_list_per_detector_template = {}
+var pmts_list_per_detector_dynamic
 var opt_link_rates = {}
 var rates_meta
 
@@ -534,15 +536,17 @@ function build_pmt_layouts(){
     
     for(pmt of cable_map){
         // calculate also positions
-        pmt_channel = [pmt["pmt"]]
+        pmt_channel = pmt["pmt"]
         pmt_dict[pmt_channel] = pmt
         this_board = board_dict[pmt["adc"]]
         
         // count all pmts per detector to know if some did not send data
         if(pmt["detector"] in pmts_per_detector){
             pmts_per_detector[pmt["detector"]] += 1
+            pmts_list_per_detector_template[pmt["detector"]].push(pmt_channel+"")
         }else{
             pmts_per_detector[pmt["detector"]] =1
+            pmts_list_per_detector_template[pmt["detector"]] = [pmt_channel+""]
         }
         // just asigning would keep a reference and folloing pmts would use old coordinates....
         pmt["pos"] = {...default_pos}
@@ -678,6 +682,9 @@ function build_pmt_layouts(){
         svgObject1.appendChild(pmt_group);
         }
     }
+    
+    
+    
     switch_layout("tpc")
     console.log("built")
     
@@ -777,6 +784,7 @@ function updates_check_and_combine(){
     //rates_meta = {...pmts_per_detector_rates}
     
     rates_meta = {}
+    pmts_list_per_detector_dynamic = {}
     for(detector of Object.keys(pmts_per_detector)){
         rates_meta[detector] = {
             "min": Infinity,
@@ -785,9 +793,11 @@ function updates_check_and_combine(){
             "missing": pmts_per_detector[detector],
             "zero": 0
         }
+
+        pmts_list_per_detector_dynamic[detector] = [...pmts_list_per_detector_template[detector]]
         
     }
-    
+
     
     
     
@@ -821,6 +831,10 @@ function updates_check_and_combine(){
             // rates_meta[detector]["max"] = Math.max(rates_meta[detector]["max"], Math.max(...rates))
             
             for(let [channel, rate] of Object.entries(reader_data["channels"])){
+                pmts_list_per_detector_dynamic[detector].splice(
+                        pmts_list_per_detector_dynamic[detector].indexOf(channel),
+                        1
+                )
                 
                 rates_meta[detector]["missing"]--
                 
@@ -843,11 +857,13 @@ function updates_check_and_combine(){
                     svgObject1.getElementById("text_rate_"+channel).textContent = rate + " kB/s"
                 }catch(error){}
             }
+            
         }catch(error){
             console.log("could not work on reader " + reader)
         }
         
     }
+        
     if(rates_meta["tpc"]["min"] == Infinity){
         rates_meta["tpc"]["min"] = 0
     }    
@@ -864,9 +880,21 @@ function updates_check_and_combine(){
         legend_rate_max = rates_meta["tpc"]["max"]
         update_color_scheme()
     }
+    
+    color_pmts()
+    
+    
+    for(detector of Object.keys(pmts_list_per_detector_dynamic)){
+        for(channel of pmts_list_per_detector_dynamic[detector]){
+            svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
+            svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
+            svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
+        }
+    }
+    
     status_bar("coloring pmts")
     timer.push(new Date)
-    color_pmts()
+    
     
     // update optical reader datarates
     for(let [reader, rate] of Object.entries(opt_link_rates)){
