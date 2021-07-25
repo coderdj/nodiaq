@@ -62,9 +62,9 @@ layout_global = {
     "height_offset": 15
 }
 
-const default_pmt_size = 5
+const default_pmt_size = 5.5
 layout_style = {
-    "numeric":
+    "init":
     {
         "x0": 20,
         "y0": 35,
@@ -72,7 +72,8 @@ layout_style = {
         "height": 200,
         "d_width": 0,
         "d_height": 10,
-        "pmt_size": 5
+        "pmt_size": 5,
+        "pmt_height": 2.5
     },    
     "vme":
     {
@@ -80,9 +81,9 @@ layout_style = {
         "y0": 35,
         "width": 100,
         "pmt_size": 2.4,
-        "height": 55,
+        "height": 53.4,
         "d_width": 0,
-        "d_height": 10,
+        "d_height": 15,
         "order":
         {
             0:[0,0],
@@ -101,7 +102,7 @@ layout_style = {
         "y0": 35,
         "width": 56,
         "pmt_size": 3.5,
-        "height": 70,
+        "height": 67,
         "d_width": 10,
         "d_height": 10
     },
@@ -111,7 +112,7 @@ layout_style = {
         "y0": 70,
         "width": 100,
         "pmt_size": 4.1,
-        "height": 160,
+        "height": 142   ,
         "d_width": 0,
         "d_height": 10,
         "order":
@@ -226,7 +227,7 @@ function caclulate_board_base_pos(board, layout){
 
 // having a dedicated ditionary should be faster than if statements
 // TODO: turn this into const
-const pmt_tpc_scaling_factor = 1.3
+const pmt_tpc_scaling_factor = 1.3 * default_pmt_size/5
 const pmt_mv_scaling_factor = 1
 var array_pos = {
     "top": function(x, y){return([100+x*pmt_tpc_scaling_factor, 145-y*pmt_tpc_scaling_factor])},
@@ -261,11 +262,20 @@ function switch_layout(layout){
     if(!(layout in default_pos)){
         return(0)
     }
+    console.log("switching layout to " + layout)
     
     try{
+        console.log("found size")
         pmt_size = layout_style[layout]["pmt_size"]
+        if("pmt_height" in layout_style[layout]){
+            console.log("found height, transformming to ellipse")
+            pmt_size_height = layout_style[layout]["pmt_height"]
+        }else{
+            pmt_size_height = pmt_size
+        }
     }catch(error){
-        var pmt_size = default_pmt_size
+        pmt_size = default_pmt_size
+        pmt_size_height = pmt_size
     }
     
     if(pmt_size < 4){
@@ -282,7 +292,8 @@ function switch_layout(layout){
         var obj_pmt_circ = svgObject1.getElementById("pmt_circle_"+pmt_ch)
         obj_pmt_circ.setAttribute("cx", pmtpos[0]);
         obj_pmt_circ.setAttribute("cy", pmtpos[1]);
-        obj_pmt_circ.setAttribute("r", pmt_size);
+        obj_pmt_circ.setAttribute("rx", pmt_size);
+        obj_pmt_circ.setAttribute("ry", pmt_size_height);
         
         
         var obj_pmt_text = svgObject1.getElementById("pmt_text_"+pmt_ch)
@@ -616,10 +627,11 @@ function build_pmt_layouts(){
         {
         var pmt_group = document.createElementNS(svgns, 'g');
         
-        var pmt_circle = document.createElementNS(svgns, 'circle');
+        var pmt_circle = document.createElementNS(svgns, 'ellipse');
         pmt_circle.setAttributeNS(null, 'cx', pmt["pos"]["init"][0]);
         pmt_circle.setAttributeNS(null, 'cy', pmt["pos"]["init"][1]);
-        pmt_circle.setAttributeNS(null, 'r', 5);
+        pmt_circle.setAttributeNS(null, 'rx', 5);
+        pmt_circle.setAttributeNS(null, 'ry', 5);
         pmt_circle.setAttributeNS(null, 'class', "pmt");
         pmt_circle.setAttributeNS(null, "id", "pmt_circle_"+pmt_channel);
         
