@@ -94,7 +94,8 @@ layout_style = {
         "height": 200,
         "d_width": 0,
         "d_height": 10,
-        "pmt_size": 5
+        "pmt_size": 5,
+        "pmt_height": 2.5
     },    
     "vme":
     {
@@ -371,9 +372,9 @@ function switch_layout(layout){
     if(!(layout in default_pos)){
         return(0)
     }
+    console.log("switching layout to " + layout)
     
     try{
-        console.log("found size")
         pmt_size = layout_style[layout]["pmt_size"]
         if("pmt_height" in layout_style[layout]){
             pmt_size_height = layout_style[layout]["pmt_height"]
@@ -867,6 +868,7 @@ function build_pmt_layouts(){
         
     }
     
+    switch_layout("tpc")
     console.log("built")
     
     // setting up some global variables from pmt data
@@ -986,8 +988,6 @@ function updates_check_and_combine(){
         pmts_list_per_detector_dynamic[detector] = [...pmts_list_per_detector_template[detector]]
         
     }
-
-    
     
     
     svgObject0.getElementById("str_reader_time_0").textContent = ""
