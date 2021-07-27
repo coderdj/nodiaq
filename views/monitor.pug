@@ -28,6 +28,7 @@ block content
                             option(value='opt') Optical Links
                             option(value='amp') Amplifiers
                             option(value='init') Numerical
+                            option(value='3d') 3D
                             option(value='off') OFF
                 
                 tr
@@ -45,6 +46,10 @@ block content
                     td color scale:
                     td
                         input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
+                    td pmt numbers:
+                    td
+                        input#monitior_pmt_text_view_switch(onchange='switch_pmt_channel_text_visibility(this.value)', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="vissible" data-off="hidden" data-size='small' checked)
+                        
                 tr(title="which pmts shall be ignored when checking for the max rate (comma seperated, no spaces)")
                     td ignore pmt rate:
                     td(colspan = 3)
@@ -70,13 +75,15 @@ block content
                     td
                         input(id="field_current_timestamp", value="-1", size="25")
                     td
-                        button.btn.btn-default(onclick="get_TPC_data(document.getElementById('field_current_timestamp').value)") show
+                        button.btn.btn-default(onclick="force_show_timestamp()", onchange="force_show_timestamp()" ) show
 
                 tr
+                    td &nbsp;
                     td(colspan="3")
-                        button.btn.btn-default(onclick="max_legend_set()") set max datarate &nbsp;
-                        button.btn.btn-default(onclick="min_legend_set()") set min datarate &nbsp;
-                        button.btn.btn-default(onclick='saveAsPng(svgObject1)') save as .png
+                        button.btn.btn-default(onclick="jump_in_time(-10)") -10 &nbsp;
+                        button.btn.btn-default(onclick="jump_in_time(-1)") -1 &nbsp;
+                        button.btn.btn-default(onclick='jump_in_time(1)') +1 &nbsp;
+                        button.btn.btn-default(onclick='jump_in_time(10)') +10 &nbsp;
 
           br
           br

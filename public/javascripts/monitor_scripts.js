@@ -1,5 +1,20 @@
+// global settings ()change those if there are achanges to the daq
 
-// initialize variables
+const readers_per_detector = {
+    "tpc": ["reader0_reader_0", "reader1_reader_0", "reader2_reader_0"],
+    "muon_veto":  ["reader5_reader_0"],
+    "neutron_veto":  ["reader6_reader_0"]
+    
+}
+
+var show_mv = false
+
+
+//var default_view = "tpc"
+var default_view = "3d"
+
+
+// initialize global variables
 var cable_map = false
 var board_map = false
 var pmt_dict_lookup = {}
@@ -10,14 +25,22 @@ var svgObject1 = false
 const svgns = "http://www.w3.org/2000/svg"
 var links_set = new Set()
 var amp_lookup = {}
-var reader_list = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
+var reader_list = [...readers_per_detector["tpc"]];
 var pmt_rates = {}
 var update_times = {}
 var optical_links_zero = {"-1":0}
 var pmts_per_detector = {}
 var pmts_per_detector_rates = {}
+var pmts_list_per_detector_template = {}
+var pmts_list_per_detector_dynamic
 var opt_link_rates = {}
 var rates_meta
+
+var z_levels_per_detector = {
+    "muon_veto":new Set(),
+    "neutron_veto": new Set()
+}
+
 
 var timer
 var timer_ini
@@ -49,6 +72,7 @@ const default_pos = {
     "vme":  [-20, -20],
     "amp":  [-20, -20],
     "opt":  [-20, -20],
+    "3d":  [-20, -20],
     "off":  [-20, -20]
 }
 
@@ -60,9 +84,9 @@ layout_global = {
     "height_offset": 15
 }
 
-const default_pmt_size = 5
+const default_pmt_size = 5.5
 layout_style = {
-    "numeric":
+    "init":
     {
         "x0": 20,
         "y0": 35,
@@ -78,9 +102,9 @@ layout_style = {
         "y0": 35,
         "width": 100,
         "pmt_size": 2.4,
-        "height": 55,
+        "height": 53.4,
         "d_width": 0,
-        "d_height": 10,
+        "d_height": 15,
         "order":
         {
             0:[0,0],
@@ -99,7 +123,7 @@ layout_style = {
         "y0": 35,
         "width": 56,
         "pmt_size": 3.5,
-        "height": 70,
+        "height": 67,
         "d_width": 10,
         "d_height": 10
     },
@@ -109,7 +133,7 @@ layout_style = {
         "y0": 70,
         "width": 100,
         "pmt_size": 4.1,
-        "height": 160,
+        "height": 142   ,
         "d_width": 0,
         "d_height": 10,
         "order":
@@ -119,7 +143,12 @@ layout_style = {
             2:[1,0],
             3:[0,0]
         }
-    }    
+    },
+    "3d":
+    {
+        "pmt_size": 6,
+        "pmt_height": 3
+    }
 }
 
 const dict_color_scheme = {
@@ -129,13 +158,52 @@ const dict_color_scheme = {
         950: [211, 158, 0],
         1000: [189, 33, 48]
 }
-
 var color_threshholds = Object.keys(dict_color_scheme)
+
+var lut_reader_to_detecor = {}
+for(let [detector, readers] of Object.entries(readers_per_detector)){
+    for(reader of readers){
+        lut_reader_to_detecor[reader] = detector
+    }
+}
 
 
 
 function make_rgb_string_from_list(list){
     return("rgb("+list[0].toFixed(3)+","+list[1].toFixed(3)+","+list[2].toFixed(3)+")")
+    
+}
+
+
+
+function switch_pmt_channel_text_visibility(desired_state = "toggle"){
+    // false = none
+    // true = block
+    // else = toggle
+    
+    if(desired_state === true){
+        desired_state = "block"
+    } else if(desired_state === false){
+        desired_state = "none"
+    }
+    
+    text_fields = svgObject1.getElementsByClassName("pmt_text")
+    current_state = text_fields[0].style.display
+    
+    
+    
+    if(current_state != desired_state){
+        if(current_state == "none"){
+            new_state = "block"
+        }else{
+            new_state = "none"
+        }
+        
+        for(el of text_fields){
+            el.style.display = new_state
+        }
+        
+    }
     
 }
 
@@ -223,35 +291,79 @@ function caclulate_board_base_pos(board, layout){
 
 
 // having a dedicated ditionary should be faster than if statements
-// TODO: turn this into const
-const pmt_tpc_scaling_factor = 1.3
+const pmt_tpc_scaling_factor = 1.3 * default_pmt_size/5
 const pmt_mv_scaling_factor = 1
-var array_pos = {
-    "top": function(x, y){return([100+x*pmt_tpc_scaling_factor, 145-y*pmt_tpc_scaling_factor])},
-    "bottom": function(x, y){return([300+x*pmt_tpc_scaling_factor, 145-y*pmt_tpc_scaling_factor])},
-    "he": function(x, y){return([200+x*pmt_tpc_scaling_factor, 145-y*pmt_tpc_scaling_factor])}
+const array_pos = {
+    "top": function(coords){return([100+coords[0]*pmt_tpc_scaling_factor, 145-coords[1]*pmt_tpc_scaling_factor])},
+    "bottom": function(coords){return([300+coords[0]*pmt_tpc_scaling_factor, 145-coords[1]*pmt_tpc_scaling_factor])},
+    "he": function(coords){return([200+coords[0]*pmt_tpc_scaling_factor, 145-coords[1]*pmt_tpc_scaling_factor])}
 }
-
 
 // functions that translates the pmt coordinates into svg coorinates
 function tpc_pos(array, coords){
     try{
-        x = coords["pmt"][0]
-        y = coords["pmt"][1]
+        return(array_pos[array](coords))
     } catch(error) {
-        try{
-            x = coords[0]
-            y = coords[1]
-        } catch(error) {
-            return(-1)
-        }
-    }
-    try{
-        return(array_pos[array](x,y))
-    } catch(error) {
-        return(-1)
+        return(default_pos["tpc"])
     }
 }
+
+
+
+function calc_3d_pos(input_coords, calc){
+    var coords_3d = []
+    var scaling_tpc_x = 1
+    var scaling_tpc_y = 1
+    var scaling_tpc_z = 1
+    
+    var scale_mv_x = .2
+    var scale_mv_y = .2
+    var scale_mv_z = .2
+    
+    var y_offset = 0
+    
+    var scaling_x = 1.5
+    var scaling_y = .75
+    var scaling_z = .75
+    
+    try{
+        switch(calc){
+            case "top":
+                coords_3d = [
+                    input_coords[0] * scaling_tpc_x,
+                    input_coords[1] * scaling_tpc_y,
+                    140 * scaling_tpc_z,
+                ]
+                break
+            case "bottom":
+                coords_3d = [
+                    input_coords[0] * scaling_tpc_x,
+                    input_coords[1] * scaling_tpc_y,
+                    0 * scaling_tpc_z,
+                ]
+                break
+            case "muon_veto":
+                coords_3d = [
+                    input_coords[0] * Math.sin(input_coords[1]) * scale_mv_x,
+                    input_coords[0] * Math.cos(input_coords[1]) * scale_mv_y,
+                    input_coords[2] * scale_mv_z,
+                ]
+                y_offset = -60
+                break
+        }
+
+        coords_2d = [
+            200 + coords_3d[0]*scaling_x,
+            200 - coords_3d[1]*scaling_y - coords_3d[2]*scaling_z + y_offset
+        ]
+        return(coords_2d)
+    }catch(error){
+        return(default_pos["3d"])
+    }
+    
+}
+
+
 
 
 
@@ -261,16 +373,24 @@ function switch_layout(layout){
     }
     
     try{
+        console.log("found size")
         pmt_size = layout_style[layout]["pmt_size"]
+        if("pmt_height" in layout_style[layout]){
+            pmt_size_height = layout_style[layout]["pmt_height"]
+        }else{
+            pmt_size_height = pmt_size
+        }
     }catch(error){
-        var pmt_size = default_pmt_size
+        pmt_size = default_pmt_size
+        pmt_size_height = pmt_size
     }
     
     if(pmt_size < 4){
         var font_size = 4*pmt_size/5
-    }else{
+    } else {
         var font_size = 4
     }
+    
     // move pmts around
     for(pmt_ch in pmt_dict){
         pmtpos = pmt_dict[pmt_ch]["pos"][layout]
@@ -280,7 +400,8 @@ function switch_layout(layout){
         var obj_pmt_circ = svgObject1.getElementById("pmt_circle_"+pmt_ch)
         obj_pmt_circ.setAttribute("cx", pmtpos[0]);
         obj_pmt_circ.setAttribute("cy", pmtpos[1]);
-        obj_pmt_circ.setAttribute("r", pmt_size);
+        obj_pmt_circ.setAttribute("rx", pmt_size);
+        obj_pmt_circ.setAttribute("ry", pmt_size_height);
         
         
         var obj_pmt_text = svgObject1.getElementById("pmt_text_"+pmt_ch)
@@ -302,6 +423,14 @@ function switch_layout(layout){
         decoelements_show[i].style.visibility = "visible"
     }
     
+    
+    reader_list = [...readers_per_detector["tpc"]];
+    
+    if(show_mv == true){
+        if(layout == "3d"){
+            reader_list.push(...readers_per_detector["muon_veto"])
+        }
+    }
     
     return(1)
 }
@@ -534,39 +663,89 @@ function build_pmt_layouts(){
     
     for(pmt of cable_map){
         // calculate also positions
-        pmt_channel = [pmt["pmt"]]
+        pmt_channel = pmt["pmt"]
         pmt_dict[pmt_channel] = pmt
         this_board = board_dict[pmt["adc"]]
+        
+        
+        // start the pmt svg group to pu all the elemets inside it dynamically
+        var pmt_group = document.createElementNS(svgns, 'g');
+        
+        
         
         // count all pmts per detector to know if some did not send data
         if(pmt["detector"] in pmts_per_detector){
             pmts_per_detector[pmt["detector"]] += 1
+            pmts_list_per_detector_template[pmt["detector"]].push(pmt_channel+"")
         }else{
             pmts_per_detector[pmt["detector"]] =1
+            pmts_list_per_detector_template[pmt["detector"]] = [pmt_channel+""]
         }
         // just asigning would keep a reference and folloing pmts would use old coordinates....
         pmt["pos"] = {...default_pos}
         
-
         // TPC low-energy channels
         if(pmt_channel <= 493){
+            try{
+                var tmp_x = pmt["coords"]["pmt"][0]
+                var tmp_y = pmt["coords"]["pmt"][1]
+                pmt["coords"] = [tmp_x, tmp_y]
+            } catch(error) {
+            }
+    
             pmt["pos"]["tpc"] = tpc_pos(pmt["array"], pmt["coords"])
             
             //pos["init"] = pos["tpc"]
             pmt["pos"]["init"] = [10 + (pmt_channel%38*10), 40 + Math.floor(pmt_channel/38)*10]
-
+            pmt["pos"]["3d"] = calc_3d_pos(pmt["coords"], pmt["array"])
+            
+            // AMP only for TPC channels
+            // otherwise the high/low energy channels will be on top of each other
+            pmt["pos"]["amp"] = [
+                    400 -
+                    layout_style["amp"]["width"]    * (pmt["amp_crate"])-
+                    2 * layout_style["amp"]["pmt_size"] * (pmt["amp_slot"])-
+                    layout_style["amp"]["pmt_size"]
+                ,
+                    layout_style["amp"]["y0"] +
+                    layout_style["amp"]["d_height"] +
+                    2 * layout_style["amp"]["pmt_size"] * pmt["amp_channel"]+
+                    layout_style["amp"]["pmt_size"]
+                    
+            ]
+                
+                
+            
+            
+            
         // TPC high-energy channels
         }else if (pmt_channel <= 752){
             // use coordinates from top in any case
             pmt["coords"] = pmt_dict_lookup[pmt_channel-500]["coords"]
+            try{
+                var tmp_x = pmt["coords"]["pmt"][0]
+                var tmp_y = pmt["coords"]["pmt"][1]
+                pmt["coords"] = [tmp_x, tmp_y]
+            } catch(error) {
+            }
+    
             pmt["pos"]["he"] = tpc_pos("he", pmt["coords"])
-            //pos["init"] = pos["he"]
             pmt["pos"]["init"] = [10 + (pmt_channel%38*10), 40 + Math.floor(pmt_channel/38)*10]
+            
+            
 
         } else if (pmt_channel <= 999){
             // acq-monitors etc
+        } else if (pmt_channel <= 1999){
+            // Muon Veto
+            if(show_mv == true){
+                pmt["pos"]["3d"] = calc_3d_pos(pmt["coords"], "muon_veto")
+                try{
+                    z_levels_per_detector["muon_veto"].add(pmt["coords"][2])
+                } catch(error){
+                }
+            }
         }
-        
         
         // calculate positions for other views
         try{
@@ -584,25 +763,6 @@ function build_pmt_layouts(){
         } catch(error){
             pmt["opt"] = "-1"
         }
-        try{
-            // AMP
-            if("amp_crate" in pmt){
-                pmt["pos"]["amp"] = [
-                        400 -
-                        layout_style["amp"]["width"]    * (pmt["amp_crate"])-
-                        2 * layout_style["amp"]["pmt_size"] * (pmt["amp_slot"])-
-                        layout_style["amp"]["pmt_size"]
-                    ,
-                        layout_style["amp"]["y0"] +
-                        layout_style["amp"]["d_height"] +
-                        2 * layout_style["amp"]["pmt_size"] * pmt["amp_channel"]+
-                        layout_style["amp"]["pmt_size"]
-                        
-                ]
-            }
-        } catch(error){
-            
-        }
         
             
         
@@ -610,12 +770,12 @@ function build_pmt_layouts(){
         
         // creating all the svg objects
         {
-        var pmt_group = document.createElementNS(svgns, 'g');
         
-        var pmt_circle = document.createElementNS(svgns, 'circle');
+        var pmt_circle = document.createElementNS(svgns, 'ellipse');
         pmt_circle.setAttributeNS(null, 'cx', pmt["pos"]["init"][0]);
         pmt_circle.setAttributeNS(null, 'cy', pmt["pos"]["init"][1]);
-        pmt_circle.setAttributeNS(null, 'r', 5);
+        pmt_circle.setAttributeNS(null, 'rx', 5);
+        pmt_circle.setAttributeNS(null, 'ry', 5);
         pmt_circle.setAttributeNS(null, 'class', "pmt");
         pmt_circle.setAttributeNS(null, "id", "pmt_circle_"+pmt_channel);
         
@@ -631,6 +791,7 @@ function build_pmt_layouts(){
         pmt_channel_text.setAttributeNS(null, 'y', 285);
         pmt_channel_text.textContent = "PMT "+pmt_channel;
         pmt_channel_text.setAttributeNS(null, "class", "text_info_large hidden");
+        
         
         var pmt_rate_text = document.createElementNS(svgns, 'text');
         pmt_rate_text.setAttributeNS(null, 'x', 5);
@@ -663,7 +824,7 @@ function build_pmt_layouts(){
         pmt_info_text4.setAttributeNS(null, 'y', 302);
         pmt_info_text4.textContent = "AMP: " + pmt["amp_crate"] + "." + pmt["amp_slot"] + "." + pmt["amp_channel"];
         pmt_info_text4.setAttributeNS(null, "class", "text_info_small hidden");
-        
+            
         
         
         pmt_group.appendChild(pmt_circle);
@@ -678,7 +839,34 @@ function build_pmt_layouts(){
         svgObject1.appendChild(pmt_group);
         }
     }
-    switch_layout("tpc")
+    
+    
+    
+    { // building more decorations
+        if(show_mv == true){
+            for(z_level of z_levels_per_detector["muon_veto"]){
+                console.log(z_level)
+                var xy_pos_ring = calc_3d_pos([0,0, z_level], "muon_veto")
+
+                
+                var mv_level_ellipse = document.createElementNS(svgns, 'ellipse');
+                mv_level_ellipse.setAttributeNS(null, 'cx', xy_pos_ring[0]);
+                mv_level_ellipse.setAttributeNS(null, 'cy', xy_pos_ring[1]);
+                mv_level_ellipse.setAttributeNS(null, 'rx', 450*.3);
+                mv_level_ellipse.setAttributeNS(null, 'ry', 450/2*.3);
+                mv_level_ellipse.setAttributeNS(null, 'class', "deco deco_3d");
+                mv_level_ellipse.style.fill = "none"
+                mv_level_ellipse.style.stroke = "grey"
+                mv_level_ellipse.style.strokeOpacity = ".25"
+                
+                
+            
+                svgObject1.appendChild(mv_level_ellipse);
+            }
+        }
+        
+    }
+    
     console.log("built")
     
     // setting up some global variables from pmt data
@@ -700,7 +888,7 @@ function build_pmt_layouts(){
     update_pmts_to_ignore_for_rate()
     
     
-    switch_layout("tpc")
+    switch_layout(default_view)
     timer_ini.push(new Date) // end [5]
     
     timer_ini_string = "everythng setup: db: "+(timer_ini[1]-timer_ini[0]).toFixed(0)+" ms, deco: "+(timer_ini[2]-timer_ini[1]).toFixed(0)+"ms, pmts: "+(timer_ini[3]-timer_ini[2]).toFixed(0)+"ms, all: "+(timer_ini[3]-timer_ini[0]).toFixed(0)+" ms"
@@ -741,17 +929,27 @@ function updates_wrapper(){
 
 
 
-function updates_obtain_all(){
+function updates_obtain_all(time = false){
     
     status_bar("loading new data")
     pmt_rates = {}
     
     var missing = reader_list.length
     
+    if(time == false){
+        pre_reader_link = "monitor/update/"
+        post_reader_link = ""
+    }else{
+        pre_reader_link = "monitor/update_timestamp/"
+        post_reader_link = "/"+time.toISOString()
+    }
+    
+    
+    
     for(reader of reader_list){
         pmt_rates[reader] = false;
         
-        $.getJSON("monitor/update/"+reader,
+        $.getJSON(pre_reader_link+reader+post_reader_link,
             function(data){
                 missing--
                 pmt_rates[data[0]["host"]] = data[0]
@@ -762,8 +960,6 @@ function updates_obtain_all(){
             }
         )
     }
-    
-    
 }
 
 function updates_check_and_combine(){
@@ -777,6 +973,7 @@ function updates_check_and_combine(){
     //rates_meta = {...pmts_per_detector_rates}
     
     rates_meta = {}
+    pmts_list_per_detector_dynamic = {}
     for(detector of Object.keys(pmts_per_detector)){
         rates_meta[detector] = {
             "min": Infinity,
@@ -785,17 +982,24 @@ function updates_check_and_combine(){
             "missing": pmts_per_detector[detector],
             "zero": 0
         }
+
+        pmts_list_per_detector_dynamic[detector] = [...pmts_list_per_detector_template[detector]]
         
     }
+
     
     
     
-    
+    svgObject0.getElementById("str_reader_time_0").textContent = ""
+    svgObject0.getElementById("str_reader_time_1").textContent = ""
+    svgObject0.getElementById("str_reader_time_2").textContent = ""
+    svgObject0.getElementById("str_reader_time_3").textContent = ""
     
     for(i in reader_list){
         reader = reader_list[i]
         
         reader_data = pmt_rates[reader]
+        
         try{
             svgObject0.getElementById("str_reader_time_"+i).textContent = reader + ": " + reader_data["time"] + " (UTC)"
             $("#field_current_timestamp").val(reader_data["time"])
@@ -811,7 +1015,7 @@ function updates_check_and_combine(){
             
             
             // same readers  should readout the same detctor so speed up the sorting
-            var detector = pmt_dict[Object.keys(reader_data["channels"])[0]]["detector"]
+            var detector = lut_reader_to_detecor[reader]
             status_bar("working on " + detector)
             
             rates = Object.values(reader_data["channels"])
@@ -821,6 +1025,10 @@ function updates_check_and_combine(){
             // rates_meta[detector]["max"] = Math.max(rates_meta[detector]["max"], Math.max(...rates))
             
             for(let [channel, rate] of Object.entries(reader_data["channels"])){
+                pmts_list_per_detector_dynamic[detector].splice(
+                        pmts_list_per_detector_dynamic[detector].indexOf(channel),
+                        1
+                )
                 
                 rates_meta[detector]["missing"]--
                 
@@ -843,11 +1051,13 @@ function updates_check_and_combine(){
                     svgObject1.getElementById("text_rate_"+channel).textContent = rate + " kB/s"
                 }catch(error){}
             }
+            
         }catch(error){
             console.log("could not work on reader " + reader)
         }
         
     }
+        
     if(rates_meta["tpc"]["min"] == Infinity){
         rates_meta["tpc"]["min"] = 0
     }    
@@ -864,9 +1074,21 @@ function updates_check_and_combine(){
         legend_rate_max = rates_meta["tpc"]["max"]
         update_color_scheme()
     }
+    
+    color_pmts()
+    
+    
+    for(detector of Object.keys(pmts_list_per_detector_dynamic)){
+        for(channel of pmts_list_per_detector_dynamic[detector]){
+            svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
+            svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
+            svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
+        }
+    }
+    
     status_bar("coloring pmts")
     timer.push(new Date)
-    color_pmts()
+    
     
     // update optical reader datarates
     for(let [reader, rate] of Object.entries(opt_link_rates)){
@@ -1013,4 +1235,21 @@ function change_toggle(id, desired_state){
     if($("#"+id).is(':checked') != desired_state){
         $("#"+id).parent().click()
     }
+}
+
+function force_show_timestamp(){
+    change_toggle("monitor_live_toggle", false)
+    updates_obtain_all(new Date($("#field_current_timestamp").val()))
+}
+    
+
+
+function jump_in_time(dt = 0){
+    change_toggle("monitor_live_toggle", false)
+    var time = new Date($("#field_current_timestamp").val())
+        time.setTime(time.getTime() + dt*1000)
+    $("#field_current_timestamp").val(time.toISOString())
+    
+    // load data for newly calculated timestring here.....
+    updates_obtain_all(time)
 }

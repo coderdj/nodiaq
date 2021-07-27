@@ -267,4 +267,30 @@ router.get('/update/:reader', ensureAuthenticated,function(req,res){
 });
 
 
+router.get('/update_timestamp/:reader/:time', ensureAuthenticated,function(req,res){
+    var time_min = new Date(req.params.time)
+    var time_max = new Date(req.params.time)
+    time_min.setTime(time_min.getTime() - 500)
+    time_max.setTime(time_max.getTime() + 500)
+    // sometimes the readers data is off by one milisecond :(
+    
+    
+    var query = {
+        host: req.params.reader,
+        // time: new Date(req.params.time)};
+        time: {
+            $gte: time_min,
+            $lte: time_max
+        }
+    }
+    var opts = {limit: 1};
+    req.db.get('status').find(query,opts)
+    .then(docs => res.json(docs))
+    .catch(err => {console.log(err.message); return res.json(query);});
+  
+    
+});
+
+
+
 module.exports = router;
