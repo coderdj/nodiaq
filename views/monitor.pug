@@ -119,12 +119,13 @@ block content
                         input#monitor_trend_follow(onchange='trendview_plot_update_and_follow()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="plot and auto update" data-off="stop updating" data-size='small' checked)
           
           
-          figure(class="highcharts-figure")
-            div#highcharts-figure(style="width:800px;resize: horizontal; overflow: hidden;")
+          div(style="height:450px;")
             
-          //  object(type="image/svg+xml" id="svg_frame2" data="/images/monitor_history.svg" style="width:100%;" class="historyview" )
-
-          canvas#canvas(width="800", height="400" style='visibility:hidden;height:0px;')
+            figure(class="highcharts-figure")
+              div#highcharts-figure(style="width:800px; resize: horizontal; overflow: hidden;")
+            
+          
+          
 
   script.
     $(document).ready(function(){
