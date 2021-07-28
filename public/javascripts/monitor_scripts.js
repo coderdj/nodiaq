@@ -8,10 +8,10 @@ const readers_per_detector = {
 }
 
 var show_mv = false
-
+// currently disables as coordinates are strange....
 
 //var default_view = "tpc"
-var default_view = "3d"
+var default_view = "tpc"
 
 
 // initialize global variables
@@ -35,6 +35,13 @@ var pmts_list_per_detector_template = {}
 var pmts_list_per_detector_dynamic
 var opt_link_rates = {}
 var rates_meta
+
+var trendview_data_temp
+var trendview_data = false
+var trendview_pmts2follow = []
+var trendview_interval = false
+
+var playback_interval = false
 
 var z_levels_per_detector = {
     "muon_veto":new Set(),
@@ -94,8 +101,7 @@ layout_style = {
         "height": 200,
         "d_width": 0,
         "d_height": 10,
-        "pmt_size": 5,
-        "pmt_height": 2.5
+        "pmt_size": 5
     },    
     "vme":
     {
@@ -372,9 +378,9 @@ function switch_layout(layout){
     if(!(layout in default_pos)){
         return(0)
     }
-    console.log("switching layout to " + layout)
     
     try{
+        console.log("found size")
         pmt_size = layout_style[layout]["pmt_size"]
         if("pmt_height" in layout_style[layout]){
             pmt_size_height = layout_style[layout]["pmt_height"]
@@ -395,8 +401,6 @@ function switch_layout(layout){
     // move pmts around
     for(pmt_ch in pmt_dict){
         pmtpos = pmt_dict[pmt_ch]["pos"][layout]
-        
-        
         
         var obj_pmt_circ = svgObject1.getElementById("pmt_circle_"+pmt_ch)
         obj_pmt_circ.setAttribute("cx", pmtpos[0]);
@@ -452,6 +456,7 @@ function initialize_pmts(){
     
     
     
+    
     console.log("loading board_map")
     $.getJSON("monitor/board_map.json",
         function(data){
@@ -489,10 +494,12 @@ function build_pmt_layouts(){
     timer_ini.push(new Date)
     console.log("both maps exisiting, starting to build map....")
     
-    
+
     svgObject0 = document.getElementById('svg_frame1').contentDocument;
     svgObject1 = document.getElementById('svg_frame1').contentDocument.documentElement;
 
+    status_bar("if this message is visible reload the page", color = "red")
+    
 
     //add listerns to svg elements
     svgObject0.getElementById("str_legend_100").addEventListener("click", function(){legend_set(which = "max")});
@@ -646,6 +653,31 @@ function build_pmt_layouts(){
     }    
     }
     
+    // 3d 
+    
+    var tpc_header = document.createElementNS(svgns, 'text');
+    tpc_header.setAttributeNS(null, 'x', 200);
+    tpc_header.setAttributeNS(null, 'y', 30);
+    tpc_header.textContent = "TPC";
+    tpc_header.setAttributeNS(null, "class", "deco deco_3d infotext");
+    svgObject1.appendChild(tpc_header)
+    
+    var vetos_header = document.createElementNS(svgns, 'text');
+    vetos_header.setAttributeNS(null, 'x', 50);
+    vetos_header.setAttributeNS(null, 'y', 30);
+    vetos_header.textContent = "Muon-Veto";
+    vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
+    svgObject1.appendChild(vetos_header)
+    
+    var vetos_header = document.createElementNS(svgns, 'text');
+    vetos_header.setAttributeNS(null, 'x', 350);
+    vetos_header.setAttributeNS(null, 'y', 30);
+    vetos_header.textContent = "Neutron-Veto";
+    vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
+    svgObject1.appendChild(vetos_header)
+    
+    
+    
     
     
     } // END of decorations 
@@ -667,6 +699,8 @@ function build_pmt_layouts(){
         pmt_channel = pmt["pmt"]
         pmt_dict[pmt_channel] = pmt
         this_board = board_dict[pmt["adc"]]
+        
+        pmt["reader"] = this_board["host"] + "_reader_0"
         
         
         // start the pmt svg group to pu all the elemets inside it dynamically
@@ -846,7 +880,6 @@ function build_pmt_layouts(){
     { // building more decorations
         if(show_mv == true){
             for(z_level of z_levels_per_detector["muon_veto"]){
-                console.log(z_level)
                 var xy_pos_ring = calc_3d_pos([0,0, z_level], "muon_veto")
 
                 
@@ -868,7 +901,6 @@ function build_pmt_layouts(){
         
     }
     
-    switch_layout("tpc")
     console.log("built")
     
     // setting up some global variables from pmt data
@@ -886,19 +918,23 @@ function build_pmt_layouts(){
     
     
     // set default values to text fields
-    $("#field_current_timestamp").val((new Date).toISOString())
+    var now = new Date
+    now.setMilliseconds(0)
+    
+    $("#field_history_start").val(now.toISOString())
+    $("#field_current_timestamp").val(now.toISOString())
+    $("#field_history_end").val(now.toISOString())
+    
     update_pmts_to_ignore_for_rate()
     
     
     switch_layout(default_view)
     timer_ini.push(new Date) // end [5]
     
-    timer_ini_string = "everythng setup: db: "+(timer_ini[1]-timer_ini[0]).toFixed(0)+" ms, deco: "+(timer_ini[2]-timer_ini[1]).toFixed(0)+"ms, pmts: "+(timer_ini[3]-timer_ini[2]).toFixed(0)+"ms, all: "+(timer_ini[3]-timer_ini[0]).toFixed(0)+" ms"
+    timer_ini_string = "everything setup: db: "+(timer_ini[1]-timer_ini[0]).toFixed(0)+" ms, deco: "+(timer_ini[2]-timer_ini[1]).toFixed(0)+"ms, pmts: "+(timer_ini[3]-timer_ini[2]).toFixed(0)+"ms, all: "+(timer_ini[3]-timer_ini[0]).toFixed(0)+" ms"
     
-    console.log(timer_ini_string)
     status_bar(timer_ini_string, color = "green")
-    
-    console.log(timer_ini)
+    console.log(timer_ini_string)
     
     console.log("load data the first time")
     window.setInterval(
@@ -915,13 +951,13 @@ function updates_wrapper(){
     var tpc_icon_title  = $("#tpc_status_icon").attr("title")
     var tpc_live_toggle = $("#monitor_live_toggle").is(':checked')
     
+    if(tpc_live_toggle == false){
+        status_bar("")
+        return(0)
+    }
     if(tpc_icon_title != "TPC is RUNNING"){
         // do not load if tpc is not running
         status_bar(tpc_icon_title + " ("+(new Date)+")", color = "red")
-        return(0)
-    }
-    if(tpc_live_toggle == false){
-        status_bar("")
         return(0)
     }
     timer = [new Date]
@@ -954,7 +990,9 @@ function updates_obtain_all(time = false){
         $.getJSON(pre_reader_link+reader+post_reader_link,
             function(data){
                 missing--
-                pmt_rates[data[0]["host"]] = data[0]
+                try{
+                    pmt_rates[data[0]["host"]] = data[0]
+                }catch(error){}
                 if(missing == 0){
                     timer.push(new Date)
                     updates_check_and_combine()
@@ -988,6 +1026,8 @@ function updates_check_and_combine(){
         pmts_list_per_detector_dynamic[detector] = [...pmts_list_per_detector_template[detector]]
         
     }
+
+    
     
     
     svgObject0.getElementById("str_reader_time_0").textContent = ""
@@ -999,7 +1039,7 @@ function updates_check_and_combine(){
         reader = reader_list[i]
         
         reader_data = pmt_rates[reader]
-        
+        var time_now = new Date(reader_data["time"])
         try{
             svgObject0.getElementById("str_reader_time_"+i).textContent = reader + ": " + reader_data["time"] + " (UTC)"
             $("#field_current_timestamp").val(reader_data["time"])
@@ -1029,7 +1069,15 @@ function updates_check_and_combine(){
                         pmts_list_per_detector_dynamic[detector].indexOf(channel),
                         1
                 )
-                
+                try{
+                    if(!$("#monitor_trend_follow").is(":checked") && trendview_pmts2follow.includes(channel)){
+                        trendview_data[channel].push([
+                                    time_now.getTime(),
+                                    rate
+                                ]
+                        )
+                    }
+                }catch(error){}
                 rates_meta[detector]["missing"]--
                 
                 if(rate == 0){
@@ -1103,6 +1151,11 @@ function updates_check_and_combine(){
             
         }
     }
+    
+    if(trendview_pmts2follow.length > 0){
+        trendview_plot_update()
+    }
+    
     
     timer.push(new Date)
     status_bar("")
@@ -1237,9 +1290,9 @@ function change_toggle(id, desired_state){
     }
 }
 
-function force_show_timestamp(){
+function force_show_timestamp(field = "field_current_timestamp"){
     change_toggle("monitor_live_toggle", false)
-    updates_obtain_all(new Date($("#field_current_timestamp").val()))
+    updates_obtain_all(new Date($("#"+field).val()))
 }
     
 
@@ -1252,4 +1305,143 @@ function jump_in_time(dt = 0){
     
     // load data for newly calculated timestring here.....
     updates_obtain_all(time)
+    return(time)
+}
+
+
+function playback_wrapper(state = "auto"){
+    if(state == "auto"){
+        state = !$("#monitior_playback").is(':checked')
+    }
+    if(state == true && playback_interval == false){
+        playback_interval = window.setInterval(
+            function(){
+                playback()
+            },
+            500
+        )
+    } else if(state == false){
+        clearInterval(playback_interval)
+        playback_interval = false
+        change_toggle("monitior_playback", true)
+    } else {
+        
+    }
+}
+
+function playback(){
+    var date_now = new Date()
+    var date_jump = jump_in_time(1)
+    if(date_jump >= date_now){
+        playback_wrapper(false)
+        change_toggle("monitor_live_toggle", true)
+        status_bar("reached present", "green")
+        // turn of playback if reached present and switch to live view
+    }
+}
+
+
+function usetimestamp(field){
+    $("#"+field).val($("#field_current_timestamp").val())
+}
+
+
+function trendview_get_data_full(){
+    var time_start = (new Date($("#field_history_start").val())).toISOString()
+    var time_end = (new Date($("#field_history_end").val())).toISOString()
+    trendview_pmts2follow = $("#field_line_plot_pmts").val().split(",")
+    
+    readers_to_check = new Set()
+    for(pmt of trendview_pmts2follow){
+            readers_to_check.add(pmt_dict[pmt]["reader"])
+    }
+    trendview_data_temp = {}
+    
+    var missing = readers_to_check.size
+    
+    for(let reader of readers_to_check){
+        $.getJSON("monitor/history/"+reader+"/"+time_start+"/"+time_end,
+            function(data){
+                missing--
+                try{
+                    trendview_data_temp[data[0]["host"]] = data
+                }catch(error){}
+                if(missing == 0){
+                    trendview_work_on_data()
+                }
+            }
+        )
+    }
+}
+
+function trendview_work_on_data(){
+    trendview_data = {}
+    
+    for(pmt of trendview_pmts2follow){
+        trendview_data[pmt] = []
+        for(entry of trendview_data_temp[pmt_dict[pmt]["reader"]]){
+            if(pmt in entry["channels"]){
+                trendview_data[pmt].push([
+                        (new Date(entry["time"])).getTime(),
+                        entry["channels"][pmt]]
+                )
+            }
+        }
+    }
+    
+    trendview_plot_update()
+    
+}
+
+function trendview_plot_update(){
+    
+    series = []
+    for(let [pmt, data] of Object.entries(trendview_data)){
+        series.push({
+            data: trendview_data[pmt],
+            lineWidth: 0.5,
+            name: 'pmt '+pmt
+        })
+    }
+    
+    Highcharts.chart('highcharts-figure', {
+
+        chart: {
+            zoomType: 'x'
+        },
+
+        title: {
+            text: 'Datarate for some channels'
+        },
+        yAxis: {
+            title: {
+                text: "datarate / kB/s",
+            }
+        },
+        tooltip: {
+            valueDecimals: 0
+        },
+
+        xAxis: {
+            type: 'datetime'
+        },
+
+        series: series,
+        plotOptions: {
+            series: {
+                animation: false
+            }
+	}
+
+    });
+}
+
+function trendview_plot_update_and_follow(){
+    if(!$("#monitor_trend_follow").is(":checked")){
+        usetimestamp('field_history_end')
+        trendview_get_data_full()
+    } else{
+        trendview_pmts2follow = []
+    }
+    
 }

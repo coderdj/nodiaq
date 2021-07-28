@@ -48,17 +48,13 @@ block content
                         input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
                     td pmt numbers:
                     td
-                        input#monitior_pmt_text_view_switch(onchange='switch_pmt_channel_text_visibility(this.value)', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="vissible" data-off="hidden" data-size='small' checked)
+                        input#monitior_pmt_text_view_switch(onchange='switch_pmt_channel_text_visibility(this.value)', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="visible" data-off="hidden" data-size='small' checked)
                         
                 tr(title="which pmts shall be ignored when checking for the max rate (comma seperated, no spaces)")
                     td ignore pmt rate:
                     td(colspan = 3)
                         input(id="field_ignore_pmts", size="25", value = "453", onchange='update_pmts_to_ignore_for_rate()')
-                tr(title="which pmts shall be plotted below (comma seperated, no spaces)")
-                    td pmts for line plot:
-                    td(colspan = 3)
-                        input(id="field_line_plot_pmts", size="25", value = "453")
-                    
+                
                     
 
                 
@@ -78,7 +74,8 @@ block content
                         button.btn.btn-default(onclick="force_show_timestamp()", onchange="force_show_timestamp()" ) show
 
                 tr
-                    td &nbsp;
+                    td
+                        input#monitior_playback(onchange='playback_wrapper()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="start playback" data-off="playback" data-size='small' checked)
                     td(colspan="3")
                         button.btn.btn-default(onclick="jump_in_time(-10)") -10 &nbsp;
                         button.btn.btn-default(onclick="jump_in_time(-1)") -1 &nbsp;
@@ -96,27 +93,36 @@ block content
                 tr
                     td time start
                     td
-                        input(id="field_history_start", value="-1")
+                        input(id="field_history_start", value="-1", size="25")
                     td
-                        button.btn.btn-default(onclick="get_TPC_data(document.getElementById('field_history_start').value)") show &nbsp;
+                        button.btn.btn-default(onclick="force_show_timestamp('field_history_start')") show &nbsp;
                         button.btn.btn-default(onclick="usetimestamp('field_history_start')") use displayed time
                 tr 
                     td time end
                     td
-                        input(id="field_history_end", value="-1")
+                        input(id="field_history_end", value="-1", size="25")
                     td
-                        button.btn.btn-default(onclick="get_TPC_data(document.getElementById('field_history_end').value)") show &nbsp;
+                        button.btn.btn-default(onclick="force_show_timestamp('field_history_end')") show &nbsp;
                         button.btn.btn-default(onclick="usetimestamp('field_history_end')") use displayed time
                 tr
                     td binning time
                     td 
-                        input(id="field_history_window", value="10")
+                        input(id="field_history_window", value="10", size="25")
                     td
-                        button.btn.btn-default(onclick="history_draw()") draw trendlines &nbsp;
+                        button.btn.btn-default(onclick="trendview_get_data_full()") draw trendlines &nbsp;
                         button.btn.btn-default(onclick='saveAsPng(svgObject2)') save trends as .png
-
-          div(style="width:800px;resize: horizontal; overflow: hidden;")
-            object(type="image/svg+xml" id="svg_frame2" data="/images/monitor_history.svg" style="width:100%;" class="historyview" )
+                tr(title="which pmts shall be plotted below (comma seperated, no spaces)")
+                    td pmts for line plot:
+                    td
+                        input(id="field_line_plot_pmts", size="25", value = "453,471,353")
+                    td 
+                        input#monitor_trend_follow(onchange='trendview_plot_update_and_follow()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="plot and auto update" data-off="stop updating" data-size='small' checked)
+          
+          
+          figure(class="highcharts-figure")
+            div#highcharts-figure(style="width:800px;resize: horizontal; overflow: hidden;")
+            
+          //  object(type="image/svg+xml" id="svg_frame2" data="/images/monitor_history.svg" style="width:100%;" class="historyview" )
 
           canvas#canvas(width="800", height="400" style='visibility:hidden;height:0px;')
 

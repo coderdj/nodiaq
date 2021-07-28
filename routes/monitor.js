@@ -4,7 +4,6 @@ var url = require("url");
 var router = express.Router();
 var ObjectID = require('mongodb').ObjectID;
 var gp = '';
-var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
 
 function ensureAuthenticated(req, res, next) {
   return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
@@ -13,68 +12,6 @@ function ensureAuthenticated(req, res, next) {
 router.get('/', ensureAuthenticated, function(req, res) {
   res.render('monitor', req.template_info_base);
 });
-
-router.get('/get_updates', ensureAuthenticated,function(req,res){
-
-  // start mongo pipeline with empty array
-  var mongo_pipeline = []
-  mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
-  mongo_pipeline.push({"$sort": {"_id":-1}});
-  mongo_pipeline.push({"$limit": 15});
-  mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
-
-
-  // append time filter if parameter unixtime is given in url
-  var int_unixtime = parseInt(req.query.unixtime);
-  if(!isNaN(int_unixtime)){
-
-    if(int_unixtime > 0){
-      str_unixtime_min = (int_unixtime-1).toString(16) + "0000000000000000";
-      str_unixtime_max = (int_unixtime+1).toString(16) + "0000000000000000";
-
-      var oid_min = ObjectID(str_unixtime_min);
-      var oid_max = ObjectID(str_unixtime_max);
-
-      mongo_pipeline[0]["$match"]["_id"] = {
-        "$gt": oid_min,
-        "$lt": oid_max
-      }
-    }
-  }
-  req.db.get('status').aggregate(mongo_pipeline)
-  .then(docs => res.json(docs))
-  .catch(err => {console.log(err.message); return res.json([]);});
-});
-
-
-
-
-
-
-// quick query to get latest entrie per readers
-// (includng the controllers as it is quicker to send the date than filter them out)
-router.get('/get_last_update_for_reader', ensureAuthenticated,function(req,res){
-
-  // start mongo pipeline with empty array
-  var mongo_pipeline = []
-  
-  
-  // kicked out a few mongo query pipeline entries to speed up query
-  
-  // keep those two lines to speed up the process by x 1000 (not needing to check entire database)
-  mongo_pipeline.push({"$sort": {"_id":-1}});
-  mongo_pipeline.push({"$limit": 10});
-  
-  // 
-//  mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
-
-
-  
-  req.db.get('status').aggregate(mongo_pipeline)
-  .then(docs => res.json(docs))
-  .catch(err => {console.log(err.message); return res.json([]);});
-});
-
 
 
 
@@ -291,6 +228,30 @@ router.get('/update_timestamp/:reader/:time', ensureAuthenticated,function(req,r
     
 });
 
+
+router.get('/history/:reader/:time_min/:time_max', ensureAuthenticated,function(req,res){
+    
+    var time_min = new Date(req.params.time_min)
+    var time_max = new Date(req.params.time_max)
+    // sometimes the readers data is off by one milisecond :(
+    
+    
+    var query = {
+        host: req.params.reader,
+        time: {
+            $gte: time_min,
+            $lte: time_max
+        }
+    }
+    
+    var opts = {$sort: {"time": 1}};
+    req.db.get('status').find(query,opts)
+    .then(docs => res.json(docs))
+    .catch(err => {console.log(err.message); return res.json(query);});
+    
+    
+    
+});
 
 
 module.exports = router;
