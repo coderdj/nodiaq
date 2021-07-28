@@ -1070,7 +1070,7 @@ function updates_check_and_combine(){
                         1
                 )
                 try{
-                    if(!$("#monitor_trend_follow").is(":checked") && trendview_pmts2follow.includes(channel)){
+                    if(trendview_pmts2follow.includes(channel)){
                         trendview_data[channel].push([
                                     time_now.getTime(),
                                     rate
@@ -1152,7 +1152,7 @@ function updates_check_and_combine(){
         }
     }
     
-    if(trendview_pmts2follow.length > 0){
+    if(!$("#monitor_trend_follow").is(":checked")){
         trendview_plot_update()
     }
     
@@ -1439,9 +1439,9 @@ function trendview_plot_update(){
 function trendview_plot_update_and_follow(){
     if(!$("#monitor_trend_follow").is(":checked")){
         usetimestamp('field_history_end')
+        
+        
         trendview_get_data_full()
-    } else{
-        trendview_pmts2follow = []
     }
     
 }
