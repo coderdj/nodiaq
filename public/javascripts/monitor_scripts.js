@@ -949,6 +949,9 @@ function build_pmt_layouts(){
 
 
 function updates_wrapper(){
+    if(trendview_object != false){
+        trendview_object.setSize(null, null);
+    }
     var tpc_icon_title  = $("#tpc_status_icon").attr("title")
     var tpc_live_toggle = $("#monitor_live_toggle").is(':checked')
     
@@ -1078,9 +1081,13 @@ function updates_check_and_combine(){
                         1
                 )
                 try{
-                    if(trendview_pmts2follow.includes(channel) && !$("#monitor_trend_follow").is(":checked")){
-                        if(!$("#monitor_trend_follow").is(":checked"))// trendview_data[channel].push([
-                            trendview_object.series[trendview_pmt_order[channel]].addPoint({x:time_now.getTime(), y:rate})
+                    if(trendview_pmts2follow.includes(channel) && !$("#monitor_trend_follow").is(":checked") && $("#tpc_status_icon").attr("title") == "TPC is RUNNING"){
+                        if(!$("#monitor_trend_follow").is(":checked")){
+                            trendview_object.series[trendview_pmt_order[channel]].addPoint({
+                                    x:time_now.getTime(),
+                                    y:rate
+                            })
+                        }
                     }
                 }catch(error){}
                 rates_meta[detector]["missing"]--
@@ -1129,7 +1136,9 @@ function updates_check_and_combine(){
     }
     
     color_pmts()
-    
+    if(!$("#monitor_trend_follow").is(":checked")){
+        // trendview_object.redraw()
+    }
     
     for(detector of Object.keys(pmts_list_per_detector_dynamic)){
         for(channel of pmts_list_per_detector_dynamic[detector]){
@@ -1355,17 +1364,28 @@ function trendview_get_data_full(){
     var time_start = (new Date($("#field_history_start").val())).toISOString()
     var time_end = (new Date($("#field_history_end").val())).toISOString()
     trendview_pmts2follow = $("#field_line_plot_pmts").val().split(",")
+    var missing = 0
     
-    readers_to_check = new Set()
+    var pmts_per_reader = {}
     for(pmt of trendview_pmts2follow){
-            readers_to_check.add(pmt_dict[pmt]["reader"])
+        var reader = pmt_dict[pmt]["reader"]
+        
+        if(Object.keys(pmts_per_reader).includes(reader)){
+            pmts_per_reader[reader].push(pmt)
+        } else {
+            pmts_per_reader[reader] = [pmt]
+            missing++
+        }
     }
+    
+    
+    
     trendview_data_temp = {}
     
-    var missing = readers_to_check.size
     
-    for(let reader of readers_to_check){
-        $.getJSON("monitor/history/"+reader+"/"+time_start+"/"+time_end,
+    for(let [reader, pmts] of Object.entries(pmts_per_reader)){
+        var url = "monitor/history/"+reader+"/"+pmts.join(",")+"/"+time_start+"/"+time_end
+        $.getJSON(url,
             function(data){
                 missing--
                 try{
@@ -1392,6 +1412,8 @@ function trendview_work_on_data(){
                 )
             }
         }
+        //trendview_data[pmt] = trendview_data[pmt].reverse()
+        // reverse to prevent the ugly line
     }
     
     trendview_plot_update()
@@ -1416,11 +1438,12 @@ function trendview_plot_update(){
     trendview_object = Highcharts.chart('highcharts-figure', {
 
         chart: {
-            zoomType: 'x'
+            zoomType: 'x',
+            height: 720
         },
 
         title: {
-            text: 'Datarate for some channels'
+            text: 'Datarate for selected channels'
         },
         yAxis: {
             title: {

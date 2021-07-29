@@ -214,7 +214,6 @@ router.get('/update_timestamp/:reader/:time', ensureAuthenticated,function(req,r
     
     var query = {
         host: req.params.reader,
-        // time: new Date(req.params.time)};
         time: {
             $gte: time_min,
             $lte: time_max
@@ -229,29 +228,66 @@ router.get('/update_timestamp/:reader/:time', ensureAuthenticated,function(req,r
 });
 
 
-router.get('/history/:reader/:time_min/:time_max', ensureAuthenticated,function(req,res){
-    
+router.get('/history/:reader/:pmts/:time_min/:time_max', ensureAuthenticated,function(req,res){
+    var pmts = req.params.pmts.split(",")
     var time_min = new Date(req.params.time_min)
     var time_max = new Date(req.params.time_max)
     // sometimes the readers data is off by one milisecond :(
     
-    
-    var query = {
-        host: req.params.reader,
-        time: {
-            $gte: time_min,
-            $lte: time_max
+    // if((time_max - time_min) >= 60e3){
+        // var query = {
+            // host: req.params.reader,
+            // time: {
+                // $gte: time_min,
+                // $lte: time_max
+            // }
+        // }
+        
+        // var opts = {$sort: {"time": 1}};
+        // req.db.get('status').find(query,opts)
+        // .then(docs => res.json(docs))
+        // .catch(err => {console.log(err.message); return res.json(query);});
+    // } else {
+        
+        channels_list = {}
+        for(pmt of pmts){
+            channels_list[""+pmt] = 1
         }
-    }
+        
+        var mongo_pipeline = [];
+        
+        // roughly filter data to relevant hosts and timeframe
+        mongo_pipeline.push({
+            "$match":{
+                host: req.params.reader,
+                time: {
+                    $gte: time_min,
+                    $lte: time_max
+                }
+            }
+        });
+
+        mongo_pipeline.push({
+            "$project":{
+                _id: 1,
+                time: 1,
+                host: 1,
+                number: 1,
+                channels: channels_list
+            }
+        });
+        
+        mongo_pipeline.push({
+            $sort:{_id:1}            
+        })
+            
+        
+        req.db.get('status').aggregate(mongo_pipeline)
+        .then(docs => res.json(docs))
+        .catch(err => {console.log(err.message); return res.json(mongo_pipeline);});
+    // }
     
-    var opts = {$sort: {"time": 1}};
-    req.db.get('status').find(query,opts)
-    .then(docs => res.json(docs))
-    .catch(err => {console.log(err.message); return res.json(query);});
-    
-    
-    
-});
+})
 
 
 module.exports = router;

@@ -105,12 +105,12 @@ block content
                         button.btn.btn-default(onclick="force_show_timestamp('field_history_end')") show &nbsp;
                         button.btn.btn-default(onclick="usetimestamp('field_history_end')") use displayed time
                 tr
-                    td binning time
+                    //td binning time
                     td 
-                        input(id="field_history_window", value="10", size="25")
+                    //    input(id="field_history_window", value="10", size="25")
                     td
                         button.btn.btn-default(onclick="trendview_get_data_full()") draw trendlines &nbsp;
-                        button.btn.btn-default(onclick='saveAsPng(svgObject2)') save trends as .png
+                        //button.btn.btn-default(onclick='saveAsPng(svgObject2)') save trends as .png
                 tr(title="which pmts shall be plotted below (comma seperated, no spaces)")
                     td pmts for line plot:
                     td
@@ -119,10 +119,9 @@ block content
                         input#monitor_trend_follow(onchange='trendview_plot_update_and_follow()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="plot and auto update" data-off="stop updating" data-size='small' checked)
           
           
-          div(style="height:450px;")
-            
-            figure(class="highcharts-figure")
-              div#highcharts-figure(style="width:800px; resize: horizontal; overflow: hidden;")
+          div(style="height:720px;width:800px;resize: horizontal; overflow: hidden; border: 1px solid black")
+            figure(class="highcharts-figure" style="width:100%; height:100%; overflow: hidden;")
+              div#highcharts-figure(style="width:100%; height:100%; overflow: hidden;")
             
           
           
