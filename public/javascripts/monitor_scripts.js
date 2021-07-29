@@ -40,7 +40,8 @@ var trendview_data_temp
 var trendview_data = false
 var trendview_pmts2follow = []
 var trendview_interval = false
-
+var trendview_object = false
+var trendview_pmt_order = false
 var playback_interval = false
 
 var z_levels_per_detector = {
@@ -1027,18 +1028,25 @@ function updates_check_and_combine(){
         
     }
 
-    
-    
+        
     
     svgObject0.getElementById("str_reader_time_0").textContent = ""
     svgObject0.getElementById("str_reader_time_1").textContent = ""
     svgObject0.getElementById("str_reader_time_2").textContent = ""
     svgObject0.getElementById("str_reader_time_3").textContent = ""
-    
-    for(i in reader_list){
-        reader = reader_list[i]
+    var i = -1
+    for(reader of reader_list){
+        i++
+                
         
+        
+        if(pmt_rates[reader] == false){
+            continue;
+        }
+        
+    
         reader_data = pmt_rates[reader]
+        //var time_now = new Date(parseInt(reader_data["_id"].substr(0,8), 16)*1000)
         var time_now = new Date(reader_data["time"])
         try{
             svgObject0.getElementById("str_reader_time_"+i).textContent = reader + ": " + reader_data["time"] + " (UTC)"
@@ -1070,12 +1078,9 @@ function updates_check_and_combine(){
                         1
                 )
                 try{
-                    if(trendview_pmts2follow.includes(channel)){
-                        trendview_data[channel].push([
-                                    time_now.getTime(),
-                                    rate
-                                ]
-                        )
+                    if(trendview_pmts2follow.includes(channel) && !$("#monitor_trend_follow").is(":checked")){
+                        if(!$("#monitor_trend_follow").is(":checked"))// trendview_data[channel].push([
+                            trendview_object.series[trendview_pmt_order[channel]].addPoint({x:time_now.getTime(), y:rate})
                     }
                 }catch(error){}
                 rates_meta[detector]["missing"]--
@@ -1152,9 +1157,6 @@ function updates_check_and_combine(){
         }
     }
     
-    if(!$("#monitor_trend_follow").is(":checked")){
-        trendview_plot_update()
-    }
     
     
     timer.push(new Date)
@@ -1167,10 +1169,13 @@ function updates_check_and_combine(){
 function color_pmts(){
     // this funciton only colors in pmts as it is called on datarate updates and when the lenged is changed
     for(let [reader, reader_data] of Object.entries(pmt_rates)){
-        for(let [channel, rate] of Object.entries(reader_data["channels"])){
-            color_channel(channel, rate)
+        if(reader_data != false){
+            for(let [channel, rate] of Object.entries(reader_data["channels"])){
+                color_channel(channel, rate)
+            }
         }
     }
+    
 }
 
 
@@ -1396,7 +1401,11 @@ function trendview_work_on_data(){
 function trendview_plot_update(){
     
     series = []
+    trendview_pmt_order = {}
+    i = -1
     for(let [pmt, data] of Object.entries(trendview_data)){
+        i++
+        trendview_pmt_order[pmt] = i
         series.push({
             data: trendview_data[pmt],
             lineWidth: 0.5,
@@ -1404,7 +1413,7 @@ function trendview_plot_update(){
         })
     }
     
-    Highcharts.chart('highcharts-figure', {
+    trendview_object = Highcharts.chart('highcharts-figure', {
 
         chart: {
             zoomType: 'x'
