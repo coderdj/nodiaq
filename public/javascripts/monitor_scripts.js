@@ -183,6 +183,29 @@ function make_rgb_string_from_list(list){
 }
 
 
+function monitor_toggle_pmt(channel_id){
+    channel = channel_id.split("_")[2]
+    
+    channels = $("#field_line_plot_pmts").val().split(",")
+    
+    
+    if(channels.indexOf("") >= 0){
+        channels.splice(channels.indexOf(""), 1)
+    }
+    
+    
+    if(channels.includes(channel+"")){
+        channels.splice(channels.indexOf(channel+""), 1)
+        svgObject0.getElementById(channel_id).style.stroke=""
+        svgObject0.getElementById(channel_id).style.strokeWidth=""
+    }else{
+        channels.push(channel)
+        svgObject0.getElementById(channel_id).style.stroke="blue"
+        svgObject0.getElementById(channel_id).style.strokeWidth="2"
+    }
+    channels.sort()
+    $("#field_line_plot_pmts").val(channels.join(","))
+}
 
 function switch_pmt_channel_text_visibility(desired_state = "toggle"){
     // false = none
@@ -814,6 +837,7 @@ function build_pmt_layouts(){
         pmt_circle.setAttributeNS(null, 'ry', 5);
         pmt_circle.setAttributeNS(null, 'class', "pmt");
         pmt_circle.setAttributeNS(null, "id", "pmt_circle_"+pmt_channel);
+        pmt_circle.addEventListener("click", function(){monitor_toggle_pmt(this.id)});
         
         var pmt_text = document.createElementNS(svgns, 'text');
         pmt_text.setAttributeNS(null, 'x', pmt["pos"]["init"][0]);
@@ -1358,9 +1382,18 @@ function playback(){
 function usetimestamp(field){
     $("#"+field).val($("#field_current_timestamp").val())
 }
+function trendview_status_update(text_string){
+    $("#monitor_trend_status").text(text_string);
+}
 
 
 function trendview_get_data_full(){
+    if(trendview_test_validity() == false){
+        return(0)
+    }
+    
+    
+    trendview_status_update("loading data, please standy by")
     var time_start = (new Date($("#field_history_start").val())).toISOString()
     var time_end = (new Date($("#field_history_end").val())).toISOString()
     trendview_pmts2follow = $("#field_line_plot_pmts").val().split(",")
@@ -1382,16 +1415,18 @@ function trendview_get_data_full(){
     
     trendview_data_temp = {}
     
-    
+    trendview_status_update("loading data, please standy by ("+missing+" readers to load)")
     for(let [reader, pmts] of Object.entries(pmts_per_reader)){
         var url = "monitor/history/"+reader+"/"+pmts.join(",")+"/"+time_start+"/"+time_end
         $.getJSON(url,
             function(data){
                 missing--
+                trendview_status_update(missing +" readers left")
                 try{
                     trendview_data_temp[data[0]["host"]] = data
                 }catch(error){}
                 if(missing == 0){
+                    trendview_status_update("all readers loaded")
                     trendview_work_on_data()
                 }
             }
@@ -1401,7 +1436,7 @@ function trendview_get_data_full(){
 
 function trendview_work_on_data(){
     trendview_data = {}
-    
+    trendview_status_update("preparing data")
     for(pmt of trendview_pmts2follow){
         trendview_data[pmt] = []
         for(entry of trendview_data_temp[pmt_dict[pmt]["reader"]]){
@@ -1421,7 +1456,7 @@ function trendview_work_on_data(){
 }
 
 function trendview_plot_update(){
-    
+    trendview_status_update("updating plot")
     series = []
     trendview_pmt_order = {}
     i = -1
@@ -1450,10 +1485,7 @@ function trendview_plot_update(){
                 text: "datarate / kB/s",
             }
         },
-        tooltip: {
-            valueDecimals: 0
-        },
-
+       
         xAxis: {
             type: 'datetime'
         },
@@ -1461,11 +1493,16 @@ function trendview_plot_update(){
         series: series,
         plotOptions: {
             series: {
+                 tooltip: {
+                    valueDecimals: 0
+                },
                 animation: false
             }
 	}
 
     });
+    
+    trendview_status_update("")
 }
 
 function trendview_plot_update_and_follow(){
@@ -1475,5 +1512,32 @@ function trendview_plot_update_and_follow(){
         
         trendview_get_data_full()
     }
+    
+}
+
+
+
+function trendview_test_validity(){
+    // check for pmts
+    if(
+            $("#field_line_plot_pmts").val().length == 0
+    ){
+        trendview_status_update("no pmts selected, click them in the live view.")
+        return(false)
+    }
+    
+    // check timings
+    var time_start = new Date($("#field_history_start").val())
+    var time_end   = new Date($("#field_history_end"  ).val())
+    var dt = (time_end - time_start)
+    
+    if(isNaN(dt) || dt <= 0){
+        trendview_status_update("check selected dates")
+        return(false)
+    }
+        
+    
+    // do stuff
+    return(true)
     
 }
