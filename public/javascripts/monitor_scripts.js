@@ -42,7 +42,9 @@ var trendview_pmts2follow = []
 var trendview_interval = false
 var trendview_object = false
 var trendview_pmt_order = false
+var trendview_limit_points = 300
 var playback_interval = false
+
 
 var z_levels_per_detector = {
     "muon_veto":new Set(),
@@ -404,7 +406,6 @@ function switch_layout(layout){
     }
     
     try{
-        console.log("found size")
         pmt_size = layout_style[layout]["pmt_size"]
         if("pmt_height" in layout_style[layout]){
             pmt_size_height = layout_style[layout]["pmt_height"]
@@ -627,6 +628,9 @@ function build_pmt_layouts(){
         crate_rate_text.textContent = "0";
         crate_rate_text.setAttributeNS(null, "class", "deco deco_opt text_info_small_right");
         crate_rate_text.setAttributeNS(null, "id", "opt_indicator_text_"+rdr_lnk);
+
+        // crate_header.setAttributeNS(null, "style", "stroke: white; font-weight:bold; stroke-width:.25");
+        // crate_rate_text.setAttributeNS(null, "style", "stroke: white; font-weight:bold; stroke-width:.25");
         
         
         svgObject1.appendChild(crate_rect_indocator)
@@ -686,19 +690,19 @@ function build_pmt_layouts(){
     tpc_header.setAttributeNS(null, "class", "deco deco_3d infotext");
     svgObject1.appendChild(tpc_header)
     
-    var vetos_header = document.createElementNS(svgns, 'text');
-    vetos_header.setAttributeNS(null, 'x', 50);
-    vetos_header.setAttributeNS(null, 'y', 30);
-    vetos_header.textContent = "Muon-Veto";
-    vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
-    svgObject1.appendChild(vetos_header)
+    // var vetos_header = document.createElementNS(svgns, 'text');
+    // vetos_header.setAttributeNS(null, 'x', 50);
+    // vetos_header.setAttributeNS(null, 'y', 30);
+    // vetos_header.textContent = "Muon-Veto";
+    // vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
+    // svgObject1.appendChild(vetos_header)
     
-    var vetos_header = document.createElementNS(svgns, 'text');
-    vetos_header.setAttributeNS(null, 'x', 350);
-    vetos_header.setAttributeNS(null, 'y', 30);
-    vetos_header.textContent = "Neutron-Veto";
-    vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
-    svgObject1.appendChild(vetos_header)
+    // var vetos_header = document.createElementNS(svgns, 'text');
+    // vetos_header.setAttributeNS(null, 'x', 350);
+    // vetos_header.setAttributeNS(null, 'y', 30);
+    // vetos_header.textContent = "Neutron-Veto";
+    // vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
+    // svgObject1.appendChild(vetos_header)
     
     
     
@@ -1111,6 +1115,14 @@ function updates_check_and_combine(){
                                     x:time_now.getTime(),
                                     y:rate
                             })
+                            
+                            // remove if monitor_trend_max_five_minues
+                            if(!$("#monitor_trend_max_five_minues").is(":checked")){
+                                while(trendview_object.series[trendview_pmt_order[channel]].points.length > trendview_limit_points){
+                                    trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
+                                }
+                            }
+                            
                         }
                     }
                 }catch(error){}
@@ -1180,6 +1192,7 @@ function updates_check_and_combine(){
     for(let [reader, rate] of Object.entries(opt_link_rates)){
         try{
             rate_permil = Math.min(1000,Math.max(0,Math.round((rate-40000)/40)))
+            //rate_permil = Math.min(1000,Math.max(0,Math.round((rate))))
             svgObject1.getElementById("opt_indicator_text_"+reader).textContent = Math.round(rate /10.24) / 100
             rect_obj = svgObject1.getElementById("opt_indicator_field_"+reader)
             rect_obj.style.fill = lut_colors[rate_permil]
@@ -1332,7 +1345,6 @@ function force_show_timestamp(field = "field_current_timestamp"){
     change_toggle("monitor_live_toggle", false)
     updates_obtain_all(new Date($("#"+field).val()))
 }
-    
 
 
 function jump_in_time(dt = 0){
@@ -1440,6 +1452,8 @@ function trendview_work_on_data(){
     for(pmt of trendview_pmts2follow){
         trendview_data[pmt] = []
         for(entry of trendview_data_temp[pmt_dict[pmt]["reader"]]){
+            
+          
             if(pmt in entry["channels"]){
                 trendview_data[pmt].push([
                         (new Date(entry["time"])).getTime(),
@@ -1461,6 +1475,9 @@ function trendview_plot_update(){
     trendview_pmt_order = {}
     i = -1
     for(let [pmt, data] of Object.entries(trendview_data)){
+        
+        
+        
         i++
         trendview_pmt_order[pmt] = i
         series.push({
@@ -1510,7 +1527,9 @@ function trendview_plot_update_and_follow(){
         usetimestamp('field_history_end')
         
         
-        trendview_get_data_full()
+        if(trendview_get_data_full() == false){
+            change_toggle("monitor_trend_follow", true)
+        }
     }
     
 }
@@ -1539,5 +1558,24 @@ function trendview_test_validity(){
     
     // do stuff
     return(true)
+    
+}
+
+
+
+
+function trendview_plot_cut_to_5_min(){
+    // remove if monitor_trend_max_five_minues
+    
+   if(!$("#monitor_trend_max_five_minues").is(":checked")){                        
+        for(channel of trendview_pmts2follow){
+           
+        if(!$("#monitor_trend_max_five_minues").is(":checked")){
+                while(trendview_object.series[trendview_pmt_order[channel]].points.length > trendview_limit_points){
+                    trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
+                }
+            }
+        }
+    }
     
 }

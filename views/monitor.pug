@@ -121,6 +121,7 @@ block content
                         input(id="field_line_plot_pmts", size="25")
                     td 
                         input#monitor_trend_follow(onchange='trendview_plot_update_and_follow()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="plot and auto update" data-off="stop updating" data-size='small' checked)
+                        input#monitor_trend_max_five_minues(onchange='trendview_plot_cut_to_5_min()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="show all" data-off="show last 5 minutes" data-size='small' checked)
                     td  &nbsp;
           
           
