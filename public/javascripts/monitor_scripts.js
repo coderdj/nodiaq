@@ -42,6 +42,8 @@ var trendview_interval = false
 var trendview_object = false
 var trendview_pmt_order = false
 var playback_interval = false
+var main_loop_interval = false
+
 
 var timer
 var timer_ini
@@ -56,6 +58,9 @@ var pmts_to_ignore_for_rate = []
 var legend_rate_min = 1
 var legend_rate_max = 101
 var legend_rate_diff = 100
+
+
+
 
 
 // user customizable variables
@@ -911,7 +916,7 @@ function build_pmt_layouts(){
     console.log(timer_ini_string)
     
     console.log("load data the first time")
-    window.setInterval(
+    main_loop_interval = window.setInterval(
         function(){
             updates_wrapper()
         },
@@ -934,7 +939,7 @@ function updates_wrapper(){
     }
     if(tpc_icon_title != "TPC is RUNNING"){
         // do not load if tpc is not running
-        status_bar(tpc_icon_title + " ("+(new Date)+")", color = "red")
+        status_bar(tpc_icon_title + " ("+(new Date).toISOString()+" UTC)", color = "red")
         return(0)
     }
     timer = [new Date]
@@ -1133,8 +1138,11 @@ function updates_check_and_combine(){
     svgObject1.getElementById("str_legend_min").textContent = "min: " + rates_meta["tpc"]["min"] + " kB/s"
     svgObject1.getElementById("str_legend_max").textContent = "max: " + rates_meta["tpc"]["max"] + " kB/s"
     svgObject1.getElementById("str_legend_tot").textContent = "total: " + (rates_meta["tpc"]["tot"] /1024).toFixed(2) + " MB/s"
-    svgObject1.getElementById("str_legend_minus1").textContent = "no data: " + rates_meta["tpc"]["missing"] + " (" + rates_meta["top"]["missing"]+"/"+rates_meta["bottom"]["missing"]+"/"+rates_meta["top_HE"]["missing"]+")";
-    svgObject1.getElementById("str_legend_zero").textContent = "zero data: " + rates_meta["tpc"]["zero"] + " (" + rates_meta["top"]["zero"]+"/"+rates_meta["bottom"]["zero"]+"/"+rates_meta["top_HE"]["zero"]+")";
+    svgObject1.getElementById("str_legend_minus1").textContent = "no data: " + rates_meta["tpc"]["missing"]
+    svgObject1.getElementById("str_legend_zero").textContent = "zero data: " + rates_meta["tpc"]["zero"]
+    
+    svgObject1.getElementById("str_legend_minus1_list").textContent = "(" + rates_meta["top"]["missing"]+"/"+rates_meta["bottom"]["missing"]+"/"+rates_meta["top_HE"]["missing"]+")"
+    svgObject1.getElementById("str_legend_zero_list").textContent = "(" + rates_meta["top"]["zero"]+"/"+rates_meta["bottom"]["zero"]+"/"+rates_meta["top_HE"]["zero"]+")"
     
     
     if($("#legend_auto_set").is(':checked') == true){
