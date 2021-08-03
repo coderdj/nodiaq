@@ -742,8 +742,8 @@ function build_pmt_layouts(){
         } else if (pmt_channel <= 807){
             // 807 is highest tpc acq-mon channel
             pmt["pos"]["init"] = [10 + (pmt_channel%38*10), 40 + Math.floor(pmt_channel/38)*10]
-            pmt["array"] = "aqmon"
-            pmt["detector"] = "aqmon"
+            pmt["array"] = "aqmon_ar"
+            pmt["detector"] = "aqmon_de"
             pmt["description"] = "AQC " + pmt_channel
             amp_text = "AQC: "+ pmt["aqmon"]
             // acq-monitors etc
@@ -765,7 +765,7 @@ function build_pmt_layouts(){
         // same for arrays
         if(pmt["array"] in pmts_per_detector){
             pmts_per_detector[pmt["array"]] += 1
-            pmts_list_per_detector_template[pmt["detector"]].push(pmt_channel+"")
+            pmts_list_per_detector_template[pmt["array"]].push(pmt_channel+"")
         }else{
             pmts_per_detector[pmt["array"]] =1
             pmts_list_per_detector_template[pmt["array"]] = [pmt_channel+""]
@@ -999,12 +999,13 @@ function updates_check_and_combine(){
             "missing": pmts_per_detector[detector],
             "zero": 0
         }
-
+        
         pmts_list_per_detector_dynamic[detector] = [...pmts_list_per_detector_template[detector]]
         
     }
-
-        
+    
+    // return(0)
+    
     
     svgObject0.getElementById("str_reader_time_0").textContent = ""
     svgObject0.getElementById("str_reader_time_1").textContent = ""
@@ -1048,7 +1049,6 @@ function updates_check_and_combine(){
             
             
             // same readers  should readout the same detctor so speed up the sorting
-            var detector = lut_reader_to_detecor[reader]
             status_bar("working on " + detector)
             
             rates = Object.values(reader_data["channels"])
@@ -1058,11 +1058,26 @@ function updates_check_and_combine(){
             // rates_meta[detector]["max"] = Math.max(rates_meta[detector]["max"], Math.max(...rates))
             
             for(let [channel, rate] of Object.entries(reader_data["channels"])){
+                
                 var array = pmt_dict[channel]["array"]
-                pmts_list_per_detector_dynamic[detector].splice(
-                        pmts_list_per_detector_dynamic[detector].indexOf(channel),
+                var detector = pmt_dict[channel]["detector"]
+                if(pmts_list_per_detector_dynamic[array].splice(
+                        pmts_list_per_detector_dynamic[array].indexOf(channel+""),
                         1
-                )
+                ) != channel+""){
+                    console.log("failed to remove channel "+channel+" from array "+ array)
+                }
+                
+                if(pmts_list_per_detector_dynamic[detector].splice(
+                        pmts_list_per_detector_dynamic[detector].indexOf(channel+""),
+                        1
+                ) != channel+""){
+                    console.log("failed to remove channel "+channel+" from detector "+ detector)
+                }
+                
+                rates_meta[detector]["missing"]--
+                rates_meta[array]["missing"]--
+                
                 try{
                     if(trendview_pmts2follow.includes(channel) && !$("#monitor_trend_follow").is(":checked") && $("#tpc_status_icon").attr("title") == "TPC is RUNNING"){
                         if(!$("#monitor_trend_follow").is(":checked")){
@@ -1081,8 +1096,7 @@ function updates_check_and_combine(){
                         }
                     }
                 }catch(error){}
-                rates_meta[detector]["missing"]--
-                rates_meta[array]["missing"]--
+                
                 
                 if(rate == 0){
                     rates_meta[detector]["zero"]++
