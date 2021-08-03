@@ -1439,6 +1439,9 @@ function trendview_work_on_data(){
     
 }
 
+
+
+
 function trendview_plot_update(){
     trendview_status_update("updating plot")
     series = []
@@ -1480,8 +1483,18 @@ function trendview_plot_update(){
         series: series,
         plotOptions: {
             series: {
-                 tooltip: {
+                tooltip: {
                     valueDecimals: 0
+                },
+                point: {
+                    events: {
+                        click: function() {
+                            var timestamp = (new Date(this.options["x"])).toISOString()
+                            $("#field_current_timestamp").val(timestamp);
+                            trendview_status_update("showing timestamp " + timestamp)
+                            force_show_timestamp();
+                        }
+                    }
                 },
                 animation: false
             }
