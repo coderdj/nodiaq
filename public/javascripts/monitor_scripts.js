@@ -1454,9 +1454,10 @@ function trendview_plot_update(){
         i++
         trendview_pmt_order[pmt] = i
         series.push({
+            name: 'pmt '+pmt,
+            lineWidth: .5,
+            type: 'scatter',
             data: trendview_data[pmt],
-            lineWidth: 0.5,
-            name: 'pmt '+pmt
         })
     }
     
@@ -1493,8 +1494,15 @@ function trendview_plot_update(){
                             $("#field_current_timestamp").val(timestamp);
                             trendview_status_update("showing timestamp " + timestamp)
                             force_show_timestamp();
+                            setTimeout(function(){
+                                trendview_status_update("")
+                            }, 1000
+                            )
                         }
                     }
+                },
+                marker: {
+                    radius: 1
                 },
                 animation: false
             }
