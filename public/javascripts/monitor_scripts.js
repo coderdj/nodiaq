@@ -1018,11 +1018,6 @@ function updates_check_and_combine(){
     svgObject0.getElementById("str_reader_time_3").textContent = ""
     
     
-    for(channel of list_pmts_initialized){
-        svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
-        svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
-        svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
-    }
     
     
     var i = -1
@@ -1154,6 +1149,15 @@ function updates_check_and_combine(){
     
     
     color_pmts(pmt_rates)
+    
+    var missing_pmts = pmts_list_per_detector_dynamic["tpc"].concat(pmts_list_per_detector_dynamic["aqmon_de"])
+    for(channel of missing_pmts){
+        svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
+        svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
+        svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
+    }
+    
+    
     
     status_bar("coloring pmts")
     timer.push(new Date)
