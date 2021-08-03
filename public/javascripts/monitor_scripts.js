@@ -1,17 +1,14 @@
 // global settings ()change those if there are achanges to the daq
 
 const readers_per_detector = {
-    "tpc": ["reader0_reader_0", "reader1_reader_0", "reader2_reader_0"],
-    "muon_veto":  ["reader5_reader_0"],
-    "neutron_veto":  ["reader6_reader_0"]
-    
+    "tpc": ["reader0_reader_0", "reader1_reader_0", "reader2_reader_0"]
 }
 
-var show_mv = false
+
 // currently disables as coordinates are strange....
 
 //var default_view = "tpc"
-var default_view = "tpc"
+var default_view = "3d"
 
 
 // initialize global variables
@@ -35,6 +32,8 @@ var pmts_list_per_detector_template = {}
 var pmts_list_per_detector_dynamic
 var opt_link_rates = {}
 var rates_meta
+var list_pmts_initialized = []
+
 
 var trendview_data_temp
 var trendview_data = false
@@ -42,15 +41,7 @@ var trendview_pmts2follow = []
 var trendview_interval = false
 var trendview_object = false
 var trendview_pmt_order = false
-var trendview_limit_points = 300
 var playback_interval = false
-
-
-var z_levels_per_detector = {
-    "muon_veto":new Set(),
-    "neutron_veto": new Set()
-}
-
 
 var timer
 var timer_ini
@@ -66,13 +57,16 @@ var legend_rate_min = 1
 var legend_rate_max = 101
 var legend_rate_diff = 100
 
-var fading_rate = .20
+
+// user customizable variables
+var custom_fading_rate = .20
+var custom_trendview_limit_points = 300
+var custom_show_timings = false
 
 
 
 
 // developer toggles
-var dev_show_timings = false
 
 
 const default_pos = {
@@ -349,10 +343,6 @@ function calc_3d_pos(input_coords, calc){
     var scaling_tpc_y = 1
     var scaling_tpc_z = 1
     
-    var scale_mv_x = .2
-    var scale_mv_y = .2
-    var scale_mv_z = .2
-    
     var y_offset = 0
     
     var scaling_x = 1.5
@@ -374,14 +364,6 @@ function calc_3d_pos(input_coords, calc){
                     input_coords[1] * scaling_tpc_y,
                     0 * scaling_tpc_z,
                 ]
-                break
-            case "muon_veto":
-                coords_3d = [
-                    input_coords[0] * Math.sin(input_coords[1]) * scale_mv_x,
-                    input_coords[0] * Math.cos(input_coords[1]) * scale_mv_y,
-                    input_coords[2] * scale_mv_z,
-                ]
-                y_offset = -60
                 break
         }
 
@@ -424,7 +406,7 @@ function switch_layout(layout){
     }
     
     // move pmts around
-    for(pmt_ch in pmt_dict){
+    for(pmt_ch of list_pmts_initialized){
         pmtpos = pmt_dict[pmt_ch]["pos"][layout]
         
         var obj_pmt_circ = svgObject1.getElementById("pmt_circle_"+pmt_ch)
@@ -451,15 +433,6 @@ function switch_layout(layout){
     var decoelements_show = svgObject1.getElementsByClassName("deco_"+layout)
     for(var i = 0; i < decoelements_show.length; i++){
         decoelements_show[i].style.visibility = "visible"
-    }
-    
-    
-    reader_list = [...readers_per_detector["tpc"]];
-    
-    if(show_mv == true){
-        if(layout == "3d"){
-            reader_list.push(...readers_per_detector["muon_veto"])
-        }
     }
     
     return(1)
@@ -628,10 +601,6 @@ function build_pmt_layouts(){
         crate_rate_text.textContent = "0";
         crate_rate_text.setAttributeNS(null, "class", "deco deco_opt text_info_small_right");
         crate_rate_text.setAttributeNS(null, "id", "opt_indicator_text_"+rdr_lnk);
-
-        // crate_header.setAttributeNS(null, "style", "stroke: white; font-weight:bold; stroke-width:.25");
-        // crate_rate_text.setAttributeNS(null, "style", "stroke: white; font-weight:bold; stroke-width:.25");
-        
         
         svgObject1.appendChild(crate_rect_indocator)
         svgObject1.appendChild(crate_header)
@@ -680,32 +649,7 @@ function build_pmt_layouts(){
         
     }    
     }
-    
-    // 3d 
-    
-    var tpc_header = document.createElementNS(svgns, 'text');
-    tpc_header.setAttributeNS(null, 'x', 200);
-    tpc_header.setAttributeNS(null, 'y', 30);
-    tpc_header.textContent = "TPC";
-    tpc_header.setAttributeNS(null, "class", "deco deco_3d infotext");
-    svgObject1.appendChild(tpc_header)
-    
-    // var vetos_header = document.createElementNS(svgns, 'text');
-    // vetos_header.setAttributeNS(null, 'x', 50);
-    // vetos_header.setAttributeNS(null, 'y', 30);
-    // vetos_header.textContent = "Muon-Veto";
-    // vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
-    // svgObject1.appendChild(vetos_header)
-    
-    // var vetos_header = document.createElementNS(svgns, 'text');
-    // vetos_header.setAttributeNS(null, 'x', 350);
-    // vetos_header.setAttributeNS(null, 'y', 30);
-    // vetos_header.textContent = "Neutron-Veto";
-    // vetos_header.setAttributeNS(null, "class", "deco deco_3d infotext");
-    // svgObject1.appendChild(vetos_header)
-    
-    
-    
+       
     
     
     } // END of decorations 
@@ -736,17 +680,13 @@ function build_pmt_layouts(){
         
         
         
-        // count all pmts per detector to know if some did not send data
-        if(pmt["detector"] in pmts_per_detector){
-            pmts_per_detector[pmt["detector"]] += 1
-            pmts_list_per_detector_template[pmt["detector"]].push(pmt_channel+"")
-        }else{
-            pmts_per_detector[pmt["detector"]] =1
-            pmts_list_per_detector_template[pmt["detector"]] = [pmt_channel+""]
-        }
+        
+        
         // just asigning would keep a reference and folloing pmts would use old coordinates....
         pmt["pos"] = {...default_pos}
-        
+        pmt["description"] = "PMT "+ pmt_channel
+        var amp_text = "AMP: " + pmt["amp_crate"] + "." + pmt["amp_slot"] + "." + pmt["amp_channel"];
+
         // TPC low-energy channels
         if(pmt_channel <= 493){
             try{
@@ -783,6 +723,8 @@ function build_pmt_layouts(){
             
         // TPC high-energy channels
         }else if (pmt_channel <= 752){
+            
+            pmt["array"] = pmt["array"]+"_HE"
             // use coordinates from top in any case
             pmt["coords"] = pmt_dict_lookup[pmt_channel-500]["coords"]
             try{
@@ -797,18 +739,40 @@ function build_pmt_layouts(){
             
             
 
-        } else if (pmt_channel <= 999){
+        } else if (pmt_channel <= 807){
+            // 807 is highest tpc acq-mon channel
+            pmt["pos"]["init"] = [10 + (pmt_channel%38*10), 40 + Math.floor(pmt_channel/38)*10]
+            pmt["array"] = "aqmon"
+            pmt["detector"] = "aqmon"
+            pmt["description"] = "AQC " + pmt_channel
+            amp_text = "AQC: "+ pmt["aqmon"]
             // acq-monitors etc
-        } else if (pmt_channel <= 1999){
-            // Muon Veto
-            if(show_mv == true){
-                pmt["pos"]["3d"] = calc_3d_pos(pmt["coords"], "muon_veto")
-                try{
-                    z_levels_per_detector["muon_veto"].add(pmt["coords"][2])
-                } catch(error){
-                }
-            }
+        } else{
+            continue;
+            
         }
+        
+        
+        
+        // count all pmts per detector to know if some did not send data
+        if(pmt["detector"] in pmts_per_detector){
+            pmts_per_detector[pmt["detector"]] += 1
+            pmts_list_per_detector_template[pmt["detector"]].push(pmt_channel+"")
+        }else{
+            pmts_per_detector[pmt["detector"]] =1
+            pmts_list_per_detector_template[pmt["detector"]] = [pmt_channel+""]
+        }
+        // same for arrays
+        if(pmt["array"] in pmts_per_detector){
+            pmts_per_detector[pmt["array"]] += 1
+            pmts_list_per_detector_template[pmt["detector"]].push(pmt_channel+"")
+        }else{
+            pmts_per_detector[pmt["array"]] =1
+            pmts_list_per_detector_template[pmt["array"]] = [pmt_channel+""]
+        }
+        
+        
+        
         
         // calculate positions for other views
         try{
@@ -853,7 +817,7 @@ function build_pmt_layouts(){
         var pmt_channel_text = document.createElementNS(svgns, 'text');
         pmt_channel_text.setAttributeNS(null, 'x', 5);
         pmt_channel_text.setAttributeNS(null, 'y', 285);
-        pmt_channel_text.textContent = "PMT "+pmt_channel;
+        pmt_channel_text.textContent = pmt["description"];
         pmt_channel_text.setAttributeNS(null, "class", "text_info_large hidden");
         
         
@@ -883,52 +847,30 @@ function build_pmt_layouts(){
         pmt_info_text3.textContent = "VME: " + pmt["adc_crate"] + "." + pmt["adc_slot"] + "." + pmt["adc_channel"];
         pmt_info_text3.setAttributeNS(null, "class", "text_info_small hidden");
         
+        
         var pmt_info_text4 = document.createElementNS(svgns, 'text');
         pmt_info_text4.setAttributeNS(null, 'x', 100);
         pmt_info_text4.setAttributeNS(null, 'y', 302);
-        pmt_info_text4.textContent = "AMP: " + pmt["amp_crate"] + "." + pmt["amp_slot"] + "." + pmt["amp_channel"];
+        pmt_info_text4.textContent = amp_text
         pmt_info_text4.setAttributeNS(null, "class", "text_info_small hidden");
-            
         
         
-        pmt_group.appendChild(pmt_circle);
-        pmt_group.appendChild(pmt_text);
-        pmt_group.appendChild(pmt_channel_text);
-        pmt_group.appendChild(pmt_rate_text);
-        pmt_group.appendChild(pmt_info_text1);
-        pmt_group.appendChild(pmt_info_text2);
-        pmt_group.appendChild(pmt_info_text3);
-        pmt_group.appendChild(pmt_info_text4);
         
-        svgObject1.appendChild(pmt_group);
+        pmt_group.appendChild(pmt_circle)
+        pmt_group.appendChild(pmt_text)
+        pmt_group.appendChild(pmt_channel_text)
+        pmt_group.appendChild(pmt_rate_text)
+        pmt_group.appendChild(pmt_info_text1)
+        pmt_group.appendChild(pmt_info_text2)
+        pmt_group.appendChild(pmt_info_text3)
+        pmt_group.appendChild(pmt_info_text4)
+        
+        svgObject1.appendChild(pmt_group)
+        list_pmts_initialized.push(pmt_channel)
         }
     }
     
     
-    
-    { // building more decorations
-        if(show_mv == true){
-            for(z_level of z_levels_per_detector["muon_veto"]){
-                var xy_pos_ring = calc_3d_pos([0,0, z_level], "muon_veto")
-
-                
-                var mv_level_ellipse = document.createElementNS(svgns, 'ellipse');
-                mv_level_ellipse.setAttributeNS(null, 'cx', xy_pos_ring[0]);
-                mv_level_ellipse.setAttributeNS(null, 'cy', xy_pos_ring[1]);
-                mv_level_ellipse.setAttributeNS(null, 'rx', 450*.3);
-                mv_level_ellipse.setAttributeNS(null, 'ry', 450/2*.3);
-                mv_level_ellipse.setAttributeNS(null, 'class', "deco deco_3d");
-                mv_level_ellipse.style.fill = "none"
-                mv_level_ellipse.style.stroke = "grey"
-                mv_level_ellipse.style.strokeOpacity = ".25"
-                
-                
-            
-                svgObject1.appendChild(mv_level_ellipse);
-            }
-        }
-        
-    }
     
     console.log("built")
     
@@ -957,7 +899,10 @@ function build_pmt_layouts(){
     update_pmts_to_ignore_for_rate()
     
     
+    $('#layout_switcher').val(default_view)
     switch_layout(default_view)
+    
+    
     timer_ini.push(new Date) // end [5]
     
     timer_ini_string = "everything setup: db: "+(timer_ini[1]-timer_ini[0]).toFixed(0)+" ms, deco: "+(timer_ini[2]-timer_ini[1]).toFixed(0)+"ms, pmts: "+(timer_ini[3]-timer_ini[2]).toFixed(0)+"ms, all: "+(timer_ini[3]-timer_ini[0]).toFixed(0)+" ms"
@@ -1065,6 +1010,15 @@ function updates_check_and_combine(){
     svgObject0.getElementById("str_reader_time_1").textContent = ""
     svgObject0.getElementById("str_reader_time_2").textContent = ""
     svgObject0.getElementById("str_reader_time_3").textContent = ""
+    
+    
+    for(channel of list_pmts_initialized){
+        svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
+        svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
+        svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
+    }
+    
+    
     var i = -1
     for(reader of reader_list){
         i++
@@ -1104,6 +1058,7 @@ function updates_check_and_combine(){
             // rates_meta[detector]["max"] = Math.max(rates_meta[detector]["max"], Math.max(...rates))
             
             for(let [channel, rate] of Object.entries(reader_data["channels"])){
+                var array = pmt_dict[channel]["array"]
                 pmts_list_per_detector_dynamic[detector].splice(
                         pmts_list_per_detector_dynamic[detector].indexOf(channel),
                         1
@@ -1118,7 +1073,7 @@ function updates_check_and_combine(){
                             
                             // remove if monitor_trend_max_five_minues
                             if(!$("#monitor_trend_max_five_minues").is(":checked")){
-                                while(trendview_object.series[trendview_pmt_order[channel]].points.length > trendview_limit_points){
+                                while(trendview_object.series[trendview_pmt_order[channel]].points.length > custom_trendview_limit_points){
                                     trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
                                 }
                             }
@@ -1127,11 +1082,14 @@ function updates_check_and_combine(){
                     }
                 }catch(error){}
                 rates_meta[detector]["missing"]--
+                rates_meta[array]["missing"]--
                 
                 if(rate == 0){
                     rates_meta[detector]["zero"]++
+                    rates_meta[array]["zero"]++
                 } else {
                     rates_meta[detector]["tot"] += rate
+                    rates_meta[array]["tot"] += rate
                     
                     if(!pmts_to_ignore_for_rate.includes(channel)){
                         rates_meta[detector]["min"] = Math.min(rates_meta[detector]["min"], rate)
@@ -1161,8 +1119,8 @@ function updates_check_and_combine(){
     svgObject1.getElementById("str_legend_min").textContent = "min: " + rates_meta["tpc"]["min"] + " kB/s"
     svgObject1.getElementById("str_legend_max").textContent = "max: " + rates_meta["tpc"]["max"] + " kB/s"
     svgObject1.getElementById("str_legend_tot").textContent = "total: " + (rates_meta["tpc"]["tot"] /1024).toFixed(2) + " MB/s"
-    svgObject1.getElementById("str_legend_minus1").textContent = "no data: " + rates_meta["tpc"]["missing"];
-    svgObject1.getElementById("str_legend_zero").textContent = "zero data: " + rates_meta["tpc"]["zero"];
+    svgObject1.getElementById("str_legend_minus1").textContent = "no data: " + rates_meta["tpc"]["missing"] + " (" + rates_meta["top"]["missing"]+"/"+rates_meta["bottom"]["missing"]+"/"+rates_meta["top_HE"]["missing"]+")";
+    svgObject1.getElementById("str_legend_zero").textContent = "zero data: " + rates_meta["tpc"]["zero"] + " (" + rates_meta["top"]["zero"]+"/"+rates_meta["bottom"]["zero"]+"/"+rates_meta["top_HE"]["zero"]+")";
     
     
     if($("#legend_auto_set").is(':checked') == true){
@@ -1171,18 +1129,9 @@ function updates_check_and_combine(){
         update_color_scheme()
     }
     
-    color_pmts()
-    if(!$("#monitor_trend_follow").is(":checked")){
-        // trendview_object.redraw()
-    }
     
-    for(detector of Object.keys(pmts_list_per_detector_dynamic)){
-        for(channel of pmts_list_per_detector_dynamic[detector]){
-            svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
-            svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
-            svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
-        }
-    }
+    
+    color_pmts(pmt_rates)
     
     status_bar("coloring pmts")
     timer.push(new Date)
@@ -1192,7 +1141,6 @@ function updates_check_and_combine(){
     for(let [reader, rate] of Object.entries(opt_link_rates)){
         try{
             rate_permil = Math.min(1000,Math.max(0,Math.round((rate-40000)/40)))
-            //rate_permil = Math.min(1000,Math.max(0,Math.round((rate))))
             svgObject1.getElementById("opt_indicator_text_"+reader).textContent = Math.round(rate /10.24) / 100
             rect_obj = svgObject1.getElementById("opt_indicator_field_"+reader)
             rect_obj.style.fill = lut_colors[rate_permil]
@@ -1207,14 +1155,14 @@ function updates_check_and_combine(){
     
     timer.push(new Date)
     status_bar("")
-    if(dev_show_timings){
+    if(custom_show_timings){
         status_bar("updated graph. db: " + (timer[1]-timer[0]).toFixed(0) +" ms, work: " + (timer[2]-timer[1]).toFixed(0) +" ms, coloring: " + (timer[3]-timer[2]).toFixed(0) +" ms, all: " + (timer[3]-timer[0]).toFixed(0) +" ms")
     }
 }
 
-function color_pmts(){
+function color_pmts(pmt_rates_local){
     // this funciton only colors in pmts as it is called on datarate updates and when the lenged is changed
-    for(let [reader, reader_data] of Object.entries(pmt_rates)){
+    for(let [reader, reader_data] of Object.entries(pmt_rates_local)){
         if(reader_data != false){
             for(let [channel, rate] of Object.entries(reader_data["channels"])){
                 color_channel(channel, rate)
@@ -1234,7 +1182,7 @@ function color_channel(channel, rate){
             pmt_obj.style.fillOpacity = "1"
         }else if(rate < legend_rate_min && $("#monitor_fade_toggle").is(':checked')){
             // just fade away if data is below minimum
-            pmt_obj.style.fillOpacity = Math.max((pmt_obj.style.fillOpacity || 1)-fading_rate, 0);
+            pmt_obj.style.fillOpacity = Math.max((pmt_obj.style.fillOpacity || 1)-custom_fading_rate, 0);
             
         } else{
             pmt_obj.style.fillOpacity = "1"
@@ -1326,7 +1274,7 @@ function update_color_scheme(new_min = false, new_max=false){
     svgObject0.getElementById("str_legend_075").textContent = text_75.toFixed(0)
     svgObject0.getElementById("str_legend_100").textContent = legend_rate_max
     
-    color_pmts()
+    color_pmts(pmt_rates)
 }
 
 
@@ -1571,7 +1519,7 @@ function trendview_plot_cut_to_5_min(){
         for(channel of trendview_pmts2follow){
            
         if(!$("#monitor_trend_max_five_minues").is(":checked")){
-                while(trendview_object.series[trendview_pmt_order[channel]].points.length > trendview_limit_points){
+                while(trendview_object.series[trendview_pmt_order[channel]].points.length > custom_trendview_limit_points){
                     trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
                 }
             }
