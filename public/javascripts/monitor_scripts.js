@@ -1565,9 +1565,16 @@ function trendview_plot_cut_to_5_min(){
     // remove if monitor_trend_max_five_minues
     
    if(!$("#monitor_trend_max_five_minues").is(":checked")){                        
-        for(channel of trendview_pmts2follow){
-           
         if(!$("#monitor_trend_max_five_minues").is(":checked")){
+            var time_start = new Date()
+            time_start.setTime(time_start.getTime()-custom_trendview_limit_points*1000)
+            $("#field_history_start").val(time_start.toISOString())
+            $("#field_history_end").val((new Date()).toISOString())
+           
+           change_toggle("monitor_trend_follow", false)
+        } else {
+            for(channel of trendview_pmts2follow){
+        
                 while(trendview_object.series[trendview_pmt_order[channel]].points.length > custom_trendview_limit_points){
                     trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
                 }
