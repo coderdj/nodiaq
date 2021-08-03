@@ -182,6 +182,16 @@ function make_rgb_string_from_list(list){
     return("rgb("+list[0].toFixed(3)+","+list[1].toFixed(3)+","+list[2].toFixed(3)+")")
     
 }
+function make_rgb_string_text_from_list(list){
+    var color_sum = (list[0]**2 + list[1]**2+list[2]**2)**(.5)
+    if(color_sum > 210){
+        return("black")
+    }else{
+        return("white")
+    }
+    
+    
+}
 
 
 function monitor_toggle_pmt(channel_id){
@@ -240,6 +250,7 @@ function switch_pmt_channel_text_visibility(desired_state = "toggle"){
 }
 
 var lut_colors = []
+var lut_text_colors = []
 // using a look up table instead of a formula (might be much quicker)
 for(var permil = 0; permil <= 1000; permil++){
     var color = []
@@ -264,6 +275,7 @@ for(var permil = 0; permil <= 1000; permil++){
     }
     
     lut_colors[permil] = make_rgb_string_from_list(color)
+    lut_text_colors[permil] = make_rgb_string_text_from_list(color)
 }
 
 
@@ -1155,6 +1167,7 @@ function updates_check_and_combine(){
         svgObject1.getElementById("pmt_circle_"+channel).style.fill = "lightgrey"
         svgObject1.getElementById("pmt_circle_"+channel).style.fillOpacity = "1"
         svgObject1.getElementById("text_rate_"+channel).textContent = "no data"
+        svgObject1.getElementById("pmt_text_"+channel).style.fill = lut_colors.slice(-1)
     }
     
     
@@ -1214,7 +1227,6 @@ function color_channel(channel, rate){
         
         
         
-        
         if(rate == -1){
             pmt_obj.style.fillOpacity = "1"
             pmt_txt_obj.style.fill = "black"
@@ -1223,34 +1235,17 @@ function color_channel(channel, rate){
             pmt_obj.style.fillOpacity = Math.max((pmt_obj.style.fillOpacity || 1)-custom_fading_rate, 0);
             pmt_txt_obj.style.fill = "black"
         } else{
+            permil = Math.round(Math.min(permil, 1000))
+            permil = Math.max(permil, 0)
+                
             pmt_obj.style.fillOpacity = "1"
-            pmt_obj.style.fill = convert_rate_to_color_string(permil)
-            pmt_txt_obj.style.fill = convert_rate_to_text_color_string(permil)
+            pmt_obj.style.fill = lut_colors[permil]
+            pmt_txt_obj.style.fill = lut_text_colors[permil]
             
         }
     } catch(error){
         
         
-    }
-}
-
-
-function convert_rate_to_color_string(permil){
-    // catch easy cases first (below above limits)
-    if(permil < 0){
-        return(lut_colors[0])
-    }else if(permil > 1000){
-        return(lut_colors[1000])
-    } else{
-        return(lut_colors[Math.round(permil)])
-    
-    }
-}
-function convert_rate_to_text_color_string(permil){
-    if(permil < 300){
-        return("white")
-    }else{
-        return("black")
     }
 }
 
@@ -1590,7 +1585,11 @@ function trendview_plot_cut_to_5_min(){
             $("#field_history_start").val(time_start.toISOString())
             $("#field_history_end").val((new Date()).toISOString())
            
-           change_toggle("monitor_trend_follow", false)
+            if(trendview_test_validity() == true){
+                change_toggle("monitor_trend_follow", false)
+            }else{
+                change_toggle("monitor_trend_max_five_minues", true)
+            }
         } else {
             for(channel of trendview_pmts2follow){
         
