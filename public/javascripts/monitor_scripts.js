@@ -1203,16 +1203,30 @@ function color_pmts(pmt_rates_local){
 function color_channel(channel, rate){
     try{
         pmt_obj = svgObject1.getElementById("pmt_circle_"+channel)
+        pmt_txt_obj = svgObject1.getElementById("pmt_text_"+channel)
+        
+        
+        if($("#legend_color_scale_log").is(':checked') == true){
+            permil = (Math.log(rate)-Math.log(legend_rate_min))/legend_rate_diff*1000
+        }else{
+            permil = (rate-legend_rate_min)/legend_rate_diff*1000
+        }
+        
+        
+        
         
         if(rate == -1){
             pmt_obj.style.fillOpacity = "1"
-        }else if(rate < legend_rate_min && $("#monitor_fade_toggle").is(':checked')){
+            pmt_txt_obj.style.fill = "black"
+        }else if(permil < 0 && $("#monitor_fade_toggle").is(':checked')){
             // just fade away if data is below minimum
             pmt_obj.style.fillOpacity = Math.max((pmt_obj.style.fillOpacity || 1)-custom_fading_rate, 0);
-            
+            pmt_txt_obj.style.fill = "black"
         } else{
             pmt_obj.style.fillOpacity = "1"
-            pmt_obj.style.fill = convert_rate_to_color_string(rate)
+            pmt_obj.style.fill = convert_rate_to_color_string(permil)
+            pmt_txt_obj.style.fill = convert_rate_to_text_color_string(permil)
+            
         }
     } catch(error){
         
@@ -1221,24 +1235,25 @@ function color_channel(channel, rate){
 }
 
 
-function convert_rate_to_color_string(rate){
+function convert_rate_to_color_string(permil){
     // catch easy cases first (below above limits)
-    if(rate < legend_rate_min){
+    if(permil < 0){
         return(lut_colors[0])
-    }else if(rate > legend_rate_max){
+    }else if(permil > 1000){
         return(lut_colors[1000])
     } else{
-        if($("#legend_color_scale_log").is(':checked') == true){
-            permil = (Math.log(rate)-Math.log(legend_rate_min))/legend_rate_diff*1000
-        }else{
-            permil = (rate-legend_rate_min)/legend_rate_diff*1000
-        }
-        
-        
         return(lut_colors[Math.round(permil)])
     
     }
 }
+function convert_rate_to_text_color_string(permil){
+    if(permil < 300){
+        return("white")
+    }else{
+        return("black")
+    }
+}
+
 
 
 function legend_set(which){
