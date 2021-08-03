@@ -1414,6 +1414,7 @@ function trendview_get_data_full(){
             }
         )
     }
+    return(true)
 }
 
 function trendview_work_on_data(){
@@ -1456,8 +1457,11 @@ function trendview_plot_update(){
         series.push({
             name: 'pmt '+pmt,
             lineWidth: .5,
-            type: 'scatter',
+            type: 'line',
             data: trendview_data[pmt],
+            tootltip:{
+                headerFormat: '{point.key}'
+            },
         })
     }
     
@@ -1502,7 +1506,7 @@ function trendview_plot_update(){
                     }
                 },
                 marker: {
-                    radius: 1
+                    radius: 0
                 },
                 animation: false
             }
@@ -1521,7 +1525,9 @@ function trendview_plot_update_and_follow(){
         if(trendview_get_data_full() == false){
             change_toggle("monitor_trend_follow", true)
         }
+        change_toggle("monitor_live_toggle", true)
     }
+    
     
 }
 
