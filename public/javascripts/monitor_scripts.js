@@ -35,6 +35,7 @@ var rates_meta
 var list_pmts_initialized = []
 
 
+var trendview_style = ["scatter", "line"][0]
 var trendview_data_temp
 var trendview_data = false
 var trendview_pmts2follow = []
@@ -1529,7 +1530,7 @@ function trendview_plot_update(){
         series.push({
             name: 'pmt '+pmt,
             lineWidth: .5,
-            type: 'scatter',
+            type: trendview_style,
             data: trendview_data[pmt],
             tootltip:{
                 headerFormat: '{point.key}'
