@@ -677,7 +677,7 @@ function build_pmt_layouts(){
         bot_array_ellipse.setAttributeNS(null, 'cy', bot_center[1]);
         bot_array_ellipse.setAttributeNS(null, 'rx', tpc_radius);
         bot_array_ellipse.setAttributeNS(null, 'ry', tpc_radius * scaling_y);
-        bot_array_ellipse.setAttributeNS(null, 'class', "deco deco_3d deco_off");
+        bot_array_ellipse.setAttributeNS(null, 'class', "deco deco_3d");
         bot_array_ellipse.setAttributeNS(null, 'style', "fill:none;stroke:grey;");
         
         var top_array_ellipse = document.createElementNS(svgns, 'ellipse');
@@ -685,7 +685,7 @@ function build_pmt_layouts(){
         top_array_ellipse.setAttributeNS(null, 'cy', top_center[1]);
         top_array_ellipse.setAttributeNS(null, 'rx', tpc_radius);
         top_array_ellipse.setAttributeNS(null, 'ry', tpc_radius * scaling_y);
-        top_array_ellipse.setAttributeNS(null, 'class', "deco deco_3d deco_off");
+        top_array_ellipse.setAttributeNS(null, 'class', "deco deco_3d");
         top_array_ellipse.setAttributeNS(null, 'style', "fill:none;stroke:grey;");
         
         var left_line = document.createElementNS(svgns, 'line');
@@ -693,7 +693,7 @@ function build_pmt_layouts(){
         left_line.setAttributeNS(null, 'x2', top_center[0]-tpc_radius);
         left_line.setAttributeNS(null, 'y1', top_center[1]);
         left_line.setAttributeNS(null, 'y2', bot_center[1]);
-        left_line.setAttributeNS(null, 'class', "deco deco_3d deco_off");
+        left_line.setAttributeNS(null, 'class', "deco deco_3d");
         left_line.setAttributeNS(null, 'style', "stroke:grey;");
         
         var right_line = document.createElementNS(svgns, 'line');
@@ -701,7 +701,7 @@ function build_pmt_layouts(){
         right_line.setAttributeNS(null, 'x2', top_center[0]+tpc_radius);
         right_line.setAttributeNS(null, 'y1', top_center[1]);
         right_line.setAttributeNS(null, 'y2', bot_center[1]);
-        right_line.setAttributeNS(null, 'class', "deco deco_3d deco_off");
+        right_line.setAttributeNS(null, 'class', "deco deco_3d");
         right_line.setAttributeNS(null, 'style', "stroke:grey");
         
 
@@ -1003,7 +1003,6 @@ function updates_wrapper(){
     var tpc_live_toggle = $("#monitor_live_toggle").is(':checked')
     
     if(tpc_live_toggle == false){
-        status_bar("")
         return(0)
     }
     if(tpc_icon_title != "TPC is RUNNING"){
@@ -1256,7 +1255,7 @@ function updates_check_and_combine(){
     timer.push(new Date)
     status_bar("")
     if(custom_show_timings){
-        status_bar("updated graph. db: " + (timer[1]-timer[0]).toFixed(0) +" ms, work: " + (timer[2]-timer[1]).toFixed(0) +" ms, coloring: " + (timer[3]-timer[2]).toFixed(0) +" ms, all: " + (timer[3]-timer[0]).toFixed(0) +" ms")
+        status_bar("Updated graph: db: " + (timer[1]-timer[0]).toFixed(0) +" ms, work: " + (timer[2]-timer[1]).toFixed(0) +" ms, coloring: " + (timer[3]-timer[2]).toFixed(0) +" ms, all: " + (timer[3]-timer[0]).toFixed(0) +" ms")
     }
 }
 
