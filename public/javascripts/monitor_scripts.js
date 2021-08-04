@@ -912,7 +912,8 @@ function build_pmt_layouts(){
         try{
             pmt_info_text2.textContent = "OPT: " + this_board["host"].slice(-1) + "." + this_board["link"] + "." + this_board["opt_bd"];
         }catch(error){
-            pmt_info_text2.textContent = "OPT: ERROR";
+            pmt_info_text2.textContent = "OPT: board not in cable map";
+            pmt_info_text2.style.fill = "red";
         }
         
         var pmt_info_text3 = document.createElementNS(svgns, 'text');
