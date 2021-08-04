@@ -665,18 +665,18 @@ function build_pmt_layouts(){
     
     
     {// 3D Deco
-        var tpc_real_radius = 130/2 // [cm]
+        var tpc_real_radius = 125/2 // [cm]
         var top_center = calc_3d_pos([0,0], "top")
         var bot_center = calc_3d_pos([0,0], "bottom")
         var tpc_radius = 2*((bot_center[1]-calc_3d_pos([0,tpc_real_radius], "bottom")[1]) + layout_style["3d"]["pmt_size"])
-        var scaling_y = .85
+        var scaling_y = .5
         
         
         var bot_array_ellipse = document.createElementNS(svgns, 'ellipse');
         bot_array_ellipse.setAttributeNS(null, 'cx', bot_center[0]);
         bot_array_ellipse.setAttributeNS(null, 'cy', bot_center[1]);
         bot_array_ellipse.setAttributeNS(null, 'rx', tpc_radius);
-        bot_array_ellipse.setAttributeNS(null, 'ry', tpc_real_radius * scaling_y);
+        bot_array_ellipse.setAttributeNS(null, 'ry', tpc_radius * scaling_y);
         bot_array_ellipse.setAttributeNS(null, 'class', "deco deco_3d deco_off");
         bot_array_ellipse.setAttributeNS(null, 'style', "fill:none;stroke:grey;");
         
@@ -684,7 +684,7 @@ function build_pmt_layouts(){
         top_array_ellipse.setAttributeNS(null, 'cx', top_center[0]);
         top_array_ellipse.setAttributeNS(null, 'cy', top_center[1]);
         top_array_ellipse.setAttributeNS(null, 'rx', tpc_radius);
-        top_array_ellipse.setAttributeNS(null, 'ry', tpc_real_radius * scaling_y);
+        top_array_ellipse.setAttributeNS(null, 'ry', tpc_radius * scaling_y);
         top_array_ellipse.setAttributeNS(null, 'class', "deco deco_3d deco_off");
         top_array_ellipse.setAttributeNS(null, 'style', "fill:none;stroke:grey;");
         
