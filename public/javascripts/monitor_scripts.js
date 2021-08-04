@@ -35,7 +35,6 @@ var rates_meta
 var list_pmts_initialized = []
 
 
-var trendview_style = ["scatter", "line"][0]
 var trendview_data_temp
 var trendview_data = false
 var trendview_pmts2follow = []
@@ -66,7 +65,6 @@ var legend_rate_diff = 100
 
 // user customizable variables
 var custom_fading_rate = .20
-var custom_trendview_limit_points = 300
 var custom_show_timings = false
 
 
@@ -1150,7 +1148,11 @@ function updates_check_and_combine(){
                 rates_meta[array]["missing"]--
                 
                 try{
-                    if(trendview_pmts2follow.includes(channel) && !$("#monitor_trend_follow").is(":checked") && $("#tpc_status_icon").attr("title") == "TPC is RUNNING"){
+                    if(
+                            trendview_pmts2follow.includes(channel) &&
+                            !$("#monitor_trend_follow").is(":checked") &&
+                            $("#monitor_live_toggle").is(':checked')
+                    ){
                         if(!$("#monitor_trend_follow").is(":checked")){
                             trendview_object.series[trendview_pmt_order[channel]].addPoint({
                                     x:time_now.getTime(),
@@ -1159,7 +1161,7 @@ function updates_check_and_combine(){
                             
                             // remove if monitor_trend_max_five_minues
                             if(!$("#monitor_trend_max_five_minues").is(":checked")){
-                                while(trendview_object.series[trendview_pmt_order[channel]].points.length > custom_trendview_limit_points){
+                                while(trendview_object.series[trendview_pmt_order[channel]].points.length > parseInt($("#trendview_last_values_N").val())){
                                     trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
                                 }
                             }
@@ -1520,6 +1522,12 @@ function trendview_plot_update(){
     trendview_status_update("updating plot")
     series = []
     trendview_pmt_order = {}
+    if($("#monitor_trend_style").is(":checked")){
+        var trendview_style = "scatter"
+    }else{
+        var trendview_style = "line"
+    }
+    
     i = -1
     for(let [pmt, data] of Object.entries(trendview_data)){
         
@@ -1590,20 +1598,6 @@ function trendview_plot_update(){
     trendview_status_update("")
 }
 
-function trendview_plot_update_and_follow(){
-    if(!$("#monitor_trend_follow").is(":checked")){
-        usetimestamp('field_history_end')
-        
-        
-        if(trendview_get_data_full() == false){
-            change_toggle("monitor_trend_follow", true)
-        }
-        change_toggle("monitor_live_toggle", true)
-    }
-    
-    
-}
-
 
 
 function trendview_test_validity(){
@@ -1633,30 +1627,20 @@ function trendview_test_validity(){
 
 
 
+function start_follow_N_values(){
+    var time_start = new Date()
+    time_start.setTime(time_start.getTime()-parseInt($("#trendview_last_values_N").val())*1000)
+    $("#field_history_start").val(time_start.toISOString())
+    $("#field_history_end").val((new Date()).toISOString())
+   
 
-function trendview_plot_cut_to_5_min(){
-    // remove if monitor_trend_max_five_minues
-    
-   if(!$("#monitor_trend_max_five_minues").is(":checked")){                        
-        if(!$("#monitor_trend_max_five_minues").is(":checked")){
-            var time_start = new Date()
-            time_start.setTime(time_start.getTime()-custom_trendview_limit_points*1000)
-            $("#field_history_start").val(time_start.toISOString())
-            $("#field_history_end").val((new Date()).toISOString())
-           
-            if(trendview_test_validity() == true){
-                change_toggle("monitor_trend_follow", false)
-            }else{
-                change_toggle("monitor_trend_max_five_minues", true)
-            }
-        } else {
-            for(channel of trendview_pmts2follow){
-        
-                while(trendview_object.series[trendview_pmt_order[channel]].points.length > custom_trendview_limit_points){
-                    trendview_object.series[trendview_pmt_order[channel]].removePoint(0, false, false)
-                }
-            }
-        }
+    if(trendview_test_validity() == true){
+        change_toggle("monitor_trend_follow", false)
+        change_toggle("monitor_trend_max_five_minues", false)
+        change_toggle("monitor_trend_max_five_minues", false)
+        change_toggle("monitor_live_toggle", true)
+        trendview_get_data_full()
     }
+    
     
 }
