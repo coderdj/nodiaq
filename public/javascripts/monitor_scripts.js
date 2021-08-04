@@ -357,11 +357,10 @@ function tpc_pos(array, coords){
 function calc_3d_pos(input_coords, calc){
     var coords_3d = []
     
-    var y_offset = 0
-    
     var scaling_x = 1.5
     var scaling_y = .75
     var scaling_z = .75
+    var global_scaling = 1.1
     
     try{
         switch(calc){
@@ -382,8 +381,8 @@ function calc_3d_pos(input_coords, calc){
         }
 
         coords_2d = [
-            200 + coords_3d[0]*scaling_x,
-            200 - coords_3d[1]*scaling_y - coords_3d[2]*scaling_z + y_offset
+            200 + coords_3d[0]*scaling_x*global_scaling,
+            200 - coords_3d[1]*scaling_y*global_scaling - coords_3d[2]*scaling_z*global_scaling
         ]
         return(coords_2d)
     }catch(error){
@@ -510,7 +509,7 @@ function build_pmt_layouts(){
     svgObject0 = document.getElementById('svg_frame1').contentDocument;
     svgObject1 = document.getElementById('svg_frame1').contentDocument.documentElement;
 
-    status_bar("if this message is visible reload the page", color = "red")
+    status_bar("If this message is visible: reload the page", color = "red")
     
 
     //add listerns to svg elements
@@ -667,7 +666,7 @@ function build_pmt_layouts(){
     
     
     {// 3D Deco
-        var tpc_real_radius = 125/2 // [cm]
+        var tpc_real_radius = 130/2 // [cm]
         var top_center = calc_3d_pos([0,0], "top")
         var bot_center = calc_3d_pos([0,0], "bottom")
         var tpc_radius = 2*((bot_center[1]-calc_3d_pos([0,tpc_real_radius], "bottom")[1]) + layout_style["3d"]["pmt_size"])
@@ -738,7 +737,11 @@ function build_pmt_layouts(){
         pmt_dict[pmt_channel] = pmt
         this_board = board_dict[pmt["adc"]]
         
-        pmt["reader"] = this_board["host"] + "_reader_0"
+        try{
+            pmt["reader"] = this_board["host"] + "_reader_0"
+        }catch(error){
+            console.log("ERROR: PMT: "+pmt_channel+"; board: "+pmt["reader"])
+        }
         
         
         // start the pmt svg group to pu all the elemets inside it dynamically
@@ -900,13 +903,18 @@ function build_pmt_layouts(){
         pmt_info_text1.setAttributeNS(null, 'y', 278);
         pmt_info_text1.textContent = "ADC: "+ pmt["adc"];
         pmt_info_text1.setAttributeNS(null, "class", "text_info_small hidden");
-        
+
         var pmt_info_text2 = document.createElementNS(svgns, 'text');
         pmt_info_text2.setAttributeNS(null, 'x', 100);
         pmt_info_text2.setAttributeNS(null, 'y', 286);
-        pmt_info_text2.textContent = "OPT: " + this_board["host"].slice(-1) + "." + this_board["link"] + "." + this_board["opt_bd"];
         pmt_info_text2.setAttributeNS(null, "class", "text_info_small hidden");
-       
+
+        try{
+            pmt_info_text2.textContent = "OPT: " + this_board["host"].slice(-1) + "." + this_board["link"] + "." + this_board["opt_bd"];
+        }catch(error){
+            pmt_info_text2.textContent = "OPT: ERROR";
+        }
+        
         var pmt_info_text3 = document.createElementNS(svgns, 'text');
         pmt_info_text3.setAttributeNS(null, 'x', 100);
         pmt_info_text3.setAttributeNS(null, 'y', 294);
