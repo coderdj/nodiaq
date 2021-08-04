@@ -1529,7 +1529,7 @@ function trendview_plot_update(){
         series.push({
             name: 'pmt '+pmt,
             lineWidth: .5,
-            type: 'line',
+            type: 'scatter',
             data: trendview_data[pmt],
             tootltip:{
                 headerFormat: '{point.key}'
