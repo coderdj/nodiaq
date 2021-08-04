@@ -1156,7 +1156,7 @@ function updates_check_and_combine(){
                             trendview_object.series[trendview_pmt_order[channel]].addPoint({
                                     x:time_now.getTime(),
                                     y:rate
-                            })
+                            }, false)
                             
                             // remove if monitor_trend_max_five_minues
                             if(!$("#monitor_trend_max_five_minues").is(":checked")){
@@ -1536,7 +1536,7 @@ function trendview_plot_update(){
         trendview_pmt_order[pmt] = i
         series.push({
             name: 'pmt '+pmt,
-            lineWidth: .5,
+            lineWidth: 1,
             type: trendview_style,
             data: trendview_data[pmt],
             tootltip:{
