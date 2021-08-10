@@ -6,16 +6,10 @@ block extrahead
 
   link(href="stylesheets/status_style.css", rel="stylesheet")
   link(href="stylesheets/custom-select.css", rel="stylesheet")
-  script(src="javascripts/highcharts-more.js", type='text/javascript')
-  script(src="javascripts/solid-gauge.js", type='text/javascript')
+  //script(src="javascripts/highcharts-more.js", type='text/javascript')
+  //script(src="javascripts/solid-gauge.js", type='text/javascript')
 
 block content
-  - var tpc_readers = [["reader0", "reader0_reader_0"], ["reader1", 'reader1_reader_0'], ["reader2", 'reader2_reader_0'], ["Muon Veto", "reader5_reader_0"], ["Neutron Veto", "reader6_reader_0"]];
-  - var tpc_controllers = [["TPC aux", "reader0_controller_0"], ["NV aux", "reader6_controller_0"], ["MV_aux", "reader5_controller_0"]];
-
-  - var atts = ['active', 'comment', 'detector', 'hosts', 'crate_controller', 'diagnosis', 'mode', 'number', 'started_at', 'status', 'stop_after', 'user'];
-  - var controller_atts = ['host', 'status', 'checkin'];
-  - var controller_labels = ['Host', 'Status', 'Check-in'];
   //
     div.main-container(style='background-color:#eeeeee;margin:-5px;padding:15px;height:100vh')
 
@@ -45,10 +39,12 @@ block content
           option(value='rate') Data rate
           option(value='buff') Buffer size
 
-        button.btn.btn-info#update_button(style="height:80%;padding-top:3px" onclick="RedrawRatePlot()") &nbsp;&nbsp; Update
+        span &nbsp;&nbsp;
+
+        button.btn.btn-info#update_button(style="height:80%;padding-top:3px" onclick="RedrawRatePlot()") Update
       div.chart_body#rate_chart(style="height:300px")
   div.row(style="width:100%;margin:0;padding-top:5px")
-    each reader in tpc_readers
+    each reader in readers
       div.col-xs-6.col-sm-6.col-md-3(style='padding-left:0;padding-right:0')
         div.det_card(id=`${reader[1]}_statdiv`)
           strong #{reader[0]} is &nbsp;
@@ -60,7 +56,7 @@ block content
             span Checked in &nbsp;
             span(id=`${reader[1]}_check-in`)
             span &nbsp; seconds ago
-    each controller in tpc_controllers
+    each controller in controllers
       div.col-xs-6.col-sm-6.col-md-3(style='padding-left:0;padding-right:0')
         div.det_card
           strong #{controller[0]} is &nbsp;
@@ -75,6 +71,16 @@ block content
       div.det_card
         strong Dispatcher is &nbsp;
         span(id="dispatcher_status")
+    each eb in eventbuilders
+      div.col-xs-6.col-sm-6.col-md-3(style='padding-left:0;padding-right:0')
+        div.det_card
+          strong #{eb} is &nbsp;
+          span(id=`${eb}_status`)
+          p(style='margin-bottom:-5px;font-size:10px;color:#888888')
+            span Checked in &nbsp;
+            span(id=`${eb}_checkin`)
+            span &nbsp; seconds ago
+
     div.col-sm-12.col-md-12.col-lg-6(style="padding:0px;padding-top:5px;padding-bottom:5px;border:0px solid #ccc;")
       div.det_card_noheight
         a(href="https://ceph.io")
@@ -91,13 +97,10 @@ block content
       div.panel-group#command_panel(style="font-size:14px")
 
       div(style="width:100%;border-bottom:1px solid #ccc;background-color:#151675;color:white;padding-left:5px;")
-        h5 Live Processing Nodes
-      div.panel-group#bootstrax_panel(style="font-size:14px")
 
   script.
     $(document).ready(function () {
       //FYouButton('update_button');
-      RedrawRatePlot();
-      UpdateStatusPage();
+      SetHosts();
       DrawActiveLink("#lstatus");
     });

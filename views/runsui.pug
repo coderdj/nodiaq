@@ -13,6 +13,7 @@ block extrahead
 
 block content
   div.main-container(style="height:100%")
+    audio#flash_whoa(src="images/flash_whoa.mp3")
     div.row.det_card_noheight#addtagrow(style="display:none;padding-left:20px;")
       div.col-md-12.col-lg-6
         div.form-group.row
@@ -41,9 +42,9 @@ block content
           textarea#mongoquery(rows="1" cols="10" type="text" placeholder="{}")
           span &nbsp;
           button.btn.btn-default(onclick="CheckMongoQuery()" style="margin-top:-25px") Apply
-
     br
-    span Note: 'Start' is given in your local time
+    span Note: the Start and End times are given in 
+    strong UTC
     div.det_card_noheight#resize_wrapper(style="height:90%;width:100%;background-color:white;padding-top:15px")
       table.nowrap.table-hover(style="background-color:white")#runs_table
         thead
@@ -52,9 +53,9 @@ block content
             th Number
             th Detectors
             th Mode
-            th Strax
+            th Live processing
             th User
-            th Start
+            th Start (UTC)
             th Length
             th Tags
             th Newest Comment
@@ -123,9 +124,8 @@ block content
             br
             button.btn.btn-error(type='button' data-dismiss='modal') Close
   script.
-    // This allows the included javascript to see who the user is
-    var user = '#{user.last_name}';
     $(document).ready(function(){
+      document.getElementById("flash_whoa").volume = 0.3;
       DrawActiveLink("#lruns");
       InitializeRunsTable("#runs_table");
       });

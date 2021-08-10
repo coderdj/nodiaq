@@ -18,8 +18,7 @@ block content
               span &nbsp;&nbsp;
               button.btn.btn-warning.btn-xl#submit_changes(onclick="PostServerData()") Submit
 
-    - var detectors = [["tpc", "TPC"], ["muon_veto", "Muon Veto"], ["neutron_veto", "Neutron Veto"], ["lz", "LZ TPC"]];
-    each det in detectors
+    each det in _detectors
       div.det_card_noheight(style="width:100%;border:1px solid #ccc;margin-top:10px")
         div.row
           div.col-12
@@ -53,13 +52,11 @@ block content
             textarea.form-control.det_control.det_comment(id=`${det[0]}_comment` rows="2" name="comment" type='text')
 
 
-  audio#ahahah(src="images/ahahah.mp3")
   script.
     $(document).ready(function(){
+      SetDetectorsLocal();
       //FYouButton("submit_changes");
       document.page_ready = false;
       document.current_user = "#{user.lngs_ldap_uid}";
       DrawActiveLink("#lcontrol");
-      PopulateOptionsLists(PullServerData);
-      DefineButtonRules();
     });

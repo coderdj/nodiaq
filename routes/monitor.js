@@ -13,8 +13,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
   res.render('monitor', req.template_info_base);
 });
 
-
-
 router.get('/cable_map.json', ensureAuthenticated,function(req,res){
 
   // start mongo pipeline with empty array
@@ -29,6 +27,9 @@ router.get('/cable_map.json', ensureAuthenticated,function(req,res){
   .catch(err => {console.log(err.message); return res.json([]);});
 });
 
+  // append time filter if parameter unixtime is given in url
+  var int_unixtime = parseInt(req.query.unixtime);
+  if(!isNaN(int_unixtime)){
 
 router.get('/board_map.json', ensureAuthenticated,function(req,res){
 
@@ -40,6 +41,7 @@ router.get('/board_map.json', ensureAuthenticated,function(req,res){
   
   // keep those two lines to speed up the process by x 1000 (not needing to check entire database)
   req.db.get('board_map').find({})
+
   .then(docs => res.json(docs))
   .catch(err => {console.log(err.message); return res.json([]);});
 });
@@ -196,7 +198,9 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
 
 // get last update on individual reader
 router.get('/update/:reader', ensureAuthenticated,function(req,res){
+
   var query = {host: req.params.reader};
+
   var opts = {limit: 1, sort: {_id: -1}};
   req.db.get('status').find(query,opts)
     .then(docs => res.json(docs))
@@ -225,6 +229,7 @@ router.get('/update_timestamp/:reader/:time', ensureAuthenticated,function(req,r
     .catch(err => {console.log(err.message); return res.json(query);});
   
     
+
 });
 
 

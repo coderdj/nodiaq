@@ -1,11 +1,8 @@
-// global settings ()change those if there are achanges to the daq
+// global settings, change those if there are changes to the daq
 
 const readers_per_detector = {
     "tpc": ["reader0_reader_0", "reader1_reader_0", "reader2_reader_0"]
 }
-
-
-// currently disables as coordinates are strange....
 
 //var default_view = "tpc"
 var default_view = "3d"
@@ -292,6 +289,7 @@ function status_bar(string_text, color = false, stroke = false){
     }
 }
 
+
 function caclulate_board_base_pos(board, layout){
     try{
         var x = 500;
@@ -398,8 +396,7 @@ function switch_layout(layout){
     if(!(layout in default_pos)){
         return(0)
     }
-    
-    try{
+   try{
         pmt_size = layout_style[layout]["pmt_size"]
         if("pmt_height" in layout_style[layout]){
             pmt_size_height = layout_style[layout]["pmt_height"]
@@ -484,6 +481,7 @@ function initialize_pmts(){
             console.log("cable_map loaded")
             build_pmt_layouts()
         }
+
     )
     
     console.log("both loadings initialized")
@@ -1321,6 +1319,7 @@ function legend_set(which){
             eval("legend_rate_"+which+ "="+new_value)
             
             update_color_scheme()
+
         }
     }
     
@@ -1347,6 +1346,7 @@ function update_color_scheme(new_min = false, new_max=false){
         }
         legend_rate_diff = Math.log(legend_rate_max) - Math.log(legend_rate_min)
         diff_rate = legend_rate_diff/4
+
         
         text_25 = Math.exp(Math.log(legend_rate_min) + diff_rate)
         text_50 = Math.exp(Math.log(legend_rate_min) + diff_rate * 2)
@@ -1369,6 +1369,7 @@ function update_color_scheme(new_min = false, new_max=false){
     svgObject0.getElementById("str_legend_050").textContent = text_50.toFixed(0)
     svgObject0.getElementById("str_legend_075").textContent = text_75.toFixed(0)
     svgObject0.getElementById("str_legend_100").textContent = legend_rate_max
+
     
     color_pmts(pmt_rates)
 }

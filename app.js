@@ -7,8 +7,6 @@ var bodyParser = require("body-parser");
 var gp="";
 
 // General MongoDB Access via monk
-var mongo = require('mongodb');
-var ObjectID = mongo.ObjectID;
 var monk = require('monk');
 
 console.log("");
@@ -28,41 +26,23 @@ var dax_cstr = process.env.DAQ_URI;
 //console.log("DAX DB " + dax_cstr);
 var db = monk(dax_cstr, {authSource: process.env.DAQ_MONGO_AUTH_DB});
 
-// For Runs DB Datatable
-var runs_mongo = require("./runs_mongo");
-
-// For email confirmations
-var nodemailer = require("nodemailer");
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-      //type : 'OAuth2',
-      //clientID : process.env.DAQ_CONFIRMATION_OAUTH_ID,
-      //clientSecret : process.env.DAQ_CONFIRMATION_OAUTH_SECRET,
-      user: process.env.DAQ_CONFIRMATION_ACCOUNT,
-      pass: process.env.DAQ_CONFIRMATION_PASSWORD
-  }
-});
-
-
 // Routers for all the sub-sites
 var indexRouter = require('./routes/index');
 var optionsRouter = require('./routes/options');
 var hostsRouter = require('./routes/hosts');
 var runsRouter = require('./routes/runsui');
-var userRouter = require('./routes/users');
 var logRouter = require('./routes/logui');
 var helpRouter = require('./routes/help');
 var statusRouter = require('./routes/status');
 var authRouter = require('./routes/auth');
 var controlRouter = require('./routes/control');
-var scopeRouter = require('./routes/scope');
 var monitorRouter = require('./routes/monitor');
-var shiftRouter = require('./routes/shifts');
-var adminRouter = require('./routes/admin');
 var equipmentRouter = require('./routes/equipment');
 var apiRouter = require('./routes/api');
 var hvRouter = require('./routes/hypervisor');
+
+// For Runs DB Datatable
+var runs_mongo = require("./runs_mongo");
 
 // Using express!
 var app = express();
@@ -89,6 +69,7 @@ var assert = require("assert");
 store.on('error', function(error) {
   assert.ifError(error);
   assert.ok(false);
+  //console.log(error);
 });
 
 app.use(session({
@@ -140,12 +121,30 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
-    req.transporter = transporter;
-    req.runs_db = runs_db;
+    req.runs_coll = runs_db.get(process.env.RUNS_MONGO_COLLECTION);
     req.users_db = users_db;
-    req.monitor_db = db;
-    req.ObjectID = ObjectID;
     next();
+});
+
+
+app.use(function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.user = req.user;
+    req.template_info_base = {
+      pagetitle: 'XENONnT DAQ',
+      detectors: [['tpc', 'TPC'], ['muon_veto', 'Muon Veto'], ['neutron_veto', 'Neutron Veto']],
+      headertitle: 'XENONnT Data Acquisition',
+      shortcuts : (typeof req.user != 'undefined' && typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor', 'shifts', 'users'],
+    };
+  } else {
+    req.template_info_base = {
+      pagetitle: 'LZ DAQ',
+      detectors: [['lz_tpc', 'LZ TPC'], ['lz_veto', 'LZ Veto']],
+      headertitle: 'LZ Data Acquisition',
+      shortcuts : (typeof req.user != 'undefined' && typeof req.user.groups != 'undefined' && req.user.groups.includes('daq')) ? ['index', 'control', 'status', 'options', 'hosts', 'runs', 'monitor'] : ['index', 'control', 'status', 'runs', 'monitor', 'shifts', 'users'],
+    };
+  }
+  next();
 });
 
 // This is the route for the automatic runs datatable api function
@@ -157,15 +156,11 @@ app.use('/hosts', hostsRouter);
 app.use('/runsui', runsRouter);
 app.use('/logui', logRouter);
 app.use('/help', helpRouter);
-app.use('/users', userRouter);
 app.use('/status', statusRouter);
 app.use('/auth', authRouter);
 app.use('/control', controlRouter);
-app.use('/scope', scopeRouter);
 app.use('/monitor', monitorRouter);
-app.use('/shifts', shiftRouter);
 app.use('/equipment', equipmentRouter);
-app.use('/admin', adminRouter);
 app.use('/api', apiRouter);
 app.use('/hypervisor', hvRouter);
 
@@ -173,12 +168,6 @@ app.use('/hypervisor', hvRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
-});
-
-// Make user object accessible to templates
-app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
 });
 
 // error handler
@@ -190,6 +179,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;

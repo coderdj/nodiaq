@@ -14,15 +14,13 @@ passport.deserializeUser(function(obj, done) {
 
 
 function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
+  for(var key in obj) {
+    if(obj.hasOwnProperty(key))
+      return false;
+  }
+  return true;
 }
 
-// GithubStrategy
-var GitHubStrategy = require('passport-github2').Strategy;
 async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback){
 
     var ret_profile = {};
@@ -30,14 +28,12 @@ async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback
     // This step important. We need a unique identifier for each user. The user
     // doesn't actually need to see this but it's important for some internal 
     // things.     
-    //ret_profile['daq_id'] = await GenerateDAQID(mongo_doc);
-    //console.log(ret_profile);
     console.log("Populating profile for " + mongo_doc.last_name);
 
     var extra_fields = ['skype', 'cell',
                         'favorite_color', 'email', 'lngs_ldap_uid',
                         'last_name', 'first_name', 'institute', 'position',
-                        'percent_xenon', 'start_date', 'LNGS', 'github',
+                        'percent_xenon', 'start_date', 'github',
                         'picture_url', 'github_home', 'groups'];
     for(var i in extra_fields){
         if(typeof mongo_doc[extra_fields[i]]==='undefined')
@@ -62,6 +58,8 @@ async function PopulateProfile(mongo_doc, github_profile, ldap_profile, callback
     callback(ret_profile);
 }
 
+// GithubStrategy
+var GitHubStrategy = require('passport-github2').Strategy;
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_OATH_CLIENT_ID,
     clientSecret: process.env.GITHUB_OATH_CLIENT_SECRET,
