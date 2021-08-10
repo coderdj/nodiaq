@@ -19,7 +19,10 @@ block content
           div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
             table
                 tr
-                    td view style:
+                    td(colspan="3", style="font-weight:bold;text-align:left") TPC view
+                
+                tr(title="Select the way the PMTs are sorted and grouped here.")
+                    td PMT Layout:
                     td(colspan = 3)
                         select#layout_switcher(name='view_style', onchange="switch_layout(this.value)")
                             option(value='tpc') TPC
@@ -31,56 +34,55 @@ block content
                             option(value='3d') 3D
                             option(value='off') OFF
                 
-                tr
-                    td(title="wheter live data should be checked for") live data:
+                tr(title="Wheter live data should be checked for every second (if the tpc is running).")
+                    td Live data:
                     td
                         input#monitor_live_toggle(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="live" data-off="off" data-size='small' checked)
-                    td(title="channels wtih a datarate below the lower legend limit will slowly fade to white") fading:
+                
+                
+                tr(title="Check min and max datarate each time updates are applied, adjusts the legend/color automatically to those vales.")
+                    td Datarate scale:
+                    td
+                        input#legend_auto_set(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="auto" data-off="fixed" data-size='small' checked)
+
+                tr(title="Which pmts shall be ignored when checking for the max rate (comma seperated, no spaces)")
+                    td Ignore PMTs:
+                    td(colspan = 3)
+                        input(id="field_ignore_pmts", size="25", value = "453", onchange='update_pmts_to_ignore_for_rate()')
+               
+                tr(title="switch between logarithmic and linear colour scale")
+                    td Colour scale:
+                    td
+                        input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
+                
+                tr(title="PMTs with a datarate below the lower legend limit will slowly fade to white") 
+                    td Fading:
                     td
                         input#monitor_fade_toggle(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="fading" data-off="off" data-size='small' checked)
                
-                tr
-                    td datarate scale:
-                    td
-                        input#legend_auto_set(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="auto" data-off="fixed" data-size='small' checked)
-                    td color scale:
-                    td
-                        input#legend_color_scale_log(onchange='update_color_scheme()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="log" data-off="lin" data-size='small' checked)
-                    td pmt numbers:
+                tr(title="The individual pmt channel labels visibility")
+                    td PMT Labels:
                     td
                         input#monitior_pmt_text_view_switch(onchange='switch_pmt_channel_text_visibility(this.value)', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="visible" data-off="hidden" data-size='small' checked)
                         
-                tr(title="which pmts shall be ignored when checking for the max rate (comma seperated, no spaces)")
-                    td ignore pmt rate:
-                    td(colspan = 3)
-                        input(id="field_ignore_pmts", size="25", value = "453", onchange='update_pmts_to_ignore_for_rate()')
-                
-                    
-
-                
-          
-          
-          // controls for live view
-          div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
-            table
                 tr
-                    td(colspan="3", style="font-weight:bold;text-align:left") channel view
-
-                tr
-                    td time displayed
+                    td Time shown
                     td
-                        input(id="field_current_timestamp", value="-1", size="25")
+                        input(id="field_current_timestamp", value="-1", size="25", title="this time is currently displayed")
                     td
-                        button.btn.btn-default(onclick="force_show_timestamp()", onchange="force_show_timestamp()" ) show
+                        button.btn.btn-default(onclick="force_show_timestamp()", onchange="force_show_timestamp()" title="Press this button to show the time in this field (for manual adjustment: turn of 'Live data' first).") show
 
                 tr
                     td
-                        input#monitior_playback(onchange='playback_wrapper()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="start playback" data-off="playback" data-size='small' checked)
-                    td(colspan="3")
-                        button.btn.btn-default(onclick="jump_in_time(-10)") -10 &nbsp;
-                        button.btn.btn-default(onclick="jump_in_time(-1)") -1 &nbsp;
-                        button.btn.btn-default(onclick='jump_in_time(1)') +1 &nbsp;
-                        button.btn.btn-default(onclick='jump_in_time(10)') +10 &nbsp;
+                        input#monitior_playback(onchange='playback_wrapper()', type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="start playback" data-off="playback" data-size='small' checked, title="if the currently displayed time is in the past you can playback what happend up to the present at twice the speed. Pause the playback at any point by clicking the button again. If you reach the present the normal live view will resume.")
+                    td(colspan="3", title="jump back/forward in time.")
+                        button.btn.btn-default(onclick="jump_in_time(-10)") -10
+                        span(width="10") &nbsp;
+                        button.btn.btn-default(onclick="jump_in_time(-1)") -1
+                        span(width="10") &nbsp;
+                        button.btn.btn-default(onclick='jump_in_time(1)') +1
+                        span(width="10") &nbsp;
+                        button.btn.btn-default(onclick='jump_in_time(10)') +10
 
           br
           br
@@ -88,49 +90,55 @@ block content
           // controls for history
           div.row(style="width:100%;margin:0;padding-top:5px;background-color:#f0f0f0;")
             table
-                tr
+                tr(title="The start of the trendview. Set to the time when the page was loaded.")
                     td
                         span(style="font-weight:bold;text-align:left") Trend view
-                    
-                        
 
-                tr    
-                    td time start
+                tr(title="The end of the trendview. Set to the time when the page was loaded, must be changed manually")
+                    td Time start
                     td
                         input(id="field_history_start", value="-1", size="25", title="Start of Trendview")
                     td
                         button.btn.btn-default(onclick="force_show_timestamp('field_history_start')", title="show this  time in tpc view") show &nbsp;
+                        span(width="10") &nbsp;
                         button.btn.btn-default(onclick="usetimestamp('field_history_start')", title="fill this field with currently tpc view timestamp") use displayed time
 
                 tr 
-                    td time end
+                    td Time end
                     td
                         input(id="field_history_end", value="-1", size="25", title="End of Trendview")
                     td
                         button.btn.btn-default(onclick="force_show_timestamp('field_history_end')", title="show this  time in tpc view") show &nbsp;
+                        span(width="10") &nbsp;
                         button.btn.btn-default(onclick="usetimestamp('field_history_end')", title="fill this field with currently tpc view timestamp") use displayed time
 
-                tr
-                    td pmts for line plot
+                tr(title="which pmts shall be plotted below (comma seperated, no spaces). Click pmts in tpc view to fill.")
+                    td Pmts for line plot
                     td
-                        input(id="field_line_plot_pmts", size="25", title="which pmts shall be plotted below (comma seperated, no spaces). Click pmts in tpc view to fill.")
-                    td(title="determines behaviour when hovering over points in Trendview (scatter: show closest point in r-direction, line: in t-direction, but human readable date).") Plot style: &nbsp;
+                        input(id="field_line_plot_pmts", size="25")
+                
+                tr(title="determines behaviour when hovering over points in Trendview (scatter: show closest point in r-direction, line: in t-direction, but human readable date).")
+                    td Plot style
+                    td
                         input#monitor_trend_style(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="Scatter" data-off="Line" data-size='small' checked)
 
-                tr(title="remove values of begining of series if more than this number of datapoints exist")
-                    td keep latest values
+                tr(title="Remove values of begining of series if more than this number of datapoints exist. Needs to be swiched on by the toggle on the right.")
+                    td Keep latest values
                     td
                         input(id="trendview_last_values_N", size="5", value="300")
-                        input#monitor_trend_max_five_minues(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="show all" data-off="remove old" data-size='small' checked)
-                tr(title="whether or not newly obtained datapoints shall be appended to trendview")
-                    td append live data
+                        span(width="10") &nbsp;
+                        input#monitor_trend_max_five_minues(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="show all" data-off="remove old" data-size='small' checked, title="this is the toggle that determines whether data is cut of or not.")
+                
+                tr(title="Auto-Update of Trendview: Whether or not newly obtained datapoints shall be appended to trendview.")
+                    td Append live data
                     td
                         input#monitor_trend_follow(type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="no appending" data-off="appending live data" data-size='small' checked)
                         
                 tr
                     td(colspan="4")
-                        button.btn.btn-default(onclick="trendview_get_data_full()", title="Draws trendline for given point in time with selected setting") draw trendlines &nbsp;
-                        button.btn.btn-default(onclick="start_follow_N_values()", title="sets time values such that the last N values will be loaded, enables auto update and auto cutoff.") follow last N values &nbsp;
+                        button.btn.btn-default(onclick="trendview_get_data_full()", title="Draws trendline for given point in time with selected setting.") draw trendlines
+                        span(width="10") &nbsp;
+                        button.btn.btn-default(onclick="start_follow_N_values()", title="Sets time values such that the last N values will be loaded, enables auto update and auto cutoff.") follow last N values
                 
                 tr
                     td &nbsp;
