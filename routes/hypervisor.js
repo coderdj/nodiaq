@@ -1,3 +1,4 @@
+// routes/hypervisor.js
 var express = require('express');
 var url = require('url');
 var router = express.Router();
@@ -12,7 +13,7 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-  res.render('hypervisor', {user: req.user});
+  res.render('hypervisor', req.template_info_base);
 });
 
 router.get('/readout_status', ensureAuthenticated, function(req, res) {
@@ -44,8 +45,7 @@ router.get('/eb_status', ensureAuthenticated, function(req, res) {
 
 router.post('/control', ensureAuthenticated, function(req, res) {
   var data = req.body.data;
-  // return res.sendStatus(200);
-  req.db.get('hypervisor').updateOne(
+  req.db.get('hypervisor').update(
     {ack: 0},
     {'$push': {commands: data},
      '$currentDate': {time: 1},

@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 // global settings ()change those if there are achanges to the daq
+=======
+// public/javascripts/monitor.js
+var max_pmt_id = 0;
+var results_empty={};
+var global_json;
+var global_pmt_rates;
+var global_timestamps_txt;
+>>>>>>> upstream/master
 
 const readers_per_detector = {
     "tpc": ["reader0_reader_0", "reader1_reader_0", "reader2_reader_0"]
@@ -292,6 +301,7 @@ function status_bar(string_text, color = false, stroke = false){
     }
 }
 
+<<<<<<< HEAD
 function caclulate_board_base_pos(board, layout){
     try{
         var x = 500;
@@ -340,6 +350,28 @@ const array_pos = {
     "top": function(coords){return([100+coords[0]*pmt_tpc_scaling_factor, 145-coords[1]*pmt_tpc_scaling_factor])},
     "bottom": function(coords){return([300+coords[0]*pmt_tpc_scaling_factor, 145-coords[1]*pmt_tpc_scaling_factor])},
     "he": function(coords){return([200+coords[0]*pmt_tpc_scaling_factor, 145-coords[1]*pmt_tpc_scaling_factor])}
+=======
+function set_limits(){
+  var now = Math.floor(new Date().getTime()/1000);
+  var dt = 3*24*3600; // only 3 days of stored data
+  $("#field_history_start").val(now-dt);
+  $("#field_history_end").val(now);
+}
+
+// convert datarate into percentage value
+function color_scheme(x){
+    if(x < pmt_min_rate){
+        return(0)
+    } else if(x > pmt_max_rate){
+        return(1)
+    } else {
+        if(document.getElementById("legend_color_scale_log").checked){
+            return(Math.log(x/pmt_min_rate)/Math.log(pmt_diff_base)/pmt_diff)
+        } else{
+            return((x - pmt_min_rate)/(pmt_max_rate - pmt_min_rate))
+        }
+    }
+>>>>>>> upstream/master
 }
 
 // functions that translates the pmt coordinates into svg coorinates
@@ -394,10 +426,15 @@ function calc_3d_pos(input_coords, calc){
 
 
 
+<<<<<<< HEAD
 function switch_layout(layout){
     if(!(layout in default_pos)){
         return(0)
     }
+=======
+function initialize_pmts(){
+    //console.log("initializing pmts")
+>>>>>>> upstream/master
     
     try{
         pmt_size = layout_style[layout]["pmt_size"]
@@ -484,6 +521,7 @@ function initialize_pmts(){
             console.log("cable_map loaded")
             build_pmt_layouts()
         }
+<<<<<<< HEAD
     )
     
     console.log("both loadings initialized")
@@ -500,13 +538,46 @@ function build_pmt_layouts(){
     if(cable_map == false || board_map == false){
         console.log("other map still missing")
         return(0)
+=======
+        move_all_pmt_pos('array')
+        //console.log("pmts initialized: " + pmt_count_last);
+        pmt_default_style = obj_pmt.style;
+        update_color_scheme();
+>>>>>>> upstream/master
     }
     timer_ini.push(new Date)
     console.log("both maps exisiting, starting to build map....")
     
 
+<<<<<<< HEAD
     svgObject0 = document.getElementById('svg_frame1').contentDocument;
     svgObject1 = document.getElementById('svg_frame1').contentDocument.documentElement;
+=======
+    id_initialize_interval = window.setInterval(
+        function(){
+            
+            var pmt_count_now = svgObject1.querySelectorAll("circle.pmt").length;
+            //console.log("counting " + pmt_count_now + "pmts");
+            
+            if(pmt_count_now == pmt_count_last){
+                clearInterval(id_initialize_interval);
+                max_pmt_id = pmt_count_last - 1;
+                
+                for(var i = 0; i < pmt_count_last; i += 1){
+                    results_empty[i] = -1;
+                }
+                
+                pmt_add_event();
+                set_limits();
+                start_live_interval();
+            } else {
+                pmt_count_last = pmt_count_now;
+            }
+            
+        },
+        100
+    );
+>>>>>>> upstream/master
 
     status_bar("If this message is visible: reload the page", color = "red")
     
@@ -1320,7 +1391,16 @@ function legend_set(which){
             change_toggle("legend_auto_set", false)
             eval("legend_rate_"+which+ "="+new_value)
             
+<<<<<<< HEAD
             update_color_scheme()
+=======
+            /*console.log(str_message + "\n" +
+                "db:" + t_tpcdata_duration + ", " +
+                "srt:" + t_sorting_duration + ", " +
+                "col:" + t_coloring_duration + ", " +
+                "all:" + t_all_duration
+            )*/
+>>>>>>> upstream/master
         }
     }
     
@@ -1341,12 +1421,21 @@ function update_color_scheme(new_min = false, new_max=false){
     }
     
     
+<<<<<<< HEAD
     if($("#legend_color_scale_log").is(':checked') == true){
         if(legend_rate_min <= 0){
             legend_rate_min = 1
         }
         legend_rate_diff = Math.log(legend_rate_max) - Math.log(legend_rate_min)
         diff_rate = legend_rate_diff/4
+=======
+    if(array_toggled_pmts.includes(pmt_id, 0)){
+        //console.log("toggled off: " + pmt_id)
+        index_pmt = array_toggled_pmts.indexOf(pmt_id)
+        
+        var dump = array_toggled_pmts.splice( index_pmt, 1 );
+        var dump_color = global_colors_use.splice( index_pmt, 1 );
+>>>>>>> upstream/master
         
         text_25 = Math.exp(Math.log(legend_rate_min) + diff_rate)
         text_50 = Math.exp(Math.log(legend_rate_min) + diff_rate * 2)
@@ -1354,6 +1443,7 @@ function update_color_scheme(new_min = false, new_max=false){
         
         
     } else {
+<<<<<<< HEAD
         if(legend_rate_min < 0){
             legend_rate_min = 0
         }
@@ -1369,6 +1459,22 @@ function update_color_scheme(new_min = false, new_max=false){
     svgObject0.getElementById("str_legend_050").textContent = text_50.toFixed(0)
     svgObject0.getElementById("str_legend_075").textContent = text_75.toFixed(0)
     svgObject0.getElementById("str_legend_100").textContent = legend_rate_max
+=======
+        //console.log("toggled on: " + pmt_id)
+        array_toggled_pmts.push(pmt_id);
+    
+
+        var color_id = Math.round(Math.random()*global_colors_available.length)-1;
+        var color = global_colors_available.splice(color_id,1)[0]
+        
+        obj_pmt.setAttribute("style", "fill:"+fill_color+";stroke:"+color+";stroke-width:1;");
+        global_colors_use.push(color)
+        
+    }
+    
+    //console.log(array_toggled_pmts);
+    //console.log(global_colors_use);
+>>>>>>> upstream/master
     
     color_pmts(pmt_rates)
 }
@@ -1443,6 +1549,7 @@ function trendview_status_update(text_string){
 }
 
 
+<<<<<<< HEAD
 function trendview_get_data_full(){
     if(trendview_test_validity() == false){
         return(0)
@@ -1551,6 +1658,231 @@ function trendview_plot_update(){
             zoomType: 'x',
             height: 720
         },
+=======
+function history_draw(){
+  if(array_toggled_pmts.length == 0){
+    var pmts = false;
+    alert("please select desired channels by clicking on them in the channel view.");
+    return;
+  } else {
+    var pmts = array_toggled_pmts.join(",");
+  }
+
+
+  pmt_list = {};
+  for(var i = 0; i < array_toggled_pmts.length; i += 1){
+    var pmt_string = array_toggled_pmts[i].toString();
+    pmt_list[pmt_string] = [];
+  }
+  var time_list = [];
+
+  var x_steps = 4;
+  var x0 = parseFloat(svgObject2.getElementById("str_x_000").getAttribute("x"));
+  var x1 = parseFloat(svgObject2.getElementById("str_x_100").getAttribute("x"));
+  var y0 = parseFloat(svgObject2.getElementById("str_y_000").getAttribute("y"));
+  var y1 = parseFloat(svgObject2.getElementById("str_y_100").getAttribute("y"));
+  var dx_ = x1 - x0;
+  var dy_ = y1 - y0;
+
+
+  function dx(){
+    return(max_time - min_time);
+  }
+
+  function dy(){
+    return(max_rate - min_rate);
+  }
+
+  function x(value_x){
+    return(
+      x0 + (value_x * dx_ / dx())
+    )
+  }
+  function y(value_y){
+    return(
+      y0 + (value_y * dy_ / dy())
+    )
+  }
+  var t0  = 0
+  var min_time = Infinity;
+  var max_time = 0;
+  var min_rate = 0;//Infinity;
+  var max_rate = 0;
+
+  // prepare data
+  function prepare_data(){
+    for (var i = 0; i < result.length; i += 1){
+      step = result[i]
+      var time_this = step["_id"];
+      time_list[i] = time_this;
+
+      if(time_this > max_time){
+        max_time = time_this;
+      }
+      if(time_this < min_time){
+        min_time = time_this;
+      }
+
+      for(var j = 0; j < array_toggled_pmts.length; j += 1){
+        var pmt_string = array_toggled_pmts[j].toString();
+        var rate_this = step["channels"][pmt_string];
+        pmt_list[pmt_string][i] = rate_this;
+
+        if(rate_this > max_rate){
+          max_rate = rate_this;
+        }
+        //if(rate_this < min_rate){
+        //min_rate = rate_this;
+        //}
+      }
+    }
+    t0 = min_time;
+    min_time = 0;
+    max_time -= t0;
+
+    for (var i = 0; i < result.length; i += 1){
+      time_list[i] -= t0;
+    }
+
+    console.log(
+      "min_time:\t"+ min_time +"\n"+
+      "max_time:\t"+ max_time +"\n"+
+      "dif_time:\t"+ dx() +"\n"+
+      "min_rate:\t"+ min_rate +"\n"+
+      "max_rate:\t"+ max_rate +"\n"+
+      "dif_rate:\t"+ dy() +"\n"+
+      ""
+    )
+  }
+
+  // prepare axis
+
+
+
+
+  function history_prepare_axis(){
+    // time field
+    svgObject2.getElementById("time_id").textContent = "start: " + get_human_date(t0);
+
+    // y axis
+    svgObject2.getElementById("str_y_100").textContent = max_rate + pmt_rate_unit;
+    svgObject2.getElementById("str_y_050").textContent = min_rate + dy()*.5 + pmt_rate_unit;
+    svgObject2.getElementById("str_y_000").textContent = min_rate + pmt_rate_unit;
+
+    // x axis
+    svgObject2.getElementById("str_x_000").textContent = min_time + " s"
+    svgObject2.getElementById("str_x_025").textContent = min_time + dx()*.25 + " s"
+    svgObject2.getElementById("str_x_050").textContent = min_time + dx()*.50 + " s"
+    svgObject2.getElementById("str_x_075").textContent = min_time + dx()*.75 + " s"
+    svgObject2.getElementById("str_x_100").textContent = max_time + " s"
+
+  }
+  function remove_old_rates(){
+    svgObject2.getElementById("time_id").textContent = "";
+    while(true){
+      var datalines_existing = svgObject2.getElementsByClassName("dataline");
+      var n_datalines_existing = datalines_existing.length;
+      if(n_datalines_existing > 0){
+        for(var i = 0; i < datalines_existing.length; i += 1){
+          datalines_existing[i].remove();
+        }
+      } else {
+        break;
+      }
+    }
+  }
+
+  function history_draw_pmts(){
+    for(var i = 0; i < array_toggled_pmts.length; i += 1){
+      var color_this = global_colors_use[i];
+      var str_points = ""
+
+
+
+      var pmt_id = array_toggled_pmts[i];
+      var y_data = pmt_list[pmt_id];
+
+      for(var j = 0; j < y_data.length; j += 1){
+        y_point = y_data[j];
+
+        if(y_point != undefined){
+          str_points += ""+x(time_list[j])+", "+ y(y_point)+ " ";
+        }
+      }
+
+      var group_this = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      group_this.setAttribute("class", "dataline")
+
+      var text_this = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text_this.setAttribute("class", "dataline");
+      text_this.setAttribute("style", "fill:"+color_this+";font-size:.75em;text-anchor:end;");
+      text_this.setAttribute("x", parseFloat(svgObject2.getElementById("pmtlabel").getAttribute("x")));
+      text_this.setAttribute("y", parseFloat(svgObject2.getElementById("pmtlabel").getAttribute("y")) + 15*(i+1));
+      text_this.innerHTML = pmt_id;
+      //svgObject2.children[0].appendChild(text_this);
+      group_this.appendChild(text_this)
+
+
+      var line_this = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+      line_this.setAttribute("class", "dataline");
+      line_this.setAttribute("points", str_points);
+      line_this.setAttribute("fill", "none");
+      line_this.setAttribute("style", "stroke:"+color_this+";");
+      //svgObject2.children[0].appendChild(line_this);
+      group_this.appendChild(line_this)
+
+      svgObject2.children[0].appendChild(group_this);
+    }
+  }
+
+  //var svgObject2 = svgDocument.children[0]
+  //var svgDocument = document.getElementById('svg_frame2').getElementById('svg2')
+
+
+  var time_start = parseInt(document.getElementById('field_history_start' ).value);
+  var time_end   = parseInt(document.getElementById('field_history_end'   ).value);
+  var time_width = parseInt(document.getElementById('field_history_window').value);
+
+  console.log(
+    "\ntime_start:" + time_start + 
+    "\ntime_end:" + time_end + 
+    "\ntime_width:" + time_width
+  )
+
+  if(isNaN(time_start) || isNaN(time_end) || isNaN(time_width)){
+    return(0);
+  }
+
+
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      result = JSON.parse(this.responseText);
+      pmt_rates_history = result;
+      prepare_data();
+      remove_old_rates();
+      history_prepare_axis();
+      history_draw_pmts();
+    }
+  };
+
+
+
+
+  if(pmts == false){
+    remove_old_rates();
+  } else {
+    str_url = "/monitor/get_history?str_pmts=" + pmts +
+      "&int_time_start=" + time_start +
+      "&int_time_end=" + time_end +
+      "&int_time_averaging_window=" + time_width;
+    console.log(str_url);
+    xmlhttp.open("GET", str_url, true);
+    xmlhttp.send();
+  }
+
+}
+>>>>>>> upstream/master
 
         title: {
             text: 'Datarate for selected channels'

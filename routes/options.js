@@ -1,22 +1,30 @@
+// routes/options.js
 var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp = '';
-const SCRIPT_VERSION = '20210407';
+const SCRIPT_VERSION = '20210622';
+
+function TemplateInfo(req) {
+  var template_info = req.template_info_base;
+  template_info['extra_detectors'] = [['include', 'Includes']];
+  return template_info;
+}
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  return res.redirect(gp+'/login');
+  return req.isAuthenticated() ? next() : res.redirect('/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-  res.render('options', { title: 'Options', user:req.user });
+  res.render('options', TemplateInfo(req));
+});
+
+router.get('/template_info', ensureAuthenticated, function(req, res) {
+  return res.json(TemplateInfo(req));
 });
 
 router.get("/options_list", ensureAuthenticated, function(req, res){
-  var db = req.db;
-  var collection = db.get('options');
-  collection.aggregate([
+  req.db.get('options').aggregate([
     {$unwind: '$detector'},
     {$sort: {name: 1}},
     {$group: {_id: '$detector', modes: {$push: '$name'}}},
@@ -31,11 +39,9 @@ router.get("/options_json", ensureAuthenticated, function(req, res){
   if(typeof name == "undefined")
     return res.json({"ERROR": "No name provided"});
 
-  var db = req.db;
-  var collection = db.get('options');
-  collection.findOne({"name": name}, {})
-  .then(doc => res.json(doc))
-  .catch(err => {console.log(err.message); return res.json({'ERROR': 'No config found'});});
+  req.db.get('options').findOne({"name": name})
+  .then( doc => res.json(doc))
+  .catch(error => res.json({"error": error.message}));
 });
 
 router.post("/set_run_mode", ensureAuthenticated, function(req, res){
@@ -46,35 +52,29 @@ router.post("/set_run_mode", ensureAuthenticated, function(req, res){
   if (typeof req.body.version == 'undefined' || req.body.version != SCRIPT_VERSION)
     return res.json({res: "Please hard-reload your page (shift-f5 or equivalent)"});
 
-  var db = req.db;
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
-    return res.json({"res": "I can't allow you to do that Dave"});
+    return res.json({"err": "I can't allow you to do that Dave"});
 
-  var collection = db.get('options');
   if(typeof doc['name'] === 'undefined')
     return res.redirect("/options");
-  collection.remove({name: doc['name']}, {})
-    .then( () => collection.insert(doc, {}))
-    .then( () => res.json({msg: "Success"}))
-    .catch((err) => {console.log(err.message); return res.json({"res": err.message});});
+  req.db.get('options').remove({name: doc['name']})
+    .then( () => req.db.get('options').insert(doc, {}))
+    .then( () => res.status(200).json({}))
+    .catch(err => {console.log(err.message); return res.json({"err": err.message});});
 });
 
 router.get("/remove_run_mode", ensureAuthenticated, function(req, res){
   var query = url.parse(req.url, true).query;
   var name = query.name;
-  var db = req.db;
-  var collection = db.get('options');
-  if (typeof query.version == 'undefined' || query.version != SCRIPT_VERSION)
-    return res.json({res: 'Please hard-reload the page (shift-f5 or equivalent)'});
 
   // Check permissions
   if(typeof(req.user.groups) == "undefined" || !req.user.groups.includes("daq"))
-    return res.json({"res": "I can't allow you to do that Dave"});
+    return res.json({"err": "I can't allow you to do that Dave"});
 
-  collection.remove({'name': name}, {})
-  .then(() => res.json({msg: 'Success'}))
-  .catch(err => {console.log(err.message); return res.redirect("/options");});
+  req.db.get('options').remove({'name': name})
+  .then( () => res.status(200).json({}))
+  .catch(err => {console.log(err.message); return res.json({err: err.message});});
 });
 
 

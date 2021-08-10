@@ -5,6 +5,8 @@ var router = express.Router();
 var ObjectID = require('mongodb').ObjectID;
 var gp = '';
 
+var tpc_readers = ['reader0_reader_0', 'reader1_reader_0', 'reader2_reader_0'];
+
 function ensureAuthenticated(req, res, next) {
   return req.isAuthenticated() ? next() : res.redirect(gp+'/login');
 }
@@ -12,7 +14,6 @@ function ensureAuthenticated(req, res, next) {
 router.get('/', ensureAuthenticated, function(req, res) {
   res.render('monitor', req.template_info_base);
 });
-
 
 
 router.get('/cable_map.json', ensureAuthenticated,function(req,res){
@@ -29,6 +30,18 @@ router.get('/cable_map.json', ensureAuthenticated,function(req,res){
   .catch(err => {console.log(err.message); return res.json([]);});
 });
 
+router.get('/get_updates', ensureAuthenticated,function(req,res){
+
+  // start mongo pipeline with empty array
+  var mongo_pipeline = []
+  mongo_pipeline.push({"$match":{"host":{'$in': tpc_readers}}});
+  mongo_pipeline.push({"$sort": {"_id":-1}});
+  mongo_pipeline.push({"$limit": 15});
+  mongo_pipeline.push({"$group": {_id: "$host", lastid:{"$last": "$_id"}, channels:{"$last":"$channels"}}});
+
+  // append time filter if parameter unixtime is given in url
+  var int_unixtime = parseInt(req.query.unixtime);
+  if(!isNaN(int_unixtime)){
 
 router.get('/board_map.json', ensureAuthenticated,function(req,res){
 
@@ -196,11 +209,16 @@ router.get('/get_history', ensureAuthenticated,function(req,res){
 
 // get last update on individual reader
 router.get('/update/:reader', ensureAuthenticated,function(req,res){
+<<<<<<< HEAD
   var query = {host: req.params.reader};
+=======
+  var query = {host: `reader${req.params.reader}_reader_0`};
+>>>>>>> upstream/master
   var opts = {limit: 1, sort: {_id: -1}};
   req.db.get('status').find(query,opts)
     .then(docs => res.json(docs))
     .catch(err => {console.log(err.message); return res.json([]);});
+<<<<<<< HEAD
 });
 
 
@@ -225,6 +243,8 @@ router.get('/update_timestamp/:reader/:time', ensureAuthenticated,function(req,r
     .catch(err => {console.log(err.message); return res.json(query);});
   
     
+=======
+>>>>>>> upstream/master
 });
 
 

@@ -1,21 +1,33 @@
+// routes.control.js
 var express = require("express");
 var url = require("url");
 var router = express.Router();
 var gp='';
-const SCRIPT_VERSION = '20210407';
+const SCRIPT_VERSION = '20210709';
+
+function template_info(req) {
+  var template = {};
+  for (var key in req.template_info_base)
+    template[key] = req.template_info_base[key];
+  template._detectors = template.detectors.map(val => val); // make a copy
+  template._detectors.push(['lz', 'LZ'])
+  return template;
+}
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    return res.redirect(gp+'/login');
+  return req.isAuthenticated() ? next() : res.redirect('/login');
 }
 
 router.get('/', ensureAuthenticated, function(req, res) {
-    res.render('control', { title: 'Control', user:req.user });
+  res.render('control', template_info(req));
+});
+
+router.get('/template_info', ensureAuthenticated, function(req, res) {
+  return res.json(template_info(req));
 });
 
 router.get('/modes', ensureAuthenticated, function(req, res){
-  var db = req.db;
-  var collection = db.get("options");
+  var collection = req.db.get("options");
   var q = url.parse(req.url, true).query;
   var detector = q.detector;
   collection.aggregate([
@@ -54,8 +66,7 @@ function GetControlDoc(collection, detector) {
 }
 
 router.get("/get_control_doc", ensureAuthenticated, function(req, res){
-    var db = req.db;
-    var collection = db.get("detector_control");
+  var collection = req.db.get("detector_control");
   var detector = url.parse(req.url, true).query.detector;
   if (typeof detector == 'undefined' || detector == '')
     return res.json({});
@@ -65,11 +76,10 @@ router.get("/get_control_doc", ensureAuthenticated, function(req, res){
 });
 
 router.post('/set_control_docs', ensureAuthenticated, function(req, res){
-  var db = req.db;
-  var collection = db.get("detector_control");
+  var collection = req.db.get("detector_control");
+  var data = req.body.data;
   if (typeof req.user.lngs_ldap_uid == 'undefined')
     return res.sendStatus(403);
-  var data = req.body.data;
   if (typeof data.version == 'undefined' || data.version != SCRIPT_VERSION)
     return res.json({'err': 'Please hard-reload your page (shift-f5 or equivalent)'});
   var count = 0;
@@ -89,10 +99,10 @@ router.post('/set_control_docs', ensureAuthenticated, function(req, res){
       }
       if (++count >= 3) return res.status(200).json({});
     })
-    .catch(err => {
-      console.log(err.message);
-      if (++count >= 3) return res.status(200).json({err: err.message});
-    });
+      .catch(err => {
+        console.log(err.message);
+        if (++count >= 3) return res.status(200).json({err: err.message});
+      });
   }); // forEach
 });
 
