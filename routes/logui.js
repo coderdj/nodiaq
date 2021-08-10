@@ -43,11 +43,13 @@ router.post('/new_log_message', ensureAuthenticated, (req, res) => {
   var p = 5;
   if(typeof req.body.priority != 'undefined')
     p=parseInt(req.body.priority);
+  if (req.body.entry == "")
+    return res.sendStatus(200);
   var idoc = {
-    "user": req.user.last_name,
+    "user": req.user.lngs_ldap_uid,
     "message": req.body.entry,
     "priority": p,
-    "time": new Date()
+    "runid": parseInt(-1)
   }
   req.db.get('log').insert(idoc)
   .then(() => res.sendStatus(200))
