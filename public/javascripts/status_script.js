@@ -35,6 +35,7 @@ function RedrawRatePlot(){
   document.reader_data = {};
   DrawProgressRate(0);
   var limit = parseInt(history);
+  var seen_so_far = 0;
   readers.forEach(reader => {
     $.getJSON("status/get_reader_history?limit="+limit+"&res="+resolution+"&reader="+reader, 
       function(data){
@@ -45,25 +46,25 @@ function RedrawRatePlot(){
         for (var key in data) {
           document.reader_data[key] = data[key];
         }
-        if(Object.keys(document.reader_data).length == readers.length){
-          DrawProgressRate(100);
+        DrawProgressRate(++seen_so_far/readers.length);
+        // we use seen_so_far instead of Object.keys(reader_data) because if get_reader_history returns nothing then
+        // reader_data doesn't get longer, so we never reach 100% and the plot never gets drawn
+        if(seen_so_far == readers.length){
           DrawInitialRatePlot();
         }
-        else
-          DrawProgressRate(readers.length);
       });
   });
 }
 
-function DrawProgressRate(prog){
+function DrawProgressRate(frac){
   var rate_chart = '#rate_chart';
-  if(prog === 0){
+  if(frac == 0){
     $(rate_chart).html('<br><br><br><div class="progress"><div id="PBAR" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div><p class="text-center"><strong>Polling data for chart</strong></p>');
   }
-  else if(prog===100)
+  else if(frac == 1)
     $(rate_chart).html("");
   else{
-    prog = Math.floor(100*(Object.keys(document.reader_data).length/prog));
+    prog = Math.floor(100*frac);
     $('#PBAR').css('width', prog+'%').attr('aria-valuenow', prog);
   }
 }
