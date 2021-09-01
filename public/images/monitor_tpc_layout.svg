@@ -62,6 +62,8 @@
                 middle;
             font-family:
                 Verdana, Helvetica, Arial, sans-serif;
+                
+                
         }
         .text_info_large{
             font-size:
@@ -260,43 +262,54 @@
         x="415.0"
         y="235.0"
     ></text>
+    <text id="str_legend_minus1_list"
+        class="legend smaller"
+        alt="pmts that where not read by the DAQ"
+        x="425.0"
+        y="243.0"
+    ></text>
     
     <text id="str_legend_zero"
         class="legend smaller"
         alt="pmts with a data-rate of 0 kB/s"
         x="415.0"
-        y="245.0"
+        y="251.0"
     ></text>
-    
+    <text id="str_legend_zero_list"
+        class="legend smaller"
+        alt="pmts with a data-rate of 0 kB/s"
+        x="425.0"
+        y="259.0"
+    ></text>
     
     // add reader texts here
     <text id="str_reader_time_0"
         class="legend smaller right"
-        x="460"
+        x="465"
         y="270.0"
     ></text>
     
     <text id="str_reader_time_1"
         class="legend smaller right"
-        x="460"
+        x="465"
         y="278.0"
     ></text>
     
     <text id="str_reader_time_2"
         class="legend smaller right"
-        x="460"
+        x="465"
         y="286.0"
     ></text>
     
     <text id="str_reader_time_3"
         class="legend smaller right"
-        x="460"
+        x="465"
         y="294.0"
     ></text>
    
     <text id="str_status_bar"
         class="legend smaller right"
-        x="460"
+        x="465"
         y="302.0"
     >svg loaded</text>
     
