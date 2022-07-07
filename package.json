@@ -21,7 +21,7 @@
 		"jquery-ui": "^1.12.1",
 		"jquery-ui-dist": "^1.12.1",
 		"jsoneditor": "^9.0.3",
-		"moment": "^2.24.0",
+		"moment": "^2.29.4",
 		"mongodb": "^3.5.9",
 		"mongodb-core": "^3.2.7",
 		"mongoose": "^5.9.26",
