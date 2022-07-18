@@ -18,7 +18,7 @@
 		"googleapis": "^57.0.0",
 		"http-errors": "~1.6.2",
 		"jquery": "^3.4.1",
-		"jquery-ui": "^1.12.1",
+		"jquery-ui": "^1.13.2",
 		"jquery-ui-dist": "^1.12.1",
 		"jsoneditor": "^9.0.3",
 		"moment": "^2.24.0",
